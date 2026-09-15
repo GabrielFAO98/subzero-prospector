@@ -65,7 +65,7 @@
     <nav aria-label="Navegação Principal">
       <a href="#servicos">Serviços</a>
       <a href="#pmoc">PMOC Empresas</a>
-      <a href="#estrutura">Nossa Estrutura</a>
+      <a href="#padrao">Padrão Técnico</a>
       <a href="#avaliacoes">Avaliações</a>
       <a href="#contato">Contato</a>
     </nav>
@@ -121,17 +121,71 @@
       </div>
     </section>
 
-    <!-- BARRA DE AUTORIDADE & MARCAS PARCEIRAS -->
-    <section class="trust-bar">
-      <div class="trust-container">
-        <span class="trust-label">Trabalhamos com as marcas líderes mundiais:</span>
-        <div class="brand-pills">
-          <span class="pill">ELGIN</span>
-          <span class="pill">GREE</span>
-          <span class="pill">DAIKIN</span>
-          <span class="pill">SPRINGER MIDEA</span>
-          <span class="pill">FUJITSU</span>
-          <span class="pill">CARRIER</span>
+    <!-- CARROSSEL LENTO DE MARCAS LÍDERES (INFINITE MARQUEE) -->
+    <section class="brands-marquee-section">
+      <div class="brands-header">
+        <span class="brands-title">TRABALHAMOS COM AS FABRICANTES LÍDERES MUNDIAIS:</span>
+      </div>
+      <div class="brands-carousel" aria-label="Marcas de ar-condicionado atendidas">
+        <div class="brands-track">
+          <!-- DAIKIN -->
+          <div class="brand-item" title="Daikin Ar Condicionado">
+            <svg viewBox="0 0 130 32" class="brand-svg">
+              <path fill="var(--cyan)" d="M10 2L0 22h20L10 2z"/>
+              <text x="30" y="22" font-family="'Montserrat', sans-serif" font-weight="800" font-size="18" fill="#ffffff" letter-spacing="1.5">DAIKIN</text>
+            </svg>
+          </div>
+          <!-- ELGIN -->
+          <div class="brand-item" title="Elgin">
+            <svg viewBox="0 0 120 32" class="brand-svg">
+              <circle cx="12" cy="16" r="8" stroke="var(--cyan)" stroke-width="2.5" fill="none"/>
+              <circle cx="12" cy="16" r="3" fill="var(--cyan)"/>
+              <text x="28" y="22" font-family="'Montserrat', sans-serif" font-weight="900" font-size="18" fill="#ffffff" letter-spacing="2">ELGIN</text>
+            </svg>
+          </div>
+          <!-- GREE -->
+          <div class="brand-item" title="Gree">
+            <svg viewBox="0 0 110 32" class="brand-svg">
+              <rect x="2" y="6" width="6" height="20" rx="3" fill="var(--cyan)"/>
+              <text x="16" y="23" font-family="'Montserrat', sans-serif" font-weight="900" font-size="20" fill="#ffffff" letter-spacing="2">GREE</text>
+            </svg>
+          </div>
+          <!-- SPRINGER MIDEA -->
+          <div class="brand-item" title="Springer Midea">
+            <svg viewBox="0 0 170 32" class="brand-svg">
+              <path d="M12 4c-5 0-9 4-9 9s4 9 9 9 9-4 9-9-4-9-9-9zm0 14c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5z" fill="var(--cyan)"/>
+              <text x="28" y="22" font-family="'Montserrat', sans-serif" font-weight="800" font-size="16" fill="#ffffff" letter-spacing="1">MIDEA</text>
+            </svg>
+          </div>
+          <!-- FUJITSU -->
+          <div class="brand-item" title="Fujitsu General">
+            <svg viewBox="0 0 140 32" class="brand-svg">
+              <path d="M14 11c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm-7 0c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z" fill="none" stroke="var(--cyan)" stroke-width="2"/>
+              <text x="32" y="22" font-family="'Montserrat', sans-serif" font-weight="800" font-size="17" fill="#ffffff" letter-spacing="1.5">FUJITSU</text>
+            </svg>
+          </div>
+          <!-- CARRIER -->
+          <div class="brand-item" title="Carrier">
+            <svg viewBox="0 0 135 32" class="brand-svg">
+              <ellipse cx="65" cy="16" rx="60" ry="14" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+              <text x="65" y="22" text-anchor="middle" font-family="'Montserrat', sans-serif" font-style="italic" font-weight="900" font-size="16" fill="#ffffff" letter-spacing="1">Carrier</text>
+            </svg>
+          </div>
+          <!-- LG -->
+          <div class="brand-item" title="LG Electronics">
+            <svg viewBox="0 0 90 32" class="brand-svg">
+              <circle cx="14" cy="16" r="11" fill="none" stroke="var(--cyan)" stroke-width="2"/>
+              <circle cx="10" cy="13" r="1.8" fill="var(--cyan)"/>
+              <path d="M10 18h6v-6" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round"/>
+              <text x="34" y="23" font-family="'Montserrat', sans-serif" font-weight="900" font-size="20" fill="#ffffff" letter-spacing="2">LG</text>
+            </svg>
+          </div>
+          <!-- SAMSUNG -->
+          <div class="brand-item" title="Samsung">
+            <svg viewBox="0 0 150 32" class="brand-svg">
+              <text x="10" y="22" font-family="'Montserrat', sans-serif" font-weight="900" font-size="17" fill="#ffffff" letter-spacing="3">SAMSUNG</text>
+            </svg>
+          </div>
         </div>
       </div>
     </section>
@@ -175,34 +229,34 @@
       </div>
     </section>
 
-    <!-- 02 — SEÇÃO DEDICADA PMOC CORPORATIVO -->
+    <!-- 02 — SEÇÃO DEDICADA PMOC CORPORATIVO COM DOSSIÊ TÉCNICO -->
     <section class="pmoc-section section dark" id="pmoc">
       <div class="pmoc-content reveal-left">
         <p class="eyebrow light">ATENDIMENTO CORPORATIVO & EMPRESAS</p>
         <h2>Plano de Manutenção, Operação e Controle (PMOC)</h2>
         <p class="pmoc-lead">
-          Conformidade legal com a <strong>Lei Federal 13.589/2018</strong> para clínicas, hospitais, escritórios, indústrias e comércios em Franca.
+          Conformidade legal com a <strong>Lei Federal 13.589/2018</strong> para clínicas médicas, odontológicas, hospitais, escritórios, indústrias e comércios em Franca.
         </p>
         <div class="pmoc-points">
           <div class="pmoc-point">
             <svg class="check-icon"><use href="#icon-check"/></svg>
             <div>
-              <strong>Laudo Técnico com ART</strong>
-              <p>Documentação oficial emitida por responsável técnico para auditorias e fiscalização da Vigilância Sanitária.</p>
+              <strong>Responsabilidade Técnica com ART</strong>
+              <p>Documentação oficial assinada por responsável técnico para auditorias e fiscalização da Vigilância Sanitária.</p>
             </div>
           </div>
           <div class="pmoc-point">
             <svg class="check-icon"><use href="#icon-check"/></svg>
             <div>
-              <strong>Qualidade do Ar Interior & Saúde</strong>
-              <p>Controle microbiológico rigoroso, prevenindo a proliferação de bactérias e doenças respiratórias em equipes e pacientes.</p>
+              <strong>Qualidade do Ar Interior & Saúde Ocupacional</strong>
+              <p>Controle microbiológico rigoroso, prevenindo a proliferação de fungos, bactérias e doenças respiratórias no ambiente de trabalho.</p>
             </div>
           </div>
           <div class="pmoc-point">
             <svg class="check-icon"><use href="#icon-check"/></svg>
             <div>
-              <strong>Redução de Energia e Desgaste</strong>
-              <p>Equipamentos calibrados consomem menos eletricidade e reduzem drasticamente custos de paradas emergenciais.</p>
+              <strong>Redução Drástica na Conta de Energia</strong>
+              <p>Sistemas limpos e balanceados evitam sobrecarga dos compressores e reduzem custos com paradas emergenciais.</p>
             </div>
           </div>
         </div>
@@ -212,35 +266,93 @@
         </a>
       </div>
 
-      <div class="pmoc-card reveal-right">
-        <img src="./img/equipamento-ecol.jpg" alt="Equipamentos industriais e corporativos da Ecol Ar Condicionado" />
-        <div class="pmoc-card-badge">
-          <b>20+ Anos</b>
-          <span>Atendendo grandes empresas e clínicas de Franca</span>
+      <!-- DOSSIÊ TÉCNICO DE CONFORMIDADE PMOC (SEM IMAGEM DESCONEXA) -->
+      <div class="pmoc-compliance-card reveal-right">
+        <div class="compliance-header">
+          <div class="compliance-badge-legal">LEI FEDERAL 13.589/18</div>
+          <h3>Dossiê de Conformidade Técnica</h3>
+          <p>O que está incluído no contrato corporativo da Ecol:</p>
+        </div>
+
+        <ul class="compliance-list">
+          <li>
+            <svg class="check-icon"><use href="#icon-check"/></svg>
+            <span><strong>Anotação de Responsabilidade Técnica (ART)</strong> registrada no CREA</span>
+          </li>
+          <li>
+            <svg class="check-icon"><use href="#icon-check"/></svg>
+            <span><strong>Laudo de Análise do Ar Interior</strong> conforme Resolução RE nº 09 da ANVISA</span>
+          </li>
+          <li>
+            <svg class="check-icon"><use href="#icon-check"/></svg>
+            <span><strong>Cronograma de Visitas Preventivas</strong> mensais, trimestrais e semestrais</span>
+          </li>
+          <li>
+            <svg class="check-icon"><use href="#icon-check"/></svg>
+            <span><strong>Prontuário Digital do Edifício</strong> sempre atualizado para fiscalizações</span>
+          </li>
+          <li>
+            <svg class="check-icon"><use href="#icon-check"/></svg>
+            <span><strong>Plantão Prioritário de Suporte</strong> para chamados corretivos rápidos</span>
+          </li>
+        </ul>
+
+        <div class="compliance-footer">
+          <small>OBRIGATÓRIO PARA EDIFÍCIOS COMERCIAIS E CLÍNICAS A PARTIR DE 60.000 BTUS</small>
         </div>
       </div>
     </section>
 
-    <!-- 03 — NOSSA ESTRUTURA REAL EM FRANCA -->
-    <section class="structure section" id="estrutura">
+    <!-- 03 — O PADRÃO ECOL DE INSTALAÇÃO & ATENDIMENTO -->
+    <section class="methodology-section section" id="padrao">
       <div class="section-header stagger">
-        <p class="eyebrow">ESTRUTURA FÍSICA & ATENDIMENTO</p>
-        <h2>Conheça nossa loja e showroom em Franca.</h2>
-        <p class="section-lead">Localização de fácil acesso no Village Santa Georgina, com atendimento consultivo e equipamentos para você conferir de perto.</p>
+        <p class="eyebrow">03 — POR QUE ESCOLHER A ECOL</p>
+        <h2>O Padrão Técnico de Instalação.<br/><span>Sem improvisos, com garantia real.</span></h2>
+        <p class="section-lead">Entenda por que uma instalação executada por especialistas credenciados protege seu patrimônio e sua economia.</p>
       </div>
 
-      <div class="gallery-grid">
-        <div class="gallery-item image-reveal">
-          <img src="./img/fachada-ecol.jpg" alt="Fachada da loja Ecol Ar Condicionado em Franca" />
-          <div class="gallery-caption">Fachada Oficial • R. Cel. José Pedro de Faria, 2161</div>
+      <div class="methodology-grid">
+        <div class="methodology-card stagger">
+          <div class="step-num">01</div>
+          <h3>Cálculo Térmico Científico</h3>
+          <p>Não trabalhamos no "chute". Avaliamos insolação, metragem, equipamentos eletrônicos e circulação para indicar a potência exata sem desperdício na conta de luz.</p>
         </div>
-        <div class="gallery-item image-reveal">
-          <img src="./img/loja-ecol.jpg" alt="Showroom e estoque de ar-condicionado na Ecol" />
-          <div class="gallery-caption">Showroom Próprio • Pronta-entrega em Franca</div>
+
+        <div class="methodology-card stagger">
+          <div class="step-num">02</div>
+          <h3>Tubulação 100% Cobre</h3>
+          <p>Jamais utilizamos tubos de alumínio. O cobre puro garante altíssima resistência a corrosão, condutividade térmica superior e zero vazamento de gás.</p>
         </div>
-        <div class="gallery-item image-reveal">
-          <img src="./img/estrutura-ecol.jpg" alt="Ambiente técnico e operacional da Ecol" />
-          <div class="gallery-caption">Equipe Técnica & Frota Própria</div>
+
+        <div class="methodology-card stagger">
+          <div class="step-num">03</div>
+          <h3>Instalação Limpa e Protegida</h3>
+          <p>Furação com sistema de sucção acoplado para não sujar suas paredes, pisos e móveis. Sua casa ou escritório continua perfeitamente impecável.</p>
+        </div>
+
+        <div class="methodology-card stagger">
+          <div class="step-num">04</div>
+          <h3>Vácuo Digital & Estanqueidade</h3>
+          <p>Processo rigoroso de vácuo com bomba especializada e vacuômetro digital, garantindo 0% de umidade no circuito e preservando a vida do compressor.</p>
+        </div>
+      </div>
+
+      <!-- SHOWROOM PANORÂMICO OFICIAL -->
+      <div class="showroom-banner image-reveal">
+        <div class="showroom-image-wrapper">
+          <img src="./img/loja-ecol.jpg" alt="Showroom oficial da Ecol Ar Condicionado em Franca" />
+        </div>
+        <div class="showroom-content">
+          <div class="showroom-badge">SHOWROOM OFICIAL EM FRANCA</div>
+          <h3>Venha conhecer os aparelhos em funcionamento antes de comprar.</h3>
+          <p>
+            Localizado no Village Santa Georgina, nosso showroom conta com mais de 20 modelos expostos das marcas Elgin, Gree, Daikin, Springer Midea e LG para você testar ruído, design e potência de perto.
+          </p>
+          <div class="showroom-action">
+            <a class="button whatsapp-button" href="https://maps.google.com/maps?q=R.+Cel.+Jos%C3%A9+Pedro+de+Faria%2C+2161+-+Village+Santa+Georgina%2C+Franca+-+SP" target="_blank" rel="noopener noreferrer">
+              📍 Traçar Rota no Google Maps
+            </a>
+          </div>
         </div>
       </div>
     </section>

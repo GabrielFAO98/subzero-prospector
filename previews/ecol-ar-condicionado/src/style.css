@@ -1627,42 +1627,76 @@ h1, h2, h3 {
    ECOL CUSTOM MODULES (Fase 2 Customization)
    ========================================================================== */
 
-/* Trust Bar / Marcas Parceiras */
-.trust-bar {
+/* ==========================================================================
+   ECOL CUSTOM MODULES (Fase 2 Refined Customization)
+   ========================================================================== */
+
+/* 1. Carrossel Lento de Marcas Líderes (Slow Infinite Marquee) */
+.brands-marquee-section {
   background: #060f1f;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 16px 24px;
+  padding: 24px 0 28px;
+  overflow: hidden;
 }
-.trust-container {
+.brands-header {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto 16px;
+  padding: 0 24px;
+  text-align: center;
+}
+.brands-title {
+  color: var(--cyan);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.brands-carousel {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+.brands-track {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
+  gap: 56px;
+  width: max-content;
+  animation: brandsMarquee 32s linear infinite;
+  will-change: transform;
 }
-.trust-label {
-  color: var(--cyan);
-  font-size: 0.82rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+.brands-track:hover, .brands-track:active {
+  animation-play-state: paused;
 }
-.brand-pills {
+@keyframes brandsMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.brand-item {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  opacity: 0.82;
+  transition: opacity 0.3s ease, transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  cursor: default;
 }
-.pill {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(0, 210, 255, 0.2);
-  color: #ffffff;
-  font-size: 0.76rem;
-  font-weight: 700;
-  padding: 5px 12px;
-  border-radius: 6px;
-  letter-spacing: 1px;
+.brand-item:hover {
+  opacity: 1;
+  transform: translateY(-3px) scale(1.04);
+  border-color: var(--cyan);
+  background: rgba(0, 210, 255, 0.06);
+}
+.brand-svg {
+  height: 28px;
+  width: auto;
+  max-width: 150px;
+  display: block;
 }
 
 /* Service Tag Badge */
@@ -1678,11 +1712,12 @@ h1, h2, h3 {
   border: 1px solid rgba(0, 210, 255, 0.2);
 }
 
-/* PMOC Section */
+/* 2. Seção PMOC Corporativo */
 .pmoc-section {
   background: #060f1f;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: clamp(60px, 8vw, 96px) 24px;
 }
 .pmoc-section > div {
   max-width: 1200px;
@@ -1694,11 +1729,11 @@ h1, h2, h3 {
     justify-content: center;
   }
   .pmoc-section > .pmoc-content {
-    flex: 1.2;
-    padding-right: 48px;
+    flex: 1.15;
+    padding-right: 44px;
   }
-  .pmoc-section > .pmoc-card {
-    flex: 0.8;
+  .pmoc-section > .pmoc-compliance-card {
+    flex: 0.85;
   }
 }
 .pmoc-section h2 {
@@ -1743,91 +1778,195 @@ h1, h2, h3 {
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.5;
 }
-.pmoc-card {
-  position: relative;
+
+/* Dossiê Técnico de Conformidade PMOC (Card Técnico) */
+.pmoc-compliance-card {
+  background: rgba(10, 25, 49, 0.85);
+  border: 1px solid rgba(0, 210, 255, 0.28);
   border-radius: 12px;
-  overflow: hidden;
+  padding: 32px 28px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(0, 210, 255, 0.25);
-}
-.pmoc-card img {
-  width: 100%;
-  height: 420px;
-  object-fit: cover;
-  display: block;
-}
-.pmoc-card-badge {
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
-  right: 16px;
-  background: rgba(10, 25, 49, 0.94);
   backdrop-filter: blur(8px);
-  padding: 14px 18px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.pmoc-card-badge b {
-  display: block;
-  font-size: 1.3rem;
+.compliance-badge-legal {
+  display: inline-block;
+  background: rgba(0, 210, 255, 0.12);
+  border: 1px solid var(--cyan);
   color: var(--cyan);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
 }
-.pmoc-card-badge span {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.85);
+.compliance-header h3 {
+  color: #ffffff;
+  font-size: 1.35rem;
+  margin: 0 0 6px;
+  font-weight: 800;
+}
+.compliance-header p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.88rem;
+  margin: 0 0 22px;
+}
+.compliance-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.compliance-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.45;
+}
+.compliance-list li strong {
+  color: #ffffff;
+}
+.compliance-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 16px;
+}
+.compliance-footer small {
+  color: var(--cyan);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  display: block;
 }
 
-/* Estrutura & Galeria Real */
-.structure {
+/* 3. Metodologia & Padrão Técnico de Instalação */
+.methodology-section {
   max-width: 1200px;
   margin: 0 auto;
+  padding: clamp(60px, 8vw, 96px) 24px;
 }
-.gallery-grid {
+.methodology-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
-  margin-top: 36px;
+  margin-top: 40px;
 }
-.gallery-item {
+.methodology-card {
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 32px 28px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   position: relative;
+}
+.methodology-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--cyan);
+}
+.step-num {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: var(--cyan-tint);
+  border: 1px solid rgba(0, 210, 255, 0.3);
+  color: var(--cyan-dark);
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+}
+.methodology-card h3 {
+  font-size: 1.25rem;
+  color: var(--text);
+  margin: 0 0 10px;
+  font-weight: 800;
+}
+.methodology-card p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Banner Showroom Panorâmico Oficial */
+.showroom-banner {
+  margin-top: 48px;
+  background: #060f1f;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--line);
-  aspect-ratio: 16 / 11;
-  background: #060f1f;
+  border: 1px solid rgba(0, 210, 255, 0.25);
+  box-shadow: var(--shadow-md);
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
 }
-.gallery-item img {
+.showroom-image-wrapper {
+  position: relative;
+  min-height: 320px;
+}
+.showroom-image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  display: block;
 }
-.gallery-item:hover img {
-  transform: scale(1.05);
-}
-.gallery-caption {
-  position: absolute;
-  bottom: 0;
-  inset-inline: 0;
-  background: linear-gradient(to top, rgba(6, 15, 31, 0.95), transparent);
+.showroom-content {
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   color: #ffffff;
-  padding: 24px 16px 12px;
-  font-size: 0.88rem;
-  font-weight: 600;
+}
+.showroom-badge {
+  display: inline-block;
+  align-self: flex-start;
+  background: rgba(0, 210, 255, 0.12);
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+.showroom-content h3 {
+  color: #ffffff;
+  font-size: clamp(1.3rem, 2vw, 1.75rem);
+  margin: 0 0 12px;
+  line-height: 1.25;
+}
+.showroom-content p {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 24px;
 }
 
 @media (max-width: 900px) {
-  .trust-container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .pmoc-card img {
-    height: 260px;
-    margin-top: 24px;
-  }
-  .gallery-grid {
+  .methodology-grid {
     grid-template-columns: 1fr;
+  }
+  .showroom-banner {
+    grid-template-columns: 1fr;
+  }
+  .showroom-image-wrapper {
+    min-height: 220px;
+  }
+  .showroom-content {
+    padding: 28px 20px;
+  }
+  .pmoc-compliance-card {
+    margin-top: 28px;
+    padding: 24px 18px;
   }
 }
 

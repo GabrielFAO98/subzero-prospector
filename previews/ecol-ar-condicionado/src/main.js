@@ -5,11 +5,17 @@
  */
 
 function initArcofran() {
-  // 1. Duplicate Testimonial Track Content for Seamless Infinite Loop
+  // 1. Duplicate Testimonial & Brands Track for Seamless Infinite Loop
   const testimonialTrack = document.querySelector('.testimonial-track');
   if (testimonialTrack && !testimonialTrack.dataset.duplicated) {
     testimonialTrack.innerHTML += testimonialTrack.innerHTML;
     testimonialTrack.dataset.duplicated = 'true';
+  }
+
+  const brandsTrack = document.querySelector('.brands-track');
+  if (brandsTrack && !brandsTrack.dataset.duplicated) {
+    brandsTrack.innerHTML += brandsTrack.innerHTML;
+    brandsTrack.dataset.duplicated = 'true';
   }
 
   // 2. Scroll Reveal Animations (Robust IntersectionObserver + Scroll Sync)
