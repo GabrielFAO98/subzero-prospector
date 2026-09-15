@@ -95,9 +95,19 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
           const ratingEl = card.querySelector('span.MW4etd, span[role="img"]');
           const ratingText = ratingEl ? (ratingEl.getAttribute('aria-label') || ratingEl.innerText || '').trim() : '';
 
-          // Link do Maps
+          // Link do Maps com coordenadas exatas para nunca errar o local
           const linkEl = card.querySelector('a.hfpxzc, a[href*="/maps/place/"]');
-          const mapsUrl = linkEl ? linkEl.href : '';
+          let mapsUrl = linkEl ? linkEl.href : '';
+          if (mapsUrl) {
+            const latMatch = mapsUrl.match(/!3d(-?[0-9.]+)/);
+            const lngMatch = mapsUrl.match(/!4d(-?[0-9.]+)/);
+            if (latMatch && lngMatch) {
+              mapsUrl = `https://www.google.com/maps/place/${encodeURIComponent(name)}/@${latMatch[1]},${lngMatch[1]},17z/`;
+            }
+          }
+          if (!mapsUrl) {
+            mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name + ' ' + city)}`;
+          }
 
           // Site oficial ou sublink
           const websiteEl = card.querySelector('a[data-value="Website"], a[aria-label*="website" i], a[aria-label*="site" i], a[data-item-id*="authority"]');
@@ -144,32 +154,76 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
         console.log(`🔍 [${itemIndex}/${targets.length}] Auditando: "${p.name}"...`);
         if (onProgress) onProgress(`Auditando [${itemIndex}/${targets.length}]: ${p.name}...`);
 
-        // 2.1 Auditoria do Website
+        // 2.1 Auditoria do Website e extração profunda de contatos
         const siteHealth = await checkWebsiteHealth(p.websiteUrl);
 
         // 2.2 Caça de Redes Sociais e Telefones
         const socials = await huntSocials(p.name, city);
 
-        // 2.3 Telefones do Maps e da Web (qualquer DDD)
+        // 2.3 Telefones do Maps, do Site e da Web
         const mapsPhones = (p.allText.match(/(?:\(?([1-9]{2})\)?\s?)?(?:(9\d{4})[-\s]?(\d{4})|(\d{4})[-\s]?(\d{4}))/g) || [])
           .map(x => x.trim());
-        const allPhones = [...new Set([...socials.telefones, ...mapsPhones])];
 
+        const rawAllPhones = [
+          ...(siteHealth.extractedPhones || []),
+          ...(socials.telefones || []),
+          ...mapsPhones
+        ];
+
+        // Normalização e desduplicação de telefones
+        const allPhones = [];
+        const seenDigits = new Set();
+        rawAllPhones.forEach(ph => {
+          const d = ph.replace(/\D/g, '');
+          if (d.length >= 8 && !seenDigits.has(d)) {
+            seenDigits.add(d);
+            allPhones.push(formatPhone(ph));
+          }
+        });
+
+        // 2.4 Seleção precisa de WhatsApp (Prioriza Celular / 9 dígitos)
         let whatsappPrincipal = null;
         let whatsappFormatado = null;
-        const celular = allPhones.find(t => t.replace(/\D/g, '').length >= 10);
-        if (celular) {
-          let nums = celular.replace(/\D/g, '');
-          if (nums.length === 11 && !nums.startsWith('55')) nums = '55' + nums;
-          else if (nums.length === 9) nums = '5516' + nums;
-          else if (nums.length === 10) nums = '55' + nums;
-          whatsappPrincipal = nums;
-          whatsappFormatado = formatPhone(nums);
-        } else if (allPhones[0]) {
-          whatsappFormatado = allPhones[0];
+
+        if (siteHealth.extractedWhatsApp) {
+          const wDigits = siteHealth.extractedWhatsApp.replace(/\D/g, '');
+          if (wDigits.length === 11) whatsappPrincipal = '55' + wDigits;
+          else if (wDigits.length === 13 && wDigits.startsWith('55')) whatsappPrincipal = wDigits;
+          else if (wDigits.length === 9) whatsappPrincipal = '5516' + wDigits;
+          else whatsappPrincipal = wDigits;
+          whatsappFormatado = formatPhone(whatsappPrincipal);
         }
 
-        // 2.4 Análise e Classificação Comercial
+        if (!whatsappPrincipal) {
+          // Busca por celular genuíno (DDD + 9xxxx-xxxx)
+          const celular = allPhones.find(t => {
+            const digits = t.replace(/\D/g, '');
+            if (digits.length === 11 && digits[2] === '9') return true;
+            if (digits.length === 9 && digits[0] === '9') return true;
+            if (digits.length === 13 && digits.startsWith('55') && digits[4] === '9') return true;
+            return false;
+          });
+
+          if (celular) {
+            let nums = celular.replace(/\D/g, '');
+            if (nums.length === 11 && !nums.startsWith('55')) nums = '55' + nums;
+            else if (nums.length === 9) nums = '5516' + nums;
+            whatsappPrincipal = nums;
+            whatsappFormatado = formatPhone(nums);
+          } else if (allPhones[0]) {
+            // Se só tiver fixo, salva para contato, mas deixa whatsapp formatado explícito
+            let nums = allPhones[0].replace(/\D/g, '');
+            if (nums.length === 10 && !nums.startsWith('55')) nums = '55' + nums;
+            whatsappPrincipal = nums;
+            whatsappFormatado = formatPhone(nums);
+          }
+        }
+
+        const finalInstagram = siteHealth.extractedInstagram || socials.instagram || null;
+        const finalFacebook = siteHealth.extractedFacebook || socials.facebook || null;
+        const allEmails = [...new Set([...(siteHealth.extractedEmails || []), ...(socials.emails || [])])];
+
+        // 2.5 Análise e Classificação Comercial
         let status = 'oportunidade_quente';
         let motivoDescarte = null;
         let analiseIA = '';
@@ -179,7 +233,7 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
           motivoDescarte = null;
           analiseIA = `🚨 GATILHO DE OURO: Empresa possui site cadastrado (${siteHealth.url}), porém está FORA DO AR / INACESSÍVEL (${siteHealth.reason}). Com ${p.ratingText || 'boa reputação'}, clientes perdem o contato e vão para a concorrência!`;
         } else if (siteHealth.status === 'online') {
-          // Se o site é inseguro HTTP, continua sendo oportunidade
+          // Se o site é inseguro HTTP, continua sendo oportunidade de modernização
           if (siteHealth.url && siteHealth.url.startsWith('http://')) {
             status = 'oportunidade_quente';
             motivoDescarte = null;
@@ -218,9 +272,9 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
           avaliacao: p.ratingText,
           mapsUrl: p.mapsUrl,
           telefones: allPhones,
-          emails: socials.emails || [],
-          instagram: socials.instagram || null,
-          facebook: socials.facebook || null,
+          emails: allEmails,
+          instagram: finalInstagram,
+          facebook: finalFacebook,
           whatsappPrincipal,
           whatsappFormatado,
           status,
@@ -251,8 +305,14 @@ function formatPhone(numStr) {
   if (digits.length === 13 && digits.startsWith('55')) {
     return `(${digits.slice(2, 4)}) ${digits.slice(4, 9)}-${digits.slice(9)}`;
   }
+  if (digits.length === 12 && digits.startsWith('55')) {
+    return `(${digits.slice(2, 4)}) ${digits.slice(4, 8)}-${digits.slice(8)}`;
+  }
   if (digits.length === 11) {
     return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+  }
+  if (digits.length === 10) {
+    return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
   }
   return numStr;
 }

@@ -1,8 +1,280 @@
 [
   {
+    "id": "lead_1789442883307_mjsjx2",
+    "createdAt": "2026-09-15T03:28:03.307Z",
+    "updatedAt": "2026-09-15T03:28:03.307Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "clinica-sorria-ja",
+    "nome": "Clínica Sorria Já",
+    "nicho": "clinica odontologica",
+    "cidade": "Franca SP",
+    "siteOriginal": "https://clinicasorriaja.com.br/",
+    "siteStatus": "online",
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "4,9 estrelas",
+    "mapsUrl": "https://www.google.com/maps/place/Cl%C3%ADnica%20Sorria%20J%C3%A1/@-20.5344765,-47.4004277,17z/",
+    "telefones": [
+      "(16) 99326-5002"
+    ],
+    "emails": [],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "5516993265002",
+    "whatsappFormatado": "(16) 99326-5002",
+    "status": "descartado",
+    "motivoDescarte": "Já possui site próprio ativo (https://clinicasorriaja.com.br/)",
+    "analiseIA": "Possui domínio oficial respondendo normalmente. Abordagem de criação de site descartada."
+  },
+  {
+    "id": "lead_1789442881638_3p9chp",
+    "createdAt": "2026-09-15T03:28:01.638Z",
+    "updatedAt": "2026-09-15T03:28:01.638Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "dentfran-unidade-1",
+    "nome": "DentFran Unidade 1",
+    "nicho": "clinica odontologica",
+    "cidade": "Franca SP",
+    "siteOriginal": "https://bit.ly/39IQUpa",
+    "siteStatus": "online",
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "4,8 estrelas",
+    "mapsUrl": "https://www.google.com/maps/place/DentFran%20Unidade%201/@-20.5808765,-47.3800198,17z/",
+    "telefones": [
+      "(16) 3723-0100"
+    ],
+    "emails": [],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "551637230100",
+    "whatsappFormatado": "551637230100",
+    "status": "descartado",
+    "motivoDescarte": "Já possui site próprio ativo (https://bit.ly/39IQUpa)",
+    "analiseIA": "Possui domínio oficial respondendo normalmente. Abordagem de criação de site descartada."
+  },
+  {
+    "id": "lead_1789442881028_rw8n67",
+    "createdAt": "2026-09-15T03:28:01.028Z",
+    "updatedAt": "2026-09-15T03:28:01.028Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "clinica-odontologica-odontofranca",
+    "nome": "clínica odontológica odontofranca",
+    "nicho": "clinica odontologica",
+    "cidade": "Franca SP",
+    "siteOriginal": null,
+    "siteStatus": "nenhum",
+    "siteHealthReason": "Nenhum site cadastrado",
+    "avaliacao": "5,0 estrelas",
+    "mapsUrl": "https://www.google.com/maps/place/cl%C3%ADnica%20odontol%C3%B3gica%20odontofranca/@-20.5370338,-47.4119679,17z/",
+    "telefones": [
+      "(16) 99986-7378"
+    ],
+    "emails": [],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "5516999867378",
+    "whatsappFormatado": "(16) 99986-7378",
+    "status": "oportunidade_quente",
+    "motivoDescarte": null,
+    "analiseIA": "Excelente oportunidade em Franca SP: 5,0 estrelas, sem nenhum site oficial próprio cadastrado."
+  },
+  {
+    "id": "lead_1789442880937_de1kl3",
+    "createdAt": "2026-09-15T03:28:00.937Z",
+    "updatedAt": "2026-09-15T03:28:00.937Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "sano-clinic-odonto-prime-estetica-e-reabilitacao-oral-protese-ortodontia-endodontia-cirurgias-e-implantes-",
+    "nome": "Sano Clinic Odonto Prime - ESTÉTICA E REABILITAÇÃO ORAL – PRÓTESE, ORTODONTIA, ENDODONTIA, CIRÚRGIAS E IMPLANTES.",
+    "nicho": "clinica odontologica",
+    "cidade": "Franca SP",
+    "siteOriginal": "http://sanoclinicodonto.com.br/",
+    "siteStatus": "online",
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "4,8 estrelas",
+    "mapsUrl": "https://www.google.com/maps/place/Sano%20Clinic%20Odonto%20Prime%20-%20EST%C3%89TICA%20E%20REABILITA%C3%87%C3%83O%20ORAL%20%E2%80%93%20PR%C3%93TESE%2C%20ORTODONTIA%2C%20ENDODONTIA%2C%20CIR%C3%9ARGIAS%20E%20IMPLANTES./@-20.5382042,-47.3929882,17z/",
+    "telefones": [
+      "(16) 99631-9991",
+      "(16) 99606-5790",
+      "(16) 3432-3010"
+    ],
+    "emails": [],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "5516996319991",
+    "whatsappFormatado": "(16) 99631-9991",
+    "status": "oportunidade_quente",
+    "motivoDescarte": null,
+    "analiseIA": "Site ativo, porém em protocolo HTTP inseguro (sem certificado SSL). Navegadores alertam como perigoso."
+  },
+  {
+    "id": "lead_1789442880836_mx533r",
+    "createdAt": "2026-09-15T03:28:00.836Z",
+    "updatedAt": "2026-09-15T03:28:00.836Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "clinica-silveira-odontologica-especialistas-em-implantes-e-protocolos",
+    "nome": "Clínica Silveira Odontológica - Especialistas em implantes e protocolos",
+    "nicho": "clinica odontologica",
+    "cidade": "Franca SP",
+    "siteOriginal": "https://silveiraodontologia.com/",
+    "siteStatus": "online",
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "4,9 estrelas",
+    "mapsUrl": "https://www.google.com/maps/place/Cl%C3%ADnica%20Silveira%20Odontol%C3%B3gica%20-%20Especialistas%20em%20implantes%20e%20protocolos/@-20.5389388,-47.3972615,17z/",
+    "telefones": [
+      "(16) 99376-7908"
+    ],
+    "emails": [],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "5516993767908",
+    "whatsappFormatado": "(16) 99376-7908",
+    "status": "descartado",
+    "motivoDescarte": "Já possui site próprio ativo (https://silveiraodontologia.com/)",
+    "analiseIA": "Possui domínio oficial respondendo normalmente. Abordagem de criação de site descartada."
+  },
+  {
+    "id": "lead_1789442878304_5bs9qb",
+    "createdAt": "2026-09-15T03:27:58.304Z",
+    "updatedAt": "2026-09-15T03:27:58.304Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "dra-roberta-david-cirurgia-dentista-emergencia-urgencia-franca-sp",
+    "nome": "Dra. Roberta David Cirurgiã Dentista Emergência Urgência Franca SP",
+    "nicho": "clinica odontologica",
+    "cidade": "Franca SP",
+    "siteOriginal": null,
+    "siteStatus": "nenhum",
+    "siteHealthReason": "Nenhum site cadastrado",
+    "avaliacao": "5,0 estrelas",
+    "mapsUrl": "https://www.google.com/maps/place/Dra.%20Roberta%20David%20Cirurgi%C3%A3%20Dentista%20Emerg%C3%AAncia%20Urg%C3%AAncia%20Franca%20SP/@-20.538237,-47.3971349,17z/",
+    "telefones": [
+      "(16) 98835-8830"
+    ],
+    "emails": [],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "5516988358830",
+    "whatsappFormatado": "(16) 98835-8830",
+    "status": "oportunidade_quente",
+    "motivoDescarte": null,
+    "analiseIA": "Excelente oportunidade em Franca SP: 5,0 estrelas, sem nenhum site oficial próprio cadastrado."
+  },
+  {
+    "id": "lead_1789442878220_ctejbi",
+    "createdAt": "2026-09-15T03:27:58.220Z",
+    "updatedAt": "2026-09-15T03:27:58.220Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "maxsorriso-implantes-dentarios-franca-sp",
+    "nome": "Maxsorriso Implantes Dentários | Franca - SP",
+    "nicho": "clinica odontologica",
+    "cidade": "Franca SP",
+    "siteOriginal": "http://www.maxsorriso.com.br/",
+    "siteStatus": "online",
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "4,9 estrelas",
+    "mapsUrl": "https://www.google.com/maps/place/Maxsorriso%20Implantes%20Dent%C3%A1rios%20%7C%20Franca%20-%20SP/@-20.5411067,-47.4021291,17z/",
+    "telefones": [
+      "(16) 3409-4996"
+    ],
+    "emails": [],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "551634094996",
+    "whatsappFormatado": "551634094996",
+    "status": "oportunidade_quente",
+    "motivoDescarte": null,
+    "analiseIA": "Site ativo, porém em protocolo HTTP inseguro (sem certificado SSL). Navegadores alertam como perigoso."
+  },
+  {
+    "id": "lead_1789442876268_j4ifve",
+    "createdAt": "2026-09-15T03:27:56.268Z",
+    "updatedAt": "2026-09-15T03:27:56.268Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "sorridents-clinicas-odontologicas-centro-franca",
+    "nome": "Sorridents Clínicas Odontológicas Centro Franca",
+    "nicho": "clinica odontologica",
+    "cidade": "Franca SP",
+    "siteOriginal": "https://sorridents.com.br/",
+    "siteStatus": "online",
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "4,8 estrelas",
+    "mapsUrl": "https://www.google.com/maps/place/Sorridents%20Cl%C3%ADnicas%20Odontol%C3%B3gicas%20Centro%20Franca/@-20.53602,-47.402487,17z/",
+    "telefones": [
+      "(16) 99257-5962"
+    ],
+    "emails": [],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "5516992575962",
+    "whatsappFormatado": "(16) 99257-5962",
+    "status": "descartado",
+    "motivoDescarte": "Já possui site próprio ativo (https://sorridents.com.br/)",
+    "analiseIA": "Possui domínio oficial respondendo normalmente. Abordagem de criação de site descartada."
+  },
+  {
+    "id": "lead_1789442875038_k24aju",
+    "createdAt": "2026-09-15T03:27:55.038Z",
+    "updatedAt": "2026-09-15T03:27:55.038Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "oralbellus-clinica-de-odontologia-implante-dentario-aparelho-dentario-centro-franca-sp",
+    "nome": "OralBellus Clinica de Odontologia | Implante Dentário | Aparelho Dentário | Centro | Franca - SP",
+    "nicho": "clinica odontologica",
+    "cidade": "Franca SP",
+    "siteOriginal": "http://www.oralbellus.com.br/",
+    "siteStatus": "inacessivel",
+    "siteHealthReason": "🚨 Site cadastrado está FORA DO AR (fetch failed)",
+    "avaliacao": "4,9 estrelas",
+    "mapsUrl": "https://www.google.com/maps/place/OralBellus%20Clinica%20de%20Odontologia%20%7C%20Implante%20Dent%C3%A1rio%20%7C%20Aparelho%20Dent%C3%A1rio%20%7C%20Centro%20%7C%20Franca%20-%20SP/@-20.5335979,-47.4108017,17z/",
+    "telefones": [
+      "(16) 3706-8604"
+    ],
+    "emails": [],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "551637068604",
+    "whatsappFormatado": "551637068604",
+    "status": "oportunidade_quente",
+    "motivoDescarte": null,
+    "analiseIA": "🚨 GATILHO DE OURO: Empresa possui site cadastrado (http://www.oralbellus.com.br/), porém está FORA DO AR / INACESSÍVEL (🚨 Site cadastrado está FORA DO AR (fetch failed)). Com 4,9 estrelas, clientes perdem o contato e vão para a concorrência!"
+  },
+  {
+    "id": "lead_1789442874885_9j5jq7",
+    "createdAt": "2026-09-15T03:27:54.885Z",
+    "updatedAt": "2026-09-15T03:27:54.885Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "sempre-sorrindo-implantes-dentarios-calcadao-da-voluntarios",
+    "nome": "Sempre Sorrindo Implantes Dentários - Calçadão da Voluntários",
+    "nicho": "clinica odontologica",
+    "cidade": "Franca SP",
+    "siteOriginal": "https://clinicassempresorrindo.com.br/",
+    "siteStatus": "online",
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "4,9 estrelas",
+    "mapsUrl": "https://www.google.com/maps/place/Sempre%20Sorrindo%20Implantes%20Dent%C3%A1rios%20-%20Cal%C3%A7ad%C3%A3o%20da%20Volunt%C3%A1rios/@-20.5364621,-47.4025205,17z/",
+    "telefones": [
+      "(16) 3701-4040"
+    ],
+    "emails": [],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "551637014040",
+    "whatsappFormatado": "551637014040",
+    "status": "descartado",
+    "motivoDescarte": "Já possui site próprio ativo (https://clinicassempresorrindo.com.br/)",
+    "analiseIA": "Possui domínio oficial respondendo normalmente. Abordagem de criação de site descartada."
+  },
+  {
     "id": "lead_1789442620376_jgko4l",
     "createdAt": "2026-09-15T03:23:40.376Z",
-    "updatedAt": "2026-09-15T03:23:40.376Z",
+    "updatedAt": "2026-09-15T03:27:54.435Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "instituto-liares-clinica-odontologica-24hrs",
@@ -12,8 +284,8 @@
     "siteOriginal": "http://www.institutoliares.com.br/",
     "siteStatus": "inacessivel",
     "siteHealthReason": "🚨 Site cadastrado está INACESSÍVEL / FORA DO AR (HTTP 404)",
-    "avaliacao": "4,7 estrelas 95 comentários",
-    "mapsUrl": "https://www.google.com/maps/place/Instituto+Liares+-+Cl%C3%ADnica+odontol%C3%B3gica+24hrs/data=!4m7!3m6!1s0x94b0a7ad35392a5f:0x301078542d522640!8m2!3d-20.5348546!4d-47.3990939!16s%2Fg%2F11j1z0575k!19sChIJXyo5Na2nsJQRQCZSLVR4EDA?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkwOS4wIJJjKgBIAVAD&rclk=1",
+    "avaliacao": "4,7 estrelas",
+    "mapsUrl": "https://www.google.com/maps/place/Instituto%20Liares%20-%20Cl%C3%ADnica%20odontol%C3%B3gica%2024hrs/@-20.5348546,-47.3990939,17z/",
     "telefones": [
       "(16) 99279-3838"
     ],
@@ -24,12 +296,12 @@
     "whatsappFormatado": "(16) 99279-3838",
     "status": "oportunidade_quente",
     "motivoDescarte": null,
-    "analiseIA": "🚨 GATILHO DE OURO: Empresa possui site cadastrado (http://www.institutoliares.com.br/), porém está FORA DO AR / INACESSÍVEL (🚨 Site cadastrado está INACESSÍVEL / FORA DO AR (HTTP 404)). Com 4,7 estrelas 95 comentários, clientes perdem o contato e vão para a concorrência!"
+    "analiseIA": "🚨 GATILHO DE OURO: Empresa possui site cadastrado (http://www.institutoliares.com.br/), porém está FORA DO AR / INACESSÍVEL (🚨 Site cadastrado está INACESSÍVEL / FORA DO AR (HTTP 404)). Com 4,7 estrelas, clientes perdem o contato e vão para a concorrência!"
   },
   {
     "id": "lead_1789442619848_8sxtpz",
     "createdAt": "2026-09-15T03:23:39.848Z",
-    "updatedAt": "2026-09-15T03:26:35.608Z",
+    "updatedAt": "2026-09-15T03:27:53.968Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "clinica-dentistas-de-todos",
@@ -39,8 +311,8 @@
     "siteOriginal": null,
     "siteStatus": "nenhum",
     "siteHealthReason": "Nenhum site cadastrado",
-    "avaliacao": "4,6 estrelas 186 comentários",
-    "mapsUrl": "https://www.google.com/maps/place/Clinica+Dentistas+de+Todos/data=!4m7!3m6!1s0x94b0a7619da094b3:0xa98a332b80b9b313!8m2!3d-20.5371019!4d-47.4012028!16s%2Fg%2F11fvr11frw!19sChIJs5SgnWGnsJQRE7O5gCsziqk?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkwOS4wIJJjKgBIAVAD&rclk=1",
+    "avaliacao": "4,6 estrelas",
+    "mapsUrl": "https://www.google.com/maps/place/Clinica%20Dentistas%20de%20Todos/@-20.5371019,-47.4012028,17z/",
     "telefones": [
       "(16) 3111-6523"
     ],
@@ -51,12 +323,12 @@
     "whatsappFormatado": "551631116523",
     "status": "oportunidade_quente",
     "motivoDescarte": null,
-    "analiseIA": "Excelente oportunidade em Franca SP: 4,6 estrelas 186 comentários, sem nenhum site oficial próprio cadastrado."
+    "analiseIA": "Excelente oportunidade em Franca SP: 4,6 estrelas, sem nenhum site oficial próprio cadastrado."
   },
   {
     "id": "lead_1789442619760_t9w54r",
     "createdAt": "2026-09-15T03:23:39.760Z",
-    "updatedAt": "2026-09-15T03:26:37.142Z",
+    "updatedAt": "2026-09-15T03:27:53.849Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "odontoclinic-franca-centro",
@@ -64,10 +336,10 @@
     "nicho": "clinica odontologica",
     "cidade": "Franca SP",
     "siteOriginal": "https://odontoclinic.com.br/unidades/franca/",
-    "siteStatus": "online",
-    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
-    "avaliacao": "4,8 estrelas 244 comentários",
-    "mapsUrl": "https://www.google.com/maps/place/ODONTOCLINIC+FRANCA+CENTRO/data=!4m7!3m6!1s0x94b0a625f6839d47:0x8aaf08fb79690de4!8m2!3d-20.5414194!4d-47.3996927!16s%2Fg%2F12hv7y4sb!19sChIJR52D9iWmsJQR5A1pefsIr4o?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkwOS4wIJJjKgBIAVAD&rclk=1",
+    "siteStatus": "inacessivel",
+    "siteHealthReason": "🚨 Site cadastrado está FORA DO AR (Tempo limite excedido (Timeout))",
+    "avaliacao": "4,8 estrelas",
+    "mapsUrl": "https://www.google.com/maps/place/ODONTOCLINIC%20FRANCA%20CENTRO/@-20.5414194,-47.3996927,17z/",
     "telefones": [
       "(16) 3703-2244"
     ],
@@ -77,13 +349,13 @@
     "whatsappPrincipal": "551637032244",
     "whatsappFormatado": "551637032244",
     "status": "descartado",
-    "motivoDescarte": "Já possui site próprio ativo (https://odontoclinic.com.br/unidades/franca/)",
-    "analiseIA": "Possui domínio oficial respondendo normalmente. Abordagem de criação de site descartada."
+    "motivoDescarte": null,
+    "analiseIA": "🚨 GATILHO DE OURO: Empresa possui site cadastrado (https://odontoclinic.com.br/unidades/franca/), porém está FORA DO AR / INACESSÍVEL (🚨 Site cadastrado está FORA DO AR (Tempo limite excedido (Timeout))). Com 4,8 estrelas, clientes perdem o contato e vão para a concorrência!"
   },
   {
     "id": "lead_1789442618291_ugnvjc",
     "createdAt": "2026-09-15T03:23:38.291Z",
-    "updatedAt": "2026-09-15T03:26:35.826Z",
+    "updatedAt": "2026-09-15T03:27:47.979Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "oral-unic-implantes-franca",
@@ -93,8 +365,8 @@
     "siteOriginal": "https://oralunicfranca.com.br/",
     "siteStatus": "online",
     "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
-    "avaliacao": "5,0 estrelas 1.466 comentários",
-    "mapsUrl": "https://www.google.com/maps/place/Oral+Unic+Implantes+Franca/data=!4m7!3m6!1s0x94b0a7c99693a659:0x99fb08772d09f1b8!8m2!3d-20.5412779!4d-47.3949719!16s%2Fg%2F11jj4c6q96!19sChIJWaaTlsmnsJQRuPEJLXcI-5k?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkwOS4wIJJjKgBIAVAD&rclk=1",
+    "avaliacao": "5,0 estrelas",
+    "mapsUrl": "https://www.google.com/maps/place/Oral%20Unic%20Implantes%20Franca/@-20.5412779,-47.3949719,17z/",
     "telefones": [
       "(16) 99670-7000"
     ],
@@ -110,7 +382,7 @@
   {
     "id": "lead_1789442618036_6696xn",
     "createdAt": "2026-09-15T03:23:38.036Z",
-    "updatedAt": "2026-09-15T03:23:38.036Z",
+    "updatedAt": "2026-09-15T03:27:48.050Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "dl-odontologia-clinica",
@@ -120,8 +392,8 @@
     "siteOriginal": "https://dlodontologiafranca.com.br/estetica-facial",
     "siteStatus": "inacessivel",
     "siteHealthReason": "🚨 Site cadastrado está INACESSÍVEL / FORA DO AR (HTTP 404)",
-    "avaliacao": "5,0 estrelas 95 comentários",
-    "mapsUrl": "https://www.google.com/maps/place/DL+ODONTOLOGIA+CL%C3%8DNICA/data=!4m7!3m6!1s0x94b0a7fe310403ab:0xe2fb3e520ba315f2!8m2!3d-20.5375329!4d-47.4039976!16s%2Fg%2F11qgwb8wrg!19sChIJqwMEMf6nsJQR8hWjC1I---I?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkwOS4wIJJjKgBIAVAD&rclk=1",
+    "avaliacao": "5,0 estrelas",
+    "mapsUrl": "https://www.google.com/maps/place/DL%20ODONTOLOGIA%20CL%C3%8DNICA/@-20.5375329,-47.4039976,17z/",
     "telefones": [
       "(16) 99175-6434"
     ],
@@ -132,7 +404,7 @@
     "whatsappFormatado": "(16) 99175-6434",
     "status": "oportunidade_quente",
     "motivoDescarte": null,
-    "analiseIA": "🚨 GATILHO DE OURO: Empresa possui site cadastrado (https://dlodontologiafranca.com.br/estetica-facial), porém está FORA DO AR / INACESSÍVEL (🚨 Site cadastrado está INACESSÍVEL / FORA DO AR (HTTP 404)). Com 5,0 estrelas 95 comentários, clientes perdem o contato e vão para a concorrência!"
+    "analiseIA": "🚨 GATILHO DE OURO: Empresa possui site cadastrado (https://dlodontologiafranca.com.br/estetica-facial), porém está FORA DO AR / INACESSÍVEL (🚨 Site cadastrado está INACESSÍVEL / FORA DO AR (HTTP 404)). Com 5,0 estrelas, clientes perdem o contato e vão para a concorrência!"
   },
   {
     "id": "lead_coltseg_seguranca",
@@ -145,12 +417,14 @@
     "cidade": "Franca SP",
     "endereco": "R. Simpliciano Pombo, 323 - Vila Santos Dumont, Franca - SP, 14405-338",
     "avaliacao": "5,0 estrelas no Google",
-    "mapsUrl": "https://maps.google.com/?cid=12945938837330752765",
+    "mapsUrl": "https://www.google.com/maps/place/Coltseg+eletr%C3%B4nica+-+C%C3%A2meras+e+alarmes+de+seguran%C3%A7a,+cercas+el%C3%A9tricas+e+motores+para+port%C3%A3o/@-20.5346422,-47.415326,17z/",
     "siteOriginal": "https://lojalocal.com/parceirocredenciadointelbras/20421641000127",
     "siteStatus": "nenhum",
     "siteHealthReason": "Não possui site oficial próprio. Utiliza apenas subpágina de diretório de terceiros.",
     "telefones": [
-      "(16) 98243-0774"
+      "(16) 98243-0774",
+      "(16) 99374-6560",
+      "(16) 3721-2550"
     ],
     "whatsappPrincipal": "5516982430774",
     "whatsappFormatado": "(16) 98243-0774",
@@ -164,7 +438,8 @@
         "assunto": "Coltseg Eletrônica - Segurança, Câmeras e Cercas Inteligentes em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial",
         "corpo": "Prezada equipe da Coltseg Eletrônica - Segurança, Câmeras e Cercas Inteligentes,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por cerca eletrica e seguranca eletronica em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas só indicam empresas que possuem um site oficial registrado.\n\nEmpresas sem site acabam ficando invisíveis nessas buscas, fazendo com que o cliente feche com o concorrente.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Coltseg Eletrônica - Segurança, Câmeras e Cercas Inteligentes, já funcional e adaptada para smartphones:\n👉 /previews/coltseg-seguranca-eletronica/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
       }
-    }
+    },
+    "facebook": "https://www.facebook.com/people/Colt-Seg-Seguran%C3%A7a-Eletr%C3%B4nica/100064319409890/"
   },
   {
     "id": "lead_blitz_seguranca",
@@ -177,16 +452,16 @@
     "cidade": "Franca SP",
     "endereco": "R. Voluntário Arnaldo de Vilhena, 758 - Vila Santos Dumont, Franca - SP, 14405-347",
     "avaliacao": "4,9 estrelas no Google",
-    "mapsUrl": "https://maps.google.com/?cid=13660505191953946117",
+    "mapsUrl": "https://www.google.com/maps/place/Blitz+Seguran%C3%A7a+Eletr%C3%B4nica+%7C+Concertina+%7C+C%C3%A2meras+%7C+Alarmes+%7C+Cerca+El%C3%A9trica+%7C+Motor+de+Port%C3%B5es/@-20.531419,-47.4189592,17z/",
     "siteOriginal": "http://www.blitzsegurancaeletronica.com.br/",
     "siteStatus": "desatualizado_inseguro",
     "siteHealthReason": "Site antigo sem HTTPS, não adaptado para celulares e com layout defasado",
     "telefones": [
-      "(16) 3721-7525",
-      "(16) 99188-7525"
+      "(16) 99397-4382",
+      "(16) 3721-7525"
     ],
-    "whatsappPrincipal": "551637217525",
-    "whatsappFormatado": "(16) 3721-7525",
+    "whatsappPrincipal": "5516993974382",
+    "whatsappFormatado": "(16) 99397-4382",
     "prototypePath": "C:\\\\Users\\\\Gabriel\\\\dev\\\\prospector\\\\previews\\\\blitz-seguranca-eletronica\\\\index.html",
     "prototypeUrl": "/previews/blitz-seguranca-eletronica/index.html",
     "status": "prototipo_pronto",
@@ -197,7 +472,8 @@
         "assunto": "Blitz Segurança Eletrônica | Concertinas, Cercas e CFTV em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial",
         "corpo": "Prezada equipe da Blitz Segurança Eletrônica | Concertinas, Cercas e CFTV,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por cerca eletrica e seguranca eletronica em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas só indicam empresas que possuem um site oficial registrado.\n\nEmpresas sem site acabam ficando invisíveis nessas buscas, fazendo com que o cliente feche com o concorrente.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Blitz Segurança Eletrônica | Concertinas, Cercas e CFTV, já funcional e adaptada para smartphones:\n👉 /previews/blitz-seguranca-eletronica/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
       }
-    }
+    },
+    "facebook": "https://www.facebook.com/blitzsegurancaeletronica/"
   },
   {
     "id": "lead_1789434711738_0",
@@ -231,7 +507,7 @@
     "anotacoes": "Teste de anotação no dashboard",
     "historicoContatos": [],
     "endereco": "R. Jerônimo Dutra, 960 - Vila São Sebastião, Franca - SP, 14406-666",
-    "mapsUrl": "https://www.google.com/maps/place/Gelar+Ar+Condicionado+Assist%C3%AAncia+T%C3%A9cnica+Franca%2FSP/@-20.5239017,-47.4259239,17z/data=!3m1!4b1!4m6!3m5!1s0x94b0a7a30a779653:0xbafa45e7a92d669a!8m2!3d-20.5239017!4d-47.4259239!16s%2Fg%2F11fy9hqn1k?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D",
+    "mapsUrl": "https://www.google.com/maps/place/Gelar%20Ar%20Condicionado%20Assist%C3%AAncia%20T%C3%A9cnica%20Franca%2FSP/@-20.5239017,-47.4259239,17z/",
     "siteStatus": "nenhum",
     "analiseIA": "🔥 EXCELENTE OPORTUNIDADE: Uma das maiores assistências técnicas de Franca (4.8★ com alta reputação no Google), porém NÃO POSSUI SITE OFICIAL registrado. Conta com perfis ativos nas redes sociais (@gelar_ar_condicionado.franca), mas permanece invisível nas buscas diretas por inteligência artificial (ChatGPT, Meta AI) que exigem domínio oficial.",
     "instagramProfile": {
