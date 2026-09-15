@@ -46,6 +46,12 @@ app.post('/api/prospect', async (req, res) => {
     });
   } catch (err) {
     console.error('Erro na rota de prospecção:', err);
+    if (process.env.VERCEL || err.message.includes('Executable') || err.message.includes('browserType')) {
+      return res.status(200).json({
+        success: false,
+        error: 'A raspagem em tempo real via Playwright roda no ambiente local. No Vercel, utilize o painel para consultar a base de leads, visualizar protótipos e gerenciar contatos.'
+      });
+    }
     res.status(500).json({ error: err.message });
   }
 });
@@ -119,14 +125,20 @@ app.delete('/api/leads/:id', (req, res) => {
   res.json({ success: ok, stats: db.getStats() });
 });
 
-app.listen(PORT, () => {
-  const url = `http://localhost:${PORT}`;
-  console.log(`\n======================================================`);
-  console.log(`❄️ SUBZERO PROSPECTOR DASHBOARD`);
-  console.log(`Painel visual disponível em: ${url}`);
-  console.log(`======================================================\n`);
+if (require.main === module && !process.env.VERCEL) {
+  app.listen(PORT, () => {
+    const url = `http://localhost:${PORT}`;
+    console.log(`\n======================================================`);
+    console.log(`❄️ SUBZERO PROSPECTOR DASHBOARD`);
+    console.log(`Painel visual disponível em: ${url}`);
+    console.log(`======================================================\n`);
 
-  // Abre automaticamente no navegador padrão do Gabriel no Windows
-  exec(`start ${url}`);
-});
+    // Abre automaticamente no navegador padrão do Gabriel no Windows
+    if (process.platform === 'win32') {
+      try { exec(`start ${url}`); } catch (_) {}
+    }
+  });
+}
+
+module.exports = app;
 

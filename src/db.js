@@ -22,6 +22,13 @@ class LeadDatabase {
   }
 
   init() {
+    const tmpFile = '/tmp/leads.db.json';
+    if (fs.existsSync(tmpFile)) {
+      try {
+        return JSON.parse(fs.readFileSync(tmpFile, 'utf-8'));
+      } catch (_) {}
+    }
+
     if (fs.existsSync(DB_FILE)) {
       try {
         return JSON.parse(fs.readFileSync(DB_FILE, 'utf-8'));
@@ -55,6 +62,14 @@ class LeadDatabase {
   }
 
   load() {
+    const tmpFile = '/tmp/leads.db.json';
+    if (fs.existsSync(tmpFile)) {
+      try {
+        this.leads = JSON.parse(fs.readFileSync(tmpFile, 'utf-8'));
+        return this.leads;
+      } catch (_) {}
+    }
+
     if (fs.existsSync(DB_FILE)) {
       try {
         this.leads = JSON.parse(fs.readFileSync(DB_FILE, 'utf-8'));
@@ -70,7 +85,10 @@ class LeadDatabase {
     try {
       fs.writeFileSync(DB_FILE, JSON.stringify(this.leads, null, 2), 'utf-8');
     } catch (err) {
-      console.error('Erro ao salvar no banco de dados:', err.message);
+      // Em ambientes de nuvem somente leitura (ex: Vercel Lambda), grava em /tmp
+      try {
+        fs.writeFileSync('/tmp/leads.db.json', JSON.stringify(this.leads, null, 2), 'utf-8');
+      } catch (_) {}
     }
   }
 
