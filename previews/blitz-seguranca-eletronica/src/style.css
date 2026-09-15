@@ -1024,6 +1024,11 @@ h1, h2, h3, h4 {
   flex-shrink: 0;
 }
 
+.c-pill-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
 .wa-bg {
   background: rgba(37, 211, 102, 0.12);
   color: #128c7e;
