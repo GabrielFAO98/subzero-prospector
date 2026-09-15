@@ -73,5 +73,41 @@ document.addEventListener('DOMContentLoaded', () => {
   if (revTrack) {
     revTrack.innerHTML += revTrack.innerHTML;
   }
+
+  // 5. Carrossel de Serviços com Setas e Indicadores (Dots)
+  const svcTrack = document.getElementById('svcTrack');
+  const svcPrevBtn = document.getElementById('svcPrevBtn');
+  const svcNextBtn = document.getElementById('svcNextBtn');
+  const svcDots = document.querySelectorAll('#svcDots .dot');
+
+  if (svcTrack && svcPrevBtn && svcNextBtn) {
+    const getCardWidth = () => {
+      const card = svcTrack.querySelector('.service-photo-card');
+      return card ? card.offsetWidth + 20 : 320;
+    };
+
+    svcPrevBtn.addEventListener('click', () => {
+      svcTrack.scrollBy({ left: -getCardWidth(), behavior: 'smooth' });
+    });
+
+    svcNextBtn.addEventListener('click', () => {
+      svcTrack.scrollBy({ left: getCardWidth(), behavior: 'smooth' });
+    });
+
+    svcTrack.addEventListener('scroll', () => {
+      const step = getCardWidth();
+      const activeIdx = Math.min(svcDots.length - 1, Math.max(0, Math.round(svcTrack.scrollLeft / step)));
+      svcDots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === activeIdx);
+      });
+    }, { passive: true });
+
+    svcDots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const idx = parseInt(dot.dataset.index, 10);
+        svcTrack.scrollTo({ left: idx * getCardWidth(), behavior: 'smooth' });
+      });
+    });
+  }
 });
 
