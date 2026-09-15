@@ -1,13 +1,15 @@
 const { chromium } = require('playwright');
 const db = require('./db');
-const { findSocialAndEmailPlaywright } = require('./social_enricher');
+const { checkWebsiteHealth } = require('./site_checker');
+const { huntSocials } = require('./social_hunter');
 
 /**
- * Minera empresas no Google Maps usando Playwright com critérios explícitos de seleção e descarte
+ * Minera empresas no Google Maps com auditoria profunda de saúde do site e redes sociais
+ * NÃO gera protótipos automaticamente - focado em análise e qualificação profissional.
  */
 async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15, onProgress = null) {
   if (onProgress) onProgress(`Iniciando busca no Google Maps para "${niche}" em ${city}...`);
-  console.log(`\n🗺️ [1/3] Minerando empresas no Google Maps: "${niche}" em ${city}...`);
+  console.log(`\n🗺️ [1/2] Minerando empresas no Google Maps: "${niche}" em ${city}...`);
   
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({
@@ -34,7 +36,7 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
 
     await page.waitForSelector('div[role="feed"]', { timeout: 15000 }).catch(() => null);
 
-    // Scroll para carregar mais resultados
+    // Scroll suave para carregar estabelecimentos
     const feed = page.locator('div[role="feed"]');
     if (await feed.count() > 0) {
       for (let i = 0; i < 3; i++) {
@@ -61,10 +63,19 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
         const linkEl = card.querySelector('a[href*="/maps/place/"]');
         const mapsUrl = linkEl ? linkEl.href : '';
 
-        const websiteEl = card.querySelector('a[data-value="Website"], a[aria-label*="website"], a[aria-label*="site"]');
-        const websiteUrl = websiteEl ? websiteEl.href : null;
+        // Tentar capturar link de website de várias fontes no card
+        const websiteEl = card.querySelector('a[data-value="Website"], a[aria-label*="website"], a[aria-label*="site"], a[data-item-id*="authority"]');
+        let websiteUrl = websiteEl ? websiteEl.href : null;
 
         const allText = card.innerText || '';
+
+        // Se o websiteUrl não foi pego pelo elemento clássico, tenta achar URL no texto do card
+        if (!websiteUrl) {
+          const domainMatch = allText.match(/([a-zA-Z0-9-]+\.com(?:\.br)?)/i);
+          if (domainMatch && !domainMatch[1].includes('google')) {
+            websiteUrl = 'https://www.' + domainMatch[1];
+          }
+        }
 
         results.push({
           name,
@@ -79,52 +90,31 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
     });
 
     console.log(`✅ ${rawPlaces.length} estabelecimentos encontrados no Google Maps.`);
-    if (onProgress) onProgress(`Analisando ${rawPlaces.length} empresas encontradas...`);
+    await browser.close();
 
     const processedLeads = [];
 
-    for (const p of rawPlaces) {
-      // 1. Análise do Site Original
-      const isSocialOrLinktree = p.websiteUrl && (
-        p.websiteUrl.includes('instagram.com') || 
-        p.websiteUrl.includes('facebook.com') || 
-        p.websiteUrl.includes('linktr.ee')
-      );
-      const hasRealWebsite = p.websiteUrl && !isSocialOrLinktree;
+    // 2. Auditoria Individual Completa de Cada Empresa (Saúde do site + Redes Sociais)
+    for (let i = 0; i < Math.min(rawPlaces.length, maxResults); i++) {
+      const p = rawPlaces[i];
+      console.log(`\n🔍 [${i + 1}/${Math.min(rawPlaces.length, maxResults)}] Auditando: "${p.name}"...`);
+      if (onProgress) onProgress(`Auditando [${i + 1}/${Math.min(rawPlaces.length, maxResults)}]: ${p.name}...`);
 
-      // 2. Extração de Telefones
-      const phones = (p.allText.match(/(?:\(?16\)?\s?)?(?:9\d{4}[-\s]?\d{4}|\d{4}[-\s]?\d{4})/g) || [])
+      // 2.1 Auditoria do Website
+      const siteHealth = await checkWebsiteHealth(p.websiteUrl);
+
+      // 2.2 Caça Profunda de Redes Sociais (Instagram, Facebook e Celular WhatsApp)
+      const socials = await huntSocials(p.name, city);
+
+      // 2.3 Junção de Telefones encontrados no Maps e na Web
+      const mapsPhones = (p.allText.match(/(?:\(?16\)?\s?)?(?:9\d{4}[-\s]?\d{4}|\d{4}[-\s]?\d{4})/g) || [])
         .map(x => x.trim());
-      const uniquePhones = [...new Set(phones)];
+      const allPhones = [...new Set([...socials.telefones, ...mapsPhones])];
 
-      // 3. Critério de Seleção vs Descarte
-      let status = 'oportunidade_quente';
-      let motivoDescarte = null;
-      let analiseIA = '';
-
-      if (hasRealWebsite) {
-        status = 'descartado';
-        motivoDescarte = `Já possui site próprio ativo (${p.websiteUrl})`;
-        analiseIA = `Descartada para abordagem fria de criação de site pois já tem domínio próprio no ar.`;
-      } else if (uniquePhones.length === 0) {
-        status = 'descartado';
-        motivoDescarte = 'Sem número de telefone/WhatsApp visível para contato';
-        analiseIA = 'Falta canal direto de WhatsApp na ficha do Google Maps.';
-      } else {
-        status = 'oportunidade_quente';
-        analiseIA = `Excelente oportunidade em Franca: ${p.ratingText || 'Boa reputação'}, sem site oficial cadastrado ${isSocialOrLinktree ? '(apenas ' + p.websiteUrl + ')' : ''}. Pronta para receber protótipo Subzero!`;
-      }
-
-      // Slug
-      const slug = p.name.toLowerCase()
-        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-        .replace(/[^a-z0-9]/g, "-")
-        .replace(/-+/g, '-');
-
-      // WhatsApp formatado
+      // Prioriza celular DDD 16 com 9 dígitos para o WhatsApp
       let whatsappPrincipal = null;
       let whatsappFormatado = null;
-      const celular = uniquePhones.find(t => t.replace(/\D/g, '').length >= 10);
+      const celular = allPhones.find(t => t.replace(/\D/g, '').length >= 10);
       if (celular) {
         let nums = celular.replace(/\D/g, '');
         if (nums.length === 11 && !nums.startsWith('55')) nums = '55' + nums;
@@ -132,23 +122,55 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
         else if (nums.length === 10 && nums.startsWith('16')) nums = '55' + nums;
         whatsappPrincipal = nums;
         whatsappFormatado = formatPhone(nums);
-      } else if (uniquePhones[0]) {
-        whatsappFormatado = uniquePhones[0];
+      } else if (allPhones[0]) {
+        whatsappFormatado = allPhones[0];
       }
+
+      // 2.4 Análise e Classificação Comercial
+      let status = 'oportunidade_quente';
+      let motivoDescarte = null;
+      let analiseIA = '';
+
+      if (siteHealth.status === 'inacessivel') {
+        status = 'oportunidade_quente';
+        motivoDescarte = null;
+        analiseIA = `🚨 GATILHO DE OURO: Empresa possui site cadastrado (${siteHealth.url}), porém está FORA DO AR / INACESSÍVEL (${siteHealth.reason}). Com ${p.ratingText || 'excelentes avaliações'}, os clientes que clicam no Google encontram erro e vão para o concorrente!`;
+      } else if (siteHealth.status === 'online') {
+        status = 'descartado';
+        motivoDescarte = `Já possui site próprio ativo (${siteHealth.url})`;
+        analiseIA = `Descartada para abordagem de criação de site novo pois o domínio oficial está respondendo normalmente.`;
+      } else if (siteHealth.status === 'apenas_social') {
+        status = 'oportunidade_quente';
+        motivoDescarte = null;
+        analiseIA = `Utiliza link de rede social/Linktree no perfil do Google. Não possui site institucional de conversão rápida.`;
+      } else if (allPhones.length === 0) {
+        status = 'descartado';
+        motivoDescarte = 'Sem telefone ou WhatsApp público disponível';
+        analiseIA = 'Falta canal de contato para prospecção.';
+      } else {
+        status = 'oportunidade_quente';
+        analiseIA = `Excelente oportunidade em Franca: ${p.ratingText || 'Boa reputação'}, sem nenhum site oficial cadastrado.`;
+      }
+
+      const slug = p.name.toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]/g, "-")
+        .replace(/-+/g, '-');
 
       const leadRecord = {
         slug,
         nome: p.name,
         nicho,
         cidade: city,
-        temSiteProprio: hasRealWebsite,
-        siteOriginal: p.websiteUrl,
+        siteOriginal: siteHealth.url || p.websiteUrl,
+        siteStatus: siteHealth.status,
+        siteHealthReason: siteHealth.reason,
         avaliacao: p.ratingText,
         mapsUrl: p.mapsUrl,
-        telefones: uniquePhones,
-        emails: [],
-        instagram: p.websiteUrl && p.websiteUrl.includes('instagram.com') ? p.websiteUrl : null,
-        facebook: p.websiteUrl && p.websiteUrl.includes('facebook.com') ? p.websiteUrl : null,
+        telefones: allPhones,
+        emails: socials.emails,
+        instagram: socials.instagram,
+        facebook: socials.facebook,
         whatsappPrincipal,
         whatsappFormatado,
         status,
@@ -156,60 +178,18 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
         analiseIA
       };
 
-      // Salva ou atualiza no banco com preservação de histórico
+      // Salva no banco de dados
       const { lead } = db.upsert(leadRecord);
       processedLeads.push(lead);
     }
 
-    await browser.close();
-    return processedLeads.slice(0, maxResults);
+    return processedLeads;
 
   } catch (err) {
     console.error('Erro na raspagem do Google Maps:', err.message);
     await browser.close();
     return [];
   }
-}
-
-/**
- * Enriquecimento profundo do lead (Instagram, Facebook e E-mail)
- */
-async function enrichLead(lead) {
-  console.log(`\n🕵️ [2/3] Enriquecendo redes sociais e contatos para: "${lead.nome}"...`);
-
-  if (!lead.instagram || !lead.facebook || lead.emails.length === 0) {
-    const socialData = await findSocialAndEmailPlaywright(lead.nome, lead.cidade);
-    
-    if (!lead.instagram && socialData.instagram) {
-      lead.instagram = socialData.instagram;
-      console.log(`   + Instagram: ${lead.instagram}`);
-    }
-    if (!lead.facebook && socialData.facebook) {
-      lead.facebook = socialData.facebook;
-      console.log(`   + Facebook: ${lead.facebook}`);
-    }
-    socialData.emails.forEach(e => {
-      if (!lead.emails.includes(e)) lead.emails.push(e);
-    });
-    if (lead.emails.length > 0) {
-      console.log(`   + E-mails: ${lead.emails.join(', ')}`);
-    }
-    socialData.telefones.forEach(p => {
-      if (!lead.telefones.includes(p)) lead.telefones.push(p);
-    });
-  }
-
-  // Atualiza no banco
-  db.update(lead.id || lead.slug, {
-    instagram: lead.instagram,
-    facebook: lead.facebook,
-    emails: lead.emails,
-    telefones: lead.telefones,
-    whatsappPrincipal: lead.whatsappPrincipal,
-    whatsappFormatado: lead.whatsappFormatado
-  });
-
-  return lead;
 }
 
 function formatPhone(numStr) {
@@ -226,6 +206,5 @@ function formatPhone(numStr) {
 
 module.exports = {
   searchLeadsGoogleMaps,
-  enrichLead,
   formatPhone
 };

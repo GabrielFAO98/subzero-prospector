@@ -230,32 +230,43 @@ function copyDirSync(src, dest) {
  */
 function generateOutreachMessages(lead, previewPublicUrl = null) {
   const linkPreview = previewPublicUrl || lead.prototypeUrl;
+  const isSiteDown = lead.siteStatus === 'inacessivel' || (lead.siteOriginal && lead.motivoDescarte && lead.motivoDescarte.toLowerCase().includes('fora do ar'));
+
+  let hookWhatsapp = '';
+  let assuntoEmail = '';
+  let hookEmail = '';
+
+  if (isSiteDown) {
+    hookWhatsapp = `Notei que o site cadastrado de vocês (*${lead.siteOriginal}*) está fora do ar / inacessível no momento. Hoje, quando as pessoas ou as buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) tentam acessar a *${lead.nome}*, o cliente se depara com uma tela de erro e acaba contratando outro da cidade.`;
+    assuntoEmail = `${lead.nome} — site oficial fora do ar e perda de clientes nas buscas por IA em Franca`;
+    hookEmail = `O motivo do meu contato é direto e urgente: notei que o site oficial da ${lead.nome} (${lead.siteOriginal}) está atualmente fora do ar / inacessível.\n\nHoje, a maioria das pessoas e das ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) pesquisam quem é a empresa recomendada em Franca. Quando o link de vocês dá erro, o cliente perde a confiança e fecha imediatamente com o concorrente.`;
+  } else {
+    hookWhatsapp = `Vi que a *${lead.nome}* tem uma excelente reputação, mas hoje quem pesquisa por *${lead.nicho}* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) não encontra um site oficial de vocês — e essas ferramentas acabam indicando concorrentes da cidade.`;
+    assuntoEmail = `${lead.nome} em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial`;
+    hookEmail = `O motivo do meu contato é direto: a forma como os clientes procuram por ${lead.nicho} em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas só indicam empresas que possuem um site oficial registrado.\n\nEmpresas sem site acabam ficando invisíveis nessas buscas, fazendo com que o cliente feche com o concorrente.`;
+  }
 
   const whatsapp = 
 `Olá! Tudo bem?
 
 Sou o Gabriel, atuo com tecnologia aqui em Franca.
 
-Vi que a *${lead.nome}* tem uma excelente reputação, mas hoje quem pesquisa por *${lead.nicho}* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) não encontra um site oficial de vocês — e essas ferramentas acabam indicando concorrentes da cidade.
+${hookWhatsapp}
 
-Para mostrar como resolver isso, montei uma prévia pronta do site de vocês para celular, com as fotos reais e depoimentos dos seus clientes:
+Para mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, já com fotos reais e depoimentos dos seus clientes:
 👉 *${linkPreview}*
 
-Pode repassar para o responsável dar uma olhada? Consigo ativar para vocês essa semana.
+Pode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.
 Gabriel Azevedo • (16) 99204-8856`;
 
   const email = {
-    assunto: `${lead.nome} em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial`,
+    assunto: assuntoEmail,
     corpo:
 `Prezada equipe da ${lead.nome},
 
-O motivo do meu contato é direto: a forma como os clientes procuram por ${lead.nicho} em Franca mudou.
+${hookEmail}
 
-Hoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas só indicam empresas que possuem um site oficial registrado.
-
-Empresas sem site acabam ficando invisíveis nessas buscas, fazendo com que o cliente feche com o concorrente.
-
-Como sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da ${lead.nome}, já funcional e adaptado para smartphones:
+Como sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da ${lead.nome}, já funcional e adaptada para smartphones:
 👉 ${linkPreview}
 
 Qual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?

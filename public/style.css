@@ -388,6 +388,136 @@ input[type="text"]:focus, select:focus, textarea:focus {
 .badge-contacted { background: rgba(37, 211, 102, 0.2); color: var(--green); border: 1px solid var(--green); }
 .badge-discarded { background: rgba(148, 163, 184, 0.2); color: var(--text-muted); border: 1px solid var(--text-muted); }
 
+/* Diagnóstico do Site & Presença */
+.badge-site {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.badge-site-down {
+  background: rgba(255, 71, 87, 0.2);
+  color: #ff6b81;
+  border: 1px solid #ff4757;
+}
+.badge-site-none {
+  background: rgba(255, 165, 2, 0.15);
+  color: #ffa502;
+  border: 1px solid rgba(255, 165, 2, 0.4);
+}
+.badge-site-social {
+  background: rgba(155, 89, 182, 0.2);
+  color: #d6a2e8;
+  border: 1px solid rgba(155, 89, 182, 0.4);
+}
+.badge-site-ok {
+  background: rgba(46, 204, 113, 0.15);
+  color: #2ecc71;
+  border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.site-link-broken {
+  color: #ff7675;
+  font-size: 11px;
+  text-decoration: underline;
+  word-break: break-all;
+}
+.site-link-broken:hover {
+  color: #ff4757;
+}
+
+.site-link-social {
+  color: #d6a2e8;
+  font-size: 11px;
+  text-decoration: none;
+}
+.site-link-social:hover {
+  text-decoration: underline;
+}
+
+.site-link-ok {
+  color: var(--cyan);
+  font-size: 11px;
+  text-decoration: none;
+}
+.site-link-ok:hover {
+  text-decoration: underline;
+}
+
+.maps-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--cyan);
+  text-decoration: none;
+  background: rgba(30, 228, 255, 0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(30, 228, 255, 0.2);
+  transition: all 0.2s ease;
+}
+.maps-link-btn:hover {
+  background: rgba(30, 228, 255, 0.2);
+  border-color: var(--cyan);
+}
+
+.social-chips-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.chip-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.chip-insta {
+  background: rgba(225, 48, 108, 0.15);
+  color: #f78fb3;
+  border: 1px solid rgba(225, 48, 108, 0.35);
+}
+.chip-insta:hover {
+  background: rgba(225, 48, 108, 0.3);
+  color: #ffffff;
+}
+.chip-fb {
+  background: rgba(24, 119, 242, 0.15);
+  color: #70a1ff;
+  border: 1px solid rgba(24, 119, 242, 0.35);
+}
+.chip-fb:hover {
+  background: rgba(24, 119, 242, 0.3);
+  color: #ffffff;
+}
+
+.contact-link-wa {
+  color: var(--green);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 13px;
+}
+.contact-link-wa:hover {
+  text-decoration: underline;
+}
+.contact-text-phone {
+  color: var(--text-main);
+  font-size: 13px;
+}
+
 /* Actions */
 .actions-cell {
   display: flex;
@@ -662,3 +792,4 @@ input[type="text"]:focus, select:focus, textarea:focus {
   .modal-body { flex-direction: column; }
   .modal-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--surface-border); }
 }
+

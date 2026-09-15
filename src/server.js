@@ -68,13 +68,15 @@ app.post('/api/leads/:id/generate', async (req, res) => {
   if (!lead) return res.status(404).json({ error: 'Lead não encontrado.' });
 
   try {
+    const { template = 'subzero' } = req.body || {};
     // Garante que o WhatsApp principal e dados estejam preenchidos
     if (!lead.whatsappPrincipal && lead.telefones && lead.telefones[0]) {
       const num = lead.telefones[0].replace(/\D/g, '');
       lead.whatsappPrincipal = num.length === 11 ? '55' + num : num;
     }
 
-    lead = await generatePrototype(lead);
+    lead.templateEscolhido = template;
+    lead = await generatePrototype(lead, template);
     res.json({ success: true, lead, stats: db.getStats() });
   } catch (err) {
     console.error('Erro ao gerar protótipo:', err);
@@ -126,3 +128,4 @@ app.listen(PORT, () => {
   // Abre automaticamente no navegador padrão do Gabriel no Windows
   exec(`start ${url}`);
 });
+

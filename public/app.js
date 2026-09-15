@@ -29,6 +29,7 @@ const modalClose = document.getElementById('modalClose');
 const modalLeadName = document.getElementById('modalLeadName');
 const modalLeadBadge = document.getElementById('modalLeadBadge');
 const modalLeadAnalysis = document.getElementById('modalLeadAnalysis');
+const modalLeadMapsLink = document.getElementById('modalLeadMapsLink');
 const modalLeadWa = document.getElementById('modalLeadWa');
 const modalLeadPhones = document.getElementById('modalLeadPhones');
 const modalLeadSite = document.getElementById('modalLeadSite');
@@ -37,6 +38,7 @@ const modalLeadFb = document.getElementById('modalLeadFb');
 const modalStatusSelect = document.getElementById('modalStatusSelect');
 const modalNotes = document.getElementById('modalNotes');
 const btnSaveNotes = document.getElementById('btnSaveNotes');
+const templateSelector = document.getElementById('templateSelector');
 
 const modalWaText = document.getElementById('modalWaText');
 const btnCopyWa = document.getElementById('btnCopyWa');
@@ -162,11 +164,11 @@ function setupEventListeners() {
   // Gerar Protótipo dentro do Modal
   btnGenerateProto.addEventListener('click', async () => {
     if (!currentSelectedLead) return;
+    const selectedTemplate = templateSelector ? templateSelector.value : 'subzero';
     btnGenerateProto.disabled = true;
-    btnGenerateProto.textContent = 'Gerando...';
-    await generatePrototypeForLead(currentSelectedLead.id);
+    btnGenerateProto.textContent = 'Gerando Protótipo...';
+    await generatePrototypeForLead(currentSelectedLead.id || currentSelectedLead.slug, selectedTemplate);
     btnGenerateProto.disabled = false;
-    btnGenerateProto.textContent = '⚡ Gerar/Regerar Protótipo';
   });
 }
 
@@ -296,14 +298,63 @@ function renderTableRow(lead) {
   const phoneDisplay = lead.whatsappFormatado || (lead.telefones && lead.telefones[0]) || 'Sem telefone';
   const waLink = lead.whatsappPrincipal ? `https://wa.me/${lead.whatsappPrincipal}` : '#';
 
-  // Análise / Presença
-  let presencaHtml = '';
-  if (isDiscarded) {
-    presencaHtml = `<span style="color: var(--red);">🚫 Descartada:</span> <small>${lead.motivoDescarte || 'Critério de descarte atingido'}</small>`;
-  } else if (lead.status === 'prototipo_pronto') {
-    presencaHtml = `<span style="color: var(--cyan);">🌐 Protótipo Subzero Ativo</span><br/><small>Pronto para apresentação comercial</small>`;
+  // Diagnóstico de Site e Presença
+  let siteDiagnosticHtml = '';
+  if (lead.siteStatus === 'inacessivel') {
+    siteDiagnosticHtml = `
+      <div>
+        <span class="badge-site badge-site-down">🚨 SITE FORA DO AR ${lead.siteHttpCode ? `(${lead.siteHttpCode})` : ''}</span>
+        <div style="margin-top: 3px;"><a href="${lead.siteOriginal}" target="_blank" class="site-link-broken" title="Verificar link com erro">${escapeHtml(lead.siteOriginal)}</a></div>
+      </div>
+    `;
+  } else if (lead.siteStatus === 'nenhum' || !lead.siteOriginal) {
+    siteDiagnosticHtml = `
+      <div>
+        <span class="badge-site badge-site-none">⚠️ SEM SITE OFICIAL</span>
+        <div style="margin-top: 3px; color: var(--text-muted); font-size: 11px;">Invisível nas buscas de IA</div>
+      </div>
+    `;
+  } else if (lead.siteStatus === 'apenas_social') {
+    siteDiagnosticHtml = `
+      <div>
+        <span class="badge-site badge-site-social">📱 APENAS REDES</span>
+        <div style="margin-top: 3px;"><a href="${lead.siteOriginal}" target="_blank" class="site-link-social">${escapeHtml(lead.siteOriginal)}</a></div>
+      </div>
+    `;
+  } else if (lead.siteStatus === 'online') {
+    siteDiagnosticHtml = `
+      <div>
+        <span class="badge-site badge-site-ok">✅ Site Online</span>
+        <div style="margin-top: 3px;"><a href="${lead.siteOriginal}" target="_blank" class="site-link-ok">${escapeHtml(lead.siteOriginal)}</a></div>
+      </div>
+    `;
   } else {
-    presencaHtml = `<span style="color: #ff7675;">🔥 Oportunidade Quente</span><br/><small>${lead.siteOriginal ? 'Link: ' + lead.siteOriginal : 'Nenhum site oficial na web'}</small>`;
+    siteDiagnosticHtml = `<span style="color: var(--text-muted); font-size: 12px;">${escapeHtml(lead.motivoDescarte || 'Sem site')}</span>`;
+  }
+
+  // Redes Sociais
+  let socialChips = '';
+  if (lead.instagram || lead.facebook) {
+    socialChips = `
+      <div class="social-chips-row">
+        ${lead.instagram ? `<a href="${lead.instagram}" target="_blank" class="chip-social chip-insta" title="Instagram da empresa">📸 Insta</a>` : ''}
+        ${lead.facebook ? `<a href="${lead.facebook}" target="_blank" class="chip-social chip-fb" title="Facebook da empresa">📘 Face</a>` : ''}
+      </div>
+    `;
+  }
+
+  // Telefones secundários e e-mails
+  let extraPhones = '';
+  if (lead.telefones && lead.telefones.length > 1) {
+    const others = lead.telefones.filter(t => t !== lead.whatsappFormatado && t !== lead.telefones[0]);
+    if (others.length > 0) {
+      extraPhones = `<br/><small style="color: var(--text-muted);">☎️ ${others.join(', ')}</small>`;
+    }
+  }
+
+  let emailDisplay = '';
+  if (lead.emails && lead.emails.length > 0) {
+    emailDisplay = `<br/><small style="color: var(--cyan);">✉️ ${lead.emails[0]}</small>`;
   }
 
   return `
@@ -311,18 +362,21 @@ function renderTableRow(lead) {
       <td class="lead-name-cell">
         <strong>${escapeHtml(lead.nome)}</strong>
         <small>${escapeHtml(lead.nicho)} • ${escapeHtml(lead.cidade)}</small>
+        ${lead.mapsUrl ? `<div style="margin-top: 4px;"><a href="${lead.mapsUrl}" target="_blank" class="maps-link-btn" title="Abrir ficha oficial no Google Maps">📍 Ver no Google Maps</a></div>` : ''}
       </td>
       <td>
         <strong>${lead.avaliacao || 'Sem nota'}</strong>
       </td>
       <td>
-        ${presencaHtml}
+        ${siteDiagnosticHtml}
+        ${socialChips}
       </td>
       <td>
         <div>
-          ${lead.whatsappPrincipal ? `<a href="${waLink}" target="_blank" style="color: var(--green); text-decoration: none; font-weight: 600;">📱 ${phoneDisplay}</a>` : `<span>${phoneDisplay}</span>`}
+          ${lead.whatsappPrincipal ? `<a href="${waLink}" target="_blank" class="contact-link-wa">📱 ${phoneDisplay}</a>` : `<span class="contact-text-phone">${phoneDisplay}</span>`}
+          ${extraPhones}
+          ${emailDisplay}
         </div>
-        ${lead.emails && lead.emails.length > 0 ? `<small style="color: var(--text-muted);">${lead.emails[0]}</small>` : ''}
       </td>
       <td>
         <span class="badge ${badgeClass}">${badgeLabel}</span>
@@ -334,7 +388,7 @@ function renderTableRow(lead) {
           </button>
           ${lead.status !== 'prototipo_pronto' && !isDiscarded ? `
             <button class="btn btn-primary btn-sm btn-gen-proto" data-id="${lead.id || lead.slug}">
-              ⚡ Gerar Site
+              ⚡ Criar Protótipo
             </button>
           ` : ''}
           ${lead.prototypeUrl ? `
@@ -352,6 +406,30 @@ function renderCard(lead) {
   const badgeClass = getBadgeClass(lead.status);
   const badgeLabel = getBadgeLabel(lead.status);
   const phoneDisplay = lead.whatsappFormatado || (lead.telefones && lead.telefones[0]) || 'Sem telefone';
+  const waLink = lead.whatsappPrincipal ? `https://wa.me/${lead.whatsappPrincipal}` : '#';
+
+  // Site Badge
+  let siteBadge = '';
+  if (lead.siteStatus === 'inacessivel') {
+    siteBadge = `<span class="badge-site badge-site-down">🚨 FORA DO AR ${lead.siteHttpCode ? `(${lead.siteHttpCode})` : ''}</span>`;
+  } else if (lead.siteStatus === 'nenhum' || !lead.siteOriginal) {
+    siteBadge = `<span class="badge-site badge-site-none">⚠️ SEM SITE</span>`;
+  } else if (lead.siteStatus === 'apenas_social') {
+    siteBadge = `<span class="badge-site badge-site-social">📱 APENAS REDES</span>`;
+  } else if (lead.siteStatus === 'online') {
+    siteBadge = `<span class="badge-site badge-site-ok">✅ Site Online</span>`;
+  }
+
+  // Social chips
+  let socialChips = '';
+  if (lead.instagram || lead.facebook) {
+    socialChips = `
+      <div class="social-chips-row" style="margin-bottom: 8px;">
+        ${lead.instagram ? `<a href="${lead.instagram}" target="_blank" class="chip-social chip-insta">📸 Insta</a>` : ''}
+        ${lead.facebook ? `<a href="${lead.facebook}" target="_blank" class="chip-social chip-fb">📘 Face</a>` : ''}
+      </div>
+    `;
+  }
 
   return `
     <div class="lead-card" data-id="${lead.id || lead.slug}">
@@ -361,10 +439,17 @@ function renderCard(lead) {
           <small style="color: var(--text-muted);">${lead.avaliacao || ''}</small>
         </div>
         <h3 style="font-size: 16px; margin-bottom: 4px;">${escapeHtml(lead.nome)}</h3>
-        <p style="font-size: 12px; color: var(--cyan); margin-bottom: 12px;">${escapeHtml(lead.nicho)} • ${escapeHtml(lead.cidade)}</p>
+        <p style="font-size: 12px; color: var(--cyan); margin-bottom: 8px;">${escapeHtml(lead.nicho)} • ${escapeHtml(lead.cidade)}</p>
         
+        <div style="margin-bottom: 10px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+          ${siteBadge}
+          ${lead.mapsUrl ? `<a href="${lead.mapsUrl}" target="_blank" class="maps-link-btn">📍 Maps</a>` : ''}
+        </div>
+
+        ${socialChips}
+
         <div class="lead-card-body">
-          <p><strong>Contato:</strong> ${phoneDisplay}</p>
+          <p><strong>Contato:</strong> ${lead.whatsappPrincipal ? `<a href="${waLink}" target="_blank" class="contact-link-wa">${phoneDisplay}</a>` : phoneDisplay}</p>
           <p><strong>Diagnóstico:</strong> ${lead.motivoDescarte || lead.analiseIA || 'Em análise'}</p>
         </div>
       </div>
@@ -375,8 +460,13 @@ function renderCard(lead) {
         </button>
         ${lead.status !== 'prototipo_pronto' && lead.status !== 'descartado' ? `
           <button class="btn btn-primary btn-sm flex-1 btn-gen-proto" data-id="${lead.id || lead.slug}">
-            Gerar Site
+            Criar Protótipo
           </button>
+        ` : ''}
+        ${lead.prototypeUrl ? `
+          <a href="${lead.prototypeUrl}" target="_blank" class="btn btn-secondary btn-sm flex-1" style="text-align: center;">
+            ↗ Ver Site
+          </a>
         ` : ''}
       </div>
     </div>
@@ -398,7 +488,8 @@ function attachActionEvents() {
       const leadId = btn.dataset.id;
       btn.disabled = true;
       btn.textContent = 'Gerando...';
-      await generatePrototypeForLead(leadId);
+      const selectedTemplate = templateSelector ? templateSelector.value : 'subzero';
+      await generatePrototypeForLead(leadId, selectedTemplate);
     });
   });
 }
@@ -411,15 +502,61 @@ function openModal(lead) {
   modalLeadBadge.className = `badge ${getBadgeClass(lead.status)}`;
   modalLeadBadge.textContent = getBadgeLabel(lead.status);
 
-  modalLeadAnalysis.textContent = lead.motivoDescarte 
-    ? `Motivo de Descarte: ${lead.motivoDescarte}\n${lead.analiseIA || ''}`
-    : (lead.analiseIA || 'Empresa qualificada sem presença web oficial.');
+  // Diagnóstico detalhado
+  let analysisText = '';
+  if (lead.siteStatus === 'inacessivel') {
+    analysisText = `🚨 ATENÇÃO: O site oficial (${lead.siteOriginal}) está FORA DO AR (HTTP ${lead.siteHttpCode || 403}).\n\nEssa é a melhor abordagem de venda: potenciais clientes e ferramentas de IA (ChatGPT, Meta AI) encontram um erro ao pesquisar a empresa. Oportunidade imediata para ativação do site Subzero!\n\n${lead.analiseIA || ''}`;
+  } else if (lead.motivoDescarte) {
+    analysisText = `Motivo: ${lead.motivoDescarte}\n${lead.analiseIA || ''}`;
+  } else {
+    analysisText = lead.analiseIA || 'Empresa qualificada sem presença web oficial.';
+  }
+  modalLeadAnalysis.textContent = analysisText;
 
-  modalLeadWa.textContent = lead.whatsappFormatado || 'Não informado';
+  // Google Maps Ficha
+  if (lead.mapsUrl) {
+    modalLeadMapsLink.href = lead.mapsUrl;
+    modalLeadMapsLink.style.display = 'inline-block';
+  } else {
+    modalLeadMapsLink.style.display = 'none';
+  }
+
+  // Site Original
+  if (lead.siteOriginal) {
+    const statusNote = lead.siteStatus === 'inacessivel' ? ` [🚨 FORA DO AR ${lead.siteHttpCode ? `(${lead.siteHttpCode})` : ''}]` : '';
+    modalLeadSite.innerHTML = `<a href="${lead.siteOriginal}" target="_blank" style="color: ${lead.siteStatus === 'inacessivel' ? 'var(--red)' : 'var(--cyan)'}; text-decoration: underline;">${escapeHtml(lead.siteOriginal)}</a>${statusNote}`;
+  } else {
+    modalLeadSite.textContent = 'Nenhum site cadastrado';
+  }
+
+  // Contatos
+  modalLeadWa.textContent = lead.whatsappFormatado || (lead.whatsappPrincipal ? '+' + lead.whatsappPrincipal : 'Não informado');
   modalLeadPhones.textContent = (lead.telefones && lead.telefones.join(', ')) || 'N/A';
-  modalLeadSite.textContent = lead.siteOriginal || 'Nenhum site oficial cadastrado';
-  modalLeadInsta.textContent = lead.instagram || 'Não localizado';
-  modalLeadFb.textContent = lead.facebook || 'Não localizado';
+
+  // Instagram
+  if (lead.instagram) {
+    modalLeadInsta.href = lead.instagram;
+    modalLeadInsta.textContent = lead.instagram.replace(/^https?:\/\/(www\.)?instagram\.com\//, '@');
+    modalLeadInsta.style.display = 'inline-block';
+  } else {
+    modalLeadInsta.textContent = 'Não localizado';
+    modalLeadInsta.removeAttribute('href');
+  }
+
+  // Facebook
+  if (lead.facebook) {
+    modalLeadFb.href = lead.facebook;
+    modalLeadFb.textContent = lead.facebook.replace(/^https?:\/\/(www\.)?facebook\.com\//, '');
+    modalLeadFb.style.display = 'inline-block';
+  } else {
+    modalLeadFb.textContent = 'Não localizado';
+    modalLeadFb.removeAttribute('href');
+  }
+
+  // Sincroniza seletor de template
+  if (templateSelector) {
+    templateSelector.value = lead.templateEscolhido || 'subzero';
+  }
 
   modalStatusSelect.value = lead.status;
   modalNotes.value = lead.anotacoes || '';
@@ -435,7 +572,8 @@ function openModal(lead) {
       btnOpenWaWeb.style.display = 'none';
     }
   } else {
-    modalWaText.textContent = 'Protótipo ainda não gerado. Clique em "Gerar/Regerar Protótipo" para gerar a mensagem personalizada.';
+    modalWaText.textContent = 'Protótipo ainda não construído para esta empresa.\n\nPara gerar o site completo e as mensagens personalizadas para WhatsApp e E-mail, vá até a aba "💻 Protótipo do Site" e clique em "⚡ Criar Protótipo".';
+    btnCopyWa.style.display = 'none';
     btnOpenWaWeb.style.display = 'none';
   }
 
@@ -443,9 +581,11 @@ function openModal(lead) {
   if (lead.messages && lead.messages.email) {
     modalEmailSubject.textContent = lead.messages.email.assunto;
     modalEmailBody.textContent = lead.messages.email.corpo;
+    btnCopyEmail.style.display = 'inline-flex';
   } else {
     modalEmailSubject.textContent = '-';
-    modalEmailBody.textContent = 'Gere o protótipo para liberar o e-mail.';
+    modalEmailBody.textContent = 'Crie o protótipo na aba ao lado para liberar a proposta de e-mail pronta.';
+    btnCopyEmail.style.display = 'none';
   }
 
   // Protótipo
@@ -453,11 +593,13 @@ function openModal(lead) {
     prototypeIframe.src = lead.prototypeUrl;
     btnOpenProtoTab.href = lead.prototypeUrl;
     btnOpenProtoTab.style.display = 'inline-flex';
-    prototypeStatusLabel.textContent = '✅ Protótipo no ar (Local)';
+    btnGenerateProto.textContent = '🔄 Regerar Protótipo';
+    prototypeStatusLabel.textContent = `✅ Protótipo no ar (${lead.templateEscolhido || 'Subzero Engine'})`;
   } else {
     prototypeIframe.src = 'about:blank';
     btnOpenProtoTab.style.display = 'none';
-    prototypeStatusLabel.textContent = '⚠️ Protótipo ainda não construído';
+    btnGenerateProto.textContent = '⚡ Criar Protótipo';
+    prototypeStatusLabel.textContent = '⚠️ Protótipo ainda não construído (Aguardando seu clique)';
   }
 
   leadModal.style.display = 'flex';
@@ -496,10 +638,12 @@ async function updateLeadOnServer(id, updates) {
 }
 
 // Gerar protótipo para um lead
-async function generatePrototypeForLead(id) {
+async function generatePrototypeForLead(id, template = 'subzero') {
   try {
     const res = await fetch(`/api/leads/${id}/generate`, {
-      method: 'POST'
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ template })
     });
     const data = await res.json();
     if (data.success) {
@@ -510,6 +654,8 @@ async function generatePrototypeForLead(id) {
       }
       updateStats(data.stats);
       render();
+    } else {
+      alert(`Aviso ao gerar protótipo: ${data.error || 'Erro desconhecido'}`);
     }
   } catch (err) {
     alert(`Erro ao gerar protótipo: ${err.message}`);
@@ -542,3 +688,4 @@ function escapeHtml(str) {
   if (!str) return '';
   return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
+

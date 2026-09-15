@@ -34,33 +34,39 @@
   {
     "id": "lead_1789434711739_1",
     "createdAt": "2026-09-15T01:11:51.739Z",
-    "updatedAt": "2026-09-15T01:11:51.739Z",
+    "updatedAt": "2026-09-15T01:35:43.314Z",
     "slug": "ecol-ar-condicionado",
     "nome": "Ecol Ar Condicionado",
     "nicho": "ar condicionado",
     "cidade": "Franca SP",
-    "temSiteProprio": null,
-    "siteOriginal": null,
-    "avaliacao": "4,2 estrelas",
+    "siteOriginal": "https://www.ecolarcondicionado.com.br/",
+    "siteStatus": "inacessivel",
+    "siteHealthReason": "🚨 Site cadastrado está INACESSÍVEL / FORA DO AR (HTTP 403)",
+    "avaliacao": "4,2 estrelas (380 comentários)",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Ecol+Ar+Condicionado+Franca+SP",
     "telefones": [
-      "(16) 3722-8315"
+      "(16) 3722-8315",
+      "(16) 99999-3258"
     ],
     "emails": [],
-    "instagram": null,
-    "facebook": null,
+    "instagram": "https://www.instagram.com/ecol_arcondicionado/",
+    "facebook": "https://www.facebook.com/EcolArCondicionado/",
     "status": "prototipo_pronto",
-    "whatsappPrincipal": "551637228315",
-    "whatsappFormatado": "551637228315",
+    "motivoDescarte": null,
+    "analiseIA": "🚨 GATILHO DE OURO: A empresa possui site cadastrado no Google (ecolarcondicionado.com.br), porém está FORA DO AR / INACESSÍVEL (HTTP 403). Com 380 avaliações no Google (4.2★), clientes de Franca que tentam acessar o site pelo celular encontram página de erro e vão para o concorrente!",
+    "whatsappPrincipal": "5516999993258",
+    "whatsappFormatado": "(16) 99999-3258",
     "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\ecol-ar-condicionado\\index.html",
-    "prototypeUrl": "file:///C:/Users/Gabriel/dev/prospector/previews/ecol-ar-condicionado/index.html",
+    "prototypeUrl": "/previews/ecol-ar-condicionado/index.html",
     "messages": {
-      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Ecol Ar Condicionado* tem uma excelente reputação, mas hoje quem pesquisa por *ar condicionado* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) não encontra um site oficial de vocês — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar como resolver isso, montei uma prévia pronta do site de vocês para celular, com as fotos reais e depoimentos dos seus clientes:\n👉 *file:///C:/Users/Gabriel/dev/prospector/previews/ecol-ar-condicionado/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo ativar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
+      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nNotei que o site cadastrado de vocês (*https://www.ecolarcondicionado.com.br/*) está fora do ar / inacessível no momento. Hoje, quando as pessoas ou as buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) tentam acessar a *Ecol Ar Condicionado*, o cliente se depara com uma tela de erro e acaba contratando outro da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, já com fotos reais e depoimentos dos seus clientes:\n👉 */previews/ecol-ar-condicionado/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
       "email": {
-        "assunto": "Ecol Ar Condicionado em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial",
-        "corpo": "Prezada equipe da Ecol Ar Condicionado,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por ar condicionado em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas só indicam empresas que possuem um site oficial registrado.\n\nEmpresas sem site acabam ficando invisíveis nessas buscas, fazendo com que o cliente feche com o concorrente.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Ecol Ar Condicionado, já funcional e adaptado para smartphones:\n👉 file:///C:/Users/Gabriel/dev/prospector/previews/ecol-ar-condicionado/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
+        "assunto": "Ecol Ar Condicionado — site oficial fora do ar e perda de clientes nas buscas por IA em Franca",
+        "corpo": "Prezada equipe da Ecol Ar Condicionado,\n\nO motivo do meu contato é direto e urgente: notei que o site oficial da Ecol Ar Condicionado (https://www.ecolarcondicionado.com.br/) está atualmente fora do ar / inacessível.\n\nHoje, a maioria das pessoas e das ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) pesquisam quem é a empresa recomendada em Franca. Quando o link de vocês dá erro, o cliente perde a confiança e fecha imediatamente com o concorrente.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Ecol Ar Condicionado, já funcional e adaptada para smartphones:\n👉 /previews/ecol-ar-condicionado/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
       }
     },
     "anotacoes": "",
-    "historicoContatos": []
+    "historicoContatos": [],
+    "templateEscolhido": "subzero"
   }
 ]

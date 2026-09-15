@@ -168,13 +168,14 @@
           </div>
 
           <div class="sidebar-block">
-            <h4>📍 Informações de Contato</h4>
+            <h4>📍 Canais Oficiais da Empresa</h4>
             <ul class="contact-list">
+              <li><strong>Google Maps:</strong> <a id="modalLeadMapsLink" href="#" target="_blank" class="link-highlight">📍 Abrir Ficha no Maps</a></li>
+              <li><strong>Site Original:</strong> <span id="modalLeadSite">-</span></li>
               <li><strong>WhatsApp:</strong> <span id="modalLeadWa">-</span></li>
               <li><strong>Telefones:</strong> <span id="modalLeadPhones">-</span></li>
-              <li><strong>Site Original:</strong> <span id="modalLeadSite">-</span></li>
-              <li><strong>Instagram:</strong> <span id="modalLeadInsta">-</span></li>
-              <li><strong>Facebook:</strong> <span id="modalLeadFb">-</span></li>
+              <li><strong>Instagram:</strong> <a id="modalLeadInsta" href="#" target="_blank" class="link-highlight">-</a></li>
+              <li><strong>Facebook:</strong> <a id="modalLeadFb" href="#" target="_blank" class="link-highlight">-</a></li>
             </ul>
           </div>
 
@@ -201,7 +202,7 @@
           <div class="modal-tabs">
             <button class="modal-tab-btn active" data-modaltab="whatsapp">📱 Mensagem WhatsApp</button>
             <button class="modal-tab-btn" data-modaltab="email">📧 E-mail Frio</button>
-            <button class="modal-tab-btn" data-modaltab="prototype">💻 Ver Protótipo ao Vivo</button>
+            <button class="modal-tab-btn" data-modaltab="prototype">💻 Protótipo do Site</button>
           </div>
 
           <!-- Aba 1: WhatsApp -->
@@ -236,9 +237,16 @@
           <div id="tabContentPrototype" class="modal-tab-content">
             <div class="prototype-view-container">
               <div class="prototype-bar">
-                <span id="prototypeStatusLabel">Protótipo Subzero</span>
+                <div>
+                  <span id="prototypeStatusLabel">Protótipo Subzero</span>
+                </div>
                 <div class="prototype-actions">
-                  <button id="btnGenerateProto" class="btn btn-primary btn-sm">⚡ Gerar/Regerar Protótipo</button>
+                  <select id="templateSelector" class="status-select" style="padding: 6px 10px; font-size: 12px;">
+                    <option value="subzero">Template: Subzero Engine (Padrão)</option>
+                    <option value="subzero_minimal" disabled>Template: Subzero Minimal (Em breve)</option>
+                    <option value="subzero_corporate" disabled>Template: Subzero Corporate (Em breve)</option>
+                  </select>
+                  <button id="btnGenerateProto" class="btn btn-primary btn-sm">⚡ Criar Protótipo</button>
                   <a id="btnOpenProtoTab" href="#" target="_blank" class="btn btn-outline btn-sm">↗ Abrir em Nova Aba</a>
                 </div>
               </div>
@@ -259,3 +267,4 @@
   <script src="./app.js"></script>
 </body>
 </html>
+
