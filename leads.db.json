@@ -2,8 +2,8 @@
   {
     "id": "lead_1789442883307_mjsjx2",
     "createdAt": "2026-09-15T03:28:03.307Z",
-    "updatedAt": "2026-09-15T12:17:27.675Z",
-    "anotacoes": "",
+    "updatedAt": "2026-09-15T12:36:51.318Z",
+    "anotacoes": "Tem um site criado por IA. Posso usar de inspiração.",
     "historicoContatos": [],
     "slug": "clinica-sorria-ja",
     "nome": "Clínica Sorria Já - Odontologia & Implantes 3D",
@@ -22,7 +22,7 @@
     "facebook": null,
     "whatsappPrincipal": "5516993265002",
     "whatsappFormatado": "(16) 99326-5002",
-    "status": "oportunidade_quente",
+    "status": "descartado",
     "motivoDescarte": null,
     "analiseIA": "💡 REQUALIFICADO COM DADOS DO SITE: Clínica liderada pelo Dr. Ivan Ferreira (implantodontia 3D). Dados extraídos do site oficial prontos para gerar protótipo de alta performance.",
     "dadosEnriquecidos": {
@@ -280,8 +280,8 @@
   {
     "id": "lead_1789442878220_ctejbi",
     "createdAt": "2026-09-15T03:27:58.220Z",
-    "updatedAt": "2026-09-15T12:17:27.665Z",
-    "anotacoes": "",
+    "updatedAt": "2026-09-15T12:19:39.934Z",
+    "anotacoes": "Rede grande, site estruturado",
     "historicoContatos": [],
     "slug": "maxsorriso-implantes-dentarios-franca-sp",
     "nome": "Maxsorriso Implantes Dentários & Reabilitação Oral",
@@ -301,7 +301,7 @@
     "facebook": "https://www.facebook.com/maxsorrisoimplantes",
     "whatsappPrincipal": "5516981470693",
     "whatsappFormatado": "(16) 98147-0693",
-    "status": "oportunidade_quente",
+    "status": "descartado",
     "motivoDescarte": null,
     "analiseIA": "Clínica especializada em implantes e protocolos com alta demanda em Franca. Oportunidade de protótipo de alta conversão para os plantões de implante.",
     "dadosEnriquecidos": {
@@ -473,44 +473,53 @@
   {
     "id": "lead_1789442619848_8sxtpz",
     "createdAt": "2026-09-15T03:23:39.848Z",
-    "updatedAt": "2026-09-15T12:17:27.671Z",
+    "updatedAt": "2026-09-15T13:50:48.275Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "clinica-dentistas-de-todos",
-    "nome": "Clínica Dentistas de Todos - AmorSaúde Franca",
+    "nome": "Clinica Dentistas de Todos",
     "nicho": "clinica odontologica",
     "cidade": "Franca SP",
     "siteOriginal": null,
     "siteStatus": "nenhum",
     "siteHealthReason": "Sem site individualizado em Franca",
     "avaliacao": "4,6 estrelas",
-    "mapsUrl": "https://www.google.com/maps/place/Clinica%20Dentistas%20de%20Todos/@-20.5371019,-47.4012028,17z/",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Clinica+Dentistas+de+Todos+R.+Monsenhor+Rosa,+1867+Franca+SP",
     "telefones": [
       "(16) 3111-6523"
     ],
     "emails": [],
-    "instagram": null,
-    "facebook": null,
+    "instagram": "https://www.instagram.com/clinicadentistasdetodos/",
+    "facebook": "https://www.facebook.com/clinicadentistasdetodos/",
     "whatsappPrincipal": "551631116523",
     "whatsappFormatado": "(16) 3111-6523",
     "status": "oportunidade_quente",
     "motivoDescarte": null,
-    "analiseIA": "Clínica odontológica popular de alto volume de consultas. Falta landing page local rápida para agendamentos particulares.",
+    "analiseIA": "Clínica odontológica com 186 avaliações no Google (Nota 4.6) e presença ativa no Instagram (@clinicadentistasdetodos com 1.680+ seguidores). Possui WhatsApp direto na bio (wa.link/xavxfl), porém não possui site oficial próprio para captura de pacientes do Google e IAs.",
     "dadosEnriquecidos": {
+      "instagram": "https://www.instagram.com/clinicadentistasdetodos/",
+      "facebook": "https://www.facebook.com/clinicadentistasdetodos/",
       "whatsapp": "(16) 3111-6523",
+      "linkNaBio": "https://wa.link/xavxfl",
+      "responsavelTecnico": "Dr. Fernando T. C. Borges (CROSP: 117424, CROCL: 022432)",
+      "bioInstagram": "Venha sorrir com a gente! 🦷 | RT: Fernando T. C. Borges - CROSP: 117424 - CROCL: 022432 | Agende seu horário: wa.link/xavxfl",
+      "endereco": "R. Monsenhor Rosa, 1867 - Centro, Franca - SP, 14400-670",
       "servicos": [
         "Ortodontia e Manutenção de Aparelho",
-        "Limpeza e Raspagem Dental",
+        "Facetas e Lentes Dentais",
+        "Clareamento Dental",
         "Restaurações Estéticas",
-        "Extrações",
-        "Próteses Dentárias"
+        "Próteses e Implantes",
+        "Limpeza e Profilaxia"
       ],
       "diferenciais": [
-        "Valores acessíveis para a população",
-        "Diversas especialidades",
-        "Localização central"
+        "Localização central (R. Monsenhor Rosa, 1867)",
+        "186 avaliações no Google Maps (Nota 4.6)",
+        "Responsável Técnico especializado Dr. Fernando T. C. Borges",
+        "Atendimento ágil no WhatsApp"
       ]
-    }
+    },
+    "endereco": "R. Monsenhor Rosa, 1867 - Centro, Franca - SP, 14400-670"
   },
   {
     "id": "lead_1789442619760_t9w54r",

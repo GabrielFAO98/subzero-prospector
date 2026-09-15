@@ -2,6 +2,7 @@ const { chromium } = require('playwright');
 const db = require('./db');
 const { checkWebsiteHealth } = require('./site_checker');
 const { huntSocials } = require('./social_hunter');
+const { huntInstagramBio } = require('./instagram_bio_hunter');
 
 /**
  * Minera empresas no Google Maps com auditoria profunda de saúde do site e redes sociais
@@ -95,25 +96,25 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
           const ratingEl = card.querySelector('span.MW4etd, span[role="img"]');
           const ratingText = ratingEl ? (ratingEl.getAttribute('aria-label') || ratingEl.innerText || '').trim() : '';
 
-          // Link do Maps com coordenadas exatas para nunca errar o local
+          const allText = card.innerText || '';
+
+          // Extração do endereço físico no card (Rua, Número, Bairro)
+          let address = '';
+          const addressMatch = allText.match(/(?:R\.|Rua|Av\.|Avenida|Praça|Alameda|Travessa)[^·\n]+,\s*\d+[^\n·]*/i);
+          if (addressMatch) {
+            address = addressMatch[0].trim();
+          }
+
+          // Link do Maps com parâmetros oficiais de busca exata (evita cair no meio da rua)
           const linkEl = card.querySelector('a.hfpxzc, a[href*="/maps/place/"]');
           let mapsUrl = linkEl ? linkEl.href : '';
-          if (mapsUrl) {
-            const latMatch = mapsUrl.match(/!3d(-?[0-9.]+)/);
-            const lngMatch = mapsUrl.match(/!4d(-?[0-9.]+)/);
-            if (latMatch && lngMatch) {
-              mapsUrl = `https://www.google.com/maps/place/${encodeURIComponent(name)}/@${latMatch[1]},${lngMatch[1]},17z/`;
-            }
-          }
-          if (!mapsUrl) {
-            mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name + ' ' + city)}`;
+          if (!mapsUrl || !mapsUrl.includes('/maps/place/')) {
+            mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name + ' ' + (address || city))}`;
           }
 
           // Site oficial ou sublink
           const websiteEl = card.querySelector('a[data-value="Website"], a[aria-label*="website" i], a[aria-label*="site" i], a[data-item-id*="authority"]');
           let websiteUrl = websiteEl ? websiteEl.href : null;
-
-          const allText = card.innerText || '';
 
           // Extração heurística de domínio caso não haja botão de website explícito
           if (!websiteUrl) {
@@ -125,6 +126,7 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
 
           results.push({
             name,
+            address,
             ratingText,
             mapsUrl,
             websiteUrl,
@@ -157,14 +159,21 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
         // 2.1 Auditoria do Website e extração profunda de contatos
         const siteHealth = await checkWebsiteHealth(p.websiteUrl);
 
-        // 2.2 Caça de Redes Sociais e Telefones
+        // 2.2 Caça de Redes Sociais
         const socials = await huntSocials(p.name, city);
 
-        // 2.3 Telefones do Maps, do Site e da Web
+        // 2.3 Caça Profunda de Instagram com leitura da Bio e do Link de WhatsApp
+        let igData = { instagram: null, handle: null, bioText: '', linkInBio: null, whatsappFromBio: null };
+        try {
+          igData = await huntInstagramBio(p.name, city);
+        } catch (_) {}
+
+        // 2.4 Telefones do Maps, do Site, da Web e da Bio
         const mapsPhones = (p.allText.match(/(?:\(?([1-9]{2})\)?\s?)?(?:(9\d{4})[-\s]?(\d{4})|(\d{4})[-\s]?(\d{4}))/g) || [])
           .map(x => x.trim());
 
         const rawAllPhones = [
+          ...(igData.whatsappFromBio ? [igData.whatsappFromBio] : []),
           ...(siteHealth.extractedPhones || []),
           ...(socials.telefones || []),
           ...mapsPhones
@@ -181,11 +190,14 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
           }
         });
 
-        // 2.4 Seleção precisa de WhatsApp (Prioriza Celular / 9 dígitos)
+        // 2.5 Seleção precisa de WhatsApp (Prioridade: Bio do Instagram > Botão do Site > Celular 9 dígitos)
         let whatsappPrincipal = null;
         let whatsappFormatado = null;
 
-        if (siteHealth.extractedWhatsApp) {
+        if (igData.whatsappFromBio) {
+          whatsappPrincipal = igData.whatsappFromBio;
+          whatsappFormatado = formatPhone(igData.whatsappFromBio);
+        } else if (siteHealth.extractedWhatsApp) {
           const wDigits = siteHealth.extractedWhatsApp.replace(/\D/g, '');
           if (wDigits.length === 11) whatsappPrincipal = '55' + wDigits;
           else if (wDigits.length === 13 && wDigits.startsWith('55')) whatsappPrincipal = wDigits;
@@ -211,7 +223,6 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
             whatsappPrincipal = nums;
             whatsappFormatado = formatPhone(nums);
           } else if (allPhones[0]) {
-            // Se só tiver fixo, salva para contato, mas deixa whatsapp formatado explícito
             let nums = allPhones[0].replace(/\D/g, '');
             if (nums.length === 10 && !nums.startsWith('55')) nums = '55' + nums;
             whatsappPrincipal = nums;
@@ -219,7 +230,7 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
           }
         }
 
-        const finalInstagram = siteHealth.extractedInstagram || socials.instagram || null;
+        const finalInstagram = siteHealth.extractedInstagram || igData.instagram || socials.instagram || null;
         const finalFacebook = siteHealth.extractedFacebook || socials.facebook || null;
         const allEmails = [...new Set([...(siteHealth.extractedEmails || []), ...(socials.emails || [])])];
 
@@ -267,6 +278,7 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
           siteStatus: siteHealth.status,
           siteHealthReason: siteHealth.reason,
           avaliacao: p.ratingText,
+          endereco: p.address || null,
           mapsUrl: p.mapsUrl,
           telefones: allPhones,
           emails: allEmails,
@@ -290,6 +302,8 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
             whatsappPrincipal,
             whatsappFormatado,
             website: siteHealth.url || p.websiteUrl || null,
+            bioInstagram: igData.bioText || null,
+            linkNaBio: igData.linkInBio || null,
             servicosDetectados: siteHealth.extractedServices || [],
             diferenciais: siteHealth.extractedDifferentials || []
           }

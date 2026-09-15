@@ -386,12 +386,17 @@ function renderTableRow(lead) {
     emailDisplay = `<br/><small style="color: var(--cyan);">✉️ ${lead.emails[0]}</small>`;
   }
 
+  const accurateMapsUrl = (lead.mapsUrl && lead.mapsUrl.includes('search/?api=1'))
+    ? lead.mapsUrl
+    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(lead.nome + ' ' + (lead.endereco || lead.cidade || 'Franca SP'))}`;
+
   return `
     <tr data-id="${lead.id || lead.slug}">
       <td class="lead-name-cell">
         <strong>${escapeHtml(lead.nome)}</strong>
         <small>${escapeHtml(lead.nicho)} • ${escapeHtml(lead.cidade)}</small>
-        ${lead.mapsUrl ? `<div style="margin-top: 4px;"><a href="${lead.mapsUrl}" target="_blank" class="maps-link-btn" title="Abrir ficha oficial no Google Maps">📍 Ver no Google Maps</a></div>` : ''}
+        ${lead.endereco ? `<br/><small style="color: var(--muted); font-size: 0.72rem;">📍 ${escapeHtml(lead.endereco)}</small>` : ''}
+        <div style="margin-top: 4px;"><a href="${accurateMapsUrl}" target="_blank" class="maps-link-btn" title="Abrir ficha oficial no Google Maps">📍 Ver no Google Maps</a></div>
       </td>
       <td>
         <strong>${lead.avaliacao || 'Sem nota'}</strong>
@@ -543,12 +548,12 @@ function openModal(lead) {
   modalLeadAnalysis.textContent = analysisText;
 
   // Google Maps Ficha
-  if (lead.mapsUrl) {
-    modalLeadMapsLink.href = lead.mapsUrl;
-    modalLeadMapsLink.style.display = 'inline-block';
-  } else {
-    modalLeadMapsLink.style.display = 'none';
-  }
+  const modalMapsHref = (lead.mapsUrl && lead.mapsUrl.includes('search/?api=1'))
+    ? lead.mapsUrl
+    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(lead.nome + ' ' + (lead.endereco || lead.cidade || 'Franca SP'))}`;
+
+  modalLeadMapsLink.href = modalMapsHref;
+  modalLeadMapsLink.style.display = 'inline-block';
 
   // Site Original
   if (lead.siteOriginal) {
