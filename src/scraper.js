@@ -13,7 +13,7 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
   
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({
-    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
     locale: 'pt-BR',
     viewport: { width: 1280, height: 800 }
   });
@@ -23,7 +23,7 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
 
   try {
     await page.goto(searchUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
-    await page.waitForTimeout(3000);
+    await page.waitForTimeout(3500);
 
     // Fechar consentimento Google se aparecer
     try {
@@ -34,160 +34,213 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
       }
     } catch (_) {}
 
-    await page.waitForSelector('div[role="feed"]', { timeout: 15000 }).catch(() => null);
-
-    // Scroll suave para carregar estabelecimentos
-    const feed = page.locator('div[role="feed"]');
-    if (await feed.count() > 0) {
-      for (let i = 0; i < 3; i++) {
-        await page.mouse.wheel(0, 1500);
-        await page.waitForTimeout(1000);
-      }
-    }
-
-    const rawPlaces = await page.evaluate(() => {
-      const results = [];
+    // Verifica se caiu direto na página de um único estabelecimento
+    const isSinglePlace = await page.evaluate(() => {
+      const titleEl = document.querySelector('h1.DUwDvf');
       const feedEl = document.querySelector('div[role="feed"]');
-      if (!feedEl) return results;
+      return !!titleEl && !feedEl;
+    });
 
-      const cards = feedEl.querySelectorAll('div > div[jsaction*="mouseover"]');
-      cards.forEach(card => {
-        const titleEl = card.querySelector('div.fontHeadlineSmall, .qBF1Pd');
-        if (!titleEl) return;
-        const name = titleEl.textContent.trim();
-        if (!name) return;
+    let rawPlaces = [];
 
-        const ratingEl = card.querySelector('span[role="img"]');
-        const ratingText = ratingEl ? ratingEl.getAttribute('aria-label') : '';
+    if (isSinglePlace) {
+      const single = await page.evaluate(() => {
+        const name = document.querySelector('h1.DUwDvf')?.innerText?.trim() || '';
+        const ratingText = document.querySelector('div.F7nice')?.innerText?.replace(/\n/g, ' ').trim() || '';
+        const websiteEl = document.querySelector('a[data-item-id="authority"]');
+        const websiteUrl = websiteEl ? websiteEl.href : null;
+        const allText = document.body.innerText || '';
+        const mapsUrl = window.location.href;
+        return [{ name, ratingText, mapsUrl, websiteUrl, allText }];
+      });
+      rawPlaces = single.filter(s => s.name);
+    } else {
+      // Aguarda feed de resultados múltiplos
+      await page.waitForSelector('div[role="feed"], .m6QErb[aria-label], div.Nv2PK', { timeout: 15000 }).catch(() => null);
 
-        const linkEl = card.querySelector('a[href*="/maps/place/"]');
-        const mapsUrl = linkEl ? linkEl.href : '';
+      // Scroll inteligente no feed para carregar a quantidade solicitada
+      const feed = page.locator('div[role="feed"], .m6QErb[aria-label]').first();
+      if (await feed.count() > 0) {
+        for (let scrollStep = 0; scrollStep < 5; scrollStep++) {
+          await feed.evaluate(el => el.scrollBy(0, 3000));
+          await page.waitForTimeout(1000);
+          const currentCount = await page.locator('div.Nv2PK, div[role="article"]').count();
+          if (currentCount >= maxResults * 1.3) break;
+        }
+      }
 
-        // Tentar capturar link de website de várias fontes no card
-        const websiteEl = card.querySelector('a[data-value="Website"], a[aria-label*="website"], a[aria-label*="site"], a[data-item-id*="authority"]');
-        let websiteUrl = websiteEl ? websiteEl.href : null;
+      rawPlaces = await page.evaluate(() => {
+        const results = [];
+        const seenNames = new Set();
 
-        const allText = card.innerText || '';
-
-        // Se o websiteUrl não foi pego pelo elemento clássico, tenta achar URL no texto do card
-        if (!websiteUrl) {
-          const domainMatch = allText.match(/([a-zA-Z0-9-]+\.com(?:\.br)?)/i);
-          if (domainMatch && !domainMatch[1].includes('google')) {
-            websiteUrl = 'https://www.' + domainMatch[1];
+        // 1. Tentar os cards modernos primários (div.Nv2PK ou div[role="article"])
+        let cards = Array.from(document.querySelectorAll('div.Nv2PK, div[role="article"]'));
+        
+        // 2. Fallback para itens com mouseover dentro do feed
+        if (cards.length === 0) {
+          const feedEl = document.querySelector('div[role="feed"]');
+          if (feedEl) {
+            cards = Array.from(feedEl.querySelectorAll('div > div[jsaction*="mouseover"]'));
           }
         }
 
-        results.push({
-          name,
-          ratingText,
-          mapsUrl,
-          websiteUrl,
-          allText
-        });
-      });
+        cards.forEach(card => {
+          const titleEl = card.querySelector('.qBF1Pd, div.fontHeadlineSmall, h3');
+          if (!titleEl) return;
+          const name = titleEl.innerText ? titleEl.innerText.trim() : titleEl.textContent.trim();
+          if (!name || seenNames.has(name.toLowerCase())) return;
+          seenNames.add(name.toLowerCase());
 
-      return results;
-    });
+          // Avaliação e estrelas
+          const ratingEl = card.querySelector('span.MW4etd, span[role="img"]');
+          const ratingText = ratingEl ? (ratingEl.getAttribute('aria-label') || ratingEl.innerText || '').trim() : '';
+
+          // Link do Maps
+          const linkEl = card.querySelector('a.hfpxzc, a[href*="/maps/place/"]');
+          const mapsUrl = linkEl ? linkEl.href : '';
+
+          // Site oficial ou sublink
+          const websiteEl = card.querySelector('a[data-value="Website"], a[aria-label*="website" i], a[aria-label*="site" i], a[data-item-id*="authority"]');
+          let websiteUrl = websiteEl ? websiteEl.href : null;
+
+          const allText = card.innerText || '';
+
+          // Extração heurística de domínio caso não haja botão de website explícito
+          if (!websiteUrl) {
+            const domainMatch = allText.match(/([a-zA-Z0-9-]+\.com(?:\.br)?)/i);
+            if (domainMatch && !domainMatch[1].includes('google')) {
+              websiteUrl = 'https://www.' + domainMatch[1];
+            }
+          }
+
+          results.push({
+            name,
+            ratingText,
+            mapsUrl,
+            websiteUrl,
+            allText
+          });
+        });
+
+        return results;
+      });
+    }
 
     console.log(`✅ ${rawPlaces.length} estabelecimentos encontrados no Google Maps.`);
     await browser.close();
 
+    if (onProgress) onProgress(`${rawPlaces.length} estabelecimentos encontrados. Iniciando auditoria comercial...`);
+
+    const targets = rawPlaces.slice(0, maxResults);
     const processedLeads = [];
 
-    // 2. Auditoria Individual Completa de Cada Empresa (Saúde do site + Redes Sociais)
-    for (let i = 0; i < Math.min(rawPlaces.length, maxResults); i++) {
-      const p = rawPlaces[i];
-      console.log(`\n🔍 [${i + 1}/${Math.min(rawPlaces.length, maxResults)}] Auditando: "${p.name}"...`);
-      if (onProgress) onProgress(`Auditando [${i + 1}/${Math.min(rawPlaces.length, maxResults)}]: ${p.name}...`);
+    // 2. Auditoria concorrente em lotes de 3 para alta velocidade
+    const batchSize = 3;
+    for (let i = 0; i < targets.length; i += batchSize) {
+      const batch = targets.slice(i, i + batchSize);
+      
+      const batchPromises = batch.map(async (p, idx) => {
+        const itemIndex = i + idx + 1;
+        console.log(`🔍 [${itemIndex}/${targets.length}] Auditando: "${p.name}"...`);
+        if (onProgress) onProgress(`Auditando [${itemIndex}/${targets.length}]: ${p.name}...`);
 
-      // 2.1 Auditoria do Website
-      const siteHealth = await checkWebsiteHealth(p.websiteUrl);
+        // 2.1 Auditoria do Website
+        const siteHealth = await checkWebsiteHealth(p.websiteUrl);
 
-      // 2.2 Caça Profunda de Redes Sociais (Instagram, Facebook e Celular WhatsApp)
-      const socials = await huntSocials(p.name, city);
+        // 2.2 Caça de Redes Sociais e Telefones
+        const socials = await huntSocials(p.name, city);
 
-      // 2.3 Junção de Telefones encontrados no Maps e na Web
-      const mapsPhones = (p.allText.match(/(?:\(?16\)?\s?)?(?:9\d{4}[-\s]?\d{4}|\d{4}[-\s]?\d{4})/g) || [])
-        .map(x => x.trim());
-      const allPhones = [...new Set([...socials.telefones, ...mapsPhones])];
+        // 2.3 Telefones do Maps e da Web (qualquer DDD)
+        const mapsPhones = (p.allText.match(/(?:\(?([1-9]{2})\)?\s?)?(?:(9\d{4})[-\s]?(\d{4})|(\d{4})[-\s]?(\d{4}))/g) || [])
+          .map(x => x.trim());
+        const allPhones = [...new Set([...socials.telefones, ...mapsPhones])];
 
-      // Prioriza celular DDD 16 com 9 dígitos para o WhatsApp
-      let whatsappPrincipal = null;
-      let whatsappFormatado = null;
-      const celular = allPhones.find(t => t.replace(/\D/g, '').length >= 10);
-      if (celular) {
-        let nums = celular.replace(/\D/g, '');
-        if (nums.length === 11 && !nums.startsWith('55')) nums = '55' + nums;
-        else if (nums.length === 9) nums = '5516' + nums;
-        else if (nums.length === 10 && nums.startsWith('16')) nums = '55' + nums;
-        whatsappPrincipal = nums;
-        whatsappFormatado = formatPhone(nums);
-      } else if (allPhones[0]) {
-        whatsappFormatado = allPhones[0];
-      }
+        let whatsappPrincipal = null;
+        let whatsappFormatado = null;
+        const celular = allPhones.find(t => t.replace(/\D/g, '').length >= 10);
+        if (celular) {
+          let nums = celular.replace(/\D/g, '');
+          if (nums.length === 11 && !nums.startsWith('55')) nums = '55' + nums;
+          else if (nums.length === 9) nums = '5516' + nums;
+          else if (nums.length === 10) nums = '55' + nums;
+          whatsappPrincipal = nums;
+          whatsappFormatado = formatPhone(nums);
+        } else if (allPhones[0]) {
+          whatsappFormatado = allPhones[0];
+        }
 
-      // 2.4 Análise e Classificação Comercial
-      let status = 'oportunidade_quente';
-      let motivoDescarte = null;
-      let analiseIA = '';
+        // 2.4 Análise e Classificação Comercial
+        let status = 'oportunidade_quente';
+        let motivoDescarte = null;
+        let analiseIA = '';
 
-      if (siteHealth.status === 'inacessivel') {
-        status = 'oportunidade_quente';
-        motivoDescarte = null;
-        analiseIA = `🚨 GATILHO DE OURO: Empresa possui site cadastrado (${siteHealth.url}), porém está FORA DO AR / INACESSÍVEL (${siteHealth.reason}). Com ${p.ratingText || 'excelentes avaliações'}, os clientes que clicam no Google encontram erro e vão para o concorrente!`;
-      } else if (siteHealth.status === 'online') {
-        status = 'descartado';
-        motivoDescarte = `Já possui site próprio ativo (${siteHealth.url})`;
-        analiseIA = `Descartada para abordagem de criação de site novo pois o domínio oficial está respondendo normalmente.`;
-      } else if (siteHealth.status === 'apenas_social') {
-        status = 'oportunidade_quente';
-        motivoDescarte = null;
-        analiseIA = `Utiliza link de rede social/Linktree no perfil do Google. Não possui site institucional de conversão rápida.`;
-      } else if (allPhones.length === 0) {
-        status = 'descartado';
-        motivoDescarte = 'Sem telefone ou WhatsApp público disponível';
-        analiseIA = 'Falta canal de contato para prospecção.';
-      } else {
-        status = 'oportunidade_quente';
-        analiseIA = `Excelente oportunidade em Franca: ${p.ratingText || 'Boa reputação'}, sem nenhum site oficial cadastrado.`;
-      }
+        if (siteHealth.status === 'inacessivel') {
+          status = 'oportunidade_quente';
+          motivoDescarte = null;
+          analiseIA = `🚨 GATILHO DE OURO: Empresa possui site cadastrado (${siteHealth.url}), porém está FORA DO AR / INACESSÍVEL (${siteHealth.reason}). Com ${p.ratingText || 'boa reputação'}, clientes perdem o contato e vão para a concorrência!`;
+        } else if (siteHealth.status === 'online') {
+          // Se o site é inseguro HTTP, continua sendo oportunidade
+          if (siteHealth.url && siteHealth.url.startsWith('http://')) {
+            status = 'oportunidade_quente';
+            motivoDescarte = null;
+            analiseIA = `Site ativo, porém em protocolo HTTP inseguro (sem certificado SSL). Navegadores alertam como perigoso.`;
+          } else {
+            status = 'descartado';
+            motivoDescarte = `Já possui site próprio ativo (${siteHealth.url})`;
+            analiseIA = `Possui domínio oficial respondendo normalmente. Abordagem de criação de site descartada.`;
+          }
+        } else if (siteHealth.status === 'apenas_social') {
+          status = 'oportunidade_quente';
+          motivoDescarte = null;
+          analiseIA = `Utiliza apenas link de rede social ou Linktree no Google. Não possui página de conversão rápida própria.`;
+        } else if (allPhones.length === 0) {
+          status = 'descartado';
+          motivoDescarte = 'Sem telefone ou WhatsApp público disponível';
+          analiseIA = 'Falta canal de contato direto para prospecção.';
+        } else {
+          status = 'oportunidade_quente';
+          analiseIA = `Excelente oportunidade em ${city}: ${p.ratingText || 'Boa reputação'}, sem nenhum site oficial próprio cadastrado.`;
+        }
 
-      const slug = p.name.toLowerCase()
-        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-        .replace(/[^a-z0-9]/g, "-")
-        .replace(/-+/g, '-');
+        const slug = p.name.toLowerCase()
+          .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^a-z0-9]/g, "-")
+          .replace(/-+/g, '-');
 
-      const leadRecord = {
-        slug,
-        nome: p.name,
-        nicho,
-        cidade: city,
-        siteOriginal: siteHealth.url || p.websiteUrl,
-        siteStatus: siteHealth.status,
-        siteHealthReason: siteHealth.reason,
-        avaliacao: p.ratingText,
-        mapsUrl: p.mapsUrl,
-        telefones: allPhones,
-        emails: socials.emails,
-        instagram: socials.instagram,
-        facebook: socials.facebook,
-        whatsappPrincipal,
-        whatsappFormatado,
-        status,
-        motivoDescarte,
-        analiseIA
-      };
+        const leadRecord = {
+          slug,
+          nome: p.name,
+          nicho: niche,
+          cidade: city,
+          siteOriginal: siteHealth.url || p.websiteUrl,
+          siteStatus: siteHealth.status,
+          siteHealthReason: siteHealth.reason,
+          avaliacao: p.ratingText,
+          mapsUrl: p.mapsUrl,
+          telefones: allPhones,
+          emails: socials.emails || [],
+          instagram: socials.instagram || null,
+          facebook: socials.facebook || null,
+          whatsappPrincipal,
+          whatsappFormatado,
+          status,
+          motivoDescarte,
+          analiseIA
+        };
 
-      // Salva no banco de dados
-      const { lead } = db.upsert(leadRecord);
-      processedLeads.push(lead);
+        const { lead } = db.upsert(leadRecord);
+        return lead;
+      });
+
+      const batchResults = await Promise.all(batchPromises);
+      processedLeads.push(...batchResults);
     }
 
     return processedLeads;
 
   } catch (err) {
     console.error('Erro na raspagem do Google Maps:', err.message);
-    await browser.close();
+    try { await browser.close(); } catch (_) {}
     return [];
   }
 }

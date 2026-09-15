@@ -74,3 +74,4 @@ document.addEventListener('DOMContentLoaded', () => {
     reviewsTrack.innerHTML += reviewsTrack.innerHTML;
   }
 });
+

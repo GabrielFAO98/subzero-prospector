@@ -40,6 +40,7 @@ app.post('/api/prospect', async (req, res) => {
     res.json({
       success: true,
       message: `${rawLeads.length} empresas mineradas e catalogadas.`,
+      newLeads: rawLeads,
       leads: db.getAll(),
       stats: db.getStats()
     });

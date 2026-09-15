@@ -69,6 +69,17 @@ function setupEventListeners() {
     await triggerProspecting(niche, city);
   });
 
+  // Sugestões rápidas de nichos (chips)
+  document.querySelectorAll('.chip-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const niche = btn.dataset.niche;
+      if (!niche) return;
+      nicheInput.value = niche;
+      const city = cityInput.value.trim() || 'Franca SP';
+      await triggerProspecting(niche, city);
+    });
+  });
+
   // Filtro de texto em tempo real
   filterSearch.addEventListener('input', () => {
     render();
@@ -210,6 +221,7 @@ async function triggerProspecting(niche, city) {
   btnProspect.disabled = true;
   btnText.textContent = 'Minerando no Google Maps...';
   spinner.style.display = 'inline-block';
+  searchNotice.className = 'search-notice';
   searchNotice.style.display = 'block';
   searchNotice.textContent = `Buscando estabelecimentos de "${niche}" em ${city} com Playwright em segundo plano. Aguarde alguns instantes...`;
 
@@ -224,16 +236,33 @@ async function triggerProspecting(niche, city) {
     if (data.success) {
       allLeads = data.leads || [];
       updateStats(data.stats || {});
-      searchNotice.textContent = `🎉 Concluído! ${data.message} A lista foi atualizada abaixo.`;
-      activeTab = 'oportunidade_quente';
+
+      const newLeads = data.newLeads || [];
+      const hotCount = newLeads.filter(l => l.status === 'oportunidade_quente').length;
+
+      if (newLeads.length === 0) {
+        searchNotice.className = 'search-notice';
+        searchNotice.textContent = `Nenhum estabelecimento novo encontrado para "${niche}" em ${city} (ou todos já foram minerados anteriormente).`;
+      } else if (hotCount > 0) {
+        searchNotice.className = 'search-notice success';
+        searchNotice.textContent = `🎉 Concluído! Encontrados ${newLeads.length} estabelecimentos, sendo ${hotCount} oportunidade(s) quente(s) (sem site ou site inseguro). Exibindo na aba Oportunidades Quentes!`;
+        activeTab = 'oportunidade_quente';
+      } else {
+        searchNotice.className = 'search-notice';
+        searchNotice.textContent = `ℹ️ Concluído! ${newLeads.length} estabelecimentos analisados. Todos já possuem site ativo com SSL. Exibindo na aba "Todos os Leads" para conferência.`;
+        activeTab = 'todos';
+      }
+
       document.querySelectorAll('.tab-btn').forEach(b => {
-        b.classList.toggle('active', b.dataset.tab === 'oportunidade_quente');
+        b.classList.toggle('active', b.dataset.tab === activeTab);
       });
       render();
     } else {
+      searchNotice.className = 'search-notice error';
       searchNotice.textContent = `Aviso: ${data.error || 'Nenhum lead encontrado'}`;
     }
   } catch (err) {
+    searchNotice.className = 'search-notice error';
     searchNotice.textContent = `Erro ao conectar com o robô de mineração: ${err.message}`;
   } finally {
     btnProspect.disabled = false;
