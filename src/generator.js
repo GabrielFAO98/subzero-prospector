@@ -7,24 +7,82 @@ const PREVIEWS_DIR = path.join(__dirname, '..', 'previews');
 /**
  * Inteligência de conteúdo por nicho para preencher o Subzero Engine
  */
-function getNicheContent(nicho, nomeEmpresa, cidade = 'Franca - SP') {
-  const n = nicho.toLowerCase();
+function getNicheContent(nicho, nomeEmpresa, cidade = 'Franca - SP', lead = {}) {
+  const n = (nicho || '').toLowerCase();
+  const nameLower = (nomeEmpresa || '').toLowerCase();
 
+  // 1. PET SHOP & CLÍNICA VETERINÁRIA
+  if (n.includes('pet') || n.includes('vet') || n.includes('animal') || nameLower.includes('vet') || nameLower.includes('pet')) {
+    return {
+      subtitulo: 'Clínica Veterinária & Pet Shop Especializado',
+      tituloPrincipal: 'Medicina Veterinária com Amor e Tecnologia',
+      chamadaPrincipal: 'O Cuidado Que Seu Pet Merece',
+      slogan: 'Medicina veterinária humanizada, exames, vacinas e cuidados completos.',
+      apresentacao: `Com dedicação e carinho pelos animais em ${cidade}, a ${nomeEmpresa} oferece atendimento veterinário de excelência, centro cirúrgico com anestesia inalatória, vacinas importadas, farmácia veterinária e banho & tosa especializado.`,
+      servicos: [
+        { nome: 'Consultas Clínicas & Check-up', desc: 'Diagnóstico clínico detalhado, avaliação nutricional e acompanhamento integral da saúde e longevidade do seu pet.' },
+        { nome: 'Centro Cirúrgico & Procedimentos', desc: 'Estrutura cirúrgica esterilizada com monitoramento cardíaco multiparâmetro e foco absoluto na segurança.' },
+        { nome: 'Vacinação Importada & Prevenção', desc: 'Protocolos vacinais V10, antirrábica, gripe e giardíase com controle rigoroso de refrigeração e carteirinha digital.' },
+        { nome: 'Estética Animal, Banho & Tosa', desc: 'Banhos com cosméticos dermatológicos hipoalergênicos, tosa na máquina/tesoura e tosa higiênica sem estresse.' }
+      ],
+      diferenciais: [
+        { titulo: 'Medicina Humanizada', desc: 'Trato empático, acolhedor e calmo, respeitando o tempo de adaptação e conforto de cada animalzinho.' },
+        { titulo: 'Diagnóstico Preciso', desc: 'Exames laboratoriais rápidos e conduta médica ética para tratar o problema na raiz.' },
+        { titulo: 'Clínica e Loja Integradas', desc: 'Consulta médica, farmácia completa de medicamentos e produtos de alta qualidade no mesmo lugar.' }
+      ],
+      avaliacoes: [
+        { autor: 'Mariana Silveira', texto: 'Equipe maravilhosa! Cuidaram do meu cachorro com muito profissionalismo e carinho quando ele precisou de cirurgia.' },
+        { autor: 'Renato F. Oliveira', texto: 'O melhor banho e tosa de Franca! Meus pets voltam limpinhos, cheirosos e sem trauma nenhum. Recomendo muito.' },
+        { autor: 'Carla Beatriz Ramos', texto: 'Veterinários muito capacitados e transparentes. Explicam tudo com calma e sem empurrar gastos desnecessários.' },
+        { autor: 'Diego M. Santos', texto: 'Ambiente super limpo e atendimento acolhedor desde a recepção. Lugar de total confiança para nossa família.' }
+      ]
+    };
+  }
+
+  // 2. SEGURANÇA ELETRÔNICA, CERCAS & CFTV
+  if (n.includes('seguranca') || n.includes('cerca') || n.includes('camera') || n.includes('alarme') || n.includes('cftv') || n.includes('portao') || nameLower.includes('seguranca') || nameLower.includes('eletronica')) {
+    return {
+      subtitulo: 'Proteção Perimetral & CFTV em Franca',
+      tituloPrincipal: 'Proteja Sua Família e Seu Patrimônio',
+      chamadaPrincipal: 'Proteção Que Faz o Invasor Desistir',
+      slogan: 'Cercas elétricas, concertinas e monitoramento no celular com garantia.',
+      apresentacao: `Com atuação reconhecida em ${cidade}, entregamos barreiras físicas de alta visibilidade e máxima resistência com instalação técnica limpa e equipamentos líderes em durabilidade.`,
+      servicos: [
+        { nome: 'Cerca Elétrica de Choque Ativo', desc: 'Choque imediato inibidor com sirene instantânea e alarme em caso de corte ou toque no fio.' },
+        { nome: 'Concertina Dupla & Rede Laminada', desc: 'Lâminas de aço galvalume afiadas que tornam qualquer tentativa de invasão pelo muro impossível.' },
+        { nome: 'Câmeras CFTV HD com Visão Noturna', desc: 'Acesso em tempo real na tela do smartphone, com imagens nítidas no escuro e alertas inteligentes.' },
+        { nome: 'Motores para Portão & Automatização', desc: 'Abertura rápida em até 4 segundos com acionamento seguro no controle ou celular.' }
+      ],
+      diferenciais: [
+        { titulo: 'Aço Galvalume & Equipamentos Certificados', desc: 'Materiais de altíssima resistência contra intempéries e tentativa de corte.' },
+        { titulo: 'Instalação Rápida e Limpa', desc: 'Técnicos próprios, pontualidade e zero sujeira no seu imóvel.' },
+        { titulo: 'Garantia e Pós-Venda Local', desc: 'Atendimento e suporte direto em Franca com suporte ágil.' }
+      ],
+      avaliacoes: [
+        { autor: 'André Martins', texto: 'Instalação impecável da concertina e do motor de portão. Ficou super alinhado e o atendimento foi rápido.' },
+        { autor: 'Luciana Meireles', texto: 'Agora consigo acompanhar as câmeras pelo celular de qualquer lugar. Equipe muito prestativa e honesta.' },
+        { autor: 'Roberto Faria', texto: 'Melhor empresa de segurança de Franca. Preço justo, serviço profissional e sem enrolação.' },
+        { autor: 'Patrícia Prado', texto: 'Cerca elétrica muito bem instalada. Passa muita segurança para quem mora em casa térrea.' }
+      ]
+    };
+  }
+
+  // 3. AR-CONDICIONADO & REFRIGERAÇÃO
   if (n.includes('ar') || n.includes('clima') || n.includes('refrigera')) {
     return {
       subtitulo: 'Climatização & Refrigeração',
       tituloPrincipal: 'Especialistas em Ar-Condicionado',
-      chamadaPrincipal: 'Conforto e Ar Puro',
-      slogan: 'Temperatura ideal para sua casa ou empresa.',
+      chamadaPrincipal: 'Conforto e Ar Puro o Ano Todo',
+      slogan: 'Temperatura ideal para sua casa ou empresa com máxima economia.',
       apresentacao: `Com atendimento técnico especializado em ${cidade}, entregamos serviços completos de instalação, manutenção e higienização de sistemas de ar-condicionado com pontualidade e garantia total.`,
       servicos: [
         { nome: 'Instalação de Ar-Condicionado', desc: 'Instalação técnica padrão de fábrica para modelos Split, Inverter e Cassete, garantindo máxima eficiência.' },
         { nome: 'Higienização Antibacteriana', desc: 'Limpeza profunda de serpentinas e filtros com produtos bactericidas que eliminam ácaros, fungos e odores.' },
         { nome: 'Manutenção Preventiva & Carga de Gás', desc: 'Diagnóstico elétrico, medição de pressão e recarga de gás ecológica para prolongar a vida útil do aparelho.' },
-        { nome: 'Projetos Comerciais e Residenciais', desc: 'Dimensionamento térmico exato para residências, clínicas, lojas e escritórios sem desperdício de energia.' }
+        { nome: 'Contratos PMOC e Projetos Comerciais', desc: 'Dimensionamento térmico exato para residências, clínicas, lojas e indústrias com conformidade ANVISA.' }
       ],
       diferenciais: [
-        { titulo: 'Técnicos Certificados', desc: 'Profissionais experientes e atualizados com as principais marcas do mercado.' },
+        { titulo: 'Técnicos Certificados', desc: 'Profissionais experientes e atualizados com as principais marcas do mercado (Daikin, Gree, Midea).' },
         { titulo: 'Pontualidade Rigorosa', desc: 'Respeitamos seu tempo com horário marcado e atendimento ágil em toda a cidade.' },
         { titulo: 'Peças Originais e Garantia', desc: 'Uso de insumos de primeira linha e garantia por escrito em todos os serviços realizados.' }
       ],
@@ -37,12 +95,13 @@ function getNicheContent(nicho, nomeEmpresa, cidade = 'Franca - SP') {
     };
   }
 
-  if (n.includes('odonto') || n.includes('dent') || n.includes('saude') || n.includes('clinica')) {
+  // 4. ODONTOLOGIA & CLÍNICAS DENTÁRIAS
+  if (n.includes('odonto') || n.includes('dent') || n.includes('sorriso') || n.includes('implante') || nameLower.includes('odonto') || nameLower.includes('dentist')) {
     return {
       subtitulo: 'Odontologia Especializada',
       tituloPrincipal: 'Cuidando do Seu Sorriso com Excelência',
       chamadaPrincipal: 'O Sorriso que Você Merece',
-      slogan: 'Tecnologia, conforto e cuidado humano.',
+      slogan: 'Tecnologia, conforto e cuidado humano para toda a família.',
       apresentacao: `Referência em cuidados odontológicos em ${cidade}, aliamos tratamentos modernos a um ambiente acolhedor para transformar a sua saúde bucal e autoestima.`,
       servicos: [
         { nome: 'Implantes & Próteses Dentárias', desc: 'Reabilitação oral segura e com materiais de alta durabilidade para você mastigar e sorrir com segurança.' },
@@ -64,35 +123,63 @@ function getNicheContent(nicho, nomeEmpresa, cidade = 'Franca - SP') {
     };
   }
 
-  // Padrão Geral Premium
+  // 5. ENERGIA SOLAR
+  if (n.includes('solar') || n.includes('fotovolta') || n.includes('energia')) {
+    return {
+      subtitulo: 'Engenharia Fotovoltaica & Energia Solar',
+      tituloPrincipal: 'Economize até 95% na Conta de Luz',
+      chamadaPrincipal: 'Energia Limpa, Sustentável e Lucrativa',
+      slogan: 'Projetos solares residenciais e comerciais com homologação completa.',
+      apresentacao: `Especialistas em projetos fotovoltaicos em ${cidade}, entregamos soluções completas de engenharia solar com painéis de alta eficiência e inversor com garantia de longa duração.`,
+      servicos: [
+        { nome: 'Energia Solar Residencial', desc: 'Reduza a conta de luz da sua casa e valorize seu imóvel gerando sua própria energia limpa.' },
+        { nome: 'Projetos Comerciais e Industriais', desc: 'Dimensionamento estratégico para empresas e indústrias reduzirem custos operacionais fixos.' },
+        { nome: 'Homologação junto à Concessionária', desc: 'Cuidamos de todo o processo burocrático de aprovação técnica e conexão à rede sem estresse.' },
+        { nome: 'Manutenção & Limpeza de Painéis', desc: 'Limpeza especializada e revisão preventiva para manter a geração no pico máximo de rendimento.' }
+      ],
+      diferenciais: [
+        { titulo: 'Engenharia Própria', desc: 'Projetos desenhados sob medida por engenheiros qualificados sem terceirização.' },
+        { titulo: 'Equipamentos Tier 1', desc: 'Módulos e inversores das marcas mais confiáveis do mercado global.' },
+        { titulo: 'Retorno Sobre o Investimento Rápido', desc: 'Sistema que se paga em poucos anos e gera economia por mais de 25 anos.' }
+      ],
+      avaliacoes: [
+        { autor: 'Fábio Guimarães', texto: 'Minha conta de energia caiu de R$ 900 para a taxa mínima. Instalação rápida e equipe muito atenciosa.' },
+        { autor: 'Vanessa Toledo', texto: 'Todo o processo de homologação foi super tranquilo. Eles cuidaram de tudo e já estou gerando energia.' },
+        { autor: 'Gustavo Mendonça', texto: 'Excelente investimento para minha empresa. Reduziu nosso custo fixo significativamente.' },
+        { autor: 'Tatiane Lopes', texto: 'Profissionais transparentes e materiais de primeira linha. Recomendo para quem quer energia solar sem surpresas.' }
+      ]
+    };
+  }
+
+  // Padrão Geral Premium Cuidadoso
   return {
-    subtitulo: 'Serviços Especializados',
-    tituloPrincipal: 'Referência em Qualidade e Confiança',
-    chamadaPrincipal: 'Excelência em Cada Detalhe',
-    slogan: 'Compromisso e profissionalismo para você.',
-    apresentacao: `Com atuação reconhecida em ${cidade}, a ${nomeEmpresa} é sinônimo de dedicação, transparência e satisfação comprovada por dezenas de clientes satisfeitos.`,
+    subtitulo: 'Atendimento Técnico Especializado',
+    tituloPrincipal: 'Excelência e Soluções Confiáveis em Franca',
+    chamadaPrincipal: 'Qualidade Comprovada para Você',
+    slogan: 'Profissionalismo, agilidade e compromisso em cada detalhe.',
+    apresentacao: `Com sólida reputação em ${cidade}, a ${nomeEmpresa} oferece soluções sob medida com equipe qualificada, pontualidade rigorosa e foco total na satisfação dos clientes.`,
     servicos: [
-      { nome: 'Atendimento Personalizado', desc: 'Entendemos exatamente a sua necessidade para oferecer a solução ideal com o melhor custo-benefício.' },
-      { nome: 'Execução Rápida e Precisa', desc: 'Metodologia eficiente para entregar resultados consistentes no menor prazo possível.' },
-      { nome: 'Equipe Qualificada', desc: 'Profissionais com ampla bagagem técnica prontos para atender você com o mais alto padrão.' },
-      { nome: 'Garantia e Pós-Atendimento', desc: 'Suporte completo e compromisso contínuo para a sua total tranquilidade.' }
+      { nome: 'Atendimento Personalizado', desc: 'Consultoria detalhada para entender exatamente sua necessidade e entregar a solução ideal com o melhor custo-benefício.' },
+      { nome: 'Execução Técnica Especializada', desc: 'Profissionais experientes utilizando métodos comprovados para garantir alta durabilidade e segurança.' },
+      { nome: 'Diagnóstico Ágil e Transparente', desc: 'Orçamento claro e detalhado sem surpresas ou taxas ocultas, respeitando o seu tempo.' },
+      { nome: 'Garantia e Suporte Local', desc: 'Atendimento direto com suporte completo e acompanhamento pós-serviço para sua tranquilidade.' }
     ],
     diferenciais: [
-      { titulo: 'Transparência Total', desc: 'Orçamentos claros e sem surpresas, com foco no que realmente você precisa.' },
-      { titulo: 'Pontualidade & Compromisso', desc: 'Respeito ao seu tempo e cumprimento rigoroso de todos os prazos combinados.' },
-      { titulo: 'Reconhecimento Comprovado', desc: 'Avaliações 5 estrelas de quem já contratou e comprova a nossa dedicação.' }
+      { titulo: 'Profissionais Qualificados', desc: 'Equipe com vasta experiência prática pronta para resolver com eficiência.' },
+      { titulo: 'Pontualidade e Compromisso', desc: 'Respeito ao prazo e clareza em todas as etapas da contratação.' },
+      { titulo: 'Garantia Comprovada', desc: 'Segurança e confiança atestadas por avaliações positivas de clientes locais.' }
     ],
     avaliacoes: [
-      { autor: 'Ana Paula Ferreira', texto: 'Serviço impecável! Fui muito bem atendida desde o primeiro contato no WhatsApp. Com certeza voltarei a contratar.' },
-      { autor: 'Bruno Henrique Alves', texto: 'Super profissionais, resolveram minha demanda com rapidez e muita competência. Nota 10!' },
-      { autor: 'Marcos Vinicius', texto: 'Recomendo com certeza! Difícil encontrar uma empresa tão séria e atenciosa hoje em dia.' },
-      { autor: 'Renata Vasconcelos', texto: 'Pontuais, educados e com um preço muito justo pelo nível de qualidade entregue. Parabéns!' }
+      { autor: 'Carlos Eduardo', texto: 'Serviço de altíssimo nível. Resolveram rápido, com muita atenção e preço justo. Com certeza voltarei a contratar.' },
+      { autor: 'Juliana Prado', texto: 'Excelente atendimento desde o primeiro contato no WhatsApp. Muito prestativos e pontuais.' },
+      { autor: 'Marcos Vinicius', texto: 'Profissionais sérios e de palavra. Entregaram exatamente o combinado com muita qualidade.' },
+      { autor: 'Beatriz Costa', texto: 'Super recomendo! Transparência total e equipe muito educada e caprichosa.' }
     ]
   };
 }
 
 /**
- * Gera um protótipo de site completo no padrão Subzero Engine para o lead
+ * Gera ou atualiza o protótipo Subzero para o lead
  */
 async function generatePrototype(lead) {
   console.log(`\n⚡ [3/3] Gerando protótipo Subzero para: "${lead.nome}"...`);
@@ -114,21 +201,22 @@ async function generatePrototype(lead) {
 
   let html = fs.readFileSync(templateHtmlPath, 'utf-8');
 
-  // 2. Gerar conteúdo inteligente
-  const content = getNicheContent(lead.nicho, lead.nome, lead.cidade);
+  // 2. Gerar conteúdo inteligente e específico
+  const content = getNicheContent(lead.nicho, lead.nome, lead.cidade, lead);
   const waMsg = encodeURIComponent(`Olá! Vi o site oficial da ${lead.nome} e gostaria de solicitar um orçamento/informações.`);
   const waLink = `https://wa.me/${lead.whatsappPrincipal}?text=${waMsg}`;
   const encodedAddress = encodeURIComponent(`${lead.nome}, ${lead.cidade}`);
+  const cleanDomain = lead.slug.endsWith('.com.br') ? lead.slug : `${lead.slug}.com.br`;
 
   // 3. Substituir tags de placeholder
   const replacements = {
     '{{NOME_DA_EMPRESA}}': lead.nome,
     '{{TITULO_PRINCIPAL}}': content.tituloPrincipal,
-    '{{DESCRICAO_SEO_150_CARACTERES}}': `${lead.nome} em Franca/SP. ${content.slogan} Entre em contato pelo WhatsApp e confira nossos serviços e avaliações.`,
+    '{{DESCRICAO_SEO_150_CARACTERES}}': `${lead.nome} em Franca/SP. ${content.slogan} Fale conosco no WhatsApp!`,
     '{{PALAVRAS_CHAVE_SEPARADAS_POR_VIRGULA}}': `${lead.nome}, ${lead.nicho}, Franca SP, atendimento, servicos, avaliacoes`,
-    '{{SEU_DOMINIO}}': `${lead.slug}.com.br`,
+    '{{SEU_DOMINIO}}': cleanDomain,
     '{{SUBTITULO_OU_SEGMENTO}}': content.subtitulo,
-    '{{SUBTITULO_LOCALIZACAO_EM_CAPS}}': `${lead.cidade.toUpperCase()} • ATENDIMENTO ESPECIALIZADO`,
+    '{{SUBTITULO_LOCALIZACAO_EM_CAPS}}': `${(lead.cidade || 'FRANCA SP').toUpperCase()} • ATENDIMENTO ESPECIALIZADO`,
     '{{CHAMADA_PRINCIPAL}}': content.chamadaPrincipal,
     '{{SLOGAN_OU_PROMESSA}}': content.slogan,
     '{{TEXTO_DE_APRESENTACAO_DA_EMPRESA_FOCO_EM_CONFIANCA_E_QUALIDADE}}': content.apresentacao,
@@ -141,7 +229,7 @@ async function generatePrototype(lead) {
     '{{HORARIO_RESUMIDO_LINHA_1}}': 'Segunda a Sexta: 08h às 18h',
     '{{HORARIO_RESUMIDO_LINHA_2}}': 'Sábados: 08h às 12h',
     '{{HORARIO_COMPLETO}}': 'Segunda a Sexta das 08h às 18h • Sábados das 08h às 12h',
-    '{{CIDADE_UF}}': lead.cidade,
+    '{{CIDADE_UF}}': lead.cidade || 'Franca - SP',
     '{{TITULO_SECAO_SERVICOS_LINHA_1}}': 'Soluções completas',
     '{{TITULO_SECAO_SERVICOS_LINHA_2}}': 'para sua tranquilidade',
     '{{DESCRICAO_CURTA_DA_SECAO_DE_SERVICOS}}': 'Conheça as principais especialidades que tornam nosso atendimento diferenciado na cidade.',
@@ -158,67 +246,55 @@ async function generatePrototype(lead) {
     '{{TITULO_DIFERENCIAIS_LINHA_2}}': 'no nosso trabalho?',
     '{{SUBTEXTO_DE_AUTORIDADE_E_CONFIANCA}}': 'Transparência, seriedade e dedicação em cada atendimento prestado em Franca.',
     '{{TITULO_DIFERENCIAL_1}}': content.diferenciais[0].titulo,
-    '{{TEXTO_DIFERENCIAL_1}}': content.diferenciais[0].desc,
+    '{{DESCRICAO_DIFERENCIAL_1}}': content.diferenciais[0].desc,
     '{{TITULO_DIFERENCIAL_2}}': content.diferenciais[1].titulo,
-    '{{TEXTO_DIFERENCIAL_2}}': content.diferenciais[1].desc,
+    '{{DESCRICAO_DIFERENCIAL_2}}': content.diferenciais[1].desc,
     '{{TITULO_DIFERENCIAL_3}}': content.diferenciais[2].titulo,
-    '{{TEXTO_DIFERENCIAL_3}}': content.diferenciais[2].desc,
-    '{{DEPOIMENTO_1_TEXTO}}': content.avaliacoes[0].texto,
-    '{{DEPOIMENTO_1_AUTOR}}': content.avaliacoes[0].autor,
-    '{{DEPOIMENTO_2_TEXTO}}': content.avaliacoes[1].texto,
-    '{{DEPOIMENTO_2_AUTOR}}': content.avaliacoes[1].autor,
-    '{{DEPOIMENTO_3_TEXTO}}': content.avaliacoes[2].texto,
-    '{{DEPOIMENTO_3_AUTOR}}': content.avaliacoes[2].autor,
-    '{{DEPOIMENTO_4_TEXTO}}': content.avaliacoes[3].texto,
-    '{{DEPOIMENTO_4_AUTOR}}': content.avaliacoes[3].autor,
-    '{{CHAMADA_CONTATO_LINHA_1}}': 'Pronto para ser atendido',
-    '{{CHAMADA_CONTATO_LINHA_2}}': 'com total dedicação?',
-    '{{TEXTO_CHAMADA_CONTATO}}': 'Chame nossa equipe no WhatsApp ou faça-nos uma visita em Franca/SP.',
-    '{{ENDERECO_URL_ENCODED}}': encodedAddress,
-    '{{ENDERECO_LINHA_1}}': `${lead.nome}`,
-    '{{BAIRRO_CIDADE_UF}}': `${lead.cidade}`
+    '{{DESCRICAO_DIFERENCIAL_3}}': content.diferenciais[2].desc,
+    '{{NOME_DO_CLIENTE_1}}': content.avaliacoes[0].autor,
+    '{{DEPOIMENTO_DO_CLIENTE_1}}': content.avaliacoes[0].texto,
+    '{{NOME_DO_CLIENTE_2}}': content.avaliacoes[1].autor,
+    '{{DEPOIMENTO_DO_CLIENTE_2}}': content.avaliacoes[1].texto,
+    '{{NOME_DO_CLIENTE_3}}': content.avaliacoes[2].autor,
+    '{{DEPOIMENTO_DO_CLIENTE_3}}': content.avaliacoes[2].texto,
+    '{{NOME_DO_CLIENTE_4}}': content.avaliacoes[3].autor,
+    '{{DEPOIMENTO_DO_CLIENTE_4}}': content.avaliacoes[3].texto,
+    '{{ENDERECO_COMPLETO_DO_GOOGLE_MAPS}}': lead.endereco || `${lead.cidade}`,
+    '{{LINK_DIRECIONAMENTO_ROTA_GOOGLE_MAPS}}': `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`
   };
 
-  for (const [key, value] of Object.entries(replacements)) {
-    html = html.split(key).join(value);
+  for (const [key, val] of Object.entries(replacements)) {
+    html = html.replaceAll(key, val);
   }
 
-  // 4. Garantir caminhos estritamente relativos para assets locais (scripts, favicon, css)
-  html = html
-    .replace(/href="\/favicon\.svg"/g, 'href="./favicon.svg"')
-    .replace(/href="\/favicon\.ico"/g, 'href="./favicon.ico"')
-    .replace(/<script[^>]*src="(?:\/|\.\/)?src\/main\.js"[^>]*><\/script>/g, '<script defer src="./src/main.js"></script>');
-
-  // 5. Salvar index.html no diretório do lead
-  fs.writeFileSync(path.join(targetDir, 'index.html'), html, 'utf-8');
-
-  // 5. Copiar assets necessários (src/style.css, src/main.js, favicon.svg, img/)
+  // 4. Copiar assets estruturais (src, favicon, img)
   copyDirSync(path.join(TEMPLATE_DIR, 'src'), path.join(targetDir, 'src'));
   copyDirSync(path.join(TEMPLATE_DIR, 'img'), path.join(targetDir, 'img'));
-  fs.copyFileSync(path.join(TEMPLATE_DIR, 'favicon.svg'), path.join(targetDir, 'favicon.svg'));
 
-  lead.prototypePath = path.join(targetDir, 'index.html');
-  lead.prototypeUrl = `/previews/${lead.slug}/index.html`;
-  lead.messages = generateOutreachMessages(lead, lead.prototypeUrl);
-  lead.status = 'prototipo_pronto';
+  const faviconSrc = path.join(TEMPLATE_DIR, 'favicon.svg');
+  if (fs.existsSync(faviconSrc)) {
+    fs.copyFileSync(faviconSrc, path.join(targetDir, 'favicon.svg'));
+  }
 
-  // Salva no banco de dados se tiver id
-  const db = require('./db');
-  db.update(lead.id || lead.slug, {
-    prototypePath: lead.prototypePath,
-    prototypeUrl: lead.prototypeUrl,
-    messages: lead.messages,
-    status: 'prototipo_pronto'
-  });
+  fs.writeFileSync(path.join(targetDir, 'index.html'), html, 'utf-8');
+  console.log(`✅ Protótipo gerado em: ${targetDir}`);
 
-  console.log(`✅ Protótipo gerado com sucesso em: ${targetDir}`);
-  return lead;
+  // 5. Mensagens personalizadas de abordagem
+  const messages = generateOutreachMessages(lead, cleanDomain);
+
+  return {
+    targetDir,
+    indexPath: path.join(targetDir, 'index.html'),
+    url: `/previews/${lead.slug}/index.html`,
+    messages
+  };
 }
 
 function copyDirSync(src, dest) {
+  if (!fs.existsSync(src)) return;
   if (!fs.existsSync(dest)) fs.mkdirSync(dest, { recursive: true });
-  const entries = fs.readdirSync(src, { withFileTypes: true });
 
+  const entries = fs.readdirSync(src, { withFileTypes: true });
   for (const entry of entries) {
     const srcPath = path.join(src, entry.name);
     const destPath = path.join(dest, entry.name);
@@ -231,68 +307,56 @@ function copyDirSync(src, dest) {
   }
 }
 
-/**
- * Gera as mensagens personalizadas para abordagem (WhatsApp e E-mail)
- */
-function generateOutreachMessages(lead, previewPublicUrl = null) {
-  const linkPreview = previewPublicUrl || lead.prototypeUrl;
-  const isSiteDown = lead.siteStatus === 'inacessivel' || (lead.siteOriginal && lead.motivoDescarte && lead.motivoDescarte.toLowerCase().includes('fora do ar'));
-  const hasActiveSite = lead.siteStatus === 'online' && lead.siteOriginal;
+function generateOutreachMessages(lead, domain) {
+  const cleanPhone = (lead.whatsappPrincipal || '').replace(/\D/g, '');
+  const previewUrl = `/previews/${lead.slug}/index.html`;
 
-  let hookWhatsapp = '';
-  let assuntoEmail = '';
-  let hookEmail = '';
-
-  if (isSiteDown) {
-    hookWhatsapp = `Notei que o site cadastrado de vocês (*${lead.siteOriginal}*) está fora do ar / inacessível no momento. Hoje, quando as pessoas ou as buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) tentam acessar a *${lead.nome}*, o cliente se depara com uma tela de erro e acaba contratando outro da cidade.`;
-    assuntoEmail = `${lead.nome} — site oficial fora do ar e perda de clientes nas buscas por IA em Franca`;
-    hookEmail = `O motivo do meu contato é direto e urgente: notei que o site oficial da ${lead.nome} (${lead.siteOriginal}) está atualmente fora do ar / inacessível.\n\nHoje, a maioria das pessoas e das ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) pesquisam quem é a empresa recomendada em Franca. Quando o link de vocês dá erro, o cliente perde a confiança e fecha imediatamente com o concorrente.`;
-  } else if (hasActiveSite) {
-    hookWhatsapp = `Acompanho o trabalho da *${lead.nome}* e analisei o site de vocês (*${lead.siteOriginal}*). Notei que a estrutura atual não está adaptada para a velocidade e conversão no celular, e hoje a grande maioria dos clientes busca rapidez no WhatsApp direto.`;
-    assuntoEmail = `${lead.nome} — modernização mobile de alta conversão e nova presença digital em Franca`;
-    hookEmail = `Acompanho a atuação da ${lead.nome} em Franca e analisei a página atual de vocês (${lead.siteOriginal}).\n\nHoje, mais de 85% dos clientes navegam exclusivamente pelo celular e esperam atendimento com um toque. A estrutura atual possui oportunidades claras de modernização visual, velocidade instantânea de carregamento e foco em conversão direta de novos contatos.`;
-  } else {
-    hookWhatsapp = `Vi que a *${lead.nome}* tem uma excelente reputação, mas hoje quem pesquisa por *${lead.nicho}* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) não encontra um site oficial de vocês — e essas ferramentas acabam indicando concorrentes da cidade.`;
-    assuntoEmail = `${lead.nome} em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial`;
-    hookEmail = `O motivo do meu contato é direto: a forma como os clientes procuram por ${lead.nicho} em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas só indicam empresas que possuem um site oficial registrado.\n\nEmpresas sem site acabam ficando invisíveis nessas buscas, fazendo com que o cliente feche com o concorrente.`;
+  let gapReason = 'não possui site oficial cadastrado no Google';
+  if (lead.siteStatus === 'inacessivel') {
+    gapReason = `está com o site (${lead.siteOriginal}) fora do ar`;
+  } else if (lead.siteStatus === 'apenas_social') {
+    gapReason = 'utiliza apenas rede social no Google em vez de um site próprio de conversão';
   }
 
-  const whatsapp = 
-`Olá! Tudo bem?
+  const whatsappMsg = `Olá! Tudo bem?
 
 Sou o Gabriel, atuo com tecnologia aqui em Franca.
 
-${hookWhatsapp}
+Vi que a *${lead.nome}* tem uma excelente reputação, mas hoje quem pesquisa por *${lead.nicho}* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: ${gapReason} — e essas ferramentas acabam indicando concorrentes da cidade.
 
 Para mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, já com fotos reais e depoimentos dos seus clientes:
-👉 *${linkPreview}*
+👉 *${previewUrl}*
 
 Pode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.
 Gabriel Azevedo • (16) 99204-8856`;
 
-  const email = {
-    assunto: assuntoEmail,
-    corpo:
-`Prezada equipe da ${lead.nome},
+  const emailSubject = `${lead.nome} em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial`;
+  const emailBody = `Prezada equipe da ${lead.nome},
 
-${hookEmail}
+O motivo do meu contato é direto: a forma como os clientes procuram por ${lead.nicho} em Franca mudou.
+
+Hoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.
 
 Como sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da ${lead.nome}, já funcional e adaptada para smartphones:
-👉 ${linkPreview}
+👉 ${previewUrl}
 
 Qual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?
 
 Atenciosamente,
 Gabriel Azevedo
-(16) 99204-8856 • Franca - SP`
-  };
+(16) 99204-8856 • Franca - SP`;
 
-  return { whatsapp, email };
+  return {
+    whatsapp: whatsappMsg,
+    email: {
+      assunto: emailSubject,
+      corpo: emailBody
+    }
+  };
 }
 
 module.exports = {
   generatePrototype,
-  generateOutreachMessages,
-  getNicheContent
+  getNicheContent,
+  generateOutreachMessages
 };
-
