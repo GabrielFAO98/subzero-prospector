@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="blitzBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19"/>
+      <stop offset="100%" stop-color="#1a2333"/>
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#blitzBg)"/>
+  <rect x="1" y="1" width="62" height="62" rx="13" fill="none" stroke="rgba(245, 158, 11, 0.35)" stroke-width="1.5"/>
+  
+  <!-- Perimeter Shield Motif -->
+  <path d="M32 10L14 18v16c0 12 7.8 23 18 26 10.2-3 18-14 18-26V18L32 10z" fill="none" stroke="url(#amberGrad)" stroke-width="2.5" stroke-linejoin="round"/>
+  
+  <!-- High-voltage Lightning Bolt -->
+  <path d="M34 19L24 33h8l-2 14 12-16h-9l3-12z" fill="url(#amberGrad)"/>
+</svg>
