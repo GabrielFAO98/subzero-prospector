@@ -44,6 +44,13 @@
       "linkNaBio": null,
       "servicosDetectados": [],
       "diferenciais": []
+    },
+    "categoria": {
+      "slug": "pet_vet",
+      "nome": "Pet & Veterinária",
+      "icone": "🐾",
+      "cor": "#059669",
+      "badgeClass": "cat-pet"
     }
   },
   {
@@ -90,6 +97,13 @@
       "linkNaBio": null,
       "servicosDetectados": [],
       "diferenciais": []
+    },
+    "categoria": {
+      "slug": "pet_vet",
+      "nome": "Pet & Veterinária",
+      "icone": "🐾",
+      "cor": "#059669",
+      "badgeClass": "cat-pet"
     }
   },
   {
@@ -136,6 +150,13 @@
       "linkNaBio": null,
       "servicosDetectados": [],
       "diferenciais": []
+    },
+    "categoria": {
+      "slug": "pet_vet",
+      "nome": "Pet & Veterinária",
+      "icone": "🐾",
+      "cor": "#059669",
+      "badgeClass": "cat-pet"
     }
   },
   {
@@ -182,6 +203,13 @@
       "linkNaBio": "https://l.instagram.com/?u=https%3A%2F%2Fwa.me%2Fmessage%2F3IUHMA63KDXIG1&e=AUDCFJ8LsGc72OmQc_JeLCM3QPLQDLZMEcQHdoDDjWXuHspAMaa3jIql9Ozn4QOdZu-zi8DtMSAi8sPsIa47wvQoM_tttIejUof0Micy6m1Tj1BbB2hLGe2rE3lsK4PJrVdSN8M3vLvkBmAWwvFmeQgIWtccGTcP4iYy4w",
       "servicosDetectados": [],
       "diferenciais": []
+    },
+    "categoria": {
+      "slug": "pet_vet",
+      "nome": "Pet & Veterinária",
+      "icone": "🐾",
+      "cor": "#059669",
+      "badgeClass": "cat-pet"
     }
   },
   {
@@ -239,7 +267,14 @@
       }
     },
     "archetype": "care",
-    "templateEscolhido": "care"
+    "templateEscolhido": "care",
+    "categoria": {
+      "slug": "pet_vet",
+      "nome": "Pet & Veterinária",
+      "icone": "🐾",
+      "cor": "#059669",
+      "badgeClass": "cat-pet"
+    }
   },
   {
     "id": "lead_1789499412554_avf8l6",
@@ -285,6 +320,13 @@
       "linkNaBio": null,
       "servicosDetectados": [],
       "diferenciais": []
+    },
+    "categoria": {
+      "slug": "pet_vet",
+      "nome": "Pet & Veterinária",
+      "icone": "🐾",
+      "cor": "#059669",
+      "badgeClass": "cat-pet"
     }
   },
   {
@@ -331,6 +373,13 @@
       "linkNaBio": null,
       "servicosDetectados": [],
       "diferenciais": []
+    },
+    "categoria": {
+      "slug": "pet_vet",
+      "nome": "Pet & Veterinária",
+      "icone": "🐾",
+      "cor": "#059669",
+      "badgeClass": "cat-pet"
     }
   },
   {
@@ -377,6 +426,13 @@
       "linkNaBio": null,
       "servicosDetectados": [],
       "diferenciais": []
+    },
+    "categoria": {
+      "slug": "pet_vet",
+      "nome": "Pet & Veterinária",
+      "icone": "🐾",
+      "cor": "#059669",
+      "badgeClass": "cat-pet"
     }
   },
   {
@@ -423,6 +479,13 @@
       "linkNaBio": null,
       "servicosDetectados": [],
       "diferenciais": []
+    },
+    "categoria": {
+      "slug": "pet_vet",
+      "nome": "Pet & Veterinária",
+      "icone": "🐾",
+      "cor": "#059669",
+      "badgeClass": "cat-pet"
     }
   },
   {
@@ -469,6 +532,13 @@
       "linkNaBio": null,
       "servicosDetectados": [],
       "diferenciais": []
+    },
+    "categoria": {
+      "slug": "pet_vet",
+      "nome": "Pet & Veterinária",
+      "icone": "🐾",
+      "cor": "#059669",
+      "badgeClass": "cat-pet"
     }
   },
   {
@@ -515,6 +585,13 @@
       "linkNaBio": null,
       "servicosDetectados": [],
       "diferenciais": []
+    },
+    "categoria": {
+      "slug": "pet_vet",
+      "nome": "Pet & Veterinária",
+      "icone": "🐾",
+      "cor": "#059669",
+      "badgeClass": "cat-pet"
     }
   },
   {
@@ -561,6 +638,13 @@
       "linkNaBio": null,
       "servicosDetectados": [],
       "diferenciais": []
+    },
+    "categoria": {
+      "slug": "pet_vet",
+      "nome": "Pet & Veterinária",
+      "icone": "🐾",
+      "cor": "#059669",
+      "badgeClass": "cat-pet"
     }
   },
   {
@@ -611,6 +695,13 @@
       "linkNaBio": "https://l.instagram.com/?u=https%3A%2F%2Fapi.whatsapp.com%2Fsend%3Fphone%3D5516999466666&e=AUAQ-pqPfZ-5clfBOypSRlhvHAVe_I9gd6_wavltYdeLJeSlffqXOQzyqdywhFefrE_9SxfkdGp_lCMkFucKRpOSGafkmDkUnaBDI1ylBfmXjZZTTkgm7C95GM46nhbNGby-pv855YHQ9Oeok8wDWNMe_hyd87W_xF0Gyw",
       "servicosDetectados": [],
       "diferenciais": []
+    },
+    "categoria": {
+      "slug": "pet_vet",
+      "nome": "Pet & Veterinária",
+      "icone": "🐾",
+      "cor": "#059669",
+      "badgeClass": "cat-pet"
     }
   },
   {
@@ -662,6 +753,13 @@
       "linkNaBio": "https://l.instagram.com/?u=https%3A%2F%2Fwa.me%2F16994323602&e=AUCIqdVcyEvfgj5iRMTzhv-BEm12XCkIQXtevqhfQygvkkMzVL6ZnDM4FWqkFZdaiQhB9mca8y-qW94rBn4__uLBg4aNorZXGV9lCFvjaiKwxtZtJweD0HICmbdoaL4xy2rtcwDrXC1tQF1Para3-cWf4dD8O8lQzRgRgA",
       "servicosDetectados": [],
       "diferenciais": []
+    },
+    "categoria": {
+      "slug": "pet_vet",
+      "nome": "Pet & Veterinária",
+      "icone": "🐾",
+      "cor": "#059669",
+      "badgeClass": "cat-pet"
     }
   },
   {
@@ -715,6 +813,13 @@
       "linkNaBio": null,
       "servicosDetectados": [],
       "diferenciais": []
+    },
+    "categoria": {
+      "slug": "pet_vet",
+      "nome": "Pet & Veterinária",
+      "icone": "🐾",
+      "cor": "#059669",
+      "badgeClass": "cat-pet"
     }
   },
   {
@@ -760,6 +865,13 @@
         "Protocolos rápidos",
         "Equipe altamente especializada"
       ]
+    },
+    "categoria": {
+      "slug": "odonto_saude",
+      "nome": "Saúde & Odontologia",
+      "icone": "🩺",
+      "cor": "#0284c7",
+      "badgeClass": "cat-health"
     }
   },
   {
@@ -808,6 +920,13 @@
         "Atendimento familiar e acessível",
         "Condições facilitadas"
       ]
+    },
+    "categoria": {
+      "slug": "odonto_saude",
+      "nome": "Saúde & Odontologia",
+      "icone": "🩺",
+      "cor": "#0284c7",
+      "badgeClass": "cat-health"
     }
   },
   {
@@ -853,6 +972,13 @@
         "Ambiente moderno no centro de Franca",
         "Agendamento rápido"
       ]
+    },
+    "categoria": {
+      "slug": "odonto_saude",
+      "nome": "Saúde & Odontologia",
+      "icone": "🩺",
+      "cor": "#0284c7",
+      "badgeClass": "cat-health"
     }
   },
   {
@@ -901,6 +1027,13 @@
         "Equipe multidisciplinar",
         "Estrutura completa na Rua Francisco Jorge"
       ]
+    },
+    "categoria": {
+      "slug": "odonto_saude",
+      "nome": "Saúde & Odontologia",
+      "icone": "🩺",
+      "cor": "#0284c7",
+      "badgeClass": "cat-health"
     }
   },
   {
@@ -950,6 +1083,13 @@
         "Laserterapia Pós-operatória",
         "Mais de 30 anos de tradição"
       ]
+    },
+    "categoria": {
+      "slug": "odonto_saude",
+      "nome": "Saúde & Odontologia",
+      "icone": "🩺",
+      "cor": "#0284c7",
+      "badgeClass": "cat-health"
     }
   },
   {
@@ -993,6 +1133,13 @@
         "Localização central em Franca",
         "Atendimento com hora marcada e emergência"
       ]
+    },
+    "categoria": {
+      "slug": "odonto_saude",
+      "nome": "Saúde & Odontologia",
+      "icone": "🩺",
+      "cor": "#0284c7",
+      "badgeClass": "cat-health"
     }
   },
   {
@@ -1040,6 +1187,13 @@
         "Tecnologia digital de ponta",
         "Condições facilitadas de pagamento"
       ]
+    },
+    "categoria": {
+      "slug": "odonto_saude",
+      "nome": "Saúde & Odontologia",
+      "icone": "🩺",
+      "cor": "#0284c7",
+      "badgeClass": "cat-health"
     }
   },
   {
@@ -1067,7 +1221,14 @@
     "whatsappFormatado": "(16) 99257-5962",
     "status": "descartado",
     "motivoDescarte": "Já possui site próprio ativo (https://sorridents.com.br/)",
-    "analiseIA": "Possui domínio oficial respondendo normalmente. Abordagem de criação de site descartada."
+    "analiseIA": "Possui domínio oficial respondendo normalmente. Abordagem de criação de site descartada.",
+    "categoria": {
+      "slug": "odonto_saude",
+      "nome": "Saúde & Odontologia",
+      "icone": "🩺",
+      "cor": "#0284c7",
+      "badgeClass": "cat-health"
+    }
   },
   {
     "id": "lead_1789442875038_k24aju",
@@ -1113,6 +1274,13 @@
         "Localização privilegiada no centro",
         "Atendimento humanizado"
       ]
+    },
+    "categoria": {
+      "slug": "odonto_saude",
+      "nome": "Saúde & Odontologia",
+      "icone": "🩺",
+      "cor": "#0284c7",
+      "badgeClass": "cat-health"
     }
   },
   {
@@ -1140,7 +1308,14 @@
     "whatsappFormatado": "551637014040",
     "status": "descartado",
     "motivoDescarte": "Já possui site próprio ativo (https://clinicassempresorrindo.com.br/)",
-    "analiseIA": "Possui domínio oficial respondendo normalmente. Abordagem de criação de site descartada."
+    "analiseIA": "Possui domínio oficial respondendo normalmente. Abordagem de criação de site descartada.",
+    "categoria": {
+      "slug": "odonto_saude",
+      "nome": "Saúde & Odontologia",
+      "icone": "🩺",
+      "cor": "#0284c7",
+      "badgeClass": "cat-health"
+    }
   },
   {
     "id": "lead_1789442620376_jgko4l",
@@ -1186,6 +1361,13 @@
         "Especialista de plantão",
         "Localização central de fácil acesso"
       ]
+    },
+    "categoria": {
+      "slug": "odonto_saude",
+      "nome": "Saúde & Odontologia",
+      "icone": "🩺",
+      "cor": "#0284c7",
+      "badgeClass": "cat-health"
     }
   },
   {
@@ -1237,7 +1419,14 @@
         "Atendimento ágil no WhatsApp"
       ]
     },
-    "endereco": "R. Monsenhor Rosa, 1867 - Centro, Franca - SP, 14400-670"
+    "endereco": "R. Monsenhor Rosa, 1867 - Centro, Franca - SP, 14400-670",
+    "categoria": {
+      "slug": "odonto_saude",
+      "nome": "Saúde & Odontologia",
+      "icone": "🩺",
+      "cor": "#0284c7",
+      "badgeClass": "cat-health"
+    }
   },
   {
     "id": "lead_1789442619760_t9w54r",
@@ -1264,7 +1453,14 @@
     "whatsappFormatado": "551637032244",
     "status": "descartado",
     "motivoDescarte": null,
-    "analiseIA": "🚨 GATILHO DE OURO: Empresa possui site cadastrado (https://odontoclinic.com.br/unidades/franca/), porém está FORA DO AR / INACESSÍVEL (🚨 Site cadastrado está FORA DO AR (Tempo limite excedido (Timeout))). Com 4,8 estrelas, clientes perdem o contato e vão para a concorrência!"
+    "analiseIA": "🚨 GATILHO DE OURO: Empresa possui site cadastrado (https://odontoclinic.com.br/unidades/franca/), porém está FORA DO AR / INACESSÍVEL (🚨 Site cadastrado está FORA DO AR (Tempo limite excedido (Timeout))). Com 4,8 estrelas, clientes perdem o contato e vão para a concorrência!",
+    "categoria": {
+      "slug": "odonto_saude",
+      "nome": "Saúde & Odontologia",
+      "icone": "🩺",
+      "cor": "#0284c7",
+      "badgeClass": "cat-health"
+    }
   },
   {
     "id": "lead_1789442618291_ugnvjc",
@@ -1291,7 +1487,14 @@
     "whatsappFormatado": "(16) 99670-7000",
     "status": "descartado",
     "motivoDescarte": "Já possui site próprio ativo (https://oralunicfranca.com.br/)",
-    "analiseIA": "Possui domínio oficial respondendo normalmente. Abordagem de criação de site descartada."
+    "analiseIA": "Possui domínio oficial respondendo normalmente. Abordagem de criação de site descartada.",
+    "categoria": {
+      "slug": "odonto_saude",
+      "nome": "Saúde & Odontologia",
+      "icone": "🩺",
+      "cor": "#0284c7",
+      "badgeClass": "cat-health"
+    }
   },
   {
     "id": "lead_1789442618036_6696xn",
@@ -1348,7 +1551,14 @@
       }
     },
     "archetype": "clinical",
-    "templateEscolhido": "clinical"
+    "templateEscolhido": "clinical",
+    "categoria": {
+      "slug": "odonto_saude",
+      "nome": "Saúde & Odontologia",
+      "icone": "🩺",
+      "cor": "#0284c7",
+      "badgeClass": "cat-health"
+    }
   },
   {
     "id": "lead_coltseg_seguranca",
@@ -1399,6 +1609,13 @@
         "Técnicos especializados com garantia",
         "Suporte pós-instalação"
       ]
+    },
+    "categoria": {
+      "slug": "seguranca",
+      "nome": "Segurança & CFTV",
+      "icone": "🛡️",
+      "cor": "#3b82f6",
+      "badgeClass": "cat-security"
     }
   },
   {
@@ -1457,7 +1674,14 @@
       ]
     },
     "archetype": "industrial",
-    "templateEscolhido": "industrial"
+    "templateEscolhido": "industrial",
+    "categoria": {
+      "slug": "seguranca",
+      "nome": "Segurança & CFTV",
+      "icone": "🛡️",
+      "cor": "#3b82f6",
+      "badgeClass": "cat-security"
+    }
   },
   {
     "id": "lead_1789434711738_0",
@@ -1620,7 +1844,14 @@
     ],
     "servicosReais": [],
     "tempoMercado": "Mais de 20 anos",
-    "fase1Concluida": true
+    "fase1Concluida": true,
+    "categoria": {
+      "slug": "climatizacao",
+      "nome": "Climatização & HVAC",
+      "icone": "❄️",
+      "cor": "#0ea5e9",
+      "badgeClass": "cat-hvac"
+    }
   },
   {
     "id": "lead_1789434711739_1",
@@ -1862,6 +2093,13 @@
     ],
     "tempoMercado": "Mais de 20 anos",
     "fase1Concluida": true,
-    "totalPostsContabilizados": 22
+    "totalPostsContabilizados": 22,
+    "categoria": {
+      "slug": "climatizacao",
+      "nome": "Climatização & HVAC",
+      "icone": "❄️",
+      "cor": "#0ea5e9",
+      "badgeClass": "cat-hvac"
+    }
   }
 ]

@@ -1,5 +1,7 @@
 let allLeads = [];
 let activeTab = 'oportunidade_quente';
+let activeCategory = 'todas';
+let allCategories = [];
 let currentView = 'table';
 let currentSelectedLead = null;
 
@@ -10,6 +12,7 @@ const cityInput = document.getElementById('cityInput');
 const btnProspect = document.getElementById('btnProspect');
 const searchNotice = document.getElementById('searchNotice');
 const filterSearch = document.getElementById('filterSearch');
+const categoryChips = document.getElementById('categoryChips');
 
 const statTotal = document.getElementById('statTotal');
 const statHot = document.getElementById('statHot');
@@ -27,6 +30,7 @@ const loadingIndicator = document.getElementById('loadingIndicator');
 const leadModal = document.getElementById('leadModal');
 const modalClose = document.getElementById('modalClose');
 const modalLeadName = document.getElementById('modalLeadName');
+const modalLeadCategory = document.getElementById('modalLeadCategory');
 const modalLeadBadge = document.getElementById('modalLeadBadge');
 const modalLeadAnalysis = document.getElementById('modalLeadAnalysis');
 const modalLeadMapsLink = document.getElementById('modalLeadMapsLink');
@@ -196,13 +200,71 @@ async function fetchLeads() {
     const res = await fetch('/api/leads');
     const data = await res.json();
     allLeads = data.leads || [];
+    allCategories = data.categories || [];
     updateStats(data.stats || {});
+    renderCategoryChips();
     render();
   } catch (err) {
     console.error('Erro ao buscar leads:', err);
   } finally {
     loadingIndicator.style.display = 'none';
   }
+}
+
+// Renderizar botões de filtro de categoria de negócio
+function renderCategoryChips() {
+  if (!categoryChips) return;
+
+  // Se não vier do backend, calcula a partir de allLeads
+  let categoriesToRender = allCategories;
+  if (!categoriesToRender || categoriesToRender.length === 0) {
+    const map = new Map();
+    allLeads.forEach(l => {
+      const cat = l.categoria || { slug: 'outros', nome: 'Geral', icone: '🏢', badgeClass: 'cat-other' };
+      if (!map.has(cat.slug)) {
+        map.set(cat.slug, {
+          slug: cat.slug,
+          nome: cat.nome,
+          icone: cat.icone,
+          badgeClass: cat.badgeClass || 'cat-other',
+          total: 0
+        });
+      }
+      map.get(cat.slug).total++;
+    });
+    categoriesToRender = Array.from(map.values()).sort((a, b) => b.total - a.total);
+  }
+
+  let html = `
+    <button class="cat-chip ${activeCategory === 'todas' ? 'active' : ''}" data-cat="todas">
+      <span class="cat-chip-icon">🌐</span>
+      <span class="cat-chip-label">Todos os Segmentos</span>
+      <span class="cat-chip-count">${allLeads.length}</span>
+    </button>
+  `;
+
+  categoriesToRender.forEach(cat => {
+    const count = allLeads.filter(l => l.categoria && l.categoria.slug === cat.slug).length;
+    html += `
+      <button class="cat-chip ${activeCategory === cat.slug ? 'active' : ''}" data-cat="${cat.slug}">
+        <span class="cat-chip-icon">${cat.icone}</span>
+        <span class="cat-chip-label">${cat.nome}</span>
+        <span class="cat-chip-count">${count}</span>
+      </button>
+    `;
+  });
+
+  categoryChips.innerHTML = html;
+
+  // Listeners de clique nas categorias
+  categoryChips.querySelectorAll('.cat-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const selected = btn.dataset.cat;
+      activeCategory = selected;
+      renderCategoryChips();
+      render();
+    });
+  });
 }
 
 function updateStats(stats) {
@@ -281,10 +343,16 @@ function render() {
     filtered = filtered.filter(l => l.status === activeTab);
   }
 
+  // Filtro por Categoria de Negócio
+  if (activeCategory !== 'todas') {
+    filtered = filtered.filter(l => l.categoria && l.categoria.slug === activeCategory);
+  }
+
   // Filtro por Texto
   if (query) {
     filtered = filtered.filter(l => 
       l.nome.toLowerCase().includes(query) ||
+      (l.categoria && l.categoria.nome.toLowerCase().includes(query)) ||
       (l.whatsappFormatado && l.whatsappFormatado.includes(query)) ||
       (l.telefones && l.telefones.some(t => t.includes(query))) ||
       (l.motivoDescarte && l.motivoDescarte.toLowerCase().includes(query)) ||
@@ -393,6 +461,11 @@ function renderTableRow(lead) {
   return `
     <tr data-id="${lead.id || lead.slug}">
       <td class="lead-name-cell">
+        <div class="lead-cat-row">
+          <span class="badge-category ${(lead.categoria && lead.categoria.badgeClass) || 'cat-other'}">
+            ${(lead.categoria && lead.categoria.icone) || '🏢'} ${escapeHtml((lead.categoria && lead.categoria.nome) || lead.nicho || 'Geral')}
+          </span>
+        </div>
         <strong>${escapeHtml(lead.nome)}</strong>
         <small>${escapeHtml(lead.nicho)} • ${escapeHtml(lead.cidade)}</small>
         ${lead.endereco ? `<br/><small style="color: var(--muted); font-size: 0.72rem;">📍 ${escapeHtml(lead.endereco)}</small>` : ''}
@@ -469,8 +542,10 @@ function renderCard(lead) {
     <div class="lead-card" data-id="${lead.id || lead.slug}">
       <div>
         <div class="lead-card-header">
+          <span class="badge-category ${(lead.categoria && lead.categoria.badgeClass) || 'cat-other'}">
+            ${(lead.categoria && lead.categoria.icone) || '🏢'} ${escapeHtml((lead.categoria && lead.categoria.nome) || lead.nicho || 'Geral')}
+          </span>
           <span class="badge ${badgeClass}">${badgeLabel}</span>
-          <small style="color: var(--text-muted);">${lead.avaliacao || ''}</small>
         </div>
         <h3 style="font-size: 16px; margin-bottom: 4px;">${escapeHtml(lead.nome)}</h3>
         <p style="font-size: 12px; color: var(--cyan); margin-bottom: 8px;">${escapeHtml(lead.nicho)} • ${escapeHtml(lead.cidade)}</p>
@@ -535,6 +610,14 @@ function openModal(lead) {
   modalLeadName.textContent = lead.nome;
   modalLeadBadge.className = `badge ${getBadgeClass(lead.status)}`;
   modalLeadBadge.textContent = getBadgeLabel(lead.status);
+
+  if (modalLeadCategory && lead.categoria) {
+    modalLeadCategory.className = `badge-category ${lead.categoria.badgeClass || 'cat-other'}`;
+    modalLeadCategory.textContent = `${lead.categoria.icone || '🏢'} ${lead.categoria.nome}`;
+    modalLeadCategory.style.display = 'inline-flex';
+  } else if (modalLeadCategory) {
+    modalLeadCategory.style.display = 'none';
+  }
 
   // Diagnóstico detalhado
   let analysisText = '';

@@ -16,14 +16,19 @@ app.use('/previews', express.static(path.join(__dirname, '..', 'previews')));
 
 // Rota: Listar leads com filtros
 app.get('/api/leads', (req, res) => {
-  const { status, nicho, search } = req.query;
-  const leads = db.getAll({ status, nicho, search });
-  res.json({ leads, stats: db.getStats() });
+  const { status, nicho, categoria, search } = req.query;
+  const leads = db.getAll({ status, nicho, categoria, search });
+  res.json({ leads, stats: db.getStats(), categories: db.getCategories() });
 });
 
 // Rota: Estatísticas do Dashboard
 app.get('/api/stats', (req, res) => {
   res.json(db.getStats());
+});
+
+// Rota: Categorias de Negócio Catalogadas
+app.get('/api/categories', (req, res) => {
+  res.json({ categories: db.getCategories() });
 });
 
 // Rota: Disparar mineração de leads em tempo real

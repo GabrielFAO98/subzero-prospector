@@ -105,6 +105,20 @@
       </div>
     </section>
 
+    <!-- Filtro por Categoria / Segmento de Negócio -->
+    <section class="category-toolbar">
+      <div class="category-header">
+        <span class="category-title">🏢 Segmento de Negócio:</span>
+      </div>
+      <div class="category-chips" id="categoryChips">
+        <button class="cat-chip active" data-cat="todas">
+          <span class="cat-chip-icon">🌐</span>
+          <span class="cat-chip-label">Todos os Segmentos</span>
+          <span class="cat-chip-count" id="catCountAll">0</span>
+        </button>
+      </div>
+    </section>
+
     <!-- Barra de Controle & Filtros -->
     <section class="table-toolbar">
       <div class="tabs-nav">
@@ -167,7 +181,10 @@
       <header class="modal-header">
         <div>
           <h3 id="modalLeadName">Nome da Empresa</h3>
-          <span id="modalLeadBadge" class="badge">Status</span>
+          <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
+            <span id="modalLeadCategory" class="badge-category" style="display: none;"></span>
+            <span id="modalLeadBadge" class="badge">Status</span>
+          </div>
         </div>
         <button id="modalClose" class="modal-close-btn">&times;</button>
       </header>

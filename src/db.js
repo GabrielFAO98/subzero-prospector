@@ -3,6 +3,7 @@ const path = require('path');
 
 const DB_FILE = path.join(__dirname, '..', 'leads.db.json');
 const LEGACY_FILE = path.join(__dirname, '..', 'leads.json');
+const { getCategoryForLead } = require('./categories');
 
 function normalizeName(str) {
   if (!str) return '';
@@ -73,6 +74,14 @@ class LeadDatabase {
     if (fs.existsSync(DB_FILE)) {
       try {
         this.leads = JSON.parse(fs.readFileSync(DB_FILE, 'utf-8'));
+        let needsSave = false;
+        this.leads.forEach(l => {
+          if (!l.categoria || !l.categoria.slug) {
+            l.categoria = getCategoryForLead(l);
+            needsSave = true;
+          }
+        });
+        if (needsSave) this.save();
       } catch (err) {
         console.error('Erro ao ler DB_FILE:', err.message);
       }
@@ -100,6 +109,10 @@ class LeadDatabase {
       result = result.filter(l => l.status === filters.status);
     }
 
+    if (filters.categoria && filters.categoria !== 'todas') {
+      result = result.filter(l => l.categoria && l.categoria.slug === filters.categoria);
+    }
+
     if (filters.nicho && filters.nicho !== 'todos') {
       result = result.filter(l => l.nicho.toLowerCase().includes(filters.nicho.toLowerCase()));
     }
@@ -108,6 +121,7 @@ class LeadDatabase {
       const q = filters.search.toLowerCase();
       result = result.filter(l => 
         l.nome.toLowerCase().includes(q) ||
+        (l.categoria && l.categoria.nome.toLowerCase().includes(q)) ||
         (l.whatsappFormatado && l.whatsappFormatado.includes(q)) ||
         (l.telefones && l.telefones.some(t => t.includes(q))) ||
         (l.motivoDescarte && l.motivoDescarte.toLowerCase().includes(q))
@@ -139,6 +153,9 @@ class LeadDatabase {
   }
 
   upsert(leadData) {
+    if (!leadData.categoria || !leadData.categoria.slug) {
+      leadData.categoria = getCategoryForLead(leadData);
+    }
     const existing = this.findExisting(leadData.nome, leadData.telefones, leadData.mapsUrl);
 
     if (existing) {
@@ -199,7 +216,8 @@ class LeadDatabase {
       prototiposProntos: 0,
       contatados: 0,
       negociando: 0,
-      descartados: 0
+      descartados: 0,
+      porCategoria: {}
     };
 
     this.leads.forEach(l => {
@@ -208,9 +226,39 @@ class LeadDatabase {
       else if (l.status === 'contatado') stats.contatados++;
       else if (l.status === 'negociando') stats.negociando++;
       else if (l.status === 'descartado') stats.descartados++;
+
+      const catSlug = (l.categoria && l.categoria.slug) || 'outros';
+      stats.porCategoria[catSlug] = (stats.porCategoria[catSlug] || 0) + 1;
     });
 
     return stats;
+  }
+
+  getCategories() {
+    this.load();
+    const map = new Map();
+
+    this.leads.forEach(l => {
+      const cat = l.categoria || getCategoryForLead(l);
+      if (!map.has(cat.slug)) {
+        map.set(cat.slug, {
+          slug: cat.slug,
+          nome: cat.nome,
+          icone: cat.icone,
+          cor: cat.cor,
+          badgeClass: cat.badgeClass,
+          total: 0,
+          oportunidades: 0,
+          prototipos: 0
+        });
+      }
+      const entry = map.get(cat.slug);
+      entry.total++;
+      if (l.status === 'oportunidade_quente') entry.oportunidades++;
+      if (l.status === 'prototipo_pronto') entry.prototipos++;
+    });
+
+    return Array.from(map.values()).sort((a, b) => b.total - a.total);
   }
 }
 
