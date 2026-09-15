@@ -192,7 +192,18 @@ async function generatePrototype(lead) {
   fs.copyFileSync(path.join(TEMPLATE_DIR, 'favicon.svg'), path.join(targetDir, 'favicon.svg'));
 
   lead.prototypePath = path.join(targetDir, 'index.html');
-  lead.prototypeUrl = `file:///${targetDir.replace(/\\/g, '/')}/index.html`;
+  lead.prototypeUrl = `/previews/${lead.slug}/index.html`;
+  lead.messages = generateOutreachMessages(lead, lead.prototypeUrl);
+  lead.status = 'prototipo_pronto';
+
+  // Salva no banco de dados se tiver id
+  const db = require('./db');
+  db.update(lead.id || lead.slug, {
+    prototypePath: lead.prototypePath,
+    prototypeUrl: lead.prototypeUrl,
+    messages: lead.messages,
+    status: 'prototipo_pronto'
+  });
 
   console.log(`✅ Protótipo gerado com sucesso em: ${targetDir}`);
   return lead;

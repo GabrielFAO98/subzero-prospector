@@ -1,0 +1,187 @@
+const fs = require('fs');
+const path = require('path');
+
+const DB_FILE = path.join(__dirname, '..', 'leads.db.json');
+const LEGACY_FILE = path.join(__dirname, '..', 'leads.json');
+
+function normalizeName(str) {
+  if (!str) return '';
+  return str.toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]/g, "");
+}
+
+function normalizePhone(phone) {
+  if (!phone) return '';
+  return phone.replace(/\D/g, '');
+}
+
+class LeadDatabase {
+  constructor() {
+    this.leads = this.init();
+  }
+
+  init() {
+    if (fs.existsSync(DB_FILE)) {
+      try {
+        return JSON.parse(fs.readFileSync(DB_FILE, 'utf-8'));
+      } catch (err) {
+        console.error('Erro ao carregar leads.db.json, criando novo:', err.message);
+        return [];
+      }
+    }
+
+    // Migração de leads.json anterior se existir
+    if (fs.existsSync(LEGACY_FILE)) {
+      try {
+        const legacy = JSON.parse(fs.readFileSync(LEGACY_FILE, 'utf-8'));
+        console.log(`📦 Migrando ${legacy.length} leads anteriores para o novo banco de histórico...`);
+        const migrated = legacy.map((l, idx) => ({
+          id: `lead_${Date.now()}_${idx}`,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+          ...l,
+          status: l.prototypePath ? 'prototipo_pronto' : (l.status === 'enriquecido' ? 'oportunidade_quente' : (l.status || 'oportunidade_quente')),
+          anotacoes: '',
+          historicoContatos: []
+        }));
+        this.save(migrated);
+        return migrated;
+      } catch (_) {}
+    }
+
+    this.save([]);
+    return [];
+  }
+
+  save(data = null) {
+    if (data !== null) this.leads = data;
+    try {
+      fs.writeFileSync(DB_FILE, JSON.stringify(this.leads, null, 2), 'utf-8');
+    } catch (err) {
+      console.error('Erro ao salvar no banco de dados:', err.message);
+    }
+  }
+
+  getAll(filters = {}) {
+    let result = [...this.leads];
+
+    if (filters.status && filters.status !== 'todos') {
+      result = result.filter(l => l.status === filters.status);
+    }
+
+    if (filters.nicho && filters.nicho !== 'todos') {
+      result = result.filter(l => l.nicho.toLowerCase().includes(filters.nicho.toLowerCase()));
+    }
+
+    if (filters.search) {
+      const q = filters.search.toLowerCase();
+      result = result.filter(l => 
+        l.nome.toLowerCase().includes(q) ||
+        (l.whatsappFormatado && l.whatsappFormatado.includes(q)) ||
+        (l.telefones && l.telefones.some(t => t.includes(q))) ||
+        (l.motivoDescarte && l.motivoDescarte.toLowerCase().includes(q))
+      );
+    }
+
+    // Ordenar: Oportunidades quentes e protótipos primeiro, mais recentes primeiro
+    return result.sort((a, b) => new Date(b.updatedAt || 0) - new Date(a.updatedAt || 0));
+  }
+
+  getById(id) {
+    return this.leads.find(l => l.id === id || l.slug === id);
+  }
+
+  findExisting(nome, telefones = [], mapsUrl = null) {
+    const normName = normalizeName(nome);
+    const normPhones = telefones.map(normalizePhone).filter(p => p.length >= 8);
+
+    return this.leads.find(l => {
+      if (mapsUrl && l.mapsUrl && l.mapsUrl === mapsUrl) return true;
+      if (normName && normalizeName(l.nome) === normName) return true;
+      if (l.telefones && l.telefones.length > 0) {
+        const existingPhones = l.telefones.map(normalizePhone);
+        if (normPhones.some(p => existingPhones.includes(p))) return true;
+      }
+      return false;
+    });
+  }
+
+  upsert(leadData) {
+    const existing = this.findExisting(leadData.nome, leadData.telefones, leadData.mapsUrl);
+
+    if (existing) {
+      // Atualiza sem perder o histórico de contato ou anotações já feitas
+      Object.assign(existing, {
+        ...leadData,
+        id: existing.id,
+        createdAt: existing.createdAt,
+        updatedAt: new Date().toISOString(),
+        anotacoes: existing.anotacoes || leadData.anotacoes || '',
+        historicoContatos: existing.historicoContatos || leadData.historicoContatos || [],
+        status: existing.status || leadData.status
+      });
+      this.save();
+      return { lead: existing, isNew: false };
+    }
+
+    const newLead = {
+      id: `lead_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      anotacoes: '',
+      historicoContatos: [],
+      ...leadData
+    };
+
+    this.leads.unshift(newLead);
+    this.save();
+    return { lead: newLead, isNew: true };
+  }
+
+  update(id, updates) {
+    const lead = this.getById(id);
+    if (!lead) return null;
+
+    Object.assign(lead, updates, {
+      updatedAt: new Date().toISOString()
+    });
+
+    this.save();
+    return lead;
+  }
+
+  delete(id) {
+    const initialLen = this.leads.length;
+    this.leads = this.leads.filter(l => l.id !== id && l.slug !== id);
+    if (this.leads.length !== initialLen) {
+      this.save();
+      return true;
+    }
+    return false;
+  }
+
+  getStats() {
+    const stats = {
+      total: this.leads.length,
+      oportunidadesQuentes: 0,
+      prototiposProntos: 0,
+      contatados: 0,
+      negociando: 0,
+      descartados: 0
+    };
+
+    this.leads.forEach(l => {
+      if (l.status === 'oportunidade_quente') stats.oportunidadesQuentes++;
+      else if (l.status === 'prototipo_pronto') stats.prototiposProntos++;
+      else if (l.status === 'contatado') stats.contatados++;
+      else if (l.status === 'negociando') stats.negociando++;
+      else if (l.status === 'descartado') stats.descartados++;
+    });
+
+    return stats;
+  }
+}
+
+const db = new LeadDatabase();
+module.exports = db;
