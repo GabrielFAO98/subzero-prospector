@@ -8,3 +8,4 @@ public class ShellNotifier {
 "@
 [ShellNotifier]::SHChangeNotify(0x08000000, 0, [IntPtr]::Zero, [IntPtr]::Zero)
 Write-Host "Icon cache refreshed"
+

@@ -53,3 +53,4 @@ const fileList = sizes.map(s => ({
 
 createIco(fileList, path.join(iconsDir, 'app.ico'));
 createIco(fileList, path.join(__dirname, '..', 'app.ico'));
+
