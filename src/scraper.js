@@ -165,7 +165,7 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
         // 2.3 Caça Profunda de Instagram com leitura da Bio e do Link de WhatsApp
         let igData = { instagram: null, handle: null, bioText: '', linkInBio: null, whatsappFromBio: null };
         try {
-          igData = await huntInstagramBio(p.name, city);
+          igData = await huntInstagramBio(p.name, city, socials.instagram || p.instagram);
         } catch (_) {}
 
         // 2.4 Telefones do Maps, do Site, da Web e da Bio

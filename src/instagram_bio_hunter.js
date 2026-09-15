@@ -42,8 +42,19 @@ async function resolveWaLink(link) {
 /**
  * Caça profunda de perfil do Instagram e extração de Bio + WhatsApp da Bio
  */
-async function huntInstagramBio(companyName, city = 'Franca SP') {
-  const cleanName = companyName
+async function huntInstagramBio(companyOrUrl, city = 'Franca SP', knownInstagramUrl = null) {
+  let foundHandle = null;
+
+  // 1. Se já recebemos uma URL direta ou handle
+  const rawInput = knownInstagramUrl || companyOrUrl || '';
+  if (rawInput.includes('instagram.com/') || rawInput.startsWith('@')) {
+    const clean = rawInput.replace(/https?:\/\/(www\.)?instagram\.com\//, '').replace(/^@/, '').split('/')[0].split('?')[0];
+    if (clean && clean.length > 1) {
+      foundHandle = clean;
+    }
+  }
+
+  const cleanName = companyOrUrl
     .replace(/Clínica/gi, '')
     .replace(/Assistência Técnica/gi, '')
     .replace(/Franca[- /]?SP/gi, '')
@@ -51,7 +62,7 @@ async function huntInstagramBio(companyName, city = 'Franca SP') {
     .replace(/[^a-zA-Z0-9]/g, '')
     .toLowerCase();
 
-  const candidateHandles = [
+  const candidateHandles = foundHandle ? [] : [
     cleanName,
     'clinica' + cleanName,
     cleanName + 'franca',
@@ -60,7 +71,6 @@ async function huntInstagramBio(companyName, city = 'Franca SP') {
     'clinica.' + cleanName
   ];
 
-  let foundHandle = null;
   let bioText = '';
   let linkInBio = null;
   let whatsappFromBio = null;
