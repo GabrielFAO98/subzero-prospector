@@ -54,6 +54,17 @@ class LeadDatabase {
     return [];
   }
 
+  load() {
+    if (fs.existsSync(DB_FILE)) {
+      try {
+        this.leads = JSON.parse(fs.readFileSync(DB_FILE, 'utf-8'));
+      } catch (err) {
+        console.error('Erro ao ler DB_FILE:', err.message);
+      }
+    }
+    return this.leads;
+  }
+
   save(data = null) {
     if (data !== null) this.leads = data;
     try {
@@ -64,6 +75,7 @@ class LeadDatabase {
   }
 
   getAll(filters = {}) {
+    this.load();
     let result = [...this.leads];
 
     if (filters.status && filters.status !== 'todos') {
@@ -89,6 +101,7 @@ class LeadDatabase {
   }
 
   getById(id) {
+    this.load();
     return this.leads.find(l => l.id === id || l.slug === id);
   }
 
