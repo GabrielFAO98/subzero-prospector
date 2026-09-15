@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="coltBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#061124"/>
+      <stop offset="100%" stop-color="#0f274a"/>
+    </linearGradient>
+    <linearGradient id="greenTech" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#00a335"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#coltBg)"/>
+  <rect x="1" y="1" width="62" height="62" rx="13" fill="none" stroke="rgba(16, 185, 129, 0.35)" stroke-width="1.5"/>
+  
+  <!-- Smart Security Shield -->
+  <path d="M32 11L15 19v14c0 11.5 7.5 22 17 25 9.5-3 17-13.5 17-25V19L32 11z" fill="none" stroke="url(#greenTech)" stroke-width="2.5" stroke-linejoin="round"/>
+  
+  <!-- Central Tech Node & Signal Waves -->
+  <circle cx="32" cy="32" r="4.5" fill="url(#greenTech)"/>
+  <path d="M25 25c4-4 10-4 14 0" fill="none" stroke="url(#greenTech)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M21 21c6-6 16-6 22 0" fill="none" stroke="rgba(16, 185, 129, 0.6)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M32 37v7" stroke="url(#greenTech)" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
