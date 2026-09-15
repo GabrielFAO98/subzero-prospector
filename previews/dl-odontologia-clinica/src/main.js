@@ -1,5 +1,5 @@
 /**
- * Subzero Care — Engine JavaScript
+ * Subzero Clinical — Engine JavaScript
  * Smart Headroom Navbar, Granular Scroll Reveal, Infinite Loops, Mobile Nav
  */
 

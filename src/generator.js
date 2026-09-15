@@ -1,8 +1,47 @@
 const fs = require('fs');
 const path = require('path');
 
-const TEMPLATE_DIR = path.join('C:', 'Users', 'Gabriel', 'dev', 'template.subzero');
+const TEMPLATES_ROOT = path.join(__dirname, '..', 'templates');
+const FALLBACK_TEMPLATE_DIR = path.join('C:', 'Users', 'Gabriel', 'dev', 'template.subzero');
 const PREVIEWS_DIR = path.join(__dirname, '..', 'previews');
+
+/**
+ * Determina o arquétipo visual ideal de acordo com o nicho e regras de negócio
+ * @param {string} nicho
+ * @param {string} nomeEmpresa
+ * @param {string} [templateHint]
+ * @returns {'care' | 'clinical' | 'industrial'}
+ */
+function getArchetype(nicho = '', nomeEmpresa = '', templateHint = null) {
+  if (templateHint && typeof templateHint === 'string') {
+    const hint = templateHint.toLowerCase().trim();
+    if (['care', 'clinical', 'industrial'].includes(hint)) {
+      return hint;
+    }
+  }
+
+  const n = (nicho || '').toLowerCase();
+  const name = (nomeEmpresa || '').toLowerCase();
+
+  // 1. Care (Acolhedor, luminoso, humanizado: Pet Shops, Clínicas Veterinárias, Banho & Tosa, Cuidados)
+  if (n.includes('pet') || n.includes('vet') || n.includes('animal') || name.includes('pet') || name.includes('vet')) {
+    return 'care';
+  }
+
+  // 2. Clinical (Ultra-Clean, médico, higiênico: Odontologia, Clínicas Médicas, Estética, Fisioterapia, Saúde humana)
+  if (
+    n.includes('odonto') || n.includes('dent') || n.includes('sorriso') || n.includes('implante') ||
+    n.includes('ortodontia') || n.includes('medica') || n.includes('estetica') || n.includes('fisioterapia') ||
+    (n.includes('clinica') && !n.includes('vet')) ||
+    name.includes('odonto') || name.includes('dent') || name.includes('sorriso')
+  ) {
+    return 'clinical';
+  }
+
+  // 3. Industrial (Dark Tech / Alta Robustez: HVAC, Segurança Eletrônica, Energia Solar, Mecânica, Marcenaria)
+  return 'industrial';
+}
+
 
 /**
  * Inteligência de conteúdo por nicho para preencher o Subzero Engine
@@ -178,11 +217,26 @@ function getNicheContent(nicho, nomeEmpresa, cidade = 'Franca - SP', lead = {}) 
   };
 }
 
+function generateSlug(nome = '') {
+  return (nome || '')
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || `lead-${Date.now()}`;
+}
+
 /**
- * Gera ou atualiza o protótipo Subzero para o lead
+ * Gera ou atualiza o protótipo Subzero para o lead baseado no arquétipo do seu nicho
+ * @param {object} lead
+ * @param {string} [templateHint]
  */
-async function generatePrototype(lead) {
-  console.log(`\n⚡ [3/3] Gerando protótipo Subzero para: "${lead.nome}"...`);
+async function generatePrototype(lead, templateHint = null) {
+  if (!lead.slug) {
+    lead.slug = generateSlug(lead.nome);
+  }
+
+  const archetype = getArchetype(lead.nicho, lead.nome, templateHint || lead.templateEscolhido);
+  console.log(`\n⚡ [Protótipo] Gerando arquétipo "${archetype}" para: "${lead.nome}"...`);
 
   if (!fs.existsSync(PREVIEWS_DIR)) {
     fs.mkdirSync(PREVIEWS_DIR, { recursive: true });
@@ -191,12 +245,26 @@ async function generatePrototype(lead) {
   const targetDir = path.join(PREVIEWS_DIR, lead.slug);
   if (!fs.existsSync(targetDir)) {
     fs.mkdirSync(targetDir, { recursive: true });
+  } else {
+    // Limpa pastas de mídia antigas para evitar conflitos entre arquétipos
+    const oldAssets = path.join(targetDir, 'assets');
+    const oldImg = path.join(targetDir, 'img');
+    if (fs.existsSync(oldAssets)) fs.rmSync(oldAssets, { recursive: true, force: true });
+    if (fs.existsSync(oldImg)) fs.rmSync(oldImg, { recursive: true, force: true });
   }
 
-  // 1. Ler o index.html original do template
-  const templateHtmlPath = path.join(TEMPLATE_DIR, 'index.html');
+  // 1. Determinar o diretório do template selecionado
+  let templateDir = path.join(TEMPLATES_ROOT, archetype);
+  if (!fs.existsSync(templateDir)) {
+    templateDir = path.join(TEMPLATES_ROOT, 'industrial');
+    if (!fs.existsSync(templateDir)) {
+      templateDir = FALLBACK_TEMPLATE_DIR;
+    }
+  }
+
+  const templateHtmlPath = path.join(templateDir, 'index.html');
   if (!fs.existsSync(templateHtmlPath)) {
-    throw new Error(`Template original não encontrado em: ${templateHtmlPath}`);
+    throw new Error(`Template não encontrado em: ${templateHtmlPath}`);
   }
 
   let html = fs.readFileSync(templateHtmlPath, 'utf-8');
@@ -267,27 +335,54 @@ async function generatePrototype(lead) {
     html = html.replaceAll(key, val);
   }
 
-  // 4. Copiar assets estruturais (src, favicon, img)
-  copyDirSync(path.join(TEMPLATE_DIR, 'src'), path.join(targetDir, 'src'));
-  copyDirSync(path.join(TEMPLATE_DIR, 'img'), path.join(targetDir, 'img'));
+  // 4. Copiar assets estruturais do template selecionado (src, favicon, img ou assets)
+  copyDirSync(path.join(templateDir, 'src'), path.join(targetDir, 'src'));
 
-  const faviconSrc = path.join(TEMPLATE_DIR, 'favicon.svg');
+  if (fs.existsSync(path.join(templateDir, 'assets'))) {
+    copyDirSync(path.join(templateDir, 'assets'), path.join(targetDir, 'assets'));
+  }
+  if (fs.existsSync(path.join(templateDir, 'img'))) {
+    copyDirSync(path.join(templateDir, 'img'), path.join(targetDir, 'img'));
+  }
+
+  const faviconSrc = path.join(templateDir, 'favicon.svg');
   if (fs.existsSync(faviconSrc)) {
     fs.copyFileSync(faviconSrc, path.join(targetDir, 'favicon.svg'));
   }
 
   fs.writeFileSync(path.join(targetDir, 'index.html'), html, 'utf-8');
-  console.log(`✅ Protótipo gerado em: ${targetDir}`);
+  console.log(`✅ Protótipo (${archetype}) gerado em: ${targetDir}`);
 
   // 5. Mensagens personalizadas de abordagem
   const messages = generateOutreachMessages(lead, cleanDomain);
 
-  return {
-    targetDir,
-    indexPath: path.join(targetDir, 'index.html'),
-    url: `/previews/${lead.slug}/index.html`,
-    messages
-  };
+  lead.prototypePath = path.join(targetDir, 'index.html');
+  lead.prototypeUrl = `/previews/${lead.slug}/index.html`;
+  lead.status = 'prototipo_pronto';
+  lead.messages = messages;
+  lead.archetype = archetype;
+  lead.templateEscolhido = archetype;
+  lead.targetDir = targetDir;
+  lead.indexPath = lead.prototypePath;
+  lead.url = lead.prototypeUrl;
+
+  try {
+    const db = require('./db');
+    if (lead.id && db.getById(lead.id)) {
+      db.update(lead.id, {
+        prototypePath: lead.prototypePath,
+        prototypeUrl: lead.prototypeUrl,
+        status: 'prototipo_pronto',
+        messages: lead.messages,
+        archetype: lead.archetype,
+        templateEscolhido: lead.templateEscolhido
+      });
+    }
+  } catch (err) {
+    console.warn('Aviso: Não foi possível sincronizar lead no banco local:', err.message);
+  }
+
+  return lead;
 }
 
 function copyDirSync(src, dest) {
@@ -358,5 +453,7 @@ Gabriel Azevedo
 module.exports = {
   generatePrototype,
   getNicheContent,
-  generateOutreachMessages
+  generateOutreachMessages,
+  getArchetype
 };
+

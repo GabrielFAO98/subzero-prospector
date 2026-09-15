@@ -1,0 +1,15 @@
+{
+  "name": "template-subzero",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Template Subzero - Landing page de alta conversao, estetica premium e performance ultra-rapida",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.1.0"
+  }
+}
+

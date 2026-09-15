@@ -187,7 +187,7 @@
   {
     "id": "lead_1789499412688_lqzxmx",
     "createdAt": "2026-09-15T19:10:12.688Z",
-    "updatedAt": "2026-09-15T19:58:44.528Z",
+    "updatedAt": "2026-09-15T22:51:28.263Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "saude-vet-pet-shop-e-clinica-veterinaria",
@@ -232,12 +232,14 @@
     "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\saude-vet-pet-shop-e-clinica-veterinaria\\index.html",
     "prototypeUrl": "/previews/saude-vet-pet-shop-e-clinica-veterinaria/index.html",
     "messages": {
-      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Saúde Vet - Pet Shop e Clinica Veterinária* tem uma excelente reputação, mas hoje quem pesquisa por *pet shop* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) não encontra um site oficial de vocês — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, já com fotos reais e depoimentos dos seus clientes:\n👉 */previews/saude-vet-pet-shop-e-clinica-veterinaria/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
+      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Saúde Vet - Pet Shop e Clinica Veterinária* tem uma excelente reputação, mas hoje quem pesquisa por *pet shop* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: não possui site oficial cadastrado no Google — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, já com fotos reais e depoimentos dos seus clientes:\n👉 */previews/saude-vet-pet-shop-e-clinica-veterinaria/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
       "email": {
         "assunto": "Saúde Vet - Pet Shop e Clinica Veterinária em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial",
-        "corpo": "Prezada equipe da Saúde Vet - Pet Shop e Clinica Veterinária,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por pet shop em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas só indicam empresas que possuem um site oficial registrado.\n\nEmpresas sem site acabam ficando invisíveis nessas buscas, fazendo com que o cliente feche com o concorrente.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Saúde Vet - Pet Shop e Clinica Veterinária, já funcional e adaptada para smartphones:\n👉 /previews/saude-vet-pet-shop-e-clinica-veterinaria/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
+        "corpo": "Prezada equipe da Saúde Vet - Pet Shop e Clinica Veterinária,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por pet shop em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Saúde Vet - Pet Shop e Clinica Veterinária, já funcional e adaptada para smartphones:\n👉 /previews/saude-vet-pet-shop-e-clinica-veterinaria/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
       }
-    }
+    },
+    "archetype": "care",
+    "templateEscolhido": "care"
   },
   {
     "id": "lead_1789499412554_avf8l6",
@@ -1294,7 +1296,7 @@
   {
     "id": "lead_1789442618036_6696xn",
     "createdAt": "2026-09-15T03:23:38.036Z",
-    "updatedAt": "2026-09-15T16:26:08.373Z",
+    "updatedAt": "2026-09-15T22:50:00.638Z",
     "anotacoes": "ja tem site criado por IA",
     "historicoContatos": [],
     "slug": "dl-odontologia-clinica",
@@ -1314,7 +1316,7 @@
     "facebook": "https://www.facebook.com/people/DL-Odontologia-Franca/61556608560384/",
     "whatsappPrincipal": "5516991756434",
     "whatsappFormatado": "(16) 99175-6434",
-    "status": "oportunidade_quente",
+    "status": "prototipo_pronto",
     "motivoDescarte": null,
     "analiseIA": "🚨 GATILHO COMERCIAL: O link cadastrado no Maps leva para página quebrada (404). Clínica de alta classe especializada em lentes e estética orofacial com excelente visual no Instagram.",
     "dadosEnriquecidos": {
@@ -1335,7 +1337,18 @@
         "Técnicas avançadas de estética facial",
         "Ambiente sofisticado e acolhedor"
       ]
-    }
+    },
+    "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\dl-odontologia-clinica\\index.html",
+    "prototypeUrl": "/previews/dl-odontologia-clinica/index.html",
+    "messages": {
+      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *DL Odontologia Clínica & Harmonização Orofacial* tem uma excelente reputação, mas hoje quem pesquisa por *clinica odontologica* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: está com o site (https://dlodontologiafranca.com.br/) fora do ar — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, já com fotos reais e depoimentos dos seus clientes:\n👉 */previews/dl-odontologia-clinica/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
+      "email": {
+        "assunto": "DL Odontologia Clínica & Harmonização Orofacial em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial",
+        "corpo": "Prezada equipe da DL Odontologia Clínica & Harmonização Orofacial,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por clinica odontologica em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da DL Odontologia Clínica & Harmonização Orofacial, já funcional e adaptada para smartphones:\n👉 /previews/dl-odontologia-clinica/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
+      }
+    },
+    "archetype": "clinical",
+    "templateEscolhido": "clinical"
   },
   {
     "id": "lead_coltseg_seguranca",
@@ -1391,7 +1404,7 @@
   {
     "id": "lead_blitz_seguranca",
     "createdAt": "2026-09-15T03:14:29.770Z",
-    "updatedAt": "2026-09-15T12:17:27.676Z",
+    "updatedAt": "2026-09-15T22:49:57.198Z",
     "anotacoes": "",
     "historicoContatos": [],
     "nome": "Blitz Segurança Eletrônica | Concertinas, Cercas e CFTV",
@@ -1409,15 +1422,15 @@
     ],
     "whatsappPrincipal": "5516993974382",
     "whatsappFormatado": "(16) 99397-4382",
-    "prototypePath": "C:\\\\Users\\\\Gabriel\\\\dev\\\\prospector\\\\previews\\\\blitz-seguranca-eletronica\\\\index.html",
-    "prototypeUrl": "/previews/blitz-seguranca-eletronica/index.html",
+    "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\blitz-seguranca-eletronica-concertinas-cercas-e-cftv\\index.html",
+    "prototypeUrl": "/previews/blitz-seguranca-eletronica-concertinas-cercas-e-cftv/index.html",
     "status": "prototipo_pronto",
     "analiseIA": "🔥 OPORTUNIDADE DE ALTO VALOR: A Blitz é uma das maiores referências em segurança perimetral e concertinas em Franca (4.9★ no Google), mas seu site oficial é antigo (HTTP não seguro) e perde clientes móveis todos os dias. O protótipo Subzero eleva a autoridade visual da marca com engenharia perimetral pesada.",
     "messages": {
-      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Blitz Segurança Eletrônica | Concertinas, Cercas e CFTV* tem uma excelente reputação, mas hoje quem pesquisa por *cerca eletrica e seguranca eletronica* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) não encontra um site oficial de vocês — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, já com fotos reais e depoimentos dos seus clientes:\n👉 */previews/blitz-seguranca-eletronica/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
+      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Blitz Segurança Eletrônica | Concertinas, Cercas e CFTV* tem uma excelente reputação, mas hoje quem pesquisa por *cerca eletrica e seguranca eletronica* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: não possui site oficial cadastrado no Google — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, já com fotos reais e depoimentos dos seus clientes:\n👉 */previews/blitz-seguranca-eletronica-concertinas-cercas-e-cftv/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
       "email": {
         "assunto": "Blitz Segurança Eletrônica | Concertinas, Cercas e CFTV em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial",
-        "corpo": "Prezada equipe da Blitz Segurança Eletrônica | Concertinas, Cercas e CFTV,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por cerca eletrica e seguranca eletronica em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas só indicam empresas que possuem um site oficial registrado.\n\nEmpresas sem site acabam ficando invisíveis nessas buscas, fazendo com que o cliente feche com o concorrente.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Blitz Segurança Eletrônica | Concertinas, Cercas e CFTV, já funcional e adaptada para smartphones:\n👉 /previews/blitz-seguranca-eletronica/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
+        "corpo": "Prezada equipe da Blitz Segurança Eletrônica | Concertinas, Cercas e CFTV,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por cerca eletrica e seguranca eletronica em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Blitz Segurança Eletrônica | Concertinas, Cercas e CFTV, já funcional e adaptada para smartphones:\n👉 /previews/blitz-seguranca-eletronica-concertinas-cercas-e-cftv/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
       }
     },
     "facebook": "https://www.facebook.com/blitzsegurancaeletronica/",
@@ -1442,7 +1455,9 @@
         "Instalação padrão industrial e residencial",
         "Equipamentos homologados Intelbras e JFL"
       ]
-    }
+    },
+    "archetype": "industrial",
+    "templateEscolhido": "industrial"
   },
   {
     "id": "lead_1789434711738_0",
