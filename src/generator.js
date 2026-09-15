@@ -183,7 +183,13 @@ async function generatePrototype(lead) {
     html = html.split(key).join(value);
   }
 
-  // 4. Salvar index.html no diretório do lead
+  // 4. Garantir caminhos estritamente relativos para assets locais (scripts, favicon, css)
+  html = html
+    .replace(/href="\/favicon\.svg"/g, 'href="./favicon.svg"')
+    .replace(/href="\/favicon\.ico"/g, 'href="./favicon.ico"')
+    .replace(/<script[^>]*src="(?:\/|\.\/)?src\/main\.js"[^>]*><\/script>/g, '<script defer src="./src/main.js"></script>');
+
+  // 5. Salvar index.html no diretório do lead
   fs.writeFileSync(path.join(targetDir, 'index.html'), html, 'utf-8');
 
   // 5. Copiar assets necessários (src/style.css, src/main.js, favicon.svg, img/)
