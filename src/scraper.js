@@ -3,6 +3,7 @@ const db = require('./db');
 const { checkWebsiteHealth } = require('./site_checker');
 const { huntSocials } = require('./social_hunter');
 const { huntInstagramBio } = require('./instagram_bio_hunter');
+const { isNationalBrand, probeBrandWebsite } = require('./brand_detector');
 
 /**
  * Minera empresas no Google Maps com auditoria profunda de saúde do site e redes sociais
@@ -186,6 +187,14 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
         console.log(`🔍 [${itemIndex}/${targets.length}] Auditando: "${p.name}"...`);
         if (onProgress) onProgress(`Auditando [${itemIndex}/${targets.length}]: ${p.name}...`);
 
+        // 2.0 Sondagem rápida de domínio corporativo se o Maps não exibir botão direto
+        if (!p.websiteUrl) {
+          try {
+            const probed = await probeBrandWebsite(p.name);
+            if (probed) p.websiteUrl = probed;
+          } catch (_) {}
+        }
+
         // 2.1 Auditoria do Website e extração profunda de contatos
         const siteHealth = await checkWebsiteHealth(p.websiteUrl);
 
@@ -269,7 +278,11 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
         let motivoDescarte = null;
         let analiseIA = '';
 
-        if (siteHealth.status === 'inacessivel') {
+        if (isNationalBrand(p.name, p.websiteUrl || siteHealth.url)) {
+          status = 'descartado';
+          motivoDescarte = 'Grande Rede / Franquia Nacional';
+          analiseIA = `🏢 Grande rede corporativa nacional (${siteHealth.url || p.websiteUrl || 'marca consolidada'}). Incompatível com prospecção e desenvolvimento de site local Subzero.`;
+        } else if (siteHealth.status === 'inacessivel') {
           status = 'oportunidade_quente';
           motivoDescarte = null;
           analiseIA = `🚨 GATILHO DE OURO: Empresa possui site cadastrado (${siteHealth.url}), porém está FORA DO AR / INACESSÍVEL (${siteHealth.reason}). Com ${p.ratingText || 'boa reputação'}, clientes perdem o contato e vão para a concorrência!`;

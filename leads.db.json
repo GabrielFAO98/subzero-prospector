@@ -102,9 +102,9 @@
     "nome": "Cobasi Franca",
     "nicho": "pet shop",
     "cidade": "Franca SP",
-    "siteOriginal": null,
-    "siteStatus": "nenhum",
-    "siteHealthReason": "Nenhum site cadastrado",
+    "siteOriginal": "https://www.cobasi.com.br",
+    "siteStatus": "online",
+    "siteHealthReason": "Portal de e-commerce corporativo consolidado",
     "avaliacao": "4,6 estrelas",
     "endereco": "Avenida Doutor - Av. Antônio Barbosa Filho, 75",
     "mapsUrl": "https://www.google.com/maps/place/Cobasi+Franca/data=!4m7!3m6!1s0x94b0a7bfb36f225f:0x49059a649ed0503f!8m2!3d-20.5517471!4d-47.4092491!16s%2Fg%2F11jzs9mz79!19sChIJXyJvs7-nsJQRP1DQnmSaBUk?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkwOS4wIJJjKgBIAVAD&rclk=1",
@@ -116,9 +116,9 @@
     "facebook": null,
     "whatsappPrincipal": "5511933505743",
     "whatsappFormatado": "(11) 93350-5743",
-    "status": "oportunidade_quente",
-    "motivoDescarte": null,
-    "analiseIA": "Excelente oportunidade em Franca SP: 4,6 estrelas, sem nenhum site oficial próprio cadastrado.",
+    "status": "descartado",
+    "motivoDescarte": "Grande Rede / Franquia Nacional",
+    "analiseIA": "🏢 Grande rede corporativa nacional (cobasi.com.br). Incompatível com desenvolvimento de site local Subzero.",
     "siteData": {
       "title": null,
       "metaDescription": null,
@@ -187,7 +187,7 @@
   {
     "id": "lead_1789499412688_lqzxmx",
     "createdAt": "2026-09-15T19:10:12.688Z",
-    "updatedAt": "2026-09-15T19:10:12.688Z",
+    "updatedAt": "2026-09-15T19:58:44.528Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "saude-vet-pet-shop-e-clinica-veterinaria",
@@ -208,7 +208,7 @@
     "facebook": null,
     "whatsappPrincipal": "5516994080809",
     "whatsappFormatado": "(16) 99408-0809",
-    "status": "oportunidade_quente",
+    "status": "prototipo_pronto",
     "motivoDescarte": null,
     "analiseIA": "Excelente oportunidade em Franca SP: 4,9 estrelas, sem nenhum site oficial próprio cadastrado.",
     "siteData": {
@@ -228,6 +228,15 @@
       "linkNaBio": null,
       "servicosDetectados": [],
       "diferenciais": []
+    },
+    "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\saude-vet-pet-shop-e-clinica-veterinaria\\index.html",
+    "prototypeUrl": "/previews/saude-vet-pet-shop-e-clinica-veterinaria/index.html",
+    "messages": {
+      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Saúde Vet - Pet Shop e Clinica Veterinária* tem uma excelente reputação, mas hoje quem pesquisa por *pet shop* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) não encontra um site oficial de vocês — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, já com fotos reais e depoimentos dos seus clientes:\n👉 */previews/saude-vet-pet-shop-e-clinica-veterinaria/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
+      "email": {
+        "assunto": "Saúde Vet - Pet Shop e Clinica Veterinária em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial",
+        "corpo": "Prezada equipe da Saúde Vet - Pet Shop e Clinica Veterinária,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por pet shop em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas só indicam empresas que possuem um site oficial registrado.\n\nEmpresas sem site acabam ficando invisíveis nessas buscas, fazendo com que o cliente feche com o concorrente.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Saúde Vet - Pet Shop e Clinica Veterinária, já funcional e adaptada para smartphones:\n👉 /previews/saude-vet-pet-shop-e-clinica-veterinaria/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
+      }
     }
   },
   {
@@ -470,9 +479,9 @@
     "nome": "Petz Franca",
     "nicho": "pet shop",
     "cidade": "Franca SP",
-    "siteOriginal": null,
-    "siteStatus": "nenhum",
-    "siteHealthReason": "Nenhum site cadastrado",
+    "siteOriginal": "https://www.petz.com.br",
+    "siteStatus": "online",
+    "siteHealthReason": "Portal de e-commerce corporativo consolidado",
     "avaliacao": "4,6 estrelas",
     "endereco": "Av. Alonso Y Alonso, 450",
     "mapsUrl": "https://www.google.com/maps/place/Petz+Franca/data=!4m7!3m6!1s0x94b0a9f2b3b75a73:0xa2a51393eb52692f!8m2!3d-20.5512064!4d-47.4035118!16s%2Fg%2F11h0097mg0!19sChIJc1q3s_KpsJQRL2lS65MTpaI?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkwOS4wIJJjKgBIAVAD&rclk=1",
@@ -484,9 +493,9 @@
     "facebook": null,
     "whatsappPrincipal": "551636028192",
     "whatsappFormatado": "(16) 3602-8192",
-    "status": "oportunidade_quente",
-    "motivoDescarte": null,
-    "analiseIA": "Excelente oportunidade em Franca SP: 4,6 estrelas, sem nenhum site oficial próprio cadastrado.",
+    "status": "descartado",
+    "motivoDescarte": "Grande Rede / Franquia Nacional",
+    "analiseIA": "🏢 Grande rede corporativa nacional (petz.com.br). Incompatível com desenvolvimento de site local Subzero.",
     "siteData": {
       "title": null,
       "metaDescription": null,
@@ -562,9 +571,9 @@
     "nome": "Vet Franca Petshop e Clínica Veterinária",
     "nicho": "pet shop",
     "cidade": "Franca SP",
-    "siteOriginal": null,
-    "siteStatus": "nenhum",
-    "siteHealthReason": "Nenhum site cadastrado",
+    "siteOriginal": "https://www.vetfranca.com.br",
+    "siteStatus": "online",
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
     "avaliacao": "4,7 estrelas",
     "endereco": null,
     "mapsUrl": "https://www.google.com/maps/place/Vet+Franca+Petshop+e+Cl%C3%ADnica+Veterin%C3%A1ria/data=!4m7!3m6!1s0x94b0a72dd55e6d93:0xf72019bbf9146a85!8m2!3d-20.549033!4d-47.409507!16s%2Fg%2F11ll47kwsb!19sChIJk21e1S2nsJQRhWoU-bsZIPc?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkwOS4wIJJjKgBIAVAD&rclk=1",
@@ -581,7 +590,7 @@
     "whatsappFormatado": "(16) 99946-6666",
     "status": "oportunidade_quente",
     "motivoDescarte": null,
-    "analiseIA": "🚨 OPORTUNIDADE DE OURO: Empresa com excelente avaliação no Google, presença ativa no Instagram, porém SEM SITE PRÓPRIO cadastrado. Invisível para IA (ChatGPT/Meta) e perdendo clientes para clínicas com site estruturado.",
+    "analiseIA": "💡 Oportunidade de Redesign Subzero: Site ativo com dados mapeados. Cirurgias, internação e plantão 24h prontos para alimentar o protótipo mobile-first de alta conversão.",
     "siteData": {
       "title": null,
       "metaDescription": null,
