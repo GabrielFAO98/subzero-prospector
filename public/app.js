@@ -333,7 +333,7 @@ function renderTableRow(lead) {
     siteDiagnosticHtml = `
       <div>
         <span class="badge-site badge-site-down">🚨 SITE FORA DO AR ${lead.siteHttpCode ? `(${lead.siteHttpCode})` : ''}</span>
-        <div style="margin-top: 3px;"><a href="${lead.siteOriginal}" target="_blank" class="site-link-broken" title="Verificar link com erro">${escapeHtml(lead.siteOriginal)}</a></div>
+        <div style="margin-top: 3px;"><a href="${lead.siteOriginal}" target="_blank" class="site-link-broken" title="${escapeHtml(lead.siteOriginal)}">${escapeHtml(formatDisplayUrl(lead.siteOriginal))}</a></div>
       </div>
     `;
   } else if (lead.siteStatus === 'nenhum' || !lead.siteOriginal) {
@@ -347,14 +347,14 @@ function renderTableRow(lead) {
     siteDiagnosticHtml = `
       <div>
         <span class="badge-site badge-site-social">📱 APENAS REDES</span>
-        <div style="margin-top: 3px;"><a href="${lead.siteOriginal}" target="_blank" class="site-link-social">${escapeHtml(lead.siteOriginal)}</a></div>
+        <div style="margin-top: 3px;"><a href="${lead.siteOriginal}" target="_blank" class="site-link-social" title="${escapeHtml(lead.siteOriginal)}">${escapeHtml(formatDisplayUrl(lead.siteOriginal))}</a></div>
       </div>
     `;
   } else if (lead.siteStatus === 'online') {
     siteDiagnosticHtml = `
       <div>
         <span class="badge-site badge-site-ok">✅ Site Online</span>
-        <div style="margin-top: 3px;"><a href="${lead.siteOriginal}" target="_blank" class="site-link-ok">${escapeHtml(lead.siteOriginal)}</a></div>
+        <div style="margin-top: 3px;"><a href="${lead.siteOriginal}" target="_blank" class="site-link-ok" title="${escapeHtml(lead.siteOriginal)}">${escapeHtml(formatDisplayUrl(lead.siteOriginal))}</a></div>
       </div>
     `;
   } else {
@@ -558,7 +558,7 @@ function openModal(lead) {
   // Site Original
   if (lead.siteOriginal) {
     const statusNote = lead.siteStatus === 'inacessivel' ? ` [🚨 FORA DO AR ${lead.siteHttpCode ? `(${lead.siteHttpCode})` : ''}]` : '';
-    modalLeadSite.innerHTML = `<a href="${lead.siteOriginal}" target="_blank" style="color: ${lead.siteStatus === 'inacessivel' ? 'var(--red)' : 'var(--cyan)'}; text-decoration: underline;">${escapeHtml(lead.siteOriginal)}</a>${statusNote}`;
+    modalLeadSite.innerHTML = `<a href="${lead.siteOriginal}" target="_blank" title="${escapeHtml(lead.siteOriginal)}" style="color: ${lead.siteStatus === 'inacessivel' ? 'var(--red)' : 'var(--cyan)'}; text-decoration: underline; max-width: 300px; display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: middle;">${escapeHtml(formatDisplayUrl(lead.siteOriginal))}</a>${statusNote}`;
   } else {
     modalLeadSite.textContent = 'Nenhum site cadastrado';
   }
@@ -721,5 +721,18 @@ function getBadgeLabel(status) {
 function escapeHtml(str) {
   if (!str) return '';
   return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+function formatDisplayUrl(url) {
+  if (!url) return '';
+  try {
+    const parsed = new URL(url);
+    const host = parsed.hostname.replace(/^www\./, '');
+    let path = parsed.pathname !== '/' ? parsed.pathname : '';
+    if (path.length > 15) path = path.slice(0, 15) + '...';
+    return (host + path).slice(0, 28);
+  } catch (_) {
+    return url.length > 28 ? url.slice(0, 25) + '...' : url;
+  }
 }
 

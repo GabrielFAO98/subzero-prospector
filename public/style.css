@@ -495,7 +495,12 @@ input[type="text"]:focus, select:focus, textarea:focus {
   color: #ff7675;
   font-size: 11px;
   text-decoration: underline;
-  word-break: break-all;
+  display: inline-block;
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
 }
 .site-link-broken:hover {
   color: #ff4757;
@@ -505,6 +510,12 @@ input[type="text"]:focus, select:focus, textarea:focus {
   color: #d6a2e8;
   font-size: 11px;
   text-decoration: none;
+  display: inline-block;
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
 }
 .site-link-social:hover {
   text-decoration: underline;
@@ -514,6 +525,12 @@ input[type="text"]:focus, select:focus, textarea:focus {
   color: var(--cyan);
   font-size: 11px;
   text-decoration: none;
+  display: inline-block;
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
 }
 .site-link-ok:hover {
   text-decoration: underline;

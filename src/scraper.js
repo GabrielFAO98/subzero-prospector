@@ -49,7 +49,18 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
         const name = document.querySelector('h1.DUwDvf')?.innerText?.trim() || '';
         const ratingText = document.querySelector('div.F7nice')?.innerText?.replace(/\n/g, ' ').trim() || '';
         const websiteEl = document.querySelector('a[data-item-id="authority"]');
-        const websiteUrl = websiteEl ? websiteEl.href : null;
+        let websiteUrl = websiteEl ? websiteEl.href : null;
+        if (websiteUrl) {
+          try {
+            if (websiteUrl.includes('google.com/aclk') || websiteUrl.includes('google.com/url')) {
+              const u = new URL(websiteUrl);
+              const target = u.searchParams.get('adurl') || u.searchParams.get('q') || u.searchParams.get('url');
+              websiteUrl = (target && !target.includes('google.com')) ? target : null;
+            } else if (websiteUrl.includes('google.com') || websiteUrl.includes('goo.gl')) {
+              websiteUrl = null;
+            }
+          } catch (_) { websiteUrl = null; }
+        }
         const allText = document.body.innerText || '';
         const mapsUrl = window.location.href;
         return [{ name, ratingText, mapsUrl, websiteUrl, allText }];
@@ -115,6 +126,25 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
           // Site oficial ou sublink
           const websiteEl = card.querySelector('a[data-value="Website"], a[aria-label*="website" i], a[aria-label*="site" i], a[data-item-id*="authority"]');
           let websiteUrl = websiteEl ? websiteEl.href : null;
+
+          // Sanitização de anúncios patrocinados do Google (/aclk, /url)
+          if (websiteUrl) {
+            try {
+              if (websiteUrl.includes('google.com/aclk') || websiteUrl.includes('google.com/url')) {
+                const u = new URL(websiteUrl);
+                const target = u.searchParams.get('adurl') || u.searchParams.get('q') || u.searchParams.get('url');
+                if (target && !target.includes('google.com')) {
+                  websiteUrl = target;
+                } else {
+                  websiteUrl = null; // Anúncio interno do Google sem site próprio cadastrado
+                }
+              } else if (websiteUrl.includes('google.com') || websiteUrl.includes('goo.gl')) {
+                websiteUrl = null;
+              }
+            } catch (_) {
+              websiteUrl = null;
+            }
+          }
 
           // Extração heurística de domínio caso não haja botão de website explícito
           if (!websiteUrl) {

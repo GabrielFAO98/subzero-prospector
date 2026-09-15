@@ -17,6 +17,41 @@ async function checkWebsiteHealth(url) {
     extractedEmails: []
   };
 
+  // Se for redirecionador ou anúncio do Google (/aclk, /url)
+  if (url.includes('google.com') || url.includes('goo.gl')) {
+    try {
+      const u = new URL(url);
+      const target = u.searchParams.get('adurl') || u.searchParams.get('q') || u.searchParams.get('url');
+      if (target && !target.includes('google.com')) {
+        url = target;
+      } else {
+        return {
+          hasWebsite: false,
+          isOnline: false,
+          status: 'nenhum',
+          reason: 'Anúncio ou ficha do Google sem site próprio cadastrado',
+          extractedInstagram: null,
+          extractedFacebook: null,
+          extractedWhatsApp: null,
+          extractedPhones: [],
+          extractedEmails: []
+        };
+      }
+    } catch (_) {
+      return {
+        hasWebsite: false,
+        isOnline: false,
+        status: 'nenhum',
+        reason: 'Nenhum site cadastrado',
+        extractedInstagram: null,
+        extractedFacebook: null,
+        extractedWhatsApp: null,
+        extractedPhones: [],
+        extractedEmails: []
+      };
+    }
+  }
+
   const lower = url.toLowerCase();
   let extractedInstagram = null;
   let extractedFacebook = null;
