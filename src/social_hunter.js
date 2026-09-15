@@ -1,36 +1,69 @@
 const cheerio = require('cheerio');
 
 async function querySearchEngines(query) {
+  // 1. Tenta DuckDuckGo HTML
   try {
     const url = 'https://html.duckduckgo.com/html/?q=' + encodeURIComponent(query);
     const res = await fetch(url, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-        'Accept-Language': 'pt-BR,pt;q=0.9'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+        'Accept-Language': 'pt-BR,pt;q=0.9,en-US;q=0.8'
       }
     });
 
-    if (!res.ok) return { links: [], text: '' };
-    const html = await res.text();
-    const $ = cheerio.load(html);
-    const text = $('body').text();
+    if (res.ok) {
+      const html = await res.text();
+      if (!html.includes('challenge') && !html.includes('Anomaly')) {
+        const $ = cheerio.load(html);
+        const text = $('body').text();
+        const links = [];
+        $('a[href]').each((_, el) => {
+          let href = $(el).attr('href') || '';
+          if (href.includes('uddg=')) {
+            const m = href.match(/uddg=([^&"']+)/);
+            if (m) {
+              try { href = decodeURIComponent(m[1]); } catch (_) { href = m[1]; }
+            }
+          }
+          links.push(href);
+        });
+        if (links.length > 0) return { links, text };
+      }
+    }
+  } catch (_) {}
 
-    const links = [];
-    $('a[href]').each((i, el) => {
-      let href = $(el).attr('href') || '';
-      if (href.includes('uddg=')) {
-        const m = href.match(/uddg=([^&"']+)/);
-        if (m) {
-          try { href = decodeURIComponent(m[1]); } catch (_) { href = m[1]; }
+  // 2. Fallback para DuckDuckGo Lite
+  try {
+    const res = await fetch('https://lite.duckduckgo.com/lite/', {
+      method: 'POST',
+      body: 'q=' + encodeURIComponent(query),
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+        'Accept-Language': 'pt-BR,pt;q=0.9,en-US;q=0.8'
+      }
+    });
+
+    if (res.ok) {
+      const html = await res.text();
+      const $ = cheerio.load(html);
+      const text = $('body').text();
+      const links = [];
+      $('a[href]').each((_, el) => {
+        let href = $(el).attr('href') || '';
+        if (href.includes('uddg=')) {
+          const m = href.match(/uddg=([^&"']+)/);
+          if (m) {
+            try { href = decodeURIComponent(m[1]); } catch (_) { href = m[1]; }
+          }
         }
-      }
-      links.push(href);
-    });
+        links.push(href);
+      });
+      return { links, text };
+    }
+  } catch (_) {}
 
-    return { links, text };
-  } catch (_) {
-    return { links: [], text: '' };
-  }
+  return { links: [], text: '' };
 }
 
 /**

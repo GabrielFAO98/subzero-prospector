@@ -237,6 +237,7 @@ function copyDirSync(src, dest) {
 function generateOutreachMessages(lead, previewPublicUrl = null) {
   const linkPreview = previewPublicUrl || lead.prototypeUrl;
   const isSiteDown = lead.siteStatus === 'inacessivel' || (lead.siteOriginal && lead.motivoDescarte && lead.motivoDescarte.toLowerCase().includes('fora do ar'));
+  const hasActiveSite = lead.siteStatus === 'online' && lead.siteOriginal;
 
   let hookWhatsapp = '';
   let assuntoEmail = '';
@@ -246,6 +247,10 @@ function generateOutreachMessages(lead, previewPublicUrl = null) {
     hookWhatsapp = `Notei que o site cadastrado de vocês (*${lead.siteOriginal}*) está fora do ar / inacessível no momento. Hoje, quando as pessoas ou as buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) tentam acessar a *${lead.nome}*, o cliente se depara com uma tela de erro e acaba contratando outro da cidade.`;
     assuntoEmail = `${lead.nome} — site oficial fora do ar e perda de clientes nas buscas por IA em Franca`;
     hookEmail = `O motivo do meu contato é direto e urgente: notei que o site oficial da ${lead.nome} (${lead.siteOriginal}) está atualmente fora do ar / inacessível.\n\nHoje, a maioria das pessoas e das ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) pesquisam quem é a empresa recomendada em Franca. Quando o link de vocês dá erro, o cliente perde a confiança e fecha imediatamente com o concorrente.`;
+  } else if (hasActiveSite) {
+    hookWhatsapp = `Acompanho o trabalho da *${lead.nome}* e analisei o site de vocês (*${lead.siteOriginal}*). Notei que a estrutura atual não está adaptada para a velocidade e conversão no celular, e hoje a grande maioria dos clientes busca rapidez no WhatsApp direto.`;
+    assuntoEmail = `${lead.nome} — modernização mobile de alta conversão e nova presença digital em Franca`;
+    hookEmail = `Acompanho a atuação da ${lead.nome} em Franca e analisei a página atual de vocês (${lead.siteOriginal}).\n\nHoje, mais de 85% dos clientes navegam exclusivamente pelo celular e esperam atendimento com um toque. A estrutura atual possui oportunidades claras de modernização visual, velocidade instantânea de carregamento e foco em conversão direta de novos contatos.`;
   } else {
     hookWhatsapp = `Vi que a *${lead.nome}* tem uma excelente reputação, mas hoje quem pesquisa por *${lead.nicho}* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) não encontra um site oficial de vocês — e essas ferramentas acabam indicando concorrentes da cidade.`;
     assuntoEmail = `${lead.nome} em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial`;

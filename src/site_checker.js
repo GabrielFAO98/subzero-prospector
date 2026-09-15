@@ -159,6 +159,71 @@ async function checkWebsiteHealth(url) {
             const lm = m.toLowerCase();
             if (!lm.endsWith('.png') && !lm.endsWith('.jpg') && !lm.includes('w3.org')) emails.add(lm);
           });
+
+          // Extração de Conteúdo para Enriquecimento do Protótipo
+          const pageTitle = $('title').text().trim() || null;
+          const metaDescription = $('meta[name="description"]').attr('content')?.trim() || null;
+          
+          const rawHeadings = [];
+          $('h1, h2, h3').each((_, el) => {
+            const h = $(el).text().replace(/\s+/g, ' ').trim();
+            if (h.length >= 4 && h.length <= 90 && !rawHeadings.includes(h)) {
+              rawHeadings.push(h);
+            }
+          });
+
+          // Detecção de serviços e tratamentos citados no site
+          const candidateServices = new Set();
+          $('li, .service, .servico, .treatment, .procedimento, .card, p').each((_, el) => {
+            const txt = $(el).text().replace(/\s+/g, ' ').trim();
+            if (txt.length >= 5 && txt.length <= 60) {
+              const lower = txt.toLowerCase();
+              if (
+                lower.includes('implante') || lower.includes('prótese') || lower.includes('aparelho') ||
+                lower.includes('ortodont') || lower.includes('clareamento') || lower.includes('estética') ||
+                lower.includes('canal') || lower.includes('endodont') || lower.includes('cirurgia') ||
+                lower.includes('lente') || lower.includes('harmoniza') || lower.includes('câmera') ||
+                lower.includes('cftv') || lower.includes('alarme') || lower.includes('cerca') ||
+                lower.includes('concertina') || lower.includes('portão') || lower.includes('ar condicionado') ||
+                lower.includes('instalação') || lower.includes('manutenção') || lower.includes('higienização') ||
+                lower.includes('pmoc') || lower.includes('24h') || lower.includes('urgência')
+              ) {
+                candidateServices.add(txt);
+              }
+            }
+          });
+
+          // Detecção de diferenciais e credenciais
+          const differentials = new Set();
+          const fullText = $('body').text();
+          if (/24\s*h|24\s*horas|emergência|urgência/i.test(fullText)) differentials.add('Atendimento Emergencial / 24 Horas');
+          if (/3d|scanner|digital|tecnologia/i.test(fullText)) differentials.add('Tecnologia Digital & Planejamento 3D');
+          if (/carga imediata/i.test(fullText)) differentials.add('Técnica de Carga Imediata');
+          if (/sedação|sem dor|anestesia/i.test(fullText)) differentials.add('Técnicas de Conforto e Sedação Consciente');
+          if (/laserterapia|laser/i.test(fullText)) differentials.add('Laserterapia e Pós-operatório Acelerado');
+          if (/(?:mais de\s*)?\d{1,2}\s*anos/i.test(fullText)) {
+            const m = fullText.match(/(?:mais de\s*)?(\d{1,2}\s*anos)/i);
+            if (m) differentials.add(`${m[0]} de Experiência no Mercado`);
+          }
+
+          return {
+            hasWebsite: true,
+            isOnline: true,
+            statusCode: res.status,
+            url: formattedUrl,
+            status: 'online',
+            reason: `Site oficial ativo e respondendo normalmente (HTTP ${res.status})`,
+            pageTitle,
+            metaDescription,
+            headings: rawHeadings.slice(0, 8),
+            extractedServices: Array.from(candidateServices).slice(0, 10),
+            extractedDifferentials: Array.from(differentials),
+            extractedInstagram: insta,
+            extractedFacebook: fb,
+            extractedWhatsApp: waLink,
+            extractedPhones: Array.from(phones),
+            extractedEmails: Array.from(emails)
+          };
         } catch (_) {}
       }
 
@@ -169,6 +234,11 @@ async function checkWebsiteHealth(url) {
         url: formattedUrl,
         status: 'online',
         reason: `Site oficial ativo e respondendo normalmente (HTTP ${res.status})`,
+        pageTitle: null,
+        metaDescription: null,
+        headings: [],
+        extractedServices: [],
+        extractedDifferentials: [],
         extractedInstagram: insta,
         extractedFacebook: fb,
         extractedWhatsApp: waLink,

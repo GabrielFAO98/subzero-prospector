@@ -233,16 +233,13 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
           motivoDescarte = null;
           analiseIA = `🚨 GATILHO DE OURO: Empresa possui site cadastrado (${siteHealth.url}), porém está FORA DO AR / INACESSÍVEL (${siteHealth.reason}). Com ${p.ratingText || 'boa reputação'}, clientes perdem o contato e vão para a concorrência!`;
         } else if (siteHealth.status === 'online') {
-          // Se o site é inseguro HTTP, continua sendo oportunidade de modernização
-          if (siteHealth.url && siteHealth.url.startsWith('http://')) {
-            status = 'oportunidade_quente';
-            motivoDescarte = null;
-            analiseIA = `Site ativo, porém em protocolo HTTP inseguro (sem certificado SSL). Navegadores alertam como perigoso.`;
-          } else {
-            status = 'descartado';
-            motivoDescarte = `Já possui site próprio ativo (${siteHealth.url})`;
-            analiseIA = `Possui domínio oficial respondendo normalmente. Abordagem de criação de site descartada.`;
-          }
+          // Conforme diretriz, se tem site, extrai dados para superar com protótipo de alta performance
+          status = 'oportunidade_quente';
+          motivoDescarte = null;
+          const sslText = (siteHealth.url && siteHealth.url.startsWith('http://'))
+            ? '🚨 Site sem SSL (inseguro HTTP).'
+            : 'Site ativo com dados mapeados.';
+          analiseIA = `💡 Oportunidade de Redesign Subzero: ${sslText} Conteúdo, serviços e contatos extraídos diretamente do site atual (${siteHealth.url}) para alimentar o protótipo mobile-first de alta conversão.`;
         } else if (siteHealth.status === 'apenas_social') {
           status = 'oportunidade_quente';
           motivoDescarte = null;
@@ -279,7 +276,23 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
           whatsappFormatado,
           status,
           motivoDescarte,
-          analiseIA
+          analiseIA,
+          siteData: {
+            title: siteHealth.pageTitle || null,
+            metaDescription: siteHealth.metaDescription || null,
+            headings: siteHealth.headings || [],
+            servicosExtraidos: siteHealth.extractedServices || [],
+            diferenciaisExtraidos: siteHealth.extractedDifferentials || []
+          },
+          dadosEnriquecidos: {
+            instagram: finalInstagram,
+            facebook: finalFacebook,
+            whatsappPrincipal,
+            whatsappFormatado,
+            website: siteHealth.url || p.websiteUrl || null,
+            servicosDetectados: siteHealth.extractedServices || [],
+            diferenciais: siteHealth.extractedDifferentials || []
+          }
         };
 
         const { lead } = db.upsert(leadRecord);
