@@ -1,0 +1,102 @@
+const fs = require('fs');
+const path = require('path');
+const { chromium } = require('playwright');
+
+const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f2752"/>
+      <stop offset="50%" stop-color="#071330"/>
+      <stop offset="100%" stop-color="#020817"/>
+    </linearGradient>
+
+    <filter id="cyanGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#70f3ff"/>
+      <stop offset="100%" stop-color="#00a8c6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Base Icon Squircle com acabamento moderno e borda neon -->
+  <rect x="8" y="8" width="240" height="240" rx="54" fill="url(#bgGrad)" stroke="#1ee4ff" stroke-width="4.5" stroke-opacity="0.85"/>
+  
+  <!-- Anéis de Radar de Prospecção -->
+  <circle cx="128" cy="128" r="96" fill="none" stroke="#1ee4ff" stroke-width="1.5" stroke-opacity="0.2" stroke-dasharray="6 4"/>
+  <circle cx="128" cy="128" r="68" fill="none" stroke="#1ee4ff" stroke-width="1.5" stroke-opacity="0.3"/>
+  <circle cx="128" cy="128" r="42" fill="none" stroke="#1ee4ff" stroke-width="1.5" stroke-opacity="0.4"/>
+
+  <!-- Retículos do Radar (Norte, Sul, Leste, Oeste) -->
+  <line x1="128" y1="24" x2="128" y2="48" stroke="#1ee4ff" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+  <line x1="128" y1="208" x2="128" y2="232" stroke="#1ee4ff" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+  <line x1="24" y1="128" x2="48" y2="128" stroke="#1ee4ff" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+  <line x1="208" y1="128" x2="232" y2="128" stroke="#1ee4ff" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- Cristal Central Subzero com 6 Pontas -->
+  <g transform="translate(128, 128)" filter="url(#cyanGlow)">
+    <g id="branch">
+      <line x1="0" y1="-18" x2="0" y2="-72" stroke="url(#cyanGrad)" stroke-width="5" stroke-linecap="round"/>
+      <polyline points="-14,-42 0,-54 14,-42" fill="none" stroke="#1ee4ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="-9,-60 0,-68 9,-60" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="0" cy="-76" r="3.5" fill="#70f3ff"/>
+    </g>
+    <use href="#branch" transform="rotate(60)"/>
+    <use href="#branch" transform="rotate(120)"/>
+    <use href="#branch" transform="rotate(180)"/>
+    <use href="#branch" transform="rotate(240)"/>
+    <use href="#branch" transform="rotate(300)"/>
+
+    <!-- Núcleo de Diamante com Centro Branco Gelado -->
+    <polygon points="0,-22 20,0 0,22 -20,0" fill="#00a8c6"/>
+    <polygon points="0,-15 14,0 0,15 -14,0" fill="#1ee4ff"/>
+    <polygon points="0,-8 7,0 0,8 -7,0" fill="#ffffff"/>
+  </g>
+</svg>`;
+
+async function run() {
+  const browser = await chromium.launch({ headless: true });
+  const page = await browser.newPage();
+  await page.setContent(`
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <style>
+          body { margin: 0; padding: 0; background: transparent; overflow: hidden; }
+        </style>
+      </head>
+      <body>
+        ${svgContent}
+      </body>
+    </html>
+  `);
+
+  const svgElement = await page.$('svg');
+  const sizes = [256, 128, 64, 48, 32, 16];
+  const pngBuffers = {};
+
+  const iconsDir = path.join(__dirname, '..', 'icons');
+  if (!fs.existsSync(iconsDir)) fs.mkdirSync(iconsDir, { recursive: true });
+
+  fs.writeFileSync(path.join(iconsDir, 'icon.svg'), svgContent, 'utf-8');
+
+  for (const size of sizes) {
+    await page.setViewportSize({ width: size, height: size });
+    const buffer = await svgElement.screenshot({
+      type: 'png',
+      omitBackground: true
+    });
+    pngBuffers[size] = buffer;
+    fs.writeFileSync(path.join(iconsDir, `icon_${size}.png`), buffer);
+  }
+
+  await browser.close();
+  console.log('PNGs gerados com sucesso!');
+}
+
+run().catch(console.error);

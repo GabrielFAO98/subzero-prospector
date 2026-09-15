@@ -103,3 +103,4 @@ async function huntSocials(companyName, city = 'Franca SP') {
 module.exports = {
   huntSocials
 };
+
