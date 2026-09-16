@@ -308,7 +308,7 @@ async function generatePrototype(lead, templateHint = null) {
     : (lead.nome.includes(' - ') ? lead.nome.split(' - ')[0].trim() : lead.nome);
 
   const content = getNicheContent(lead.nicho, cleanCompanyName, lead.cidade, lead);
-  const waMsg = encodeURIComponent(`Olá! Vi o site oficial da ${cleanCompanyName} e gostaria de solicitar um orçamento/informações.`);
+  const waMsg = encodeURIComponent(`Olá! Vim pelo site da ${cleanCompanyName} e gostaria de conversar com um atendente.`);
   const waLink = `https://wa.me/${lead.whatsappPrincipal}?text=${waMsg}`;
   const encodedAddress = encodeURIComponent(`${cleanCompanyName}, ${lead.cidade}`);
   const cleanDomain = lead.slug.endsWith('.com.br') ? lead.slug : `${lead.slug}.com.br`;

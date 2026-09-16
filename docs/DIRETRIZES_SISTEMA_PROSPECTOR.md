@@ -114,6 +114,18 @@ Antes de auditar qualquer dado, o sistema deve verificar se o nome ou domínio p
   `Desenvolvido por Gabriel Azevedo • (16) 99204-8856`
   Link WhatsApp contextual: `https://wa.me/5516992048856?text=...`
 
+### 4.3 Padrão Oficial de Mensagens de WhatsApp nos Sites (Rastreabilidade & Atendimento)
+* **Regra de Rastreabilidade Obrigatória:** Em todos os sites criados pelo sistema, todo link ou botão de contato com a empresa deve carregar uma mensagem pré-preenchida que identifique expressamente que o cliente veio do site e que solicita um atendente:
+  * **Fórmula Geral (Header, Hero, Contato e Botão Flutuante):**
+    `Olá! Vim pelo site da [Nome da Empresa] e gostaria de conversar com um atendente.`
+  * **Fórmula Específica (Cards de Serviços / Produtos):**
+    `Olá! Vim pelo site da [Nome da Empresa] e gostaria de conversar com um atendente sobre [serviço/produto].`
+* **Benefício Estratégico para o Cliente:**
+  * O empresário que recebe o contato no WhatsApp sabe instantaneamente que aquele lead foi gerado pelo site que desenvolvemos, comprovando o ROI e a eficácia da ferramenta desde o primeiro dia.
+* **Tom de Voz da Copy nos Sites:**
+  * Usar linguagem natural e direta ("WhatsApp", "Falar no WhatsApp", "Atendimento WhatsApp", "Falar com nossa equipe").
+  * NUNCA utilizar termos artificiais ou excessivamente repetitivos (como insistir em "falar no balcão", "chamar balcão", etc.). O foco é a facilidade de comunicação.
+
 ---
 
 ## 🚨 5. Regra de Ouro: Git & Deploy

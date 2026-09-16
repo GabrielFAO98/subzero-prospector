@@ -1306,7 +1306,7 @@ const indexHtml = `<!DOCTYPE html>
           <svg width="16" height="16"><use href="#icon-phone"/></svg>
           <span>(16) 3721-7525</span>
         </a>
-        <a href="https://wa.me/5516993974382?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20seguran%C3%A7a%20eletr%C3%B4nica%20com%20a%20Blitz." target="_blank" rel="noopener noreferrer" class="btn-header-whatsapp">
+        <a href="https://wa.me/5516993974382?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Blitz%20Seguran%C3%A7a%20e%20gostaria%20de%20conversar%20com%20um%20atendente." target="_blank" rel="noopener noreferrer" class="btn-header-whatsapp">
           <svg width="16" height="16"><use href="#wa"/></svg>
           <span>Orçamento WhatsApp</span>
         </a>
@@ -1341,7 +1341,7 @@ const indexHtml = `<!DOCTYPE html>
       </p>
 
       <div class="hero-actions stagger">
-        <a href="https://wa.me/5516993974382?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20vistoria%20t%C3%A9cnica%20gratuita%20para%20minha%20seguran%C3%A7a." target="_blank" rel="noopener noreferrer" class="btn-primary-hero">
+        <a href="https://wa.me/5516993974382?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Blitz%20Seguran%C3%A7a%20e%20gostaria%20de%20conversar%20com%20um%20atendente." target="_blank" rel="noopener noreferrer" class="btn-primary-hero">
           <svg width="20" height="20"><use href="#wa"/></svg>
           <span>Solicitar Vistoria Técnica Gratuita</span>
         </a>
@@ -1703,7 +1703,7 @@ const indexHtml = `<!DOCTYPE html>
             </div>
           </div>
 
-          <a href="https://wa.me/5516993974382?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Blitz%20Seguran%C3%A7a%20e%20gostaria%20de%20um%20or%C3%A7amento%20t%C3%A9cnico." target="_blank" rel="noopener noreferrer" class="btn-contact-whatsapp">
+          <a href="https://wa.me/5516993974382?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Blitz%20Seguran%C3%A7a%20e%20gostaria%20de%20conversar%20com%20um%20atendente." target="_blank" rel="noopener noreferrer" class="btn-contact-whatsapp">
             <svg width="22" height="22"><use href="#wa"/></svg>
             <span>Conversar no WhatsApp Agora</span>
           </a>
@@ -1734,7 +1734,7 @@ const indexHtml = `<!DOCTYPE html>
   </footer>
 
   <!-- Botão Flutuante de WhatsApp -->
-  <a href="https://wa.me/5516993974382?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20especialista%20da%20Blitz%20Seguran%C3%A7a." target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Falar pelo WhatsApp">
+  <a href="https://wa.me/5516993974382?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Blitz%20Seguran%C3%A7a%20e%20gostaria%20de%20conversar%20com%20um%20atendente." target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Falar pelo WhatsApp">
     <svg><use href="#wa"/></svg>
   </a>
 
@@ -1748,3 +1748,4 @@ fs.writeFileSync(path.join(targetDir, 'src/main.js'), mainJs, 'utf8');
 fs.writeFileSync(path.join(targetDir, 'index.html'), indexHtml, 'utf8');
 
 console.log('Blitz site built successfully!');
+
