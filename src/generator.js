@@ -62,7 +62,7 @@ function getNicheContent(nicho, nomeEmpresa, cidade = 'Franca - SP', lead = {}) 
       tituloPrincipal: 'Medicina Veterinária com Amor e Tecnologia',
       chamadaPrincipal: 'O Cuidado Que Seu Pet Merece',
       slogan: 'Medicina veterinária humanizada, exames, vacinas e cuidados completos.',
-      apresentacao: `Com dedicação e carinho pelos animais em ${cidade}, a ${nomeEmpresa} oferece atendimento veterinário de excelência, centro cirúrgico com anestesia inalatória, vacinas importadas, farmácia veterinária e banho & tosa especializado.`,
+      apresentacao: `Atendimento veterinário humanizado, exames rápidos e cuidados completos para a saúde e bem-estar do seu pet em ${cidade}.`,
       servicos: [
         { nome: 'Consultas Clínicas & Check-up', desc: 'Diagnóstico clínico detalhado, avaliação nutricional e acompanhamento integral da saúde e longevidade do seu pet.' },
         { nome: 'Centro Cirúrgico & Procedimentos', desc: 'Estrutura cirúrgica esterilizada com monitoramento cardíaco multiparâmetro e foco absoluto na segurança.' },
@@ -91,7 +91,7 @@ function getNicheContent(nicho, nomeEmpresa, cidade = 'Franca - SP', lead = {}) 
       tituloPrincipal: 'Equipamentos e Tecnologia para Integradores e Instaladores',
       chamadaPrincipal: 'Pronta-Entrega e Preço de Distribuidor em Franca',
       slogan: 'Câmeras, alarmes, motores de portão e controle de acesso das melhores marcas.',
-      apresentacao: `Com sólida trajetória desde 2009 em ${cidade}, a ${nomeEmpresa} é o principal parceiro de técnicos, instaladores e empresas de segurança, oferecendo catálogo completo com suporte técnico e condições de atacado.`,
+      apresentacao: `Estoque local com pronta-entrega e suporte técnico especializado para instaladores e empresas em ${cidade}.`,
       servicos: [
         { nome: 'Câmeras CFTV & Gravadores DVR/NVR', desc: 'Linhas completas das marcas HB Tech, Intelbras e líderes, com pronta-entrega para projetos residenciais e industriais.' },
         { nome: 'Centrais de Alarme & Sensores Infravermelho', desc: 'Sistemas com discadora, aplicativo móvel e detecção de alta precisão para máxima proteção perimetral.' },

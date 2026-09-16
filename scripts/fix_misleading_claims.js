@@ -111,3 +111,4 @@ const path = require('path');
     console.log('scripts/build_industrial_template.js updated');
   }
 }
+

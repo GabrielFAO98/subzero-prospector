@@ -143,6 +143,13 @@ Antes de auditar qualquer dado, o sistema deve verificar se o nome ou domínio p
   * Usar: *"destacando as principais especialidades e os depoimentos dos seus clientes"*.
   * NUNCA usar: *"já com fotos reais da sua empresa"*.
 
+### 4.6 Diretriz Mobile-First: Leitura Compacta no Hero (Above the Fold)
+* **Regra Inviolável de Escaneabilidade em 2 Segundos:** Em celulares (360px a 430px), o visitante não pode ser sobrecarregado por parágrafos densos ou títulos que ocupem meia tela:
+  * **Título Principal (H1):** Máximo de 3 a 4 linhas curtas no mobile (`font-size: clamp(1.45rem, 5.5vw, 1.85rem)` com `line-height: 1.18`).
+  * **Subtítulo / Descrição:** Máximo de 2 a 3 linhas (~12 a 18 palavras), comunicando o valor central com objetividade (`font-size: 0.92rem; line-height: 1.45; max-width: 100%;`).
+  * **Visibilidade dos Botões de CTA:** O botão principal de WhatsApp DEVE aparecer imediatamente na primeira dobra da tela (above the fold) sem forçar o usuário a rolar.
+  * **Padding Reduzido:** No mobile, o `.hero` deve usar padding vertical compacto (`2.5rem 1.25rem 2rem`) para priorizar o espaço dos botões e dos badges de confiança.
+
 ---
 
 ## 🚨 5. Regra de Ouro: Git & Deploy

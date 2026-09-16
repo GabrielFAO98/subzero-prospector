@@ -1091,33 +1091,26 @@ h1, h2, h3, h4 {
 }
 
 @media (max-width: 768px) {
-  body {
-    padding-top: 68px;
-  }
-  .header {
-    height: 68px;
-  }
-  .nav-links,
-  .nav-phone {
-    display: none;
-  }
-  .menu-toggle {
-    display: block;
-  }
-  .header.menu-open .nav-links {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 68px;
-    left: 0;
-    width: 100%;
-    background: #060d1d;
-    padding: 1.5rem;
-    gap: 1.25rem;
-    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
-  }
   .hero {
-    padding: 3.5rem 1.25rem 3rem;
+    padding: 2.75rem 1.25rem 2rem;
+  }
+  .hero-badge-trust {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.85rem;
+    margin-bottom: 0.85rem;
+  }
+  .hero h1 {
+    font-size: 1.6rem;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+  .hero-subtitle {
+    font-size: 0.92rem;
+    line-height: 1.45;
+    margin-bottom: 1.5rem;
+  }
+  .hero-actions {
+    margin-bottom: 2rem;
   }
   .hero-highlights-grid {
     grid-template-columns: 1fr;
