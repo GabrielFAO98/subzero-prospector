@@ -2,7 +2,7 @@
   {
     "id": "lead_1789574303434_2jkbr8",
     "createdAt": "2026-09-16T15:58:23.434Z",
-    "updatedAt": "2026-09-16T20:39:23.177Z",
+    "updatedAt": "2026-09-16T22:48:30.498Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "ontech-energia-solar",
@@ -23,7 +23,7 @@
     "facebook": "https://www.facebook.com/ontechenergiasolar/",
     "whatsappPrincipal": "5516999536000",
     "whatsappFormatado": "(16) 99953-6000",
-    "status": "oportunidade_quente",
+    "status": "prototipo_pronto",
     "motivoDescarte": null,
     "analiseIA": "🚨 GATILHO DE OURO: Empresa possui site oficial cadastrado na bio do Instagram (http://ontechenergia.com.br/), porém está FORA DO AR / INACESSÍVEL (HTTP 403). Clientes clicam no link ou buscam no Google e dão de cara com erro!",
     "categoria": {
@@ -52,12 +52,23 @@
       "diferenciais": [],
       "websiteFromBio": "http://ontechenergia.com.br/"
     },
-    "siteHttpCode": 403
+    "siteHttpCode": 403,
+    "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\ontech-energia-solar\\index.html",
+    "prototypeUrl": "/previews/ontech-energia-solar/index.html",
+    "messages": {
+      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Ontech Energia Solar* tem uma excelente reputação, mas hoje quem pesquisa por *energia solar* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: está com o site (http://ontechenergia.com.br/) fora do ar — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, destacando as principais especialidades e os depoimentos dos seus clientes:\n👉 */previews/ontech-energia-solar/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
+      "email": {
+        "assunto": "Ontech Energia Solar em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial",
+        "corpo": "Prezada equipe da Ontech Energia Solar,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por energia solar em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Ontech Energia Solar, já funcional e adaptada para smartphones:\n👉 /previews/ontech-energia-solar/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
+      }
+    },
+    "archetype": "industrial",
+    "templateEscolhido": "industrial"
   },
   {
     "id": "lead_1789574298661_x12wjh",
     "createdAt": "2026-09-16T15:58:18.661Z",
-    "updatedAt": "2026-09-16T22:12:37.497Z",
+    "updatedAt": "2026-09-16T22:44:15.044Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "luxsol-energia-solar",
@@ -78,7 +89,7 @@
     "facebook": "http://www.facebook.com/luxsolenergiasolar",
     "whatsappPrincipal": "551639392200",
     "whatsappFormatado": "(16) 3939-2200",
-    "status": "oportunidade_quente",
+    "status": "prototipo_pronto",
     "motivoDescarte": null,
     "analiseIA": "📱 Oportunidade Quente: Utiliza apenas rede social no Google. Não possui site próprio para ranquear organicamente nem reter visitantes profissionais.",
     "categoria": {
@@ -107,7 +118,18 @@
       "diferenciais": [],
       "websiteFromBio": null
     },
-    "siteHttpCode": null
+    "siteHttpCode": null,
+    "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\luxsol-energia-solar\\index.html",
+    "prototypeUrl": "/previews/luxsol-energia-solar/index.html",
+    "messages": {
+      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Luxsol - Energia Solar* tem uma excelente reputação, mas hoje quem pesquisa por *energia solar* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: utiliza apenas rede social no Google em vez de um site próprio de conversão — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, já com fotos reais e depoimentos dos seus clientes:\n👉 */previews/luxsol-energia-solar/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
+      "email": {
+        "assunto": "Luxsol - Energia Solar em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial",
+        "corpo": "Prezada equipe da Luxsol - Energia Solar,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por energia solar em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Luxsol - Energia Solar, já funcional e adaptada para smartphones:\n👉 /previews/luxsol-energia-solar/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
+      }
+    },
+    "archetype": "industrial",
+    "templateEscolhido": "industrial"
   },
   {
     "id": "lead_1789574296444_eu9z6f",

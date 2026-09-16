@@ -141,7 +141,7 @@ function getNicheContent(nicho, nomeEmpresa, cidade = 'Franca - SP', lead = {}) 
   }
 
   // 3. AR-CONDICIONADO & REFRIGERAÇÃO
-  if (n.includes('ar') || n.includes('clima') || n.includes('refrigera')) {
+  if (n.includes('ar condicionado') || n.includes('ar-condicionado') || n.includes('climatiza') || n.includes('refrigera')) {
     return {
       subtitulo: 'Climatização & Refrigeração',
       tituloPrincipal: 'Especialistas em Ar-Condicionado',
@@ -425,13 +425,19 @@ async function generatePrototype(lead, templateHint = null) {
     const targetImgDir = path.join(targetDir, 'img');
     fs.mkdirSync(targetImgDir, { recursive: true });
 
-    if (n.includes('seguranca') || n.includes('cerca') || n.includes('camera') || n.includes('cftv') || nameLower.includes('seguranca') || nameLower.includes('kell') || nameLower.includes('distribuidora') || nameLower.includes('blitz')) {
+    if (n.includes('solar') || n.includes('fotovolta') || n.includes('energia')) {
+      const solarImgDir = path.join(TEMPLATES_ROOT, 'assets', 'solar');
+      if (fs.existsSync(solarImgDir)) {
+        copyDirSync(solarImgDir, targetImgDir);
+        console.log(`📸 [Generator] Imagens contextuais de ENERGIA SOLAR injetadas com sucesso em: ${targetImgDir}`);
+      }
+    } else if (n.includes('seguranca') || n.includes('cerca') || n.includes('camera') || n.includes('cftv') || nameLower.includes('seguranca') || nameLower.includes('kell') || nameLower.includes('distribuidora') || nameLower.includes('blitz')) {
       const secImgDir = path.join(TEMPLATES_ROOT, 'assets', 'seguranca');
       if (fs.existsSync(secImgDir)) {
         copyDirSync(secImgDir, targetImgDir);
         console.log(`📸 [Generator] Imagens contextuais de SEGURANÇA injetadas com sucesso em: ${targetImgDir}`);
       }
-    } else if (n.includes('ar') || n.includes('clima') || n.includes('refrigera')) {
+    } else if (n.includes('ar condicionado') || n.includes('ar-condicionado') || n.includes('climatiza') || n.includes('refrigera')) {
       const climImgDir = path.join(TEMPLATES_ROOT, 'assets', 'climatizacao');
       if (fs.existsSync(climImgDir)) {
         copyDirSync(climImgDir, targetImgDir);
