@@ -149,3 +149,4 @@ function generateFaviconSvg(lead, cleanCompanyName, archetype) {
 }
 
 module.exports = { generateFaviconSvg };
+

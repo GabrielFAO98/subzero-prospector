@@ -100,7 +100,7 @@ Antes de auditar qualquer dado, o sistema deve verificar se o nome ou domínio p
 3. **`templates/industrial` (Subzero Bespoke Architecture):**
    * **Nichos:** Climatização (HVAC), Segurança Eletrônica, Energia Solar, Marcenaria, Mecânica, Engenharia e Atacado B2B.
    * **Cores:** Dark Obsidian (`#060d1d`), Electric Blue (`#2563eb`), Neon Cyan (`#38bdf8`), Dark Slate e Gold.
-   * **Arquitetura:** Ritmo alternado de seções escuras e claras (`section dark` e `section light`), vitrine técnica com fotografia real de obras/soluções, marquee contínuo de especificações e marcas, metodologia passo a passo, avaliações do Google Maps e contato com mapa responsivo.
+   * **Arquitetura:** Ritmo alternado de seções escuras e claras (`section dark` e `section light`), vitrine técnica de especialidades com foco em equipamentos industriais, ticker contínuo de especificações e marcas, metodologia passo a passo, avaliações do Google Maps e contato com mapa responsivo.
 
 ### 4.2 Regras Frontend Invioláveis
 * **Mobile-First Real:** Testado entre 360px e 430px sem transbordamento horizontal (`overflow-x: hidden`).
@@ -133,6 +133,15 @@ Antes de auditar qualquer dado, o sistema deve verificar se o nome ou domínio p
   * ViewBox: `0 0 64 64`, cantos arredondados modernos (`rx="15"`), borda sutil com opacidade (`stroke-width="1.5"`).
   * Fundo com gradiente temático de alto contraste (Dark Obsidian, Deep Navy, Clinical Cyan, Emerald Care).
   * Símbolo ou monograma vetorial de alta precisão correspondente ao nicho da empresa (Escudo e raio para segurança, onda/floco para climatização, pata/cruz para veterinária, dente/brilho para odonto, ou inicial geométrica em negrito com acento luminoso para B2B e outros nichos).
+
+### 4.5 Ética Visual & Honestidade da Copy (Zero Falsas Alegações de "Obras Próprias / Fotos Reais")
+* **Zero Alegações Enganosas:** NUNCA afirmar ou insinuar que imagens comerciais, ilustrações técnicas ou imagens geradas por IA são "fotos reais de obras entregues pela nossa empresa". Isso induz tanto o prospect quanto o visitante ao engano.
+* **Nomenclatura Padrão de Seções de Vitrine:**
+  * Usar: **"Especialidades & Soluções Técnicas"**, **"Padrão de Equipamentos e Instalações"**, **"Linhas de Produtos"** ou **"Soluções em Climatização/Segurança"**.
+  * Evitar: *"Fotografia Real de Obras Entregues"*, *"Transparência sem fotos genéricas"*, *"Obras Reais"*.
+* **Mensagens de Abordagem de Prospecção:**
+  * Usar: *"destacando as principais especialidades e os depoimentos dos seus clientes"*.
+  * NUNCA usar: *"já com fotos reais da sua empresa"*.
 
 ---
 

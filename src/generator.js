@@ -513,7 +513,7 @@ Sou o Gabriel, atuo com tecnologia aqui em Franca.
 
 Vi que a *${lead.nome}* tem uma excelente reputação, mas hoje quem pesquisa por *${lead.nicho}* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: ${gapReason} — e essas ferramentas acabam indicando concorrentes da cidade.
 
-Para mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, já com fotos reais e depoimentos dos seus clientes:
+Para mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, destacando as principais especialidades e os depoimentos dos seus clientes:
 👉 *${previewUrl}*
 
 Pode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.

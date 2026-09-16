@@ -185,3 +185,4 @@ if (require.main === module) {
   fs.writeFileSync('previews/ecol-ar-condicionado/favicon.svg', ecolSvg, 'utf8');
   console.log('Ecol favicon generated successfully!');
 }
+

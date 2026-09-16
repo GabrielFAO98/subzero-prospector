@@ -1289,7 +1289,7 @@ const indexHtml = `<!DOCTYPE html>
 
       <ul class="nav-links">
         <li><a href="#diferenciais">Diferenciais</a></li>
-        <li><a href="#obras">Serviços & Obras</a></li>
+        <li><a href="#solucoes">Soluções</a></li>
         <li><a href="#metodologia">Como Funciona</a></li>
         <li><a href="#avaliacoes">Depoimentos</a></li>
         <li><a href="#contato">Contato</a></li>
@@ -1338,7 +1338,7 @@ const indexHtml = `<!DOCTYPE html>
           <svg width="20" height="20"><use href="#wa"/></svg>
           <span>Conversar no WhatsApp</span>
         </a>
-        <a href="#obras" class="btn-secondary-hero">
+        <a href="#solucoes" class="btn-secondary-hero">
           <span>Conhecer Soluções</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
         </a>
@@ -1435,7 +1435,7 @@ const indexHtml = `<!DOCTYPE html>
     <div class="section-container">
       <div class="section-header stagger">
         <span class="section-tag">Soluções Entregues</span>
-        <h2>Fotografia Real de Soluções Executadas<br/><span>Equipamentos certificados e acabamento de alto padrão.</span></h2>
+        <h2>Equipamentos & Padrão Técnico de Execução<br/><span>Equipamentos certificados e acabamento de alto padrão.</span></h2>
         <p class="section-lead">Confira a qualidade do atendimento e o padrão técnico que entregamos em {{CIDADE_UF}}:</p>
       </div>
 
@@ -1662,3 +1662,4 @@ fs.writeFileSync(path.join(targetDir, 'src/main.js'), mainJs, 'utf8');
 fs.writeFileSync(path.join(targetDir, 'index.html'), indexHtml, 'utf8');
 
 console.log('Subzero Bespoke template built successfully in templates/industrial!');
+

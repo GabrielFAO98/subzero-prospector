@@ -1295,7 +1295,7 @@ const indexHtml = `<!DOCTYPE html>
 
       <ul class="nav-links">
         <li><a href="#diferencial">Diferenciais</a></li>
-        <li><a href="#obras">Obras Entregues</a></li>
+        <li><a href="#solucoes">Soluções</a></li>
         <li><a href="#metodologia">Como Funciona</a></li>
         <li><a href="#avaliacoes">Depoimentos</a></li>
         <li><a href="#contato">Contato</a></li>
@@ -1345,7 +1345,7 @@ const indexHtml = `<!DOCTYPE html>
           <svg width="20" height="20"><use href="#wa"/></svg>
           <span>Solicitar Vistoria Técnica Gratuita</span>
         </a>
-        <a href="#obras" class="btn-secondary-hero">
+        <a href="#solucoes" class="btn-secondary-hero">
           <span>Ver Obras e Soluções</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
         </a>
@@ -1451,9 +1451,9 @@ const indexHtml = `<!DOCTYPE html>
     <div class="section-container">
       <div class="section-header stagger">
         <span class="section-tag">Vitrine Técnica Blitz</span>
-        <h2>Fotografia Real de Soluções Instaladas<br/><span>Equipamentos industriais e acabamento estético impecável.</span></h2>
+        <h2>Especialidades & Soluções Técnicas<br/><span>Equipamentos industriais e acabamento estético impecável.</span></h2>
         <p class="section-lead">
-          Transparência total sem bancos de imagens artificiais. Confira a robustez e a precisão do nosso trabalho em Franca:
+          Conheça em detalhes nossas soluções técnicas. Confira a robustez e a precisão do nosso trabalho em Franca:
         </p>
       </div>
 
