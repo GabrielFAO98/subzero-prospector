@@ -216,17 +216,32 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 5, 
         } catch (_) {}
       }
 
-      // 2.1 Auditoria profunda do Website
-      const siteHealth = await checkWebsiteHealth(p.websiteUrl);
+      // 2.1 Auditoria profunda do Website informado no Google Maps (se houver)
+      let siteHealth = await checkWebsiteHealth(p.websiteUrl);
 
       // 2.2 Caça de Redes Sociais com validação semântica de handle
       const socials = await huntSocials(p.name, city, niche);
 
-      // 2.3 Caça Profunda de Instagram com leitura de Bio e link de WhatsApp
-      let igData = { instagram: null, handle: null, bioText: '', linkInBio: null, whatsappFromBio: null };
+      // 2.3 Caça Profunda de Instagram com leitura de Bio, Link da Bio e Website da Bio
+      let igData = { instagram: null, handle: null, bioText: '', linkInBio: null, whatsappFromBio: null, websiteFromBio: null };
       try {
         igData = await huntInstagramBio(p.name, city, socials.instagram || p.instagram);
       } catch (_) {}
+
+      // 2.3.1 Se o Google Maps não tinha site (ou tinha apenas agregador/rede social), mas encontramos um site oficial na bio do Instagram:
+      let siteDiscoveredFromBio = false;
+      if ((!p.websiteUrl || siteHealth.status === 'nenhum' || siteHealth.status === 'apenas_social' || siteHealth.status === 'apenas_agregador') && igData.websiteFromBio) {
+        console.log(`🌐 [Site Hunter] Site oficial detectado na bio do Instagram: ${igData.websiteFromBio}. Auditando acessibilidade...`);
+        p.websiteUrl = igData.websiteFromBio;
+        siteHealth = await checkWebsiteHealth(p.websiteUrl);
+        siteDiscoveredFromBio = true;
+      }
+
+      // Se o site estiver inacessível e veio da bio do Instagram, ajustamos a razão para destacar essa evidência
+      if (siteHealth.status === 'inacessivel' && siteDiscoveredFromBio) {
+        const domainClean = (igData.websiteFromBio || '').replace(/^https?:\/\//i, '').replace(/\/.*$/, '');
+        siteHealth.reason = `Site oficial cadastrado na bio do Instagram (${domainClean}), porém está INACESSÍVEL / FORA DO AR (${siteHealth.statusCode ? 'HTTP ' + siteHealth.statusCode : (siteHealth.reason.includes('SSL') ? 'Certificado SSL Expirado' : siteHealth.reason)})`;
+      }
 
       // 2.4 Telefones consolidados brutos
       const mapsPhones = (p.allText.match(/(?:\(?([1-9]{2})\)?\s?)?(?:(9\d{4})[-\s]?(\d{4})|(\d{4})[-\s]?(\d{4}))/g) || [])
@@ -262,7 +277,11 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 5, 
       } else if (siteHealth.status === 'inacessivel') {
         status = 'oportunidade_quente';
         motivoDescarte = null;
-        analiseIA = `🚨 GATILHO DE OURO: Empresa possui site cadastrado (${siteHealth.url}), porém está FORA DO AR / INACESSÍVEL (${siteHealth.reason}). Clientes buscam a empresa no Google e encontram erro, indo para a concorrência!`;
+        const originNote = siteDiscoveredFromBio 
+          ? `cadastrado na bio do Instagram (${siteHealth.url})` 
+          : `cadastrado (${siteHealth.url})`;
+        const errorDetail = siteHealth.statusCode ? `HTTP ${siteHealth.statusCode}` : (siteHealth.reason.includes('SSL') ? 'Certificado SSL Expirado' : siteHealth.reason);
+        analiseIA = `🚨 GATILHO DE OURO: Empresa possui site oficial ${originNote}, porém está FORA DO AR / INACESSÍVEL (${errorDetail}). Clientes clicam no link ou buscam no Google e dão de cara com erro!`;
       } else if (siteHealth.status === 'apenas_social') {
         status = 'oportunidade_quente';
         motivoDescarte = null;
@@ -274,14 +293,18 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 5, 
       } else if (siteHealth.status === 'online') {
         status = 'site_ativo';
         motivoDescarte = null;
-        const sslText = (siteHealth.url && siteHealth.url.startsWith('http://'))
-          ? '⚠️ Site sem SSL (inseguro HTTP).'
-          : 'Site institucional ativo.';
-        analiseIA = `🌐 Site Ativo Detectado: ${sslText} Empresa já possui presença web (${siteHealth.url}). Candidata a redesign, melhoria de SEO local ou otimização de velocidade com template Subzero.`;
+        if (siteDiscoveredFromBio) {
+          analiseIA = `🌐 Site Ativo Detectado na Bio do Instagram: Empresa possui presença web oficial ativa (${siteHealth.url}). Candidata a modernização, redesign e alta conversão mobile com template Subzero.`;
+        } else {
+          const sslText = (siteHealth.url && siteHealth.url.startsWith('http://'))
+            ? '⚠️ Site sem SSL (inseguro HTTP).'
+            : 'Site institucional ativo.';
+          analiseIA = `🌐 Site Ativo Detectado: ${sslText} Empresa já possui presença web (${siteHealth.url}). Candidata a redesign, melhoria de SEO local ou otimização de velocidade com template Subzero.`;
+        }
       } else {
         // Status 'nenhum'
         status = 'oportunidade_quente';
-        analiseIA = `🔥 Oportunidade de Ouro em ${city}: Empresa com ${p.ratingText || 'boa reputação'}, porém SEM NENHUM SITE OFICIAL próprio cadastrado no Google. Perde todo o tráfego orgânico diário!`;
+        analiseIA = `🔥 Oportunidade de Ouro em ${city}: Empresa com ${p.ratingText || 'boa reputação'}, porém SEM NENHUM SITE OFICIAL próprio cadastrado no Google ou no Instagram. Perde todo o tráfego orgânico diário!`;
       }
 
       const leadRecord = {
@@ -291,6 +314,7 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 5, 
         cidade: city,
         siteOriginal: siteHealth.url || p.websiteUrl || null,
         siteStatus: siteHealth.status,
+        siteHttpCode: siteHealth.statusCode || (siteHealth.reason && siteHealth.reason.match(/HTTP\s*(\d{3})/i) ? parseInt(siteHealth.reason.match(/HTTP\s*(\d{3})/i)[1]) : null),
         siteHealthReason: siteHealth.reason,
         avaliacao: p.ratingText,
         endereco: p.address || null,
@@ -318,6 +342,7 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 5, 
           whatsappPrincipal: phoneValidation.whatsappPrincipal,
           whatsappFormatado: phoneValidation.whatsappFormatado,
           website: siteHealth.url || p.websiteUrl || null,
+          websiteFromBio: igData.websiteFromBio || null,
           bioInstagram: igData.bioText || null,
           linkNaBio: igData.linkInBio || null,
           servicosDetectados: siteHealth.extractedServices || [],
@@ -358,7 +383,90 @@ function formatPhone(numStr) {
   return numStr;
 }
 
+/**
+ * Re-enriquece um lead existente com busca de redes sociais e auditoria de site na bio
+ */
+async function enrichLead(lead) {
+  console.log(`\n🔍 [Enrich] Re-enriquecendo contatos e redes sociais de: "${lead.nome}"...`);
+  const socials = await huntSocials(lead.nome, lead.cidade || 'Franca SP', lead.nicho || '');
+  const igData = await huntInstagramBio(lead.nome, lead.cidade || 'Franca SP', lead.instagram || socials.instagram);
+
+  let siteHealth = null;
+  let siteUrl = lead.siteOriginal;
+
+  if ((!siteUrl || lead.siteStatus === 'nenhum' || lead.siteStatus === 'apenas_social' || lead.siteStatus === 'apenas_agregador') && igData.websiteFromBio) {
+    siteUrl = igData.websiteFromBio;
+  }
+
+  if (siteUrl) {
+    siteHealth = await checkWebsiteHealth(siteUrl);
+  }
+
+  const rawPhones = [
+    ...(igData.whatsappFromBio ? [igData.whatsappFromBio] : []),
+    ...(lead.telefones || []),
+    ...(siteHealth && siteHealth.extractedWhatsApp ? [siteHealth.extractedWhatsApp] : []),
+    ...(siteHealth && siteHealth.extractedPhones ? siteHealth.extractedPhones : [])
+  ];
+
+  const phoneValidation = sanitizePhonesForCity(rawPhones, lead.cidade || 'Franca SP');
+
+  let updatedSiteStatus = lead.siteStatus;
+  let updatedSiteReason = lead.siteHealthReason;
+  let updatedHttpCode = lead.siteHttpCode;
+  let updatedStatus = lead.status;
+  let updatedAnalise = lead.analiseIA;
+
+  if (siteHealth) {
+    updatedSiteStatus = siteHealth.status;
+    updatedSiteReason = siteHealth.reason;
+    updatedHttpCode = siteHealth.statusCode || (siteHealth.reason && siteHealth.reason.match(/HTTP\s*(\d{3})/i) ? parseInt(siteHealth.reason.match(/HTTP\s*(\d{3})/i)[1]) : null);
+
+    if (siteHealth.status === 'inacessivel') {
+      updatedStatus = 'oportunidade_quente';
+      const domainClean = (siteUrl || '').replace(/^https?:\/\//i, '').replace(/\/.*$/, '');
+      const errorDetail = updatedHttpCode ? `HTTP ${updatedHttpCode}` : (siteHealth.reason.includes('SSL') ? 'Certificado SSL Expirado' : siteHealth.reason);
+      if (igData.websiteFromBio && siteUrl === igData.websiteFromBio) {
+        updatedSiteReason = `Site oficial cadastrado na bio do Instagram (${domainClean}), porém está INACESSÍVEL / FORA DO AR (${errorDetail})`;
+      }
+      updatedAnalise = `🚨 GATILHO DE OURO: Empresa possui site oficial cadastrado ${igData.websiteFromBio ? 'na bio do Instagram' : ''} (${siteUrl}), porém está FORA DO AR / INACESSÍVEL (${errorDetail}). Clientes clicam no link ou buscam no Google e dão de cara com erro!`;
+    } else if (siteHealth.status === 'online') {
+      if (lead.status !== 'prototipo_pronto') {
+        updatedStatus = 'site_ativo';
+      }
+      updatedAnalise = `🌐 Site Ativo Detectado: Empresa possui presença web (${siteUrl}). Candidata a redesign e alta conversão mobile com template Subzero.`;
+    }
+  }
+
+  const updatedLead = {
+    ...lead,
+    siteOriginal: siteUrl || lead.siteOriginal,
+    siteStatus: updatedSiteStatus,
+    siteHttpCode: updatedHttpCode,
+    siteHealthReason: updatedSiteReason,
+    status: updatedStatus,
+    analiseIA: updatedAnalise,
+    telefones: phoneValidation.phones.length > 0 ? phoneValidation.phones : lead.telefones,
+    whatsappPrincipal: phoneValidation.whatsappPrincipal || lead.whatsappPrincipal,
+    whatsappFormatado: phoneValidation.whatsappFormatado || lead.whatsappFormatado,
+    instagram: lead.instagram || igData.instagram || socials.instagram,
+    facebook: lead.facebook || socials.facebook,
+    dadosEnriquecidos: {
+      ...(lead.dadosEnriquecidos || {}),
+      website: siteUrl || lead.siteOriginal,
+      websiteFromBio: igData.websiteFromBio || (lead.dadosEnriquecidos && lead.dadosEnriquecidos.websiteFromBio) || null,
+      bioInstagram: igData.bioText || (lead.dadosEnriquecidos && lead.dadosEnriquecidos.bioInstagram) || '',
+      linkNaBio: igData.linkInBio || (lead.dadosEnriquecidos && lead.dadosEnriquecidos.linkNaBio) || null
+    },
+    updatedAt: new Date().toISOString()
+  };
+
+  db.update(lead.id, updatedLead);
+  return updatedLead;
+}
+
 module.exports = {
   searchLeadsGoogleMaps,
+  enrichLead,
   formatPhone
 };

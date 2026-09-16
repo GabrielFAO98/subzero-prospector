@@ -40,7 +40,39 @@ async function resolveWaLink(link) {
 }
 
 /**
- * Caça profunda de perfil do Instagram e extração de Bio + WhatsApp da Bio
+ * Extrai links de site institucional e WhatsApp da bio do Instagram
+ */
+function extractWebsiteCandidateFromText(text) {
+  if (!text) return null;
+  // Regex para domínios comuns brasileiros e globais
+  const domainRegex = /(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]+\.(?:com\.br|com|net|org|tech|solar|ind\.br|adv\.br|med\.br|app|site|online|store|co)(?:\/[^\s\n]*)?)/gi;
+  const matches = text.match(domainRegex);
+  if (!matches) return null;
+
+  for (const m of matches) {
+    const candidate = m.trim().replace(/[.,;:)]+$/, '');
+    const lower = candidate.toLowerCase();
+    if (
+      !lower.includes('instagram.com') &&
+      !lower.includes('facebook.com') &&
+      !lower.includes('whatsapp.com') &&
+      !lower.includes('wa.me') &&
+      !lower.includes('linktr.ee') &&
+      !lower.includes('beacons.ai') &&
+      !lower.includes('bit.ly') &&
+      !lower.includes('meta.ai') &&
+      !lower.includes('threads.net')
+    ) {
+      return candidate.startsWith('http://') || candidate.startsWith('https://')
+        ? candidate
+        : 'https://' + candidate;
+    }
+  }
+  return null;
+}
+
+/**
+ * Caça profunda de perfil do Instagram e extração de Bio + WhatsApp + Website da Bio
  */
 async function huntInstagramBio(companyOrUrl, city = 'Franca SP', knownInstagramUrl = null) {
   let foundHandle = null;
@@ -57,6 +89,7 @@ async function huntInstagramBio(companyOrUrl, city = 'Franca SP', knownInstagram
   const cleanName = companyOrUrl
     .replace(/Clínica/gi, '')
     .replace(/Assistência Técnica/gi, '')
+    .replace(/Energia Solar/gi, '')
     .replace(/Franca[- /]?SP/gi, '')
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-zA-Z0-9]/g, '')
@@ -64,6 +97,8 @@ async function huntInstagramBio(companyOrUrl, city = 'Franca SP', knownInstagram
 
   const candidateHandles = foundHandle ? [] : [
     cleanName,
+    cleanName + 'solar',
+    cleanName + 'energiasolar',
     'clinica' + cleanName,
     cleanName + 'franca',
     cleanName + '_franca',
@@ -74,6 +109,7 @@ async function huntInstagramBio(companyOrUrl, city = 'Franca SP', knownInstagram
   let bioText = '';
   let linkInBio = null;
   let whatsappFromBio = null;
+  let websiteFromBio = null;
 
   for (const h of candidateHandles) {
     try {
@@ -93,6 +129,9 @@ async function huntInstagramBio(companyOrUrl, city = 'Franca SP', knownInstagram
         // Se tem seguidores/posts na descrição, perfil existe!
         if (desc.includes('seguidores') || desc.includes('followers') || desc.includes('posts')) {
           foundHandle = h;
+          // Tenta extrair site da descrição caso o Playwright não consiga rodar
+          const siteCandidate = extractWebsiteCandidateFromText(desc);
+          if (siteCandidate) websiteFromBio = siteCandidate;
           break;
         }
       }
@@ -113,24 +152,67 @@ async function huntInstagramBio(companyOrUrl, city = 'Franca SP', knownInstagram
       await page.waitForTimeout(3000);
 
       const pageData = await page.evaluate(() => {
-        const header = document.querySelector('header') || document.body;
+        const header = document.querySelector('header') || document.querySelector('main section') || document.body;
         const text = header.innerText || '';
         
-        // Procura links externos na bio
-        const links = Array.from(header.querySelectorAll('a[href]')).map(a => a.href);
-        const waLink = links.find(l => 
-          l.includes('wa.link') || 
-          l.includes('wa.me') || 
-          l.includes('whatsapp.com') || 
-          l.includes('linktr.ee') || 
-          l.includes('beacons.ai')
-        );
+        // Procura links na bio / header
+        const rawLinks = Array.from(header.querySelectorAll('a[href]')).map(a => ({
+          href: a.href,
+          text: a.innerText ? a.innerText.trim() : ''
+        }));
 
-        return { text, waLink };
+        let waLinks = [];
+        let externalWebsites = [];
+
+        rawLinks.forEach(l => {
+          let target = l.href;
+          if (target.includes('l.instagram.com') || target.includes('?u=')) {
+            const m = target.match(/[?&]u=([^&]+)/);
+            if (m) {
+              try { target = decodeURIComponent(m[1]); } catch (_) {}
+            }
+          }
+
+          const lower = target.toLowerCase();
+          if (
+            lower.includes('wa.link') || 
+            lower.includes('wa.me') || 
+            lower.includes('whatsapp.com') || 
+            lower.includes('linktr.ee') || 
+            lower.includes('beacons.ai')
+          ) {
+            waLinks.push(target);
+          } else if (
+            !lower.includes('instagram.com') && 
+            !lower.includes('facebook.com') && 
+            !lower.includes('meta.com') && 
+            !lower.includes('threads.net') && 
+            !lower.includes('threads.com') && 
+            !lower.includes('google.com') && 
+            !lower.includes('apple.com') && 
+            !lower.includes('meta.ai') && 
+            !lower.includes('muse.ai') && 
+            !lower.includes('/accounts/') &&
+            !lower.includes('/legal/') &&
+            (lower.startsWith('http://') || lower.startsWith('https://'))
+          ) {
+            externalWebsites.push(target);
+          }
+        });
+
+        return { text, waLink: waLinks[0] || null, externalWebsites };
       });
 
       bioText = pageData.text;
       linkInBio = pageData.waLink;
+      if (pageData.externalWebsites && pageData.externalWebsites.length > 0) {
+        websiteFromBio = pageData.externalWebsites[0];
+      }
+
+      // Se não achou website em links diretos do header, procura por texto na bio
+      if (!websiteFromBio) {
+        websiteFromBio = extractWebsiteCandidateFromText(bioText);
+      }
 
       if (linkInBio) {
         const resolvedPhone = await resolveWaLink(linkInBio);
@@ -139,7 +221,7 @@ async function huntInstagramBio(companyOrUrl, city = 'Franca SP', knownInstagram
         }
       }
 
-      // Se não achou link, tenta achar telefone escrito na bio
+      // Se não achou link de WhatsApp, tenta achar telefone escrito na bio
       if (!whatsappFromBio) {
         const phoneMatch = bioText.match(/(?:\(?([1-9]{2})\)?\s?)?(?:9\d{4}[-\s]?\d{4}|\d{4}[-\s]?\d{4})/);
         if (phoneMatch) {
@@ -161,11 +243,12 @@ async function huntInstagramBio(companyOrUrl, city = 'Franca SP', knownInstagram
       handle: foundHandle,
       bioText,
       linkInBio,
-      whatsappFromBio
+      whatsappFromBio,
+      websiteFromBio
     };
   }
 
-  return { instagram: null, handle: null, bioText: '', linkInBio: null, whatsappFromBio: null };
+  return { instagram: null, handle: null, bioText: '', linkInBio: null, whatsappFromBio: null, websiteFromBio: null };
 }
 
 module.exports = {

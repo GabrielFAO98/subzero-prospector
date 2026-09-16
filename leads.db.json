@@ -2,16 +2,16 @@
   {
     "id": "lead_1789574303434_2jkbr8",
     "createdAt": "2026-09-16T15:58:23.434Z",
-    "updatedAt": "2026-09-16T15:58:23.434Z",
+    "updatedAt": "2026-09-16T20:39:23.177Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "ontech-energia-solar",
     "nome": "Ontech Energia Solar",
     "nicho": "energia solar",
     "cidade": "Franca SP",
-    "siteOriginal": null,
-    "siteStatus": "nenhum",
-    "siteHealthReason": "Nenhum site cadastrado no Google Maps",
+    "siteOriginal": "http://ontechenergia.com.br/",
+    "siteStatus": "inacessivel",
+    "siteHealthReason": "Site oficial cadastrado na bio do Instagram (ontechenergia.com.br), porém está INACESSÍVEL / FORA DO AR (HTTP 403)",
     "avaliacao": "4,7 estrelas",
     "endereco": "R. José Marquês García, 243",
     "mapsUrl": "https://www.google.com/maps/place/Ontech+Energia+Solar/data=!4m7!3m6!1s0x94b0a7570c1a4c55:0xc8fe44aea466627d!8m2!3d-20.528976!4d-47.39847!16s%2Fg%2F11p5pxcth7!19sChIJVUwaDFensJQRfWJmpK5E_sg?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
@@ -20,12 +20,12 @@
     ],
     "emails": [],
     "instagram": "https://www.instagram.com/ontechenergiasolar/",
-    "facebook": null,
+    "facebook": "https://www.facebook.com/ontechenergiasolar/",
     "whatsappPrincipal": "5516999536000",
     "whatsappFormatado": "(16) 99953-6000",
     "status": "oportunidade_quente",
     "motivoDescarte": null,
-    "analiseIA": "🔥 Oportunidade de Ouro em Franca SP: Empresa com 4,7 estrelas, porém SEM NENHUM SITE OFICIAL próprio cadastrado no Google. Perde todo o tráfego orgânico diário!",
+    "analiseIA": "🚨 GATILHO DE OURO: Empresa possui site oficial cadastrado na bio do Instagram (http://ontechenergia.com.br/), porém está FORA DO AR / INACESSÍVEL (HTTP 403). Clientes clicam no link ou buscam no Google e dão de cara com erro!",
     "categoria": {
       "slug": "solar",
       "nome": "Energia Solar",
@@ -45,12 +45,14 @@
       "facebook": null,
       "whatsappPrincipal": "5516999536000",
       "whatsappFormatado": "(16) 99953-6000",
-      "website": null,
+      "website": "http://ontechenergia.com.br/",
       "bioInstagram": "ontechenergiasolar\n1,450 followers\n871 following\nOntech Energia Solar\nTodos os dias transformando o raio do sol em energia elétrica de qualidade! 🌞 ⚡️💡\n📍 Franca / SP\n📍 São Joaquim da Barra... \nmore\nontechenergia.com.br\nClientes\nCondições\nIndicações\nEventos",
       "linkNaBio": null,
       "servicosDetectados": [],
-      "diferenciais": []
-    }
+      "diferenciais": [],
+      "websiteFromBio": "http://ontechenergia.com.br/"
+    },
+    "siteHttpCode": 403
   },
   {
     "id": "lead_1789574298661_x12wjh",

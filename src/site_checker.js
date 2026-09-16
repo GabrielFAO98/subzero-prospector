@@ -280,7 +280,17 @@ async function checkWebsiteHealth(rawUrl) {
     }
   } catch (err) {
     let errorMsg = err.message;
-    if (err.name === 'AbortError') errorMsg = 'Tempo limite excedido (Timeout)';
+    if (err.cause && err.cause.code === 'CERT_HAS_EXPIRED') {
+      errorMsg = 'Certificado SSL Expirado / Inseguro';
+    } else if (err.cause && (err.cause.code === 'ENOTFOUND' || err.cause.code === 'EAI_AGAIN')) {
+      errorMsg = 'Domínio Não Encontrado (DNS)';
+    } else if (err.cause && err.cause.code === 'ECONNREFUSED') {
+      errorMsg = 'Conexão Recusada pelo Servidor';
+    } else if (err.name === 'AbortError') {
+      errorMsg = 'Tempo limite excedido (Timeout)';
+    } else if (errorMsg.includes('fetch failed') && err.cause && err.cause.message) {
+      errorMsg = err.cause.message;
+    }
     return {
       hasWebsite: true,
       isOnline: false,
