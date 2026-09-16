@@ -4,14 +4,16 @@ const { checkWebsiteHealth } = require('./site_checker');
 const { huntSocials } = require('./social_hunter');
 const { huntInstagramBio } = require('./instagram_bio_hunter');
 const { isNationalBrand, probeBrandWebsite } = require('./brand_detector');
+const { cleanAndNormalizeUrl } = require('./url_cleaner');
+const { getCategoryForLead } = require('./categories');
 
 /**
  * Minera empresas no Google Maps com auditoria profunda de saúde do site e redes sociais
- * NÃO gera protótipos automaticamente - focado em análise e qualificação profissional.
+ * Prioriza qualidade sobre quantidade, com sanitização de dados e qualificação rigorosa.
  */
 async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15, onProgress = null) {
   if (onProgress) onProgress(`Iniciando busca no Google Maps para "${niche}" em ${city}...`);
-  console.log(`\n🗺️ [1/2] Minerando empresas no Google Maps: "${niche}" em ${city}...`);
+  console.log(`\n🔍 [1/2] Minerando empresas no Google Maps: "${niche}" em ${city}...`);
   
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({
@@ -51,17 +53,6 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
         const ratingText = document.querySelector('div.F7nice')?.innerText?.replace(/\n/g, ' ').trim() || '';
         const websiteEl = document.querySelector('a[data-item-id="authority"]');
         let websiteUrl = websiteEl ? websiteEl.href : null;
-        if (websiteUrl) {
-          try {
-            if (websiteUrl.includes('google.com/aclk') || websiteUrl.includes('google.com/url')) {
-              const u = new URL(websiteUrl);
-              const target = u.searchParams.get('adurl') || u.searchParams.get('q') || u.searchParams.get('url');
-              websiteUrl = (target && !target.includes('google.com')) ? target : null;
-            } else if (websiteUrl.includes('google.com') || websiteUrl.includes('goo.gl')) {
-              websiteUrl = null;
-            }
-          } catch (_) { websiteUrl = null; }
-        }
         const allText = document.body.innerText || '';
         const mapsUrl = window.location.href;
         return [{ name, ratingText, mapsUrl, websiteUrl, allText }];
@@ -86,7 +77,7 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
         const results = [];
         const seenNames = new Set();
 
-        // 1. Tentar os cards modernos primários (div.Nv2PK ou div[role="article"])
+        // 1. Cards modernos primários
         let cards = Array.from(document.querySelectorAll('div.Nv2PK, div[role="article"]'));
         
         // 2. Fallback para itens com mouseover dentro do feed
@@ -112,12 +103,12 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
 
           // Extração do endereço físico no card (Rua, Número, Bairro)
           let address = '';
-          const addressMatch = allText.match(/(?:R\.|Rua|Av\.|Avenida|Praça|Alameda|Travessa)[^·\n]+,\s*\d+[^\n·]*/i);
+          const addressMatch = allText.match(/(?:R\.|Rua|Av\.|Avenida|Praça|Alameda|Travessa)[^•\n]+,\s*\d+[^\n•]*/i);
           if (addressMatch) {
             address = addressMatch[0].trim();
           }
 
-          // Link do Maps com parâmetros oficiais de busca exata (evita cair no meio da rua)
+          // Link do Maps com parâmetros oficiais de busca exata
           const linkEl = card.querySelector('a.hfpxzc, a[href*="/maps/place/"]');
           let mapsUrl = linkEl ? linkEl.href : '';
           if (!mapsUrl || !mapsUrl.includes('/maps/place/')) {
@@ -128,26 +119,7 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
           const websiteEl = card.querySelector('a[data-value="Website"], a[aria-label*="website" i], a[aria-label*="site" i], a[data-item-id*="authority"]');
           let websiteUrl = websiteEl ? websiteEl.href : null;
 
-          // Sanitização de anúncios patrocinados do Google (/aclk, /url)
-          if (websiteUrl) {
-            try {
-              if (websiteUrl.includes('google.com/aclk') || websiteUrl.includes('google.com/url')) {
-                const u = new URL(websiteUrl);
-                const target = u.searchParams.get('adurl') || u.searchParams.get('q') || u.searchParams.get('url');
-                if (target && !target.includes('google.com')) {
-                  websiteUrl = target;
-                } else {
-                  websiteUrl = null; // Anúncio interno do Google sem site próprio cadastrado
-                }
-              } else if (websiteUrl.includes('google.com') || websiteUrl.includes('goo.gl')) {
-                websiteUrl = null;
-              }
-            } catch (_) {
-              websiteUrl = null;
-            }
-          }
-
-          // Extração heurística de domínio caso não haja botão de website explícito
+          // Extração heurística de domínio caso não haja botão explícito
           if (!websiteUrl) {
             const domainMatch = allText.match(/([a-zA-Z0-9-]+\.com(?:\.br)?)/i);
             if (domainMatch && !domainMatch[1].includes('google')) {
@@ -169,45 +141,95 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
       });
     }
 
-    console.log(`✅ ${rawPlaces.length} estabelecimentos encontrados no Google Maps.`);
+    console.log(`📦 ${rawPlaces.length} estabelecimentos encontrados no Google Maps.`);
     await browser.close();
 
-    if (onProgress) onProgress(`${rawPlaces.length} estabelecimentos encontrados. Iniciando auditoria comercial...`);
+    // Sanitiza e pré-qualifica estabelecimentos encontrados
+    const cleanedPlaces = rawPlaces.map(p => {
+      const norm = cleanAndNormalizeUrl(p.websiteUrl);
+      return {
+        ...p,
+        websiteUrl: norm.cleanedUrl,
+        websiteDomain: norm.domain,
+        isAggregator: norm.isAggregator,
+        isSocial: norm.isSocial,
+        isBrand: isNationalBrand(p.name, norm.cleanedUrl)
+      };
+    });
 
-    const targets = rawPlaces.slice(0, maxResults);
+    if (onProgress) onProgress(`${cleanedPlaces.length} estabelecimentos encontrados. Iniciando auditoria comercial...`);
+
+    const targets = cleanedPlaces.slice(0, maxResults);
     const processedLeads = [];
 
-    // 2. Auditoria concorrente em lotes de 3 para alta velocidade
+    // 2. Auditoria concorrente em lotes de 3 para velocidade controlada
     const batchSize = 3;
     for (let i = 0; i < targets.length; i += batchSize) {
       const batch = targets.slice(i, i + batchSize);
       
       const batchPromises = batch.map(async (p, idx) => {
         const itemIndex = i + idx + 1;
-        console.log(`🔍 [${itemIndex}/${targets.length}] Auditando: "${p.name}"...`);
+        console.log(`🔎 [${itemIndex}/${targets.length}] Auditando: "${p.name}"...`);
         if (onProgress) onProgress(`Auditando [${itemIndex}/${targets.length}]: ${p.name}...`);
+
+        // Gatekeeping imediato: se for grande rede nacional, descarta diretamente
+        if (p.isBrand || isNationalBrand(p.name, p.websiteUrl)) {
+          const slug = p.name.toLowerCase()
+            .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-z0-9]/g, "-")
+            .replace(/-+/g, '-');
+
+          const brandLead = {
+            slug,
+            nome: p.name,
+            nicho: niche,
+            cidade: city,
+            siteOriginal: p.websiteUrl,
+            siteStatus: 'rede_nacional',
+            siteHealthReason: 'Grande rede corporativa nacional / Franquia',
+            avaliacao: p.ratingText,
+            endereco: p.address || null,
+            mapsUrl: p.mapsUrl,
+            telefones: [],
+            emails: [],
+            instagram: null,
+            facebook: null,
+            whatsappPrincipal: null,
+            whatsappFormatado: null,
+            status: 'descartado',
+            motivoDescarte: 'Grande Rede / Franquia Nacional',
+            analiseIA: `🏢 Grande rede corporativa nacional (${p.websiteUrl || 'marca de grande porte'}). Incompatível com prospecção e desenvolvimento de site local Subzero.`,
+            categoria: getCategoryForLead({ nicho: niche, nome: p.name }),
+            siteData: {},
+            dadosEnriquecidos: {}
+          };
+          const { lead } = db.upsert(brandLead);
+          return lead;
+        }
 
         // 2.0 Sondagem rápida de domínio corporativo se o Maps não exibir botão direto
         if (!p.websiteUrl) {
           try {
             const probed = await probeBrandWebsite(p.name);
-            if (probed) p.websiteUrl = probed;
+            if (probed) {
+              p.websiteUrl = cleanAndNormalizeUrl(probed).cleanedUrl;
+            }
           } catch (_) {}
         }
 
-        // 2.1 Auditoria do Website e extração profunda de contatos
+        // 2.1 Auditoria profunda do Website
         const siteHealth = await checkWebsiteHealth(p.websiteUrl);
 
         // 2.2 Caça de Redes Sociais
         const socials = await huntSocials(p.name, city);
 
-        // 2.3 Caça Profunda de Instagram com leitura da Bio e do Link de WhatsApp
+        // 2.3 Caça Profunda de Instagram com leitura de Bio e link de WhatsApp
         let igData = { instagram: null, handle: null, bioText: '', linkInBio: null, whatsappFromBio: null };
         try {
           igData = await huntInstagramBio(p.name, city, socials.instagram || p.instagram);
         } catch (_) {}
 
-        // 2.4 Telefones do Maps, do Site, da Web e da Bio
+        // 2.4 Telefones consolidados
         const mapsPhones = (p.allText.match(/(?:\(?([1-9]{2})\)?\s?)?(?:(9\d{4})[-\s]?(\d{4})|(\d{4})[-\s]?(\d{4}))/g) || [])
           .map(x => x.trim());
 
@@ -246,7 +268,6 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
         }
 
         if (!whatsappPrincipal) {
-          // Busca por celular genuíno (DDD + 9xxxx-xxxx)
           const celular = allPhones.find(t => {
             const digits = t.replace(/\D/g, '');
             if (digits.length === 11 && digits[2] === '9') return true;
@@ -273,38 +294,38 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
         const finalFacebook = siteHealth.extractedFacebook || socials.facebook || null;
         const allEmails = [...new Set([...(siteHealth.extractedEmails || []), ...(socials.emails || [])])];
 
-        // 2.5 Análise e Classificação Comercial
+        // 2.6 Análise e Classificação Comercial Inteligente
         let status = 'oportunidade_quente';
         let motivoDescarte = null;
         let analiseIA = '';
 
-        if (isNationalBrand(p.name, p.websiteUrl || siteHealth.url)) {
+        if (allPhones.length === 0) {
           status = 'descartado';
-          motivoDescarte = 'Grande Rede / Franquia Nacional';
-          analiseIA = `🏢 Grande rede corporativa nacional (${siteHealth.url || p.websiteUrl || 'marca consolidada'}). Incompatível com prospecção e desenvolvimento de site local Subzero.`;
+          motivoDescarte = 'Sem telefone ou canal de contato disponível';
+          analiseIA = 'Ausência de telefone ou WhatsApp para contato comercial.';
         } else if (siteHealth.status === 'inacessivel') {
           status = 'oportunidade_quente';
           motivoDescarte = null;
-          analiseIA = `🚨 GATILHO DE OURO: Empresa possui site cadastrado (${siteHealth.url}), porém está FORA DO AR / INACESSÍVEL (${siteHealth.reason}). Com ${p.ratingText || 'boa reputação'}, clientes perdem o contato e vão para a concorrência!`;
-        } else if (siteHealth.status === 'online') {
-          // Conforme diretriz, se tem site, extrai dados para superar com protótipo de alta performance
-          status = 'oportunidade_quente';
-          motivoDescarte = null;
-          const sslText = (siteHealth.url && siteHealth.url.startsWith('http://'))
-            ? '🚨 Site sem SSL (inseguro HTTP).'
-            : 'Site ativo com dados mapeados.';
-          analiseIA = `💡 Oportunidade de Redesign Subzero: ${sslText} Conteúdo, serviços e contatos extraídos diretamente do site atual (${siteHealth.url}) para alimentar o protótipo mobile-first de alta conversão.`;
+          analiseIA = `🚨 GATILHO DE OURO: Empresa possui site cadastrado (${siteHealth.url}), porém está FORA DO AR / INACESSÍVEL (${siteHealth.reason}). Clientes buscam a empresa no Google e encontram erro, indo para a concorrência!`;
         } else if (siteHealth.status === 'apenas_social') {
           status = 'oportunidade_quente';
           motivoDescarte = null;
-          analiseIA = `Utiliza apenas link de rede social ou Linktree no Google. Não possui página de conversão rápida própria.`;
-        } else if (allPhones.length === 0) {
-          status = 'descartado';
-          motivoDescarte = 'Sem telefone ou WhatsApp público disponível';
-          analiseIA = 'Falta canal de contato direto para prospecção.';
-        } else {
+          analiseIA = `📱 Oportunidade Quente: Utiliza apenas rede social / agregador no Google. Não possui site próprio para ranquear organicamente nem reter visitantes profissionais.`;
+        } else if (siteHealth.status === 'apenas_agregador') {
           status = 'oportunidade_quente';
-          analiseIA = `Excelente oportunidade em ${city}: ${p.ratingText || 'Boa reputação'}, sem nenhum site oficial próprio cadastrado.`;
+          motivoDescarte = null;
+          analiseIA = `📍 Oportunidade Quente: Ficha direciona para agregador de diretório (${siteHealth.reason}). Não possui domínio e autoridade própria no Google.`;
+        } else if (siteHealth.status === 'online') {
+          status = 'site_ativo';
+          motivoDescarte = null;
+          const sslText = (siteHealth.url && siteHealth.url.startsWith('http://'))
+            ? '⚠️ Site sem SSL (inseguro HTTP).'
+            : 'Site institucional ativo.';
+          analiseIA = `🌐 Site Ativo Detectado: ${sslText} Empresa já possui presença web (${siteHealth.url}). Candidata a redesign, melhoria de SEO local ou otimização de velocidade com template Subzero.`;
+        } else {
+          // Status 'nenhum'
+          status = 'oportunidade_quente';
+          analiseIA = `🔥 Oportunidade de Ouro em ${city}: Empresa com ${p.ratingText || 'boa reputação'}, porém SEM NENHUM SITE OFICIAL próprio cadastrado no Google. Perde todo o tráfego orgânico diário!`;
         }
 
         const slug = p.name.toLowerCase()
@@ -317,7 +338,7 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
           nome: p.name,
           nicho: niche,
           cidade: city,
-          siteOriginal: siteHealth.url || p.websiteUrl,
+          siteOriginal: siteHealth.url || p.websiteUrl || null,
           siteStatus: siteHealth.status,
           siteHealthReason: siteHealth.reason,
           avaliacao: p.ratingText,
@@ -332,6 +353,7 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
           status,
           motivoDescarte,
           analiseIA,
+          categoria: getCategoryForLead({ nicho: niche, nome: p.name }),
           siteData: {
             title: siteHealth.pageTitle || null,
             metaDescription: siteHealth.metaDescription || null,
@@ -360,6 +382,8 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 15,
       processedLeads.push(...batchResults);
     }
 
+    console.log(`\n✅ Prospecção e auditoria concluídas: ${processedLeads.length} leads processados.`);
+    if (onProgress) onProgress(`Auditoria finalizada com sucesso! ${processedLeads.length} empresas catalogadas.`);
     return processedLeads;
 
   } catch (err) {

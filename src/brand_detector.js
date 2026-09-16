@@ -2,26 +2,41 @@
  * Detector de Grandes Redes Nacionais, Franquias e Verificador Ativo de Domínios
  */
 
+const { cleanAndNormalizeUrl } = require('./url_cleaner');
+
 const KNOWN_NATIONAL_BRANDS = [
   // Pet & Veterinária
-  'cobasi', 'petz', 'petlove', 'doghero', 'centauro dos bichos',
+  'cobasi', 'petz', 'petlove', 'doghero', 'polipet', 'centauro dos bichos', 'petland', '100% pet',
   
   // Farmácias & Saúde
-  'droga raia', 'drogasil', 'pague menos', 'farmacia sao paulo', 'ultrafarma', 'drogarias pacheco', 'panvel',
+  'droga raia', 'drogasil', 'pague menos', 'farmacia sao paulo', 'ultrafarma', 'drogarias pacheco',
+  'panvel', 'farmacias nissei', 'bifarma', 'drogaria araujo',
   
   // Alimentação & Fast Food
-  'mcdonald', 'burger king', 'subway', 'cacau show', 'kopenhagen', 'habib', 'domino', 'bob\'s', 'giraffas', 'spoleto', 'outback', 'madalosso',
+  'mcdonald', 'burger king', 'subway', 'cacau show', 'kopenhagen', 'habib', 'domino', 'bob\'s',
+  'giraffas', 'spoleto', 'outback', 'madalosso', 'madero', 'jeronymo', 'pizza hut', 'starbucks', 'kfc', 'china in box',
   
-  // Varejo & Magazines
+  // Varejo, Supermercados & Magazines
   'magazine luiza', 'magalu', 'casas bahia', 'ponto frio', 'lojas americanas', 'leroy merlin', 'kalunga',
-  'carrefour', 'pao de acucar', 'assai', 'atacadao', 'havan', 'telhanorte', 'c&c',
+  'carrefour', 'pao de acucar', 'assai', 'atacadao', 'havan', 'telhanorte', 'c&c', 'marabraz',
+  'riachuelo', 'renner', 'c&a', 'pernambucanas',
   
-  // Franquias Odontológicas & Estética Massiva
-  'odontocompany', 'sorridents', 'amorsaude', 'orthopride', 'espacolaser', 'oral sin'
+  // Franquias Odontológicas, Médicas & Estética Massiva
+  'odontocompany', 'sorridents', 'amorsaude', 'orthopride', 'espacolaser', 'oral sin', 'oral unic',
+  'odonto excellence', 'dr consulta', 'doutor consulta', 'botoclinic', 'laser fast',
+  
+  // Automotivo, Locadoras & Seguradoras
+  'porto seguro', 'localiza', 'movida', 'unidas', 'autozone', 'auto zone', 'dellavia', 'campneus', 'dpaschoal',
+  
+  // Academias & Cursos
+  'smart fit', 'bluefit', 'skyfit', 'wizard', 'cna', 'fisk', 'kumon'
 ];
 
 /**
  * Identifica se o estabelecimento é uma grande rede ou franquia nacional
+ * @param {string} name
+ * @param {string|null} websiteUrl
+ * @returns {boolean}
  */
 function isNationalBrand(name, websiteUrl = null) {
   if (!name) return false;
@@ -30,7 +45,7 @@ function isNationalBrand(name, websiteUrl = null) {
 
   // 1. Checagem por nome conhecido
   const matchedBrand = KNOWN_NATIONAL_BRANDS.find(b => {
-    // Palavra inteira ou correspondência exata para evitar falsos positivos
+    // Regex de palavra inteira ou contenção direta no nome normalizado
     const regex = new RegExp(`(^|\\s|[-_])${b}(\\s|[-_]|$)`, 'i');
     return regex.test(normName) || normName.includes(b);
   });
@@ -39,8 +54,11 @@ function isNationalBrand(name, websiteUrl = null) {
 
   // 2. Checagem por domínio de rede conhecida
   if (websiteUrl) {
-    const normUrl = websiteUrl.toLowerCase();
-    if (KNOWN_NATIONAL_BRANDS.some(b => normUrl.includes(b.replace(/[^a-z0-9]/g, '')))) {
+    const normUrl = cleanAndNormalizeUrl(websiteUrl).domain || websiteUrl.toLowerCase();
+    if (KNOWN_NATIONAL_BRANDS.some(b => {
+      const brandClean = b.replace(/[^a-z0-9]/g, '');
+      return normUrl.includes(brandClean);
+    })) {
       return true;
     }
   }
@@ -50,6 +68,8 @@ function isNationalBrand(name, websiteUrl = null) {
 
 /**
  * Quando o Google Maps oculta o botão de website, faz sondagem rápida do domínio oficial
+ * @param {string} companyName
+ * @returns {Promise<string|null>}
  */
 async function probeBrandWebsite(companyName) {
   if (!companyName) return null;
@@ -77,7 +97,7 @@ async function probeBrandWebsite(companyName) {
     candidates.push(words[0].toLowerCase());
   }
 
-  const cheerio = require(require('path').join(process.cwd(), 'node_modules', 'cheerio'));
+  const cheerio = require('cheerio');
 
   for (const c of candidates) {
     // Pula se for palavra genérica demais
@@ -124,4 +144,3 @@ module.exports = {
   isNationalBrand,
   probeBrandWebsite
 };
-

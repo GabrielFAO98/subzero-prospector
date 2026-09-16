@@ -1,5 +1,861 @@
 [
   {
+    "id": "lead_1789563008145_bnfw23",
+    "createdAt": "2026-09-16T12:50:08.145Z",
+    "updatedAt": "2026-09-16T12:50:08.145Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "kell-distribuidora",
+    "nome": "Kell Distribuidora",
+    "nicho": "segurança eletronica",
+    "cidade": "Franca SP",
+    "siteOriginal": null,
+    "siteStatus": "nenhum",
+    "siteHealthReason": "Nenhum site cadastrado",
+    "avaliacao": "4,6 estrelas 144 comentários",
+    "endereco": "Av. Amélia Antunes Pinheiro, 1325",
+    "mapsUrl": "https://www.google.com/maps/place/Kell+Distribuidora/data=!4m7!3m6!1s0x94b0a646c4e1eab3:0x97c9ea855a55aaed!8m2!3d-20.520861!4d-47.3967732!16s%2Fg%2F1tf61cy6!19sChIJs-rhxEamsJQR7apVWoXqyZc?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 9201-2222",
+      "(16) 3018-0000"
+    ],
+    "emails": [],
+    "instagram": "https://www.instagram.com/kelldistribuidora/",
+    "facebook": null,
+    "whatsappPrincipal": "1692012222",
+    "whatsappFormatado": "(16) 9201-2222",
+    "status": "oportunidade_quente",
+    "motivoDescarte": null,
+    "analiseIA": "Excelente oportunidade em Franca SP: 4,6 estrelas 144 comentários, sem nenhum site oficial próprio cadastrado.",
+    "siteData": {
+      "title": null,
+      "metaDescription": null,
+      "headings": [],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": []
+    },
+    "dadosEnriquecidos": {
+      "instagram": "https://www.instagram.com/kelldistribuidora/",
+      "facebook": null,
+      "whatsappPrincipal": "1692012222",
+      "whatsappFormatado": "(16) 9201-2222",
+      "website": null,
+      "bioInstagram": "kelldistribuidora\n714 followers\n149 following\nKELL Distribuidora ATACADISTA | SEGURANÇA ELETRONICA\nEspecialista em segurança eletrônica desde 2009!\nCâmeras, Alarmes,Motores de Portão e muito mais!\n📱16 92012222\nProdutos ... \nmore\nHB TECH\nLÍDER\nAGL\nACTON",
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": []
+    },
+    "categoria": {
+      "slug": "outros",
+      "nome": "Segurança eletronica",
+      "icone": "🏢",
+      "cor": "#64748b",
+      "badgeClass": "cat-other"
+    }
+  },
+  {
+    "id": "lead_1789563001583_o1fryi",
+    "createdAt": "2026-09-16T12:50:01.583Z",
+    "updatedAt": "2026-09-16T12:50:01.583Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "mobtech-seguranca-eletronica-franca",
+    "nome": "MobTech Segurança Eletrônica | Franca",
+    "nicho": "segurança eletronica",
+    "cidade": "Franca SP",
+    "siteOriginal": "https://wa.me/5516999722484",
+    "siteStatus": "online",
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "5,0 estrelas 55 comentários",
+    "endereco": "R. Antônio Alves Taveira, 1955",
+    "mapsUrl": "https://www.google.com/maps/place/MobTech+Seguran%C3%A7a+Eletr%C3%B4nica+%7C+Franca/data=!4m7!3m6!1s0x94b0a7afdbf6cc9d:0xc02e0b6f1c5c4064!8m2!3d-20.5135761!4d-47.3932887!16s%2Fg%2F11ydz9t_tr!19sChIJncz226-nsJQRZEBcHG8LLsA?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 99972-2484",
+      "47667720",
+      "(47) 5884-4406",
+      "55169997",
+      "(11) 4551-1121"
+    ],
+    "emails": [],
+    "instagram": "https://www.instagram.com/whatsapp/",
+    "facebook": "https://www.facebook.com/profile.php/",
+    "whatsappPrincipal": "5516999722484",
+    "whatsappFormatado": "(16) 99972-2484",
+    "status": "oportunidade_quente",
+    "motivoDescarte": null,
+    "analiseIA": "💡 Oportunidade de Redesign Subzero: Site ativo com dados mapeados. Conteúdo, serviços e contatos extraídos diretamente do site atual (https://wa.me/5516999722484) para alimentar o protótipo mobile-first de alta conversão.",
+    "siteData": {
+      "title": "Compartilhe no WhatsApp",
+      "metaDescription": "Conta comercial",
+      "headings": [
+        "Mobtech",
+        "Parece que você ainda não instalou o WhatsApp."
+      ],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": [
+        "Tecnologia Digital & Planejamento 3D"
+      ]
+    },
+    "dadosEnriquecidos": {
+      "instagram": "https://www.instagram.com/whatsapp/",
+      "facebook": "https://www.facebook.com/profile.php/",
+      "whatsappPrincipal": "5516999722484",
+      "whatsappFormatado": "(16) 99972-2484",
+      "website": "https://wa.me/5516999722484",
+      "bioInstagram": null,
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": [
+        "Tecnologia Digital & Planejamento 3D"
+      ]
+    },
+    "categoria": {
+      "slug": "outros",
+      "nome": "Segurança eletronica",
+      "icone": "🏢",
+      "cor": "#64748b",
+      "badgeClass": "cat-other"
+    }
+  },
+  {
+    "id": "lead_1789563000718_9ze114",
+    "createdAt": "2026-09-16T12:50:00.718Z",
+    "updatedAt": "2026-09-16T13:42:27.437Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "telepublico-monitoramento-e-rastreamento-24-hrs",
+    "nome": "Telepublico Monitoramento e Rastreamento 24 HRS",
+    "nicho": "segurança eletronica",
+    "cidade": "Franca SP",
+    "siteOriginal": "https://www.telepublico.com.br/",
+    "siteStatus": "online",
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "4,4 estrelas 16 comentários",
+    "endereco": "R. Cap. Anselmo, 1254",
+    "mapsUrl": "https://www.google.com/maps/place/Telepublico+Monitoramento+e+Rastreamento+24+HRS/data=!4m7!3m6!1s0x94b0a61543b220b7:0xe688c90f7610ea8e!8m2!3d-20.5261264!4d-47.3949408!16s%2Fg%2F11bwzz4227!19sChIJtyCyQxWmsJQRjuoQdg_JiOY?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(78) 94739-1893",
+      "(16) 99977-7900",
+      "(16) 99639-5457",
+      "956259426",
+      "(36) 96769-1432",
+      "(89) 4739-1893",
+      "(16) 3707-7900",
+      "(16) 3135-1150",
+      "4334-5105",
+      "56234440",
+      "52971900",
+      "4738-8688",
+      "27914998",
+      "56259426",
+      "33300653",
+      "4814-4846",
+      "3391-9791",
+      "29178430",
+      "5604-1148",
+      "(86) 3369-6769"
+    ],
+    "emails": [
+      "605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com",
+      "18d2f96d279149989b95faf0a4b41882@sentry-next.wixpress.com",
+      "8eb368c655b84e029ed79ad7a5c1718e@sentry.wixpress.com",
+      "5d1795a2db124a268f1e1bd88f503500@sentry.wixpress.com"
+    ],
+    "instagram": "https://www.instagram.com/telepublicomonitoramento/",
+    "facebook": "https://www.facebook.com/telepublicomonitoramento/",
+    "whatsappPrincipal": "5578947391893",
+    "whatsappFormatado": "(78) 94739-1893",
+    "status": "descartado",
+    "motivoDescarte": null,
+    "analiseIA": "💡 Oportunidade de Redesign Subzero: Site ativo com dados mapeados. Conteúdo, serviços e contatos extraídos diretamente do site atual (https://www.telepublico.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
+    "siteData": {
+      "title": "Telepublico - Segurança Eletrônica: Monitoramento, Alarmes, Câmeras e Rastreamento de Veículos - Franca - SP",
+      "metaDescription": "Há 30 anos, a Telepublico oferece soluções completas em segurança eletrônica. Especializados em monitoramento de câmeras, alarmes, cercas elétricas, portões eletrônicos e rastreamento de veículos.",
+      "headings": [
+        "Sua Segurança é Nossa Prioridade",
+        "SOBRE",
+        "SERVIÇOS",
+        "Monitoramento",
+        "Cerca Elétrica e Concertina",
+        "Câmeras",
+        "Alarmes"
+      ],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": [
+        "Atendimento Emergencial / 24 Horas",
+        "Tecnologia Digital & Planejamento 3D",
+        "30 Anos de Experiência no Mercado"
+      ]
+    },
+    "dadosEnriquecidos": {
+      "instagram": "https://www.instagram.com/telepublicomonitoramento/",
+      "facebook": "https://www.facebook.com/telepublicomonitoramento/",
+      "whatsappPrincipal": "5578947391893",
+      "whatsappFormatado": "(78) 94739-1893",
+      "website": "https://www.telepublico.com.br/",
+      "bioInstagram": null,
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": [
+        "Atendimento Emergencial / 24 Horas",
+        "Tecnologia Digital & Planejamento 3D",
+        "30 Anos de Experiência no Mercado"
+      ]
+    },
+    "categoria": {
+      "slug": "seguranca",
+      "nome": "Segurança & CFTV",
+      "icone": "🛡️",
+      "cor": "#3b82f6",
+      "badgeClass": "cat-security"
+    }
+  },
+  {
+    "id": "lead_1789562997389_g0vuuu",
+    "createdAt": "2026-09-16T12:49:57.389Z",
+    "updatedAt": "2026-09-16T13:43:06.026Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "blackout-monitoramento-24-hs",
+    "nome": "Blackout Monitoramento 24 Hs",
+    "nicho": "segurança eletronica",
+    "cidade": "Franca SP",
+    "siteOriginal": "http://www.blackoutmonitoramento.com.br/",
+    "siteStatus": "inacessivel",
+    "siteHealthReason": "🚨 Site cadastrado está FORA DO AR (Tempo limite excedido (Timeout))",
+    "avaliacao": "4,6 estrelas 146 comentários",
+    "endereco": "R. São Paulo, 660",
+    "mapsUrl": "https://www.google.com/maps/place/Blackout+Monitoramento+24+Hs/data=!4m7!3m6!1s0x94b0a6169c2539e7:0x948c1819fc5552f0!8m2!3d-20.5281791!4d-47.3854026!16s%2Fg%2F11b6hn_wmp!19sChIJ5zklnBamsJQR8FJV_BkYjJQ?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [],
+    "emails": [],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": null,
+    "whatsappFormatado": null,
+    "status": "descartado",
+    "motivoDescarte": null,
+    "analiseIA": "🚨 GATILHO DE OURO: Empresa possui site cadastrado (http://www.blackoutmonitoramento.com.br/), porém está FORA DO AR / INACESSÍVEL (🚨 Site cadastrado está FORA DO AR (Tempo limite excedido (Timeout))). Com 4,6 estrelas 146 comentários, clientes perdem o contato e vão para a concorrência!",
+    "siteData": {
+      "title": null,
+      "metaDescription": null,
+      "headings": [],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": []
+    },
+    "dadosEnriquecidos": {
+      "instagram": null,
+      "facebook": null,
+      "whatsappPrincipal": null,
+      "whatsappFormatado": null,
+      "website": "http://www.blackoutmonitoramento.com.br/",
+      "bioInstagram": null,
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": []
+    },
+    "categoria": {
+      "slug": "seguranca",
+      "nome": "Segurança & CFTV",
+      "icone": "🛡️",
+      "cor": "#3b82f6",
+      "badgeClass": "cat-security"
+    }
+  },
+  {
+    "id": "lead_1789562990222_pnqq7l",
+    "createdAt": "2026-09-16T12:49:50.222Z",
+    "updatedAt": "2026-09-16T12:49:50.222Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "o-guardiao-seguranca-eletronica",
+    "nome": "O Guardião Segurança Eletronica",
+    "nicho": "segurança eletronica",
+    "cidade": "Franca SP",
+    "siteOriginal": null,
+    "siteStatus": "nenhum",
+    "siteHealthReason": "Nenhum site cadastrado",
+    "avaliacao": "4,1 estrelas 10 comentários",
+    "endereco": "R. Fued Zacarias Cury, 650",
+    "mapsUrl": "https://www.google.com/maps/place/O+Guardi%C3%A3o+Seguran%C3%A7a+Eletronica/data=!4m7!3m6!1s0x94b0a890827b12a7:0x63faa40572ae2ba3!8m2!3d-20.5557818!4d-47.3972021!16s%2Fg%2F11ckvnhhns!19sChIJpxJ7gpCosJQRoyuucgWk-mM?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 3705-1548"
+    ],
+    "emails": [],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "551637051548",
+    "whatsappFormatado": "(16) 3705-1548",
+    "status": "oportunidade_quente",
+    "motivoDescarte": null,
+    "analiseIA": "Excelente oportunidade em Franca SP: 4,1 estrelas 10 comentários, sem nenhum site oficial próprio cadastrado.",
+    "siteData": {
+      "title": null,
+      "metaDescription": null,
+      "headings": [],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": []
+    },
+    "dadosEnriquecidos": {
+      "instagram": null,
+      "facebook": null,
+      "whatsappPrincipal": "551637051548",
+      "whatsappFormatado": "(16) 3705-1548",
+      "website": null,
+      "bioInstagram": null,
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": []
+    },
+    "categoria": {
+      "slug": "outros",
+      "nome": "Segurança eletronica",
+      "icone": "🏢",
+      "cor": "#64748b",
+      "badgeClass": "cat-other"
+    }
+  },
+  {
+    "id": "lead_1789562989644_t0i06i",
+    "createdAt": "2026-09-16T12:49:49.644Z",
+    "updatedAt": "2026-09-16T12:49:49.644Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "icon-monitoramento-24hs",
+    "nome": "ICON MONITORAMENTO 24HS",
+    "nicho": "segurança eletronica",
+    "cidade": "Franca SP",
+    "siteOriginal": "http://www.iconmonitoramento.com.br/",
+    "siteStatus": "online",
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "4,9 estrelas 45 comentários",
+    "endereco": "R. Simpliciano Pombo, 397",
+    "mapsUrl": "https://www.google.com/maps/place/ICON+MONITORAMENTO+24HS/data=!4m7!3m6!1s0x94b0a73b66f8b669:0x156f4c4e44e6531!8m2!3d-20.534509!4d-47.4160557!16s%2Fg%2F11j6tfgbml!19sChIJabb4ZjunsJQRMWVO5MT0VgE?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 99215-9550"
+    ],
+    "emails": [],
+    "instagram": "https://www.instagram.com/iconmonitoramento/",
+    "facebook": "https://www.facebook.com/iconmonitoramento/",
+    "whatsappPrincipal": "5516992159550",
+    "whatsappFormatado": "(16) 99215-9550",
+    "status": "oportunidade_quente",
+    "motivoDescarte": null,
+    "analiseIA": "💡 Oportunidade de Redesign Subzero: 🚨 Site sem SSL (inseguro HTTP). Conteúdo, serviços e contatos extraídos diretamente do site atual (http://www.iconmonitoramento.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
+    "siteData": {
+      "title": "Icon Monitoramento",
+      "metaDescription": null,
+      "headings": [],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": []
+    },
+    "dadosEnriquecidos": {
+      "instagram": "https://www.instagram.com/iconmonitoramento/",
+      "facebook": "https://www.facebook.com/iconmonitoramento/",
+      "whatsappPrincipal": "5516992159550",
+      "whatsappFormatado": "(16) 99215-9550",
+      "website": "http://www.iconmonitoramento.com.br/",
+      "bioInstagram": null,
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": []
+    },
+    "categoria": {
+      "slug": "seguranca",
+      "nome": "Segurança & CFTV",
+      "icone": "🛡️",
+      "cor": "#3b82f6",
+      "badgeClass": "cat-security"
+    }
+  },
+  {
+    "id": "lead_1789562987260_pxp5h3",
+    "createdAt": "2026-09-16T12:49:47.260Z",
+    "updatedAt": "2026-09-16T12:49:47.260Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "gms-servicos",
+    "nome": "GMS SERVIÇOS",
+    "nicho": "segurança eletronica",
+    "cidade": "Franca SP",
+    "siteOriginal": "https://gms.com.br/",
+    "siteStatus": "online",
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "5,0 estrelas 84 comentários",
+    "endereco": "R. Augusto Marques, 1747",
+    "mapsUrl": "https://www.google.com/maps/place/GMS+SERVI%C3%87OS/data=!4m7!3m6!1s0x94b0a708cba7fe23:0xb355c80484417ff7!8m2!3d-20.5374409!4d-47.4048001!16s%2Fg%2F11rpldwvxs!19sChIJI_6nywinsJQR939BhATIVbM?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(53) 91403-1309",
+      "91234-5678",
+      "30539140",
+      "(31) 3095-4586",
+      "23138256",
+      "37102127",
+      "51953125",
+      "28287889",
+      "(16) 99989-9777"
+    ],
+    "emails": [],
+    "instagram": "https://www.instagram.com/ferragensgms/",
+    "facebook": "https://www.facebook.com/ferragensgms/",
+    "whatsappPrincipal": "5511950217811",
+    "whatsappFormatado": "(11) 95021-7811",
+    "status": "oportunidade_quente",
+    "motivoDescarte": null,
+    "analiseIA": "💡 Oportunidade de Redesign Subzero: Site ativo com dados mapeados. Conteúdo, serviços e contatos extraídos diretamente do site atual (https://gms.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
+    "siteData": {
+      "title": "GMS – Em desenvolvimentoWhatsApp",
+      "metaDescription": null,
+      "headings": [
+        "Ferragens GMS",
+        "para o seu Projeto",
+        "BLD 4120 INOX",
+        "3140S",
+        "3132s",
+        "3122s",
+        "1520 PRESSÃO – FECHADURA CENTRAL DE PRESSÃO",
+        "1511JD/JE – CONTRA FECHADURA PARA JANELA DIR./ESQ."
+      ],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": [
+        "Tecnologia Digital & Planejamento 3D"
+      ]
+    },
+    "dadosEnriquecidos": {
+      "instagram": "https://www.instagram.com/ferragensgms/",
+      "facebook": "https://www.facebook.com/ferragensgms/",
+      "whatsappPrincipal": "5511950217811",
+      "whatsappFormatado": "(11) 95021-7811",
+      "website": "https://gms.com.br/",
+      "bioInstagram": "gmsservicos\n39 followers\n23 following\nGM SAT SERVIÇOS\nVendas, instalações e manutenção de antenas parabólicas. Instalação de câmeras.\nInstalação de STARLINK.\nOuricuri-PE,... \nmore",
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": [
+        "Tecnologia Digital & Planejamento 3D"
+      ]
+    },
+    "categoria": {
+      "slug": "outros",
+      "nome": "Segurança eletronica",
+      "icone": "🏢",
+      "cor": "#64748b",
+      "badgeClass": "cat-other"
+    }
+  },
+  {
+    "id": "lead_1789562985961_fv6yfn",
+    "createdAt": "2026-09-16T12:49:45.961Z",
+    "updatedAt": "2026-09-16T12:49:45.961Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "espaco-protect-sistema-eletronico-de-seguranca-e-monitoramento-24-horas",
+    "nome": "Espaço Protect - Sistema Eletrônico de Segurança e Monitoramento 24 Horas",
+    "nicho": "segurança eletronica",
+    "cidade": "Franca SP",
+    "siteOriginal": "https://espacoprotect.com.br/",
+    "siteStatus": "online",
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "4,9 estrelas 119 comentários",
+    "endereco": "R. Gen. Telles, 412",
+    "mapsUrl": "https://www.google.com/maps/place/Espa%C3%A7o+Protect+-+Sistema+Eletr%C3%B4nico+de+Seguran%C3%A7a+e+Monitoramento+24+Horas/data=!4m7!3m6!1s0x94b0a7cb68b41505:0x8145ad7751b19b66!8m2!3d-20.5355151!4d-47.4113965!16s%2Fg%2F11c2nj1ql6!19sChIJBRW0aMunsJQRZpuxUXetRYE?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(27) 4531-5666",
+      "26173006",
+      "(16) 3721-3997"
+    ],
+    "emails": [],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "552745315666",
+    "whatsappFormatado": "(27) 4531-5666",
+    "status": "oportunidade_quente",
+    "motivoDescarte": null,
+    "analiseIA": "💡 Oportunidade de Redesign Subzero: Site ativo com dados mapeados. Conteúdo, serviços e contatos extraídos diretamente do site atual (https://espacoprotect.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
+    "siteData": {
+      "title": "Espaço Protect – Segurança Patrimonial",
+      "metaDescription": null,
+      "headings": [
+        "Sistema de Segurança Eletrônica para Residências e Empresas.",
+        "Atendimento em Franca e região, área urbana, industrial e rural.",
+        "Saiba mais sobre nossa promoção por tempo limitado.",
+        "CONFIRA NOSSA OFERTA ESPECIAL AGORA",
+        "CONFIRA OS PRODUTOS ABAIXO.",
+        "Veja alguns itens que podem estar inclusos no seu Kit Inteligente de Segurança",
+        "PORQUÊ VOCÊ DEVE ESCOLHER A ESPAÇO PROTECT",
+        "Garantias, assistência técnica e muito mais"
+      ],
+      "servicosExtraidos": [
+        "Ative ou desative alarmes de forma programada e remotamente.",
+        "Instalação e manutenção de equipamentos inclusa"
+      ],
+      "diferenciaisExtraidos": []
+    },
+    "dadosEnriquecidos": {
+      "instagram": null,
+      "facebook": null,
+      "whatsappPrincipal": "552745315666",
+      "whatsappFormatado": "(27) 4531-5666",
+      "website": "https://espacoprotect.com.br/",
+      "bioInstagram": null,
+      "linkNaBio": null,
+      "servicosDetectados": [
+        "Ative ou desative alarmes de forma programada e remotamente.",
+        "Instalação e manutenção de equipamentos inclusa"
+      ],
+      "diferenciais": []
+    },
+    "categoria": {
+      "slug": "seguranca",
+      "nome": "Segurança & CFTV",
+      "icone": "🛡️",
+      "cor": "#3b82f6",
+      "badgeClass": "cat-security"
+    }
+  },
+  {
+    "id": "lead_1789562983545_ix45yu",
+    "createdAt": "2026-09-16T12:49:43.545Z",
+    "updatedAt": "2026-09-16T12:49:43.545Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "dumont-eletronicos-e-monitoramento",
+    "nome": "Dumont eletronicos e monitoramento",
+    "nicho": "segurança eletronica",
+    "cidade": "Franca SP",
+    "siteOriginal": null,
+    "siteStatus": "nenhum",
+    "siteHealthReason": "Nenhum site cadastrado",
+    "avaliacao": "5,0 estrelas 1 comentários",
+    "endereco": "R. Gen. Carneiro, 780",
+    "mapsUrl": "https://www.google.com/maps/place/Dumont+eletronicos+e+monitoramento/data=!4m7!3m6!1s0x94b0a6347d23f0c3:0xbbb5e0f7b8bf2ddd!8m2!3d-20.5343!4d-47.407398!16s%2Fg%2F11c60cmlf_!19sChIJw_AjfTSmsJQR3S2_uPfgtbs?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 3702-2424"
+    ],
+    "emails": [],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "551637022424",
+    "whatsappFormatado": "(16) 3702-2424",
+    "status": "oportunidade_quente",
+    "motivoDescarte": null,
+    "analiseIA": "Excelente oportunidade em Franca SP: 5,0 estrelas 1 comentários, sem nenhum site oficial próprio cadastrado.",
+    "siteData": {
+      "title": null,
+      "metaDescription": null,
+      "headings": [],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": []
+    },
+    "dadosEnriquecidos": {
+      "instagram": null,
+      "facebook": null,
+      "whatsappPrincipal": "551637022424",
+      "whatsappFormatado": "(16) 3702-2424",
+      "website": null,
+      "bioInstagram": null,
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": []
+    },
+    "categoria": {
+      "slug": "seguranca",
+      "nome": "Segurança & CFTV",
+      "icone": "🛡️",
+      "cor": "#3b82f6",
+      "badgeClass": "cat-security"
+    }
+  },
+  {
+    "id": "lead_1789562980967_ftp2rc",
+    "createdAt": "2026-09-16T12:49:40.967Z",
+    "updatedAt": "2026-09-16T12:49:40.967Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "scala-sistemas-eletronicos-ltda-epp",
+    "nome": "Scala Sistemas Eletrônicos Ltda EPP",
+    "nicho": "segurança eletronica",
+    "cidade": "Franca SP",
+    "siteOriginal": "http://www.scalamonitoramento.com.br/",
+    "siteStatus": "online",
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "4,3 estrelas 98 comentários",
+    "endereco": "R. Afonso Pena, 410",
+    "mapsUrl": "https://www.google.com/maps/place/Scala+Sistemas+Eletr%C3%B4nicos+Ltda+EPP/data=!4m7!3m6!1s0x94b0a6493a491225:0x7e0e9cd66878f783!8m2!3d-20.5249461!4d-47.4033806!16s%2Fg%2F1tvgwflr!19sChIJJRJJOkmmsJQRg_d4aNacDn4?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 3711-2300"
+    ],
+    "emails": [],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "551637112300",
+    "whatsappFormatado": "(16) 3711-2300",
+    "status": "oportunidade_quente",
+    "motivoDescarte": null,
+    "analiseIA": "💡 Oportunidade de Redesign Subzero: 🚨 Site sem SSL (inseguro HTTP). Conteúdo, serviços e contatos extraídos diretamente do site atual (http://www.scalamonitoramento.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
+    "siteData": {
+      "title": "Scala Segurança Eletrônica | Câmeras, Alarmes e Portaria Remota",
+      "metaDescription": "Scala Segurança Eletrônica — 40 anos de experiência em câmeras com IA, alarmes monitorados 24h e portaria remota em Franca/SP. Solicite orçamento grátis!",
+      "headings": [],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": []
+    },
+    "dadosEnriquecidos": {
+      "instagram": null,
+      "facebook": null,
+      "whatsappPrincipal": "551637112300",
+      "whatsappFormatado": "(16) 3711-2300",
+      "website": "http://www.scalamonitoramento.com.br/",
+      "bioInstagram": null,
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": []
+    },
+    "categoria": {
+      "slug": "outros",
+      "nome": "Segurança eletronica",
+      "icone": "🏢",
+      "cor": "#64748b",
+      "badgeClass": "cat-other"
+    }
+  },
+  {
+    "id": "lead_1789562979894_82f4z1",
+    "createdAt": "2026-09-16T12:49:39.894Z",
+    "updatedAt": "2026-09-16T12:49:39.894Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "omegatech-seguranca-eletronica",
+    "nome": "Omegatech Segurança Eletrônica",
+    "nicho": "segurança eletronica",
+    "cidade": "Franca SP",
+    "siteOriginal": "https://omegatechfranca.com.br/",
+    "siteStatus": "online",
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "4,9 estrelas 9 comentários",
+    "endereco": "R. Estevão Marcolino, 675",
+    "mapsUrl": "https://www.google.com/maps/place/Omegatech+Seguran%C3%A7a+Eletr%C3%B4nica/data=!4m7!3m6!1s0xab60c9b18e375f5b:0x95ab2033a2342cb2!8m2!3d-20.5350202!4d-47.4190157!16s%2Fg%2F11yzkxmvzc!19sChIJW183jrHJYKsRsiw0ojMgq5U?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 99292-3889"
+    ],
+    "emails": [],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "5516992923889",
+    "whatsappFormatado": "(16) 99292-3889",
+    "status": "oportunidade_quente",
+    "motivoDescarte": null,
+    "analiseIA": "💡 Oportunidade de Redesign Subzero: Site ativo com dados mapeados. Conteúdo, serviços e contatos extraídos diretamente do site atual (https://omegatechfranca.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
+    "siteData": {
+      "title": "omegatechfranca.com.br – Automações Residenciaisomegatechfranca.com.br – Automações ResidenciaisJoinchat",
+      "metaDescription": null,
+      "headings": [
+        "Especialistas em Instalações e Manutenções Elétricas",
+        "Chegue em casa com mais segurança e praticidade!",
+        "Solicite seu orçamento agora",
+        "Instalação de motor de portões",
+        "Câmera de segurança com I.A. e alarme integrado",
+        "Troca de cabo de aço de portão",
+        "Alarme residencial",
+        "Casa inteligente com Alexa"
+      ],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": []
+    },
+    "dadosEnriquecidos": {
+      "instagram": null,
+      "facebook": null,
+      "whatsappPrincipal": "5516992923889",
+      "whatsappFormatado": "(16) 99292-3889",
+      "website": "https://omegatechfranca.com.br/",
+      "bioInstagram": null,
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": []
+    },
+    "categoria": {
+      "slug": "outros",
+      "nome": "Segurança eletronica",
+      "icone": "🏢",
+      "cor": "#64748b",
+      "badgeClass": "cat-other"
+    }
+  },
+  {
+    "id": "lead_1789562977366_daswgs",
+    "createdAt": "2026-09-16T12:49:37.366Z",
+    "updatedAt": "2026-09-16T12:49:37.366Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "infratel-seguranca-eletronica",
+    "nome": "Infratel Segurança Eletrônica",
+    "nicho": "segurança eletronica",
+    "cidade": "Franca SP",
+    "siteOriginal": "https://www.infratel.com.br/",
+    "siteStatus": "online",
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "4,6 estrelas 17 comentários",
+    "endereco": "R. Bolívia, 1214",
+    "mapsUrl": "https://www.google.com/maps/place/Infratel+Seguran%C3%A7a+Eletr%C3%B4nica/data=!4m7!3m6!1s0x94b0a881bdafb525:0x2a3cd68e3f0de773!8m2!3d-20.5499146!4d-47.4073262!16s%2Fg%2F11bx1s7tb8!19sChIJJbWvvYGosJQRc-cNP47WPCo?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "//0414133037502",
+      "(41) 3303-7502",
+      "(16) 3723-9373"
+    ],
+    "emails": [
+      "comercial@infratel.com.br",
+      "%20comercial@infratel.com.br",
+      "%20sac@infratel.com.br",
+      "%20trabalheconosco@infratel.com.br",
+      "%20sociedade@infratel.com.br",
+      "%20contato@infratel.com.br",
+      "contato@infratel.com.br"
+    ],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "0414133037502",
+    "whatsappFormatado": "0414133037502",
+    "status": "oportunidade_quente",
+    "motivoDescarte": null,
+    "analiseIA": "💡 Oportunidade de Redesign Subzero: Site ativo com dados mapeados. Conteúdo, serviços e contatos extraídos diretamente do site atual (https://www.infratel.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
+    "siteData": {
+      "title": "Infratel – Infraestrutura em Telecomunicações",
+      "metaDescription": null,
+      "headings": [
+        "Telecomunicaçõesé o nosso DNA",
+        "Vertsite",
+        "Torre autoportante",
+        "Mobiliário Urbano",
+        "Gabinete outdoor",
+        "Container Telecom",
+        "Abrigos",
+        "Outros Serviços"
+      ],
+      "servicosExtraidos": [
+        "Canal de Denúncias"
+      ],
+      "diferenciaisExtraidos": []
+    },
+    "dadosEnriquecidos": {
+      "instagram": null,
+      "facebook": null,
+      "whatsappPrincipal": "0414133037502",
+      "whatsappFormatado": "0414133037502",
+      "website": "https://www.infratel.com.br/",
+      "bioInstagram": null,
+      "linkNaBio": null,
+      "servicosDetectados": [
+        "Canal de Denúncias"
+      ],
+      "diferenciais": []
+    },
+    "categoria": {
+      "slug": "outros",
+      "nome": "Segurança eletronica",
+      "icone": "🏢",
+      "cor": "#64748b",
+      "badgeClass": "cat-other"
+    }
+  },
+  {
+    "id": "lead_1789562976904_6iue76",
+    "createdAt": "2026-09-16T12:49:36.904Z",
+    "updatedAt": "2026-09-16T12:49:37.472Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "coltseg-eletronica-cameras-e-alarmes-de-seguranca-cercas-eletricas-e-motores-para-portao",
+    "nome": "Coltseg eletrônica - Câmeras e alarmes de segurança, cercas elétricas e motores para portão",
+    "nicho": "segurança eletronica",
+    "cidade": "Franca SP",
+    "siteOriginal": "https://lojalocal.com/parceirocredenciadointelbras/20421641000127",
+    "siteStatus": "online",
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "5,0 estrelas 112 comentários",
+    "endereco": "R. Simpliciano Pombo, 323",
+    "mapsUrl": "https://www.google.com/maps/place/Coltseg+eletr%C3%B4nica+-+C%C3%A2meras+e+alarmes+de+seguran%C3%A7a,+cercas+el%C3%A9tricas+e+motores+para+port%C3%A3o/data=!4m7!3m6!1s0x94b0a7f237aa18f9:0xb3a93a26760574fd!8m2!3d-20.5346422!4d-47.415326!16s%2Fg%2F11s3633dn5!19sChIJ-RiqN_KnsJQR_XQFdiY6qbM?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 98243-0774",
+      "(72) 91728-7271",
+      "(61) 93125-2056",
+      "(12) 94594-2540",
+      "(33) 94708-9891",
+      "(58) 92723-0952",
+      "(74) 93726-0599",
+      "917123593",
+      "938649160",
+      "(26) 93566-6405",
+      "(64) 94636-0372",
+      "(82) 90100-0000",
+      "(17) 3729-1728",
+      "27191620",
+      "(19) 3125-2056",
+      "30342643",
+      "28199326",
+      "(29) 4594-2540",
+      "33947089",
+      "(53) 3327-6511",
+      "42234084",
+      "(48) 4040-4025",
+      "59137633",
+      "58927230",
+      "(95) 2047-7299",
+      "47749372",
+      "59944833",
+      "(71) 2359-3349",
+      "(23) 4180-9386",
+      "49160156",
+      "(32) 2693-5666",
+      "40526623",
+      "(41) 4306-4946",
+      "36037286",
+      "20421641",
+      "29010000"
+    ],
+    "emails": [],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "5516982430774",
+    "whatsappFormatado": "(16) 98243-0774",
+    "status": "oportunidade_quente",
+    "motivoDescarte": null,
+    "analiseIA": "💡 Oportunidade de Redesign Subzero: Site ativo com dados mapeados. Conteúdo, serviços e contatos extraídos diretamente do site atual (https://lojalocal.com/parceirocredenciadointelbras/20421641000127) para alimentar o protótipo mobile-first de alta conversão.",
+    "siteData": {
+      "title": "Coltseg eletrônica - Câmeras e alarmes de segurança, cercas elétricas e motores para portão",
+      "metaDescription": "A COLTSEG é especializada em segurança eletronica , oferecendo soluções completas para proteger residências, empresas e comércios.\nTrabalhamos com os melhores equipamentos do mercado, incluindo alarmes e câmeras de segurança, interfones, cercas elétricas e motores de portão.\nSomos parceiro credenciado INTELBRAS, além de representarmos marcas de renome como Garen, JFL, Rossi, PPA e Peccinin, garantindo qualidade e garantia.\n\nRealizamos a instalação e manutenção de todos os equipamentos, sempre com um atendimento personalizado. Escolha a COLTSEG, sua referência em segurança em Franca e região!",
+      "headings": [
+        "Produtos que você encontra aqui",
+        "O que falam sobre a gente",
+        "Galeria de fotos",
+        "Onde estamos",
+        "R. Simpliciano Pombo, 323 - Vila Santos Dumont, Franca - SP, 14405-338, Brasil"
+      ],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": [
+        "Atendimento Emergencial / 24 Horas",
+        "Tecnologia Digital & Planejamento 3D"
+      ]
+    },
+    "dadosEnriquecidos": {
+      "instagram": null,
+      "facebook": null,
+      "whatsappPrincipal": "5516982430774",
+      "whatsappFormatado": "(16) 98243-0774",
+      "website": "https://lojalocal.com/parceirocredenciadointelbras/20421641000127",
+      "bioInstagram": null,
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": [
+        "Atendimento Emergencial / 24 Horas",
+        "Tecnologia Digital & Planejamento 3D"
+      ]
+    },
+    "categoria": {
+      "slug": "seguranca",
+      "nome": "Segurança & CFTV",
+      "icone": "🛡️",
+      "cor": "#3b82f6",
+      "badgeClass": "cat-security"
+    }
+  },
+  {
     "id": "lead_1789499422840_204abk",
     "createdAt": "2026-09-15T19:10:22.840Z",
     "updatedAt": "2026-09-15T19:10:22.840Z",
@@ -215,7 +1071,7 @@
   {
     "id": "lead_1789499412688_lqzxmx",
     "createdAt": "2026-09-15T19:10:12.688Z",
-    "updatedAt": "2026-09-15T22:51:28.263Z",
+    "updatedAt": "2026-09-16T14:47:24.109Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "saude-vet-pet-shop-e-clinica-veterinaria",
@@ -1621,18 +2477,18 @@
   {
     "id": "lead_blitz_seguranca",
     "createdAt": "2026-09-15T03:14:29.770Z",
-    "updatedAt": "2026-09-15T22:49:57.198Z",
+    "updatedAt": "2026-09-16T12:49:40.894Z",
     "anotacoes": "",
     "historicoContatos": [],
-    "nome": "Blitz Segurança Eletrônica | Concertinas, Cercas e CFTV",
-    "nicho": "cerca eletrica e seguranca eletronica",
+    "nome": "Blitz Segurança Eletrônica | Concertina | Câmeras | Alarmes | Cerca Elétrica | Motor de Portões",
+    "nicho": "segurança eletronica",
     "cidade": "Franca SP",
-    "endereco": "R. Voluntário Arnaldo de Vilhena, 758 - Vila Santos Dumont, Franca - SP, 14405-347",
-    "avaliacao": "4,9 estrelas no Google",
-    "mapsUrl": "https://www.google.com/maps/place/Blitz+Seguran%C3%A7a+Eletr%C3%B4nica+%7C+Concertina+%7C+C%C3%A2meras+%7C+Alarmes+%7C+Cerca+El%C3%A9trica+%7C+Motor+de+Port%C3%B5es/@-20.531419,-47.4189592,17z/",
+    "endereco": "R. Voluntário Arnaldo de Vilhena, 758",
+    "avaliacao": "4,9 estrelas 97 comentários",
+    "mapsUrl": "https://www.google.com/maps/place/Blitz+Seguran%C3%A7a+Eletr%C3%B4nica+%7C+Concertina+%7C+C%C3%A2meras+%7C+Alarmes+%7C+Cerca+El%C3%A9trica+%7C+Motor+de+Port%C3%B5es/data=!4m7!3m6!1s0x94b0a7007e19eadb:0xbd8fc7a7b6e25605!8m2!3d-20.531419!4d-47.4189592!16s%2Fg%2F11b6lkcfw3!19sChIJ2-oZfgCnsJQRBVbitqfHj70?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
     "siteOriginal": "http://www.blitzsegurancaeletronica.com.br/",
-    "siteStatus": "desatualizado_inseguro",
-    "siteHealthReason": "Site antigo sem HTTPS, não adaptado para celulares e com layout defasado",
+    "siteStatus": "online",
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
     "telefones": [
       "(16) 99397-4382",
       "(16) 3721-7525"
@@ -1642,7 +2498,7 @@
     "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\blitz-seguranca-eletronica-concertinas-cercas-e-cftv\\index.html",
     "prototypeUrl": "/previews/blitz-seguranca-eletronica-concertinas-cercas-e-cftv/index.html",
     "status": "prototipo_pronto",
-    "analiseIA": "🔥 OPORTUNIDADE DE ALTO VALOR: A Blitz é uma das maiores referências em segurança perimetral e concertinas em Franca (4.9★ no Google), mas seu site oficial é antigo (HTTP não seguro) e perde clientes móveis todos os dias. O protótipo Subzero eleva a autoridade visual da marca com engenharia perimetral pesada.",
+    "analiseIA": "💡 Oportunidade de Redesign Subzero: 🚨 Site sem SSL (inseguro HTTP). Conteúdo, serviços e contatos extraídos diretamente do site atual (http://www.blitzsegurancaeletronica.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
     "messages": {
       "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Blitz Segurança Eletrônica | Concertinas, Cercas e CFTV* tem uma excelente reputação, mas hoje quem pesquisa por *cerca eletrica e seguranca eletronica* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: não possui site oficial cadastrado no Google — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, já com fotos reais e depoimentos dos seus clientes:\n👉 */previews/blitz-seguranca-eletronica-concertinas-cercas-e-cftv/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
       "email": {
@@ -1650,28 +2506,21 @@
         "corpo": "Prezada equipe da Blitz Segurança Eletrônica | Concertinas, Cercas e CFTV,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por cerca eletrica e seguranca eletronica em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Blitz Segurança Eletrônica | Concertinas, Cercas e CFTV, já funcional e adaptada para smartphones:\n👉 /previews/blitz-seguranca-eletronica-concertinas-cercas-e-cftv/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
       }
     },
-    "facebook": "https://www.facebook.com/blitzsegurancaeletronica/",
-    "instagram": "https://www.instagram.com/blitzsegurancaeletronica/",
+    "facebook": null,
+    "instagram": null,
     "emails": [
       "contato@blitzsegbrasil.com.br"
     ],
     "dadosEnriquecidos": {
-      "instagram": "https://www.instagram.com/blitzsegurancaeletronica/",
-      "facebook": "https://www.facebook.com/blitzsegurancaeletronica/",
-      "whatsapp": "(16) 99397-4382",
-      "email": "contato@blitzsegbrasil.com.br",
-      "servicos": [
-        "Cercas Elétricas e Concertinas",
-        "CFTV e Câmeras HD / Noturnas",
-        "Sistemas de Alarme e Sensores",
-        "Motores de Portão Automático",
-        "Vídeo Porteiro e Interfonia"
-      ],
-      "diferenciais": [
-        "Atendimento rápido em toda Franca e região",
-        "Instalação padrão industrial e residencial",
-        "Equipamentos homologados Intelbras e JFL"
-      ]
+      "instagram": null,
+      "facebook": null,
+      "whatsappPrincipal": "5516993974382",
+      "whatsappFormatado": "(16) 99397-4382",
+      "website": "http://www.blitzsegurancaeletronica.com.br/",
+      "bioInstagram": null,
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": []
     },
     "archetype": "industrial",
     "templateEscolhido": "industrial",
@@ -1681,6 +2530,15 @@
       "icone": "🛡️",
       "cor": "#3b82f6",
       "badgeClass": "cat-security"
+    },
+    "slug": "blitz-seguranca-eletronica-concertina-cameras-alarmes-cerca-eletrica-motor-de-portoes",
+    "motivoDescarte": null,
+    "siteData": {
+      "title": "Blitz Segurança Eletrônica",
+      "metaDescription": null,
+      "headings": [],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": []
     }
   },
   {

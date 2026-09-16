@@ -1,71 +1,20 @@
 const cheerio = require('cheerio');
+const { cleanAndNormalizeUrl } = require('./url_cleaner');
 
 /**
  * Verifica a saúde e acessibilidade de um website cadastrado no Google Maps
  * e extrai dados ricos de contato (WhatsApp, Instagram, Facebook, Celulares e E-mails).
+ * @param {string} rawUrl
  */
-async function checkWebsiteHealth(url) {
-  if (!url) return {
-    hasWebsite: false,
-    isOnline: false,
-    status: 'nenhum',
-    reason: 'Nenhum site cadastrado',
-    extractedInstagram: null,
-    extractedFacebook: null,
-    extractedWhatsApp: null,
-    extractedPhones: [],
-    extractedEmails: []
-  };
-
-  // Se for redirecionador ou anúncio do Google (/aclk, /url)
-  if (url.includes('google.com') || url.includes('goo.gl')) {
-    try {
-      const u = new URL(url);
-      const target = u.searchParams.get('adurl') || u.searchParams.get('q') || u.searchParams.get('url');
-      if (target && !target.includes('google.com')) {
-        url = target;
-      } else {
-        return {
-          hasWebsite: false,
-          isOnline: false,
-          status: 'nenhum',
-          reason: 'Anúncio ou ficha do Google sem site próprio cadastrado',
-          extractedInstagram: null,
-          extractedFacebook: null,
-          extractedWhatsApp: null,
-          extractedPhones: [],
-          extractedEmails: []
-        };
-      }
-    } catch (_) {
-      return {
-        hasWebsite: false,
-        isOnline: false,
-        status: 'nenhum',
-        reason: 'Nenhum site cadastrado',
-        extractedInstagram: null,
-        extractedFacebook: null,
-        extractedWhatsApp: null,
-        extractedPhones: [],
-        extractedEmails: []
-      };
-    }
-  }
-
-  const lower = url.toLowerCase();
-  let extractedInstagram = null;
-  let extractedFacebook = null;
-
-  if (lower.includes('instagram.com')) {
-    const match = url.match(/instagram\.com\/([a-zA-Z0-9._]+)/i);
-    if (match) extractedInstagram = `https://www.instagram.com/${match[1]}/`;
+async function checkWebsiteHealth(rawUrl) {
+  if (!rawUrl) {
     return {
       hasWebsite: false,
-      isSocialLink: true,
-      url,
-      status: 'apenas_social',
-      reason: `Utiliza link do Instagram no lugar de site próprio (${url})`,
-      extractedInstagram,
+      isOnline: false,
+      status: 'nenhum',
+      reason: 'Nenhum site cadastrado no Google Maps',
+      url: null,
+      extractedInstagram: null,
       extractedFacebook: null,
       extractedWhatsApp: null,
       extractedPhones: [],
@@ -73,15 +22,59 @@ async function checkWebsiteHealth(url) {
     };
   }
 
-  if (lower.includes('facebook.com')) {
-    extractedFacebook = url;
+  // 1. Sanitização profunda da URL
+  const norm = cleanAndNormalizeUrl(rawUrl);
+
+  if (!norm.cleanedUrl) {
+    return {
+      hasWebsite: false,
+      isOnline: false,
+      status: 'nenhum',
+      reason: 'Link de anúncio ou ficha do Google sem site próprio cadastrado',
+      url: null,
+      extractedInstagram: null,
+      extractedFacebook: null,
+      extractedWhatsApp: null,
+      extractedPhones: [],
+      extractedEmails: []
+    };
+  }
+
+  // 2. Detecção de Agregadores / Guias Locais (GuiaMais, Doctoralia, etc.)
+  if (norm.isAggregator) {
+    return {
+      hasWebsite: false,
+      isAggregator: true,
+      url: norm.cleanedUrl,
+      status: 'apenas_agregador',
+      reason: `Utiliza perfil em agregador de diretório (${norm.aggregatorName}) no lugar de site próprio`,
+      extractedInstagram: null,
+      extractedFacebook: null,
+      extractedWhatsApp: null,
+      extractedPhones: [],
+      extractedEmails: []
+    };
+  }
+
+  // 3. Detecção de Redes Sociais no campo de website
+  if (norm.isSocial) {
+    let extractedInstagram = null;
+    let extractedFacebook = null;
+
+    if (norm.socialPlatform === 'Instagram') {
+      const match = norm.cleanedUrl.match(/instagram\.com\/([a-zA-Z0-9._]+)/i);
+      if (match) extractedInstagram = `https://www.instagram.com/${match[1]}/`;
+    } else if (norm.socialPlatform === 'Facebook') {
+      extractedFacebook = norm.cleanedUrl;
+    }
+
     return {
       hasWebsite: false,
       isSocialLink: true,
-      url,
+      url: norm.cleanedUrl,
       status: 'apenas_social',
-      reason: `Utiliza link do Facebook no lugar de site próprio (${url})`,
-      extractedInstagram: null,
+      reason: `Utiliza link de ${norm.socialPlatform} no lugar de site institucional próprio`,
+      extractedInstagram,
       extractedFacebook,
       extractedWhatsApp: null,
       extractedPhones: [],
@@ -89,38 +82,22 @@ async function checkWebsiteHealth(url) {
     };
   }
 
-  if (lower.includes('linktr.ee')) {
-    return {
-      hasWebsite: false,
-      isSocialLink: true,
-      url,
-      status: 'apenas_social',
-      reason: `Utiliza Linktree no lugar de site institucional próprio (${url})`,
-      extractedInstagram: null,
-      extractedFacebook: null,
-      extractedWhatsApp: null,
-      extractedPhones: [],
-      extractedEmails: []
-    };
-  }
-
-  let formattedUrl = url;
-  if (!formattedUrl.startsWith('http://') && !formattedUrl.startsWith('https://')) {
-    formattedUrl = 'https://' + formattedUrl;
-  }
+  // 4. Teste de acessibilidade HTTP / HTTPS
+  const targetUrl = norm.cleanedUrl;
 
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 7000);
+    const timeoutId = setTimeout(() => controller.abort(), 6000);
 
-    const res = await fetch(formattedUrl, {
+    const res = await fetch(targetUrl, {
       method: 'GET',
+      redirect: 'follow',
       signal: controller.signal,
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
-        'Accept-Language': 'pt-BR,pt;q=0.9'
-      },
-      redirect: 'follow'
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'pt-BR,pt;q=0.9,en;q=0.8'
+      }
     });
 
     clearTimeout(timeoutId);
@@ -221,7 +198,8 @@ async function checkWebsiteHealth(url) {
                 lower.includes('cftv') || lower.includes('alarme') || lower.includes('cerca') ||
                 lower.includes('concertina') || lower.includes('portão') || lower.includes('ar condicionado') ||
                 lower.includes('instalação') || lower.includes('manutenção') || lower.includes('higienização') ||
-                lower.includes('pmoc') || lower.includes('24h') || lower.includes('urgência')
+                lower.includes('pmoc') || lower.includes('24h') || lower.includes('urgência') ||
+                lower.includes('consulta') || lower.includes('vacina') || lower.includes('banho') || lower.includes('tosa')
               ) {
                 candidateServices.add(txt);
               }
@@ -245,7 +223,7 @@ async function checkWebsiteHealth(url) {
             hasWebsite: true,
             isOnline: true,
             statusCode: res.status,
-            url: formattedUrl,
+            url: targetUrl,
             status: 'online',
             reason: `Site oficial ativo e respondendo normalmente (HTTP ${res.status})`,
             pageTitle,
@@ -266,7 +244,7 @@ async function checkWebsiteHealth(url) {
         hasWebsite: true,
         isOnline: true,
         statusCode: res.status,
-        url: formattedUrl,
+        url: targetUrl,
         status: 'online',
         reason: `Site oficial ativo e respondendo normalmente (HTTP ${res.status})`,
         pageTitle: null,
@@ -285,9 +263,9 @@ async function checkWebsiteHealth(url) {
         hasWebsite: true,
         isOnline: false,
         statusCode: res.status,
-        url: formattedUrl,
+        url: targetUrl,
         status: 'inacessivel',
-        reason: `🚨 Site cadastrado está INACESSÍVEL / FORA DO AR (HTTP ${res.status})`,
+        reason: `Site cadastrado está INACESSÍVEL / FORA DO AR (HTTP ${res.status})`,
         extractedInstagram: null,
         extractedFacebook: null,
         extractedWhatsApp: null,
@@ -302,9 +280,9 @@ async function checkWebsiteHealth(url) {
       hasWebsite: true,
       isOnline: false,
       statusCode: null,
-      url: formattedUrl,
+      url: targetUrl,
       status: 'inacessivel',
-      reason: `🚨 Site cadastrado está FORA DO AR (${errorMsg})`,
+      reason: `Site cadastrado está FORA DO AR (${errorMsg})`,
       extractedInstagram: null,
       extractedFacebook: null,
       extractedWhatsApp: null,
@@ -317,4 +295,3 @@ async function checkWebsiteHealth(url) {
 module.exports = {
   checkWebsiteHealth
 };
-
