@@ -47,8 +47,12 @@ function getArchetype(nicho = '', nomeEmpresa = '', templateHint = null) {
  * Inteligência de conteúdo por nicho para preencher o Subzero Engine
  */
 function getNicheContent(nicho, nomeEmpresa, cidade = 'Franca - SP', lead = {}) {
-  const n = (nicho || '').toLowerCase();
-  const nameLower = (nomeEmpresa || '').toLowerCase();
+  const normNFD = (str = '') => str.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/ç/g, 'c');
+
+  const n = normNFD(nicho);
+  const nameLower = normNFD(nomeEmpresa);
 
   // 1. PET SHOP & CLÍNICA VETERINÁRIA
   if (n.includes('pet') || n.includes('vet') || n.includes('animal') || nameLower.includes('vet') || nameLower.includes('pet')) {
@@ -78,7 +82,36 @@ function getNicheContent(nicho, nomeEmpresa, cidade = 'Franca - SP', lead = {}) 
     };
   }
 
-  // 2. SEGURANÇA ELETRÔNICA, CERCAS & CFTV
+  // 2.0 DISTRIBUIDORA / ATACADISTA DE SEGURANÇA ELETRÔNICA
+  if ((nameLower.includes('distribuidora') || nameLower.includes('atacado') || nameLower.includes('distribuicao')) && 
+      (n.includes('seguranca') || n.includes('eletronica') || nameLower.includes('seguranca') || nameLower.includes('eletronica') || nameLower.includes('kell'))) {
+    return {
+      subtitulo: 'Distribuidora Atacadista de Segurança Eletrônica',
+      tituloPrincipal: 'Equipamentos e Tecnologia para Integradores e Instaladores',
+      chamadaPrincipal: 'Pronta-Entrega e Preço de Distribuidor em Franca',
+      slogan: 'Câmeras, alarmes, motores de portão e controle de acesso das melhores marcas.',
+      apresentacao: `Com sólida trajetória desde 2009 em ${cidade}, a ${nomeEmpresa} é o principal parceiro de técnicos, instaladores e empresas de segurança, oferecendo catálogo completo com suporte técnico e condições de atacado.`,
+      servicos: [
+        { nome: 'Câmeras CFTV & Gravadores DVR/NVR', desc: 'Linhas completas das marcas HB Tech, Intelbras e líderes, com pronta-entrega para projetos residenciais e industriais.' },
+        { nome: 'Centrais de Alarme & Sensores Infravermelho', desc: 'Sistemas com discadora, aplicativo móvel e detecção de alta precisão para máxima proteção perimetral.' },
+        { nome: 'Motores para Portão & Cremalheiras', desc: 'Automatizadores ultrarrápidos para portões deslizantes, basculantes e pivotantes (AGL, Líder, Acton, PPA).' },
+        { nome: 'Concertinas, Fios de Choque & Acessórios', desc: 'Concertinas duplas galvalume, hastes reforçadas, baterias e cabeamento homologado com garantia de fábrica.' }
+      ],
+      diferenciais: [
+        { titulo: 'Estoque Local & Pronta-Entrega', desc: 'Retirada imediata em Franca sem esperar frete para fechar seu projeto no prazo.' },
+        { titulo: 'Marcas Líderes Certificadas', desc: 'Parceiro oficial das fabricantes HB Tech, Líder, AGL e Acton com garantia total.' },
+        { titulo: 'Suporte Técnico aos Instaladores', desc: 'Equipe especializada para auxiliar na especificação do equipamento ideal para cada obra.' }
+      ],
+      avaliacoes: [
+        { autor: 'Marcos Vinicius (Instalador)', texto: 'Melhor distribuidora de Franca! Preço justo de atacado e sempre têm o material a pronta entrega quando preciso.' },
+        { autor: 'Lucas Andrade', texto: 'Compro equipamentos com a Kell há anos. O suporte técnico deles tira qualquer dúvida e os produtos são de altíssima qualidade.' },
+        { autor: 'Carlos Eduardo Souza', texto: 'Atendimento nota dez! Agilidade na separação de pedidos e marcas confiáveis para quem trabalha com segurança.' },
+        { autor: 'Fernando Silveira', texto: 'Excelente estoque de motores e câmeras. Parceria de confiança para instaladores em toda a região.' }
+      ]
+    };
+  }
+
+  // 2.1 SEGURANÇA ELETRÔNICA, CERCAS & CFTV (Instaladores e Prestadores)
   if (n.includes('seguranca') || n.includes('cerca') || n.includes('camera') || n.includes('alarme') || n.includes('cftv') || n.includes('portao') || nameLower.includes('seguranca') || nameLower.includes('eletronica')) {
     return {
       subtitulo: 'Proteção Perimetral & CFTV em Franca',
@@ -270,18 +303,22 @@ async function generatePrototype(lead, templateHint = null) {
   let html = fs.readFileSync(templateHtmlPath, 'utf-8');
 
   // 2. Gerar conteúdo inteligente e específico
-  const content = getNicheContent(lead.nicho, lead.nome, lead.cidade, lead);
-  const waMsg = encodeURIComponent(`Olá! Vi o site oficial da ${lead.nome} e gostaria de solicitar um orçamento/informações.`);
+  const cleanCompanyName = lead.nome.includes('|')
+    ? lead.nome.split('|')[0].trim()
+    : (lead.nome.includes(' - ') ? lead.nome.split(' - ')[0].trim() : lead.nome);
+
+  const content = getNicheContent(lead.nicho, cleanCompanyName, lead.cidade, lead);
+  const waMsg = encodeURIComponent(`Olá! Vi o site oficial da ${cleanCompanyName} e gostaria de solicitar um orçamento/informações.`);
   const waLink = `https://wa.me/${lead.whatsappPrincipal}?text=${waMsg}`;
-  const encodedAddress = encodeURIComponent(`${lead.nome}, ${lead.cidade}`);
+  const encodedAddress = encodeURIComponent(`${cleanCompanyName}, ${lead.cidade}`);
   const cleanDomain = lead.slug.endsWith('.com.br') ? lead.slug : `${lead.slug}.com.br`;
 
   // 3. Substituir tags de placeholder
   const replacements = {
-    '{{NOME_DA_EMPRESA}}': lead.nome,
+    '{{NOME_DA_EMPRESA}}': cleanCompanyName,
     '{{TITULO_PRINCIPAL}}': content.tituloPrincipal,
-    '{{DESCRICAO_SEO_150_CARACTERES}}': `${lead.nome} em Franca/SP. ${content.slogan} Fale conosco no WhatsApp!`,
-    '{{PALAVRAS_CHAVE_SEPARADAS_POR_VIRGULA}}': `${lead.nome}, ${lead.nicho}, Franca SP, atendimento, servicos, avaliacoes`,
+    '{{DESCRICAO_SEO_150_CARACTERES}}': `${cleanCompanyName} em Franca/SP. ${content.slogan} Fale conosco no WhatsApp!`,
+    '{{PALAVRAS_CHAVE_SEPARADAS_POR_VIRGULA}}': `${cleanCompanyName}, ${lead.nicho}, Franca SP, atendimento, servicos, avaliacoes`,
     '{{SEU_DOMINIO}}': cleanDomain,
     '{{SUBTITULO_OU_SEGMENTO}}': content.subtitulo,
     '{{SUBTITULO_LOCALIZACAO_EM_CAPS}}': `${(lead.cidade || 'FRANCA SP').toUpperCase()} • ATENDIMENTO ESPECIALIZADO`,
@@ -328,11 +365,42 @@ async function generatePrototype(lead, templateHint = null) {
     '{{NOME_DO_CLIENTE_4}}': content.avaliacoes[3].autor,
     '{{DEPOIMENTO_DO_CLIENTE_4}}': content.avaliacoes[3].texto,
     '{{ENDERECO_COMPLETO_DO_GOOGLE_MAPS}}': lead.endereco || `${lead.cidade}`,
-    '{{LINK_DIRECIONAMENTO_ROTA_GOOGLE_MAPS}}': `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`
+    '{{LINK_DIRECIONAMENTO_ROTA_GOOGLE_MAPS}}': `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`,
+
+    // Compatibilidade com template industrial / Subzero clássico
+    '{{TEXTO_DIFERENCIAL_1}}': content.diferenciais[0].desc,
+    '{{TEXTO_DIFERENCIAL_2}}': content.diferenciais[1].desc,
+    '{{TEXTO_DIFERENCIAL_3}}': content.diferenciais[2].desc,
+    '{{DEPOIMENTO_1_TEXTO}}': content.avaliacoes[0].texto,
+    '{{DEPOIMENTO_1_AUTOR}}': content.avaliacoes[0].autor,
+    '{{DEPOIMENTO_2_TEXTO}}': content.avaliacoes[1].texto,
+    '{{DEPOIMENTO_2_AUTOR}}': content.avaliacoes[1].autor,
+    '{{DEPOIMENTO_3_TEXTO}}': content.avaliacoes[2].texto,
+    '{{DEPOIMENTO_3_AUTOR}}': content.avaliacoes[2].autor,
+    '{{DEPOIMENTO_4_TEXTO}}': content.avaliacoes[3].texto,
+    '{{DEPOIMENTO_4_AUTOR}}': content.avaliacoes[3].autor,
+    '{{CHAMADA_CONTATO_LINHA_1}}': 'Fale Conosco e Garanta',
+    '{{CHAMADA_CONTATO_LINHA_2}}': 'Sua Tranquilidade Hoje',
+    '{{TEXTO_CHAMADA_CONTATO}}': 'Atendimento ágil direto no WhatsApp para tirar dúvidas, solicitar orçamentos e agendar visitas técnicas.',
+    '{{ENDERECO_URL_ENCODED}}': encodedAddress,
+    '{{ENDERECO_LINHA_1}}': (lead.endereco || `${lead.cidade}`).split(',')[0] || lead.endereco || lead.cidade,
+    '{{BAIRRO_CIDADE_UF}}': (lead.endereco && lead.endereco.includes(','))
+      ? lead.endereco.split(',').slice(1).join(',').trim()
+      : `${lead.cidade || 'Franca SP'}`
   };
 
   for (const [key, val] of Object.entries(replacements)) {
     html = html.replaceAll(key, val);
+  }
+
+  // Validação estrita de segurança: nenhum placeholder {{...}} pode passar para produção
+  const remainingTags = html.match(/\{\{[A-Z0-9_]+\}\}/g);
+  if (remainingTags && remainingTags.length > 0) {
+    const uniqueRemaining = [...new Set(remainingTags)];
+    console.warn(`⚠️ [Generator] Aviso: ${uniqueRemaining.length} tags sem substituição encontradas (${uniqueRemaining.join(', ')}). Limpando tags para integridade visual.`);
+    uniqueRemaining.forEach(t => {
+      html = html.replaceAll(t, '');
+    });
   }
 
   // 4. Copiar assets estruturais do template selecionado (src, favicon, img ou assets)
@@ -343,6 +411,32 @@ async function generatePrototype(lead, templateHint = null) {
   }
   if (fs.existsSync(path.join(templateDir, 'img'))) {
     copyDirSync(path.join(templateDir, 'img'), path.join(targetDir, 'img'));
+  }
+
+  // Injeção contextual de imagens para nichos específicos no arquétipo industrial
+  if (archetype === 'industrial') {
+    const normNFD = (str = '') => (str || '').toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/ç/g, 'c');
+
+    const n = normNFD(lead.nicho);
+    const nameLower = normNFD(lead.nome);
+    const targetImgDir = path.join(targetDir, 'img');
+    fs.mkdirSync(targetImgDir, { recursive: true });
+
+    if (n.includes('seguranca') || n.includes('cerca') || n.includes('camera') || n.includes('cftv') || nameLower.includes('seguranca') || nameLower.includes('kell') || nameLower.includes('distribuidora') || nameLower.includes('blitz')) {
+      const secImgDir = path.join(TEMPLATES_ROOT, 'assets', 'seguranca');
+      if (fs.existsSync(secImgDir)) {
+        copyDirSync(secImgDir, targetImgDir);
+        console.log(`📸 [Generator] Imagens contextuais de SEGURANÇA injetadas com sucesso em: ${targetImgDir}`);
+      }
+    } else if (n.includes('ar') || n.includes('clima') || n.includes('refrigera')) {
+      const climImgDir = path.join(TEMPLATES_ROOT, 'assets', 'climatizacao');
+      if (fs.existsSync(climImgDir)) {
+        copyDirSync(climImgDir, targetImgDir);
+        console.log(`📸 [Generator] Imagens contextuais de CLIMATIZAÇÃO injetadas com sucesso em: ${targetImgDir}`);
+      }
+    }
   }
 
   const faviconSrc = path.join(templateDir, 'favicon.svg');

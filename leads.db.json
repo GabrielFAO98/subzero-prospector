@@ -308,7 +308,7 @@
   {
     "id": "lead_1789563008145_bnfw23",
     "createdAt": "2026-09-16T12:50:08.145Z",
-    "updatedAt": "2026-09-16T15:37:46.577Z",
+    "updatedAt": "2026-09-16T17:34:36.815Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "kell-distribuidora",
@@ -329,7 +329,7 @@
     "facebook": null,
     "whatsappPrincipal": "551692012222",
     "whatsappFormatado": "(16) 9201-2222",
-    "status": "oportunidade_quente",
+    "status": "prototipo_pronto",
     "motivoDescarte": null,
     "analiseIA": "Excelente oportunidade em Franca SP: 4,6 estrelas 144 comentários, sem nenhum site oficial próprio cadastrado.",
     "siteData": {
@@ -2709,7 +2709,7 @@
   {
     "id": "lead_blitz_seguranca",
     "createdAt": "2026-09-15T03:14:29.770Z",
-    "updatedAt": "2026-09-16T12:49:40.894Z",
+    "updatedAt": "2026-09-16T18:01:20.122Z",
     "anotacoes": "",
     "historicoContatos": [],
     "nome": "Blitz Segurança Eletrônica | Concertina | Câmeras | Alarmes | Cerca Elétrica | Motor de Portões",
@@ -2727,15 +2727,15 @@
     ],
     "whatsappPrincipal": "5516993974382",
     "whatsappFormatado": "(16) 99397-4382",
-    "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\blitz-seguranca-eletronica-concertinas-cercas-e-cftv\\index.html",
-    "prototypeUrl": "/previews/blitz-seguranca-eletronica-concertinas-cercas-e-cftv/index.html",
-    "status": "descartado",
+    "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\blitz-seguranca-eletronica\\index.html",
+    "prototypeUrl": "/previews/blitz-seguranca-eletronica/index.html",
+    "status": "prototipo_pronto",
     "analiseIA": "💡 Oportunidade de Redesign Subzero: 🚨 Site sem SSL (inseguro HTTP). Conteúdo, serviços e contatos extraídos diretamente do site atual (http://www.blitzsegurancaeletronica.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
     "messages": {
-      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Blitz Segurança Eletrônica | Concertinas, Cercas e CFTV* tem uma excelente reputação, mas hoje quem pesquisa por *cerca eletrica e seguranca eletronica* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: não possui site oficial cadastrado no Google — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, já com fotos reais e depoimentos dos seus clientes:\n👉 */previews/blitz-seguranca-eletronica-concertinas-cercas-e-cftv/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
+      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Blitz Segurança Eletrônica | Concertina | Câmeras | Alarmes | Cerca Elétrica | Motor de Portões* tem uma excelente reputação, mas hoje quem pesquisa por *segurança eletronica* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: não possui site oficial cadastrado no Google — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, já com fotos reais e depoimentos dos seus clientes:\n👉 */previews/blitz-seguranca-eletronica/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
       "email": {
-        "assunto": "Blitz Segurança Eletrônica | Concertinas, Cercas e CFTV em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial",
-        "corpo": "Prezada equipe da Blitz Segurança Eletrônica | Concertinas, Cercas e CFTV,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por cerca eletrica e seguranca eletronica em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Blitz Segurança Eletrônica | Concertinas, Cercas e CFTV, já funcional e adaptada para smartphones:\n👉 /previews/blitz-seguranca-eletronica-concertinas-cercas-e-cftv/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
+        "assunto": "Blitz Segurança Eletrônica | Concertina | Câmeras | Alarmes | Cerca Elétrica | Motor de Portões em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial",
+        "corpo": "Prezada equipe da Blitz Segurança Eletrônica | Concertina | Câmeras | Alarmes | Cerca Elétrica | Motor de Portões,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por segurança eletronica em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Blitz Segurança Eletrônica | Concertina | Câmeras | Alarmes | Cerca Elétrica | Motor de Portões, já funcional e adaptada para smartphones:\n👉 /previews/blitz-seguranca-eletronica/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
       }
     },
     "facebook": null,
@@ -2763,15 +2763,18 @@
       "cor": "#3b82f6",
       "badgeClass": "cat-security"
     },
-    "slug": "blitz-seguranca-eletronica-concertina-cameras-alarmes-cerca-eletrica-motor-de-portoes",
-    "motivoDescarte": "Grande Rede / Franquia Nacional",
+    "slug": "blitz-seguranca-eletronica",
+    "motivoDescarte": null,
     "siteData": {
       "title": "Blitz Segurança Eletrônica",
       "metaDescription": null,
       "headings": [],
       "servicosExtraidos": [],
       "diferenciaisExtraidos": []
-    }
+    },
+    "targetDir": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\blitz-seguranca-eletronica",
+    "indexPath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\blitz-seguranca-eletronica\\index.html",
+    "url": "/previews/blitz-seguranca-eletronica/index.html"
   },
   {
     "id": "lead_1789434711738_0",

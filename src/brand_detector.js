@@ -43,20 +43,20 @@ function isNationalBrand(name, websiteUrl = null) {
   const normName = name.toLowerCase()
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
-  // 1. Checagem por nome conhecido
+  // 1. Checagem por nome conhecido com fronteira de palavras
   const matchedBrand = KNOWN_NATIONAL_BRANDS.find(b => {
-    // Regex de palavra inteira ou contenção direta no nome normalizado
     const regex = new RegExp(`(^|\\s|[-_])${b}(\\s|[-_]|$)`, 'i');
-    return regex.test(normName) || normName.includes(b);
+    return regex.test(normName);
   });
 
   if (matchedBrand) return true;
 
-  // 2. Checagem por domínio de rede conhecida
+  // 2. Checagem por domínio de rede conhecida (mínimo 3 caracteres para evitar falsos positivos)
   if (websiteUrl) {
-    const normUrl = cleanAndNormalizeUrl(websiteUrl).domain || websiteUrl.toLowerCase();
+    const normUrl = (cleanAndNormalizeUrl(websiteUrl).domain || websiteUrl.toLowerCase()).replace(/[^a-z0-9.]/g, '');
     if (KNOWN_NATIONAL_BRANDS.some(b => {
       const brandClean = b.replace(/[^a-z0-9]/g, '');
+      if (brandClean.length < 3) return false; // Impede que siglas curtas como 'c&a' (ca) casem com 'seguranca'
       return normUrl.includes(brandClean);
     })) {
       return true;
