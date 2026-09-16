@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { generateFaviconSvg } = require('./favicon');
 
 const TEMPLATES_ROOT = path.join(__dirname, '..', 'templates');
 const FALLBACK_TEMPLATE_DIR = path.join('C:', 'Users', 'Gabriel', 'dev', 'template.subzero');
@@ -439,10 +440,9 @@ async function generatePrototype(lead, templateHint = null) {
     }
   }
 
-  const faviconSrc = path.join(templateDir, 'favicon.svg');
-  if (fs.existsSync(faviconSrc)) {
-    fs.copyFileSync(faviconSrc, path.join(targetDir, 'favicon.svg'));
-  }
+  // 4.1 Gerar Favicon SVG sob demanda exclusivo para o protótipo (Zero favicon estático em templates)
+  const faviconSvg = generateFaviconSvg(lead, cleanCompanyName, archetype);
+  fs.writeFileSync(path.join(targetDir, 'favicon.svg'), faviconSvg, 'utf-8');
 
   fs.writeFileSync(path.join(targetDir, 'index.html'), html, 'utf-8');
   console.log(`✅ Protótipo (${archetype}) gerado em: ${targetDir}`);

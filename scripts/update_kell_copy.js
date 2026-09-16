@@ -38,3 +38,4 @@ html = html.replace('Chamar Balcão no WhatsApp Agora', 'Conversar no WhatsApp A
 
 fs.writeFileSync(file, html, 'utf8');
 console.log('Updated all Kell links and text!');
+

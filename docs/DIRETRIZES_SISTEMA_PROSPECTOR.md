@@ -97,10 +97,10 @@ Antes de auditar qualquer dado, o sistema deve verificar se o nome ou domínio p
    * **Nichos:** Odontologia, Consultórios Médicos, Estética Avançada, Fisioterapia.
    * **Cores:** Pure White (`#ffffff`), Ice Blue (`#f0f9ff`), Clinical Cyan (`#0284c7`), Navy (`#0f172a`).
    * **Geometria:** Grid cirúrgico, precisão técnica, atmosfera estéril e de alta autoridade científica.
-3. **`templates/industrial`:**
-   * **Nichos:** Climatização (HVAC), Segurança Eletrônica, Energia Solar, Marcenaria, Mecânica.
-   * **Cores:** Dark Armor (`#060a12`), Steel Blue (`#0e204b`), Aço e Dourado.
-   * **Geometria:** Cartões densos, alto contraste, atmosfera robusta de engenharia e garantia física.
+3. **`templates/industrial` (Subzero Bespoke Architecture):**
+   * **Nichos:** Climatização (HVAC), Segurança Eletrônica, Energia Solar, Marcenaria, Mecânica, Engenharia e Atacado B2B.
+   * **Cores:** Dark Obsidian (`#060d1d`), Electric Blue (`#2563eb`), Neon Cyan (`#38bdf8`), Dark Slate e Gold.
+   * **Arquitetura:** Ritmo alternado de seções escuras e claras (`section dark` e `section light`), vitrine técnica com fotografia real de obras/soluções, marquee contínuo de especificações e marcas, metodologia passo a passo, avaliações do Google Maps e contato com mapa responsivo.
 
 ### 4.2 Regras Frontend Invioláveis
 * **Mobile-First Real:** Testado entre 360px e 430px sem transbordamento horizontal (`overflow-x: hidden`).
@@ -109,7 +109,7 @@ Antes de auditar qualquer dado, o sistema deve verificar se o nome ou domínio p
   * Threshold: `0.84 * window.innerHeight` com `rootMargin: '0px 0px -65px 0px'`.
   * Pausa perceptiva: `transition-delay: 0.16s`.
   * Transição fluida: `0.85s cubic-bezier(0.22, 1, 0.36, 1)`.
-* **Marquee de Avaliações Contínuo:** Trilha infinita a 15s com pausa ao passar o mouse ou tocar.
+* **Marquee Contínuo:** Trilha infinita balanceada com duplicação via JS e pausa automática no hover/toque.
 * **Assinatura Oficial do Gabriel:**
   `Desenvolvido por Gabriel Azevedo • (16) 99204-8856`
   Link WhatsApp contextual: `https://wa.me/5516992048856?text=...`
@@ -125,6 +125,14 @@ Antes de auditar qualquer dado, o sistema deve verificar se o nome ou domínio p
 * **Tom de Voz da Copy nos Sites:**
   * Usar linguagem natural e direta ("WhatsApp", "Falar no WhatsApp", "Atendimento WhatsApp", "Falar com nossa equipe").
   * NUNCA utilizar termos artificiais ou excessivamente repetitivos (como insistir em "falar no balcão", "chamar balcão", etc.). O foco é a facilidade de comunicação.
+
+### 4.4 Regra Oficial de Favicons (Geração Dinâmica Sob Demanda)
+* **Zero Favicons Estáticos em Templates:** Nenhuma pasta de template (`templates/industrial`, `templates/clinical`, `templates/care`, etc.) deve conter arquivo `favicon.svg`.
+* **Criação Dinâmica no Momento do Protótipo:** O favicon deve ser gerado exclusivamente em tempo de execução via `generateFaviconSvg()` dentro de `src/generator.js`.
+* **Padrão Gráfico de Alto Nível:**
+  * ViewBox: `0 0 64 64`, cantos arredondados modernos (`rx="15"`), borda sutil com opacidade (`stroke-width="1.5"`).
+  * Fundo com gradiente temático de alto contraste (Dark Obsidian, Deep Navy, Clinical Cyan, Emerald Care).
+  * Símbolo ou monograma vetorial de alta precisão correspondente ao nicho da empresa (Escudo e raio para segurança, onda/floco para climatização, pata/cruz para veterinária, dente/brilho para odonto, ou inicial geométrica em negrito com acento luminoso para B2B e outros nichos).
 
 ---
 

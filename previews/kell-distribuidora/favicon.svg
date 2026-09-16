@@ -1,13 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <rect width="100" height="100" rx="10" fill="#fff"/>
-  <g fill="#13c8e3">
-    <path d="M45 0 68 13v29L45 29z"/>
-    <path d="m75 16 21-11-3 30-20 12z"/>
-    <path d="M99 29v25L76 67V42z"/>
-    <path d="m75 70 22-13v23L74 94z"/>
-    <path d="M45 73 68 86v14L43 86 21 73z"/>
-    <path d="M2 55 24 42v26L2 81z"/>
-  </g>
-  <path d="m28 43 18-11 21 12v23L48 78 28 66z" fill="#13c8e3"/>
-  <path d="m48 42 12 7v13L48 69l-12-7V49z" fill="#fff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="whlBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070f22"/>
+      <stop offset="100%" stop-color="#0e1d3d"/>
+    </linearGradient>
+    <linearGradient id="whlCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="whlGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#fbbf24"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#whlBg)"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="13.5" fill="none" stroke="rgba(6, 182, 212, 0.35)" stroke-width="1.5"/>
+  
+  <!-- Geometric Bold Monogram Initial -->
+  <text x="32" y="44" font-family="'Montserrat', 'Arial Black', sans-serif" font-size="34" font-weight="900" text-anchor="middle" fill="url(#whlCyan)">K</text>
+  
+  <!-- Tech Accent Indicator -->
+  <circle cx="48" cy="18" r="4" fill="url(#whlGold)"/>
+  <circle cx="48" cy="18" r="7" fill="none" stroke="rgba(245, 158, 11, 0.4)" stroke-width="1.5"/>
 </svg>

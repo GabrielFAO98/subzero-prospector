@@ -26,3 +26,4 @@ for (const c of companies) {
   fs.writeFileSync(file, html, 'utf8');
   console.log(`Successfully updated links for ${c.name}`);
 }
+

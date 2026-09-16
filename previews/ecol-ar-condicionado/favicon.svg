@@ -1,28 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
   <defs>
-    <linearGradient id="ecolBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#07152b"/>
-      <stop offset="100%" stop-color="#0d2448"/>
+    <linearGradient id="climBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#081329"/>
+      <stop offset="100%" stop-color="#102142"/>
     </linearGradient>
-    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00e5ff"/>
-      <stop offset="100%" stop-color="#00a3ff"/>
+    <linearGradient id="climCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
     </linearGradient>
   </defs>
-  <!-- Background Badge -->
-  <rect width="64" height="64" rx="14" fill="url(#ecolBg)"/>
-  <rect x="1" y="1" width="62" height="62" rx="13" fill="none" stroke="rgba(0, 229, 255, 0.35)" stroke-width="1.5"/>
-
-  <!-- 4-Grid Cooling Icon (from authentic Ecol identity) -->
-  <rect x="12" y="13" width="7" height="7" rx="1.5" fill="url(#cyanGrad)"/>
-  <rect x="21" y="13" width="7" height="7" rx="1.5" fill="url(#cyanGrad)"/>
-  <rect x="12" y="22" width="7" height="7" rx="1.5" fill="url(#cyanGrad)"/>
-  <rect x="21" y="22" width="7" height="7" rx="1.5" fill="url(#cyanGrad)"/>
-
-  <!-- Stylized Bold 'Ecol' E -->
-  <path d="M33 13h19c1.66 0 3 1.34 3 3v2c0 1.66-1.34 3-3 3H40v5h9c1.66 0 3 1.34 3 3v1c0 1.66-1.34 3-3 3h-9v6h13c1.66 0 3 1.34 3 3v2c0 1.66-1.34 3-3 3H33c-2.2 0-4-1.8-4-4V17c0-2.2 1.8-4 4-4z" fill="#ffffff"/>
-
-  <!-- Cooling airflow wave accent -->
-  <path d="M12 43c4-2 9-2 13 0s9 2 13 0" fill="none" stroke="url(#cyanGrad)" stroke-width="2.5" stroke-linecap="round"/>
-  <path d="M12 49c4-2 9-2 13 0s9 2 13 0" fill="none" stroke="rgba(0, 229, 255, 0.55)" stroke-width="2" stroke-linecap="round"/>
+  <rect width="64" height="64" rx="15" fill="url(#climBg)"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="13.5" fill="none" stroke="rgba(56, 189, 248, 0.35)" stroke-width="1.5"/>
+  
+  <!-- Monogram with Cool Wind Swoosh -->
+  <text x="32" y="44" font-family="'Montserrat', 'Arial Black', sans-serif" font-size="34" font-weight="900" text-anchor="middle" fill="#ffffff">E</text>
+  <path d="M16 50 Q 32 46 48 50" stroke="url(#climCyan)" stroke-width="3" stroke-linecap="round" fill="none"/>
 </svg>

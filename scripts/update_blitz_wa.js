@@ -60,3 +60,4 @@ html = html.replace(
 
 fs.writeFileSync(file, html, 'utf8');
 console.log('Blitz WhatsApp links updated successfully!');
+

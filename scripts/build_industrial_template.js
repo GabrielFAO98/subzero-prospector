@@ -1,4 +1,9 @@
-/* ==========================================================================
+const fs = require('fs');
+const path = require('path');
+
+const targetDir = path.resolve(__dirname, '../templates/industrial');
+
+const styleCss = `/* ==========================================================================
    Subzero Engine — Bespoke Architecture Template (Industrial & High-Tech)
    Identidade: Alta Precisão Técnica, Engenharia, Credibilidade e Conversão
    Paleta: Dark Obsidian (#060d1d), Electric Blue (#2563eb), Cyan Glow (#38bdf8)
@@ -1140,3 +1145,520 @@ h1, h2, h3, h4 {
     gap: 0.75rem;
   }
 }
+`;
+
+const mainJs = `/**
+ * Subzero Engine — JavaScript Modular
+ * Padrões Técnicos: Headroom Navbar, Granular Scroll Reveal, Infinite Tracks, Mobile Menu
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Smart Headroom Navbar (Hide on scroll down, show on scroll up)
+  const header = document.querySelector('.header');
+  let lastScrollY = window.scrollY;
+  const scrollThreshold = 10;
+
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    
+    if (Math.abs(currentScrollY - lastScrollY) < scrollThreshold) return;
+
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      header.classList.add('headroom--unpinned');
+      header.classList.remove('headroom--pinned');
+    } else if (currentScrollY < lastScrollY) {
+      header.classList.add('headroom--pinned');
+      header.classList.remove('headroom--unpinned');
+    }
+
+    lastScrollY = currentScrollY;
+  }, { passive: true });
+
+  // 2. Mobile Menu Toggle
+  const menuToggle = document.querySelector('.menu-toggle');
+  if (menuToggle && header) {
+    menuToggle.addEventListener('click', () => {
+      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !isExpanded);
+      header.classList.toggle('menu-open');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        header.classList.remove('menu-open');
+      });
+    });
+  }
+
+  // 3. Scroll Reveals Granulares por Item Individual (Regra Subzero)
+  const revealElements = document.querySelectorAll('.stagger, .reveal-left, .reveal-right');
+  
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: '0px 0px -65px 0px',
+      threshold: 0.15
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  } else {
+    revealElements.forEach(el => el.classList.add('visible'));
+  }
+
+  // 4. Duplicação Automática para Loop Perfeito nos Marquees
+  const duplicateTrack = (selector) => {
+    const track = document.querySelector(selector);
+    if (!track) return;
+    const content = track.innerHTML;
+    track.innerHTML = content + content;
+  };
+
+  duplicateTrack('.specs-marquee-track');
+  duplicateTrack('.reviews-marquee-track');
+});
+`;
+
+const indexHtml = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO & Metadados -->
+  <title>{{NOME_DA_EMPRESA}} | {{SLOGAN_OU_PROMESSA}}</title>
+  <meta name="description" content="{{DESCRICAO_SEO_150_CARACTERES}}" />
+  <meta name="keywords" content="{{PALAVRAS_CHAVE_SEPARADAS_POR_VIRGULA}}" />
+  <link rel="canonical" href="https://{{SEU_DOMINIO}}/" />
+  
+  <!-- Favicon gerado sob demanda pelo sistema -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <meta name="theme-color" content="#060d1d" />
+
+  <!-- Tipografia: Montserrat (Títulos) + Inter (Corpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+<body>
+  <!-- Biblioteca de Ícones SVG -->
+  <svg style="display: none;" aria-hidden="true">
+    <symbol id="icon-brand" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+    </symbol>
+    <symbol id="icon-bolt" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66c.19-.34.05-.08.07-.12C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.96 17.55 11 21 11 21z"/>
+    </symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+    </symbol>
+    <symbol id="icon-phone" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24c1.12.37 2.33.57 3.57.57c.55 0 1 .45 1 1V20c0 .55-.45 1-1 1c-9.39 0-17-7.61-17-17c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+    </symbol>
+    <symbol id="icon-map-pin" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+    </symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+    </symbol>
+    <symbol id="wa" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91c0-2.65-1.03-5.14-2.9-7.01zm-7.01 15.24c-1.48 0-2.93-.4-4.2-1.15l-.3-.18l-3.12.82l.83-3.04l-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24c2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81c-.23-.08-.39-.12-.56.12c-.17.25-.64.81-.79.98c-.14.17-.29.19-.54.06c-.25-.12-1.05-.39-2-1.23c-.74-.66-1.23-1.47-1.38-1.72c-.14-.25-.02-.38.11-.5c.11-.11.25-.29.37-.43c.12-.14.17-.25.25-.41c.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31c-.23.25-.87.85-.87 2.08s.89 2.42 1.01 2.59c.12.17 1.75 2.67 4.24 3.74c.59.26 1.05.41 1.41.53c.6.19 1.14.16 1.57.1c.48-.07 1.47-.6 1.68-1.18c.21-.58.21-1.07.14-1.18c-.06-.11-.22-.17-.47-.29z"/>
+    </symbol>
+  </svg>
+
+  <!-- Cabeçalho / Navbar Inteligente (Headroom) -->
+  <header class="header">
+    <div class="header-container">
+      <a href="#inicio" class="brand-logo" aria-label="{{NOME_DA_EMPRESA}} Início">
+        <div class="brand-icon">
+          <svg><use href="#icon-brand"/></svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">{{NOME_DA_EMPRESA}}</span>
+          <span class="brand-tag">Atendimento Oficial</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#diferenciais">Diferenciais</a></li>
+        <li><a href="#obras">Serviços & Obras</a></li>
+        <li><a href="#metodologia">Como Funciona</a></li>
+        <li><a href="#avaliacoes">Depoimentos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+
+      <div class="nav-cta-group">
+        <a href="tel:{{TELEFONE_DIGITOS}}" class="nav-phone" title="Ligar para {{NOME_DA_EMPRESA}}">
+          <svg width="16" height="16"><use href="#icon-phone"/></svg>
+          <span>{{TELEFONE_FORMATADO}}</span>
+        </a>
+        <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="btn-header-whatsapp">
+          <svg width="16" height="16"><use href="#wa"/></svg>
+          <span>Atendimento WhatsApp</span>
+        </a>
+      </div>
+
+      <button class="menu-toggle" aria-label="Abrir Menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section (Obsidian Dark) -->
+  <section class="hero" id="inicio">
+    <div class="hero-overlay-grid"></div>
+    <div class="hero-container">
+      <div class="hero-badge-trust stagger">
+        <span class="stars">★★★★★</span>
+        <span>Referência em Qualidade • Avaliações Reais • {{CIDADE_UF}}</span>
+      </div>
+
+      <h1 class="stagger">
+        {{TITULO_PRINCIPAL}}
+      </h1>
+
+      <p class="hero-subtitle stagger">
+        {{TEXTO_DE_APRESENTACAO_DA_EMPRESA_FOCO_EM_CONFIANCA_E_QUALIDADE}}
+      </p>
+
+      <div class="hero-actions stagger">
+        <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="btn-primary-hero">
+          <svg width="20" height="20"><use href="#wa"/></svg>
+          <span>Conversar no WhatsApp</span>
+        </a>
+        <a href="#obras" class="btn-secondary-hero">
+          <span>Conhecer Soluções</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </a>
+      </div>
+
+      <div class="hero-highlights-grid">
+        <div class="hero-highlight-card stagger">
+          <div class="highlight-icon-box">
+            <svg width="22" height="22"><use href="#icon-brand"/></svg>
+          </div>
+          <h3 class="highlight-title">{{NOME_SERVICO_1}}</h3>
+          <p class="highlight-desc">{{DESCRICAO_SERVICO_1}}</p>
+        </div>
+
+        <div class="hero-highlight-card stagger">
+          <div class="highlight-icon-box">
+            <svg width="22" height="22"><use href="#icon-bolt"/></svg>
+          </div>
+          <h3 class="highlight-title">{{NOME_SERVICO_2}}</h3>
+          <p class="highlight-desc">{{DESCRICAO_SERVICO_2}}</p>
+        </div>
+
+        <div class="hero-highlight-card stagger">
+          <div class="highlight-icon-box">
+            <svg width="22" height="22"><use href="#icon-check"/></svg>
+          </div>
+          <h3 class="highlight-title">{{NOME_SERVICO_3}}</h3>
+          <p class="highlight-desc">{{DESCRICAO_SERVICO_3}}</p>
+        </div>
+
+        <div class="hero-highlight-card stagger">
+          <div class="highlight-icon-box">
+            <svg width="22" height="22"><use href="#icon-phone"/></svg>
+          </div>
+          <h3 class="highlight-title">{{NOME_SERVICO_4}}</h3>
+          <p class="highlight-desc">{{DESCRICAO_SERVICO_4}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Continuous Specifications Marquee (Subzero Standard 24s Loop) -->
+  <section class="specs-marquee-section" aria-label="Destaques e Qualidade">
+    <div class="specs-marquee-track">
+      <div class="spec-pill"><span class="dot"></span>ATENDIMENTO ESPECIALIZADO</div>
+      <div class="spec-pill"><span class="dot"></span>EQUIPE TÉCNICA CAPACITADA</div>
+      <div class="spec-pill"><span class="dot"></span>MATERIAIS DE PRIMEIRA LINHA</div>
+      <div class="spec-pill"><span class="dot"></span>PONTUALIDADE E COMPROMISSO</div>
+      <div class="spec-pill"><span class="dot"></span>GARANTIA EM TODOS OS SERVIÇOS</div>
+      <div class="spec-pill"><span class="dot"></span>TRANSPARÊNCIA TOTAL NO ORÇAMENTO</div>
+      <div class="spec-pill"><span class="dot"></span>SUPORTE ÁGIL NO WHATSAPP</div>
+    </div>
+  </section>
+
+  <!-- Section Light: Diferenciais Técnicos -->
+  <section class="section light" id="diferenciais">
+    <div class="section-container">
+      <div class="section-header stagger">
+        <span class="section-tag">Por que Nos Escolher</span>
+        <h2>{{TITULO_DIFERENCIAIS_LINHA_1}}<br/><span>{{TITULO_DIFERENCIAIS_LINHA_2}}</span></h2>
+        <p class="section-lead">{{SUBTEXTO_DE_AUTORIDADE_E_CONFIANCA}}</p>
+      </div>
+
+      <div class="diferenciais-grid">
+        <div class="diferencial-card stagger">
+          <div class="dif-icon-circle">
+            <svg><use href="#icon-brand"/></svg>
+          </div>
+          <h3>{{TITULO_DIFERENCIAL_1}}</h3>
+          <p>{{DESCRICAO_DIFERENCIAL_1}}</p>
+        </div>
+
+        <div class="diferencial-card stagger">
+          <div class="dif-icon-circle">
+            <svg><use href="#icon-bolt"/></svg>
+          </div>
+          <h3>{{TITULO_DIFERENCIAL_2}}</h3>
+          <p>{{DESCRICAO_DIFERENCIAL_2}}</p>
+        </div>
+
+        <div class="diferencial-card stagger">
+          <div class="dif-icon-circle">
+            <svg><use href="#icon-check"/></svg>
+          </div>
+          <h3>{{TITULO_DIFERENCIAL_3}}</h3>
+          <p>{{DESCRICAO_DIFERENCIAL_3}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Dark: Vitrine Técnica / Obras Entregues -->
+  <section class="section dark" id="obras">
+    <div class="section-container">
+      <div class="section-header stagger">
+        <span class="section-tag">Soluções Entregues</span>
+        <h2>Fotografia Real de Soluções Executadas<br/><span>Equipamentos certificados e acabamento de alto padrão.</span></h2>
+        <p class="section-lead">Confira a qualidade do atendimento e o padrão técnico que entregamos em {{CIDADE_UF}}:</p>
+      </div>
+
+      <div class="obras-grid">
+        <!-- Card 1 -->
+        <div class="obra-card stagger">
+          <div class="obra-img-wrapper">
+            <img src="./img/hero.jpg" alt="{{NOME_SERVICO_1}}" loading="lazy" />
+            <span class="obra-badge">Especialidade</span>
+          </div>
+          <div class="obra-content">
+            <h3>{{NOME_SERVICO_1}}</h3>
+            <p>{{DESCRICAO_SERVICO_1}}</p>
+            <ul class="obra-specs-list">
+              <li><svg><use href="#icon-check"/></svg> Execução com materiais normatizados e alta durabilidade</li>
+              <li><svg><use href="#icon-check"/></svg> Profissionais qualificados e atendimento cuidadoso</li>
+              <li><svg><use href="#icon-check"/></svg> Garantia formal em cada serviço realizado</li>
+            </ul>
+            <div class="obra-footer">
+              <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="btn-obra-cta">
+                <span>Conversar no WhatsApp</span>
+                <svg width="16" height="16"><use href="#wa"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="obra-card stagger">
+          <div class="obra-img-wrapper">
+            <img src="./img/workshop.jpg" alt="{{NOME_SERVICO_2}}" loading="lazy" />
+            <span class="obra-badge">Qualidade Garantida</span>
+          </div>
+          <div class="obra-content">
+            <h3>{{NOME_SERVICO_2}}</h3>
+            <p>{{DESCRICAO_SERVICO_2}}</p>
+            <ul class="obra-specs-list">
+              <li><svg><use href="#icon-check"/></svg> Diagnóstico detalhado e orçamento sem surpresas</li>
+              <li><svg><use href="#icon-check"/></svg> Agilidade no prazo e respeito à sua rotina</li>
+              <li><svg><use href="#icon-check"/></svg> Suporte direto pós-atendimento</li>
+            </ul>
+            <div class="obra-footer">
+              <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="btn-obra-cta">
+                <span>Conversar no WhatsApp</span>
+                <svg width="16" height="16"><use href="#wa"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Light: Metodologia Passo a Passo -->
+  <section class="section light" id="metodologia">
+    <div class="section-container">
+      <div class="section-header stagger">
+        <span class="section-tag">Passo a Passo</span>
+        <h2>Como Funciona Nosso Atendimento<br/><span>Simplicidade, agilidade e clareza do início ao fim.</span></h2>
+        <p class="section-lead">Da primeira conversa no WhatsApp até a conclusão com satisfação garantida.</p>
+      </div>
+
+      <div class="metodologia-grid">
+        <div class="metodologia-card stagger">
+          <div class="step-number">1</div>
+          <h3>Contato & Entendimento Rápido</h3>
+          <p>Você nos envia sua necessidade pelo WhatsApp. Respondemos prontamente para entender os detalhes do projeto ou serviço.</p>
+        </div>
+
+        <div class="metodologia-card stagger">
+          <div class="step-number">2</div>
+          <h3>Orçamento Transparente e Sem Surpresas</h3>
+          <p>Apresentamos a proposta clara, com prazos realistas e materiais adequados, alinhando exatamente cada etapa antes da execução.</p>
+        </div>
+
+        <div class="metodologia-card stagger">
+          <div class="step-number">3</div>
+          <h3>Execução com Limpeza e Garantia</h3>
+          <p>Nossa equipe realiza o trabalho com extremo capricho técnico, testa o resultado e entrega o serviço com garantia e nota.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Dark: Avaliações do Google Maps -->
+  <section class="section dark" id="avaliacoes">
+    <div class="section-container">
+      <div class="section-header stagger">
+        <span class="section-tag">Avaliações Reais</span>
+        <h2>O que Nossos Clientes Dizem<br/><span>Confiança comprovada por quem já contratou.</span></h2>
+        <p class="section-lead">Depoimentos reais de clientes satisfeitos com o nosso padrão de qualidade em {{CIDADE_UF}}.</p>
+      </div>
+
+      <div class="reviews-container">
+        <div class="reviews-marquee-track">
+          <div class="review-box">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">"{{DEPOIMENTO_DO_CLIENTE_1}}"</p>
+            <div class="review-author">
+              <span class="author-name">{{NOME_DO_CLIENTE_1}}</span>
+              <span class="review-verified"><svg width="14" height="14"><use href="#icon-check"/></svg> Google Maps</span>
+            </div>
+          </div>
+
+          <div class="review-box">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">"{{DEPOIMENTO_DO_CLIENTE_2}}"</p>
+            <div class="review-author">
+              <span class="author-name">{{NOME_DO_CLIENTE_2}}</span>
+              <span class="review-verified"><svg width="14" height="14"><use href="#icon-check"/></svg> Google Maps</span>
+            </div>
+          </div>
+
+          <div class="review-box">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">"{{DEPOIMENTO_DO_CLIENTE_3}}"</p>
+            <div class="review-author">
+              <span class="author-name">{{NOME_DO_CLIENTE_3}}</span>
+              <span class="review-verified"><svg width="14" height="14"><use href="#icon-check"/></svg> Google Maps</span>
+            </div>
+          </div>
+
+          <div class="review-box">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">"{{DEPOIMENTO_DO_CLIENTE_4}}"</p>
+            <div class="review-author">
+              <span class="author-name">{{NOME_DO_CLIENTE_4}}</span>
+              <span class="review-verified"><svg width="14" height="14"><use href="#icon-check"/></svg> Google Maps</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Light: Contato & Localização -->
+  <section class="section light" id="contato">
+    <div class="section-container">
+      <div class="section-header stagger">
+        <span class="section-tag">Atendimento Local</span>
+        <h2>Fale com a Nossa Equipe Hoje<br/><span>Tire suas dúvidas ou solicite seu orçamento direto no WhatsApp.</span></h2>
+        <p class="section-lead">{{TEXTO_CHAMADA_CONTATO}}</p>
+      </div>
+
+      <div class="contact-card-modern stagger">
+        <div class="contact-info-side">
+          <h3>Estamos Prontos para te Atender</h3>
+          <p>Atendimento comercial e técnico em {{CIDADE_UF}} e região.</p>
+
+          <div class="contact-items-list">
+            <div class="contact-detail-item">
+              <div class="contact-icon-box">
+                <svg width="20" height="20"><use href="#icon-map-pin"/></svg>
+              </div>
+              <div class="contact-detail-text">
+                <strong>Localização</strong>
+                <span>{{ENDERECO_COMPLETO_DO_GOOGLE_MAPS}}</span>
+              </div>
+            </div>
+
+            <div class="contact-detail-item">
+              <div class="contact-icon-box">
+                <svg width="20" height="20"><use href="#icon-phone"/></svg>
+              </div>
+              <div class="contact-detail-text">
+                <strong>WhatsApp & Telefone</strong>
+                <span><a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer">{{WHATSAPP_FORMATADO}}</a></span>
+              </div>
+            </div>
+
+            <div class="contact-detail-item">
+              <div class="contact-icon-box">
+                <svg width="20" height="20"><use href="#icon-clock"/></svg>
+              </div>
+              <div class="contact-detail-text">
+                <strong>Horário de Funcionamento</strong>
+                <span>{{HORARIO_COMPLETO}}</span>
+              </div>
+            </div>
+          </div>
+
+          <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="btn-contact-whatsapp">
+            <svg width="22" height="22"><use href="#wa"/></svg>
+            <span>Conversar no WhatsApp Agora</span>
+          </a>
+        </div>
+
+        <div class="contact-map-side">
+          <iframe 
+            src="https://maps.google.com/maps?q={{ENDERECO_URL_ENCODED}}&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+            title="Localização {{NOME_DA_EMPRESA}}" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rodapé & Assinatura Gabriel Azevedo (Regra de Ouro) -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        © 2026 {{NOME_DA_EMPRESA}}. Todos os direitos reservados.
+      </div>
+      <div class="footer-signature">
+        Desenvolvido por <a href="https://wa.me/5516992048856?text=Ol%C3%A1%20Gabriel!%20Vi%20o%20site%20da%20{{NOME_DA_EMPRESA}}%20e%20gostaria%20de%20um%20projeto." target="_blank" rel="noopener noreferrer">Gabriel Azevedo</a> • (16) 99204-8856
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botão Flutuante de WhatsApp -->
+  <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Falar pelo WhatsApp">
+    <svg><use href="#wa"/></svg>
+  </a>
+
+  <script src="./src/main.js"></script>
+</body>
+</html>
+`;
+
+fs.writeFileSync(path.join(targetDir, 'src/style.css'), styleCss, 'utf8');
+fs.writeFileSync(path.join(targetDir, 'src/main.js'), mainJs, 'utf8');
+fs.writeFileSync(path.join(targetDir, 'index.html'), indexHtml, 'utf8');
+
+console.log('Subzero Bespoke template built successfully in templates/industrial!');
