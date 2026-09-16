@@ -33,15 +33,16 @@ app.get('/api/categories', (req, res) => {
 
 // Rota: Disparar mineração de leads em tempo real
 app.post('/api/prospect', async (req, res) => {
-  const { niche, city = 'Franca SP', limit = 15 } = req.body;
+  const { niche, city = 'Franca SP', limit = 5 } = req.body;
   if (!niche) {
     return res.status(400).json({ error: 'Nicho é obrigatório.' });
   }
 
-  console.log(`\n🌐 [Dashboard API] Requisição de prospecção: "${niche}" em "${city}" (Limite: ${limit})`);
+  const safeLimit = Math.min(Math.max(1, parseInt(limit, 10) || 5), 5);
+  console.log(`\n🌐 [Dashboard API] Requisição de prospecção: "${niche}" em "${city}" (Limite Estrito: ${safeLimit})`);
   
   try {
-    const rawLeads = await searchLeadsGoogleMaps(niche, city, parseInt(limit, 10));
+    const rawLeads = await searchLeadsGoogleMaps(niche, city, safeLimit);
     res.json({
       success: true,
       message: `${rawLeads.length} empresas mineradas e catalogadas.`,

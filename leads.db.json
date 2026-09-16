@@ -1,8 +1,314 @@
 [
   {
+    "id": "lead_1789574303434_2jkbr8",
+    "createdAt": "2026-09-16T15:58:23.434Z",
+    "updatedAt": "2026-09-16T15:58:23.434Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "ontech-energia-solar",
+    "nome": "Ontech Energia Solar",
+    "nicho": "energia solar",
+    "cidade": "Franca SP",
+    "siteOriginal": null,
+    "siteStatus": "nenhum",
+    "siteHealthReason": "Nenhum site cadastrado no Google Maps",
+    "avaliacao": "4,7 estrelas",
+    "endereco": "R. José Marquês García, 243",
+    "mapsUrl": "https://www.google.com/maps/place/Ontech+Energia+Solar/data=!4m7!3m6!1s0x94b0a7570c1a4c55:0xc8fe44aea466627d!8m2!3d-20.528976!4d-47.39847!16s%2Fg%2F11p5pxcth7!19sChIJVUwaDFensJQRfWJmpK5E_sg?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 99953-6000"
+    ],
+    "emails": [],
+    "instagram": "https://www.instagram.com/ontechenergiasolar/",
+    "facebook": null,
+    "whatsappPrincipal": "5516999536000",
+    "whatsappFormatado": "(16) 99953-6000",
+    "status": "oportunidade_quente",
+    "motivoDescarte": null,
+    "analiseIA": "🔥 Oportunidade de Ouro em Franca SP: Empresa com 4,7 estrelas, porém SEM NENHUM SITE OFICIAL próprio cadastrado no Google. Perde todo o tráfego orgânico diário!",
+    "categoria": {
+      "slug": "solar",
+      "nome": "Energia Solar",
+      "icone": "☀️",
+      "cor": "#f59e0b",
+      "badgeClass": "cat-solar"
+    },
+    "siteData": {
+      "title": null,
+      "metaDescription": null,
+      "headings": [],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": []
+    },
+    "dadosEnriquecidos": {
+      "instagram": "https://www.instagram.com/ontechenergiasolar/",
+      "facebook": null,
+      "whatsappPrincipal": "5516999536000",
+      "whatsappFormatado": "(16) 99953-6000",
+      "website": null,
+      "bioInstagram": "ontechenergiasolar\n1,450 followers\n871 following\nOntech Energia Solar\nTodos os dias transformando o raio do sol em energia elétrica de qualidade! 🌞 ⚡️💡\n📍 Franca / SP\n📍 São Joaquim da Barra... \nmore\nontechenergia.com.br\nClientes\nCondições\nIndicações\nEventos",
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": []
+    }
+  },
+  {
+    "id": "lead_1789574298661_x12wjh",
+    "createdAt": "2026-09-16T15:58:18.661Z",
+    "updatedAt": "2026-09-16T15:58:18.661Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "luxsol-energia-solar",
+    "nome": "Luxsol - Energia Solar",
+    "nicho": "energia solar",
+    "cidade": "Franca SP",
+    "siteOriginal": "http://www.facebook.com/luxsolenergiasolar",
+    "siteStatus": "apenas_social",
+    "siteHealthReason": "Utiliza link de Facebook no lugar de site institucional próprio",
+    "avaliacao": "4,3 estrelas",
+    "endereco": "Av. Eliza Verzola Gosuen, 3019 - Prol",
+    "mapsUrl": "https://www.google.com/maps/place/Luxsol+-+Energia+Solar/data=!4m7!3m6!1s0x94b0a9a89a5c6e4b:0xe67f449896ae8d4c!8m2!3d-20.5437496!4d-47.379925!16s%2Fg%2F11fmp_m6vj!19sChIJS25cmqipsJQRTI2ulphEf-Y?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 3939-2200"
+    ],
+    "emails": [],
+    "instagram": null,
+    "facebook": "http://www.facebook.com/luxsolenergiasolar",
+    "whatsappPrincipal": "551639392200",
+    "whatsappFormatado": "(16) 3939-2200",
+    "status": "oportunidade_quente",
+    "motivoDescarte": null,
+    "analiseIA": "📱 Oportunidade Quente: Utiliza apenas rede social no Google. Não possui site próprio para ranquear organicamente nem reter visitantes profissionais.",
+    "categoria": {
+      "slug": "solar",
+      "nome": "Energia Solar",
+      "icone": "☀️",
+      "cor": "#f59e0b",
+      "badgeClass": "cat-solar"
+    },
+    "siteData": {
+      "title": null,
+      "metaDescription": null,
+      "headings": [],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": []
+    },
+    "dadosEnriquecidos": {
+      "instagram": null,
+      "facebook": "http://www.facebook.com/luxsolenergiasolar",
+      "whatsappPrincipal": "551639392200",
+      "whatsappFormatado": "(16) 3939-2200",
+      "website": "http://www.facebook.com/luxsolenergiasolar",
+      "bioInstagram": null,
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": []
+    }
+  },
+  {
+    "id": "lead_1789574296444_eu9z6f",
+    "createdAt": "2026-09-16T15:58:16.444Z",
+    "updatedAt": "2026-09-16T15:58:16.444Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "viasol-energia-solar-aquecimento-solar-sistemas-fotovoltaicos-piscinas",
+    "nome": "VIASOL Energia Solar - Aquecimento Solar - Sistemas Fotovoltaicos - Piscinas",
+    "nicho": "energia solar",
+    "cidade": "Franca SP",
+    "siteOriginal": "http://www.viasolenergiasolar.com.br",
+    "siteStatus": "online",
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "4,4 estrelas",
+    "endereco": "Av. Prof. Hilário Giovanella, 160",
+    "mapsUrl": "https://www.google.com/maps/place/VIASOL+Energia+Solar+-+Aquecimento+Solar+-+Sistemas+Fotovoltaicos+-+Piscinas/data=!4m7!3m6!1s0x94b0a7eed34cb499:0x9a716c259638a756!8m2!3d-20.5453116!4d-47.4344701!16s%2Fg%2F11c3vnq0hh!19sChIJmbRM0-6nsJQRVqc4liVscZo?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 99333-1401",
+      "(16) 3703-3000"
+    ],
+    "emails": [
+      "loja2@viasolenergiasolar.com.br"
+    ],
+    "instagram": "https://www.instagram.com/viasolenergiasolar/",
+    "facebook": "https://www.facebook.com/ViaSolEnergiaSolar/",
+    "whatsappPrincipal": "5516993331401",
+    "whatsappFormatado": "(16) 99333-1401",
+    "status": "site_ativo",
+    "motivoDescarte": null,
+    "analiseIA": "🌐 Site Ativo Detectado: ⚠️ Site sem SSL (inseguro HTTP). Empresa já possui presença web (http://www.viasolenergiasolar.com.br). Candidata a redesign, melhoria de SEO local ou otimização de velocidade com template Subzero.",
+    "categoria": {
+      "slug": "solar",
+      "nome": "Energia Solar",
+      "icone": "☀️",
+      "cor": "#f59e0b",
+      "badgeClass": "cat-solar"
+    },
+    "siteData": {
+      "title": "Via Sol Energia Solar",
+      "metaDescription": null,
+      "headings": [
+        "RESERVATÓRIO",
+        "RESERVATÓRIO TÉRMICO 200 LTS BP AÇO 304",
+        "RESERVATÓRIO TÉRMICO 300 LTS BP AÇO 304",
+        "RESERVATÓRIO TÉRMICO 400 LTS BP AÇO 304",
+        "RESERVATÓRIO TÉRMICO 500 LTS BP AÇO 304",
+        "RESERVATÓRIO TÉRMICO 600 LTS BP AÇO 304",
+        "RESERVATÓRIO TÉRMICO 800 LTS BP AÇO 304",
+        "CONEXÕES"
+      ],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": []
+    },
+    "dadosEnriquecidos": {
+      "instagram": "https://www.instagram.com/viasolenergiasolar/",
+      "facebook": "https://www.facebook.com/ViaSolEnergiaSolar/",
+      "whatsappPrincipal": "5516993331401",
+      "whatsappFormatado": "(16) 99333-1401",
+      "website": "http://www.viasolenergiasolar.com.br",
+      "bioInstagram": null,
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": []
+    }
+  },
+  {
+    "id": "lead_1789574293319_njqrjo",
+    "createdAt": "2026-09-16T15:58:13.319Z",
+    "updatedAt": "2026-09-16T15:58:13.319Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "flix-solar-investimentos-sustentaveis",
+    "nome": "Flix Solar Investimentos Sustentáveis",
+    "nicho": "energia solar",
+    "cidade": "Franca SP",
+    "siteOriginal": "https://www.flixsolar.com.br",
+    "siteStatus": "online",
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "5,0 estrelas",
+    "endereco": "R. Augusto Marques, 1747 - 1 Andar sala 06",
+    "mapsUrl": "https://www.google.com/maps/place/Flix+Solar+Investimentos+Sustent%C3%A1veis/data=!4m7!3m6!1s0x94b0a788014c9c59:0x4dbfcb5adc202a60!8m2!3d-20.5374409!4d-47.4048001!16s%2Fg%2F11q8t3zyqz!19sChIJWZxMAYinsJQRYCog3FrLv00?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 98860-1000",
+      "(16) 4071-7919"
+    ],
+    "emails": [],
+    "instagram": "https://www.instagram.com/flixsolar/",
+    "facebook": "https://www.facebook.com/flixsolar/",
+    "whatsappPrincipal": "5516988601000",
+    "whatsappFormatado": "(16) 98860-1000",
+    "status": "descartado",
+    "motivoDescarte": "Grande Rede / Franquia (Múltiplos DDDs: 16, 78, 18, 17, 89, 79, 76, 13, 43)",
+    "analiseIA": "🏢 Identificada rede ou portal multi-regional com números de vários DDDs (16, 78, 18, 17, 89, 79, 76, 13, 43). Incompatível com prospecção e desenvolvimento de site local Subzero.",
+    "categoria": {
+      "slug": "solar",
+      "nome": "Energia Solar",
+      "icone": "☀️",
+      "cor": "#f59e0b",
+      "badgeClass": "cat-solar"
+    },
+    "siteData": {
+      "title": "Energia Solar | flix Solar Geração de Energia | Franca SP",
+      "metaDescription": "A flix Solar Geração de Energia é especializada em sistema fotovoltaico em Franca e toda a Região. Conheça nossas condições e tenha um projeto eficiente para sua economia. Economize até 95% na sua conta de luz.",
+      "headings": [
+        "QUER TER ECONOMIA EM SUA CONTA DE ENERGIA?",
+        "FALAR COM ESPECIALISTA",
+        "O QUE OFERECEMOS NO PROJETO",
+        "Planejamento e Projeto",
+        "Instalação",
+        "Homologação",
+        "NOSSOS SERVIÇOS",
+        "Energia Solar"
+      ],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": [
+        "Tecnologia Digital & Planejamento 3D"
+      ]
+    },
+    "dadosEnriquecidos": {
+      "instagram": "https://www.instagram.com/flixsolar/",
+      "facebook": "https://www.facebook.com/flixsolar/",
+      "whatsappPrincipal": "5516988601000",
+      "whatsappFormatado": "(16) 98860-1000",
+      "website": "https://www.flixsolar.com.br",
+      "bioInstagram": null,
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": [
+        "Tecnologia Digital & Planejamento 3D"
+      ]
+    }
+  },
+  {
+    "id": "lead_1789574290686_rjz01z",
+    "createdAt": "2026-09-16T15:58:10.686Z",
+    "updatedAt": "2026-09-16T15:58:10.686Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "solarprime-solucoes-em-energia-unidade-franca",
+    "nome": "Solarprime Soluções em Energia | Unidade Franca",
+    "nicho": "energia solar",
+    "cidade": "Franca SP",
+    "siteOriginal": "https://solarprime.com.br/franquia/franca/",
+    "siteStatus": "online",
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "5,0 estrelas",
+    "endereco": "Alameda Arminda Nogueira, 2148",
+    "mapsUrl": "https://www.google.com/maps/place/Solarprime+Solu%C3%A7%C3%B5es+em+Energia+%7C+Unidade+Franca/data=!4m7!3m6!1s0x94b0a626dcef2515:0xf2ad0b0a971eab7b!8m2!3d-20.5430202!4d-47.3961634!16s%2Fg%2F11f1m40sgr!19sChIJFSXv3CamsJQRe6selwoLrfI?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 3405-0666"
+    ],
+    "emails": [],
+    "instagram": "https://www.instagram.com/solarprime_oficial/",
+    "facebook": "https://www.facebook.com/solarprimefranquias/",
+    "whatsappPrincipal": "551634050666",
+    "whatsappFormatado": "(16) 3405-0666",
+    "status": "descartado",
+    "motivoDescarte": "Grande Rede / Franquia (Múltiplos DDDs: 16, 51, 19)",
+    "analiseIA": "🏢 Identificada rede ou portal multi-regional com números de vários DDDs (16, 51, 19). Incompatível com prospecção e desenvolvimento de site local Subzero.",
+    "categoria": {
+      "slug": "solar",
+      "nome": "Energia Solar",
+      "icone": "☀️",
+      "cor": "#f59e0b",
+      "badgeClass": "cat-solar"
+    },
+    "siteData": {
+      "title": "FRANCA/SP - Solarprime",
+      "metaDescription": null,
+      "headings": [
+        "Boas-vindas à Solarprime FRANCA/SP a maior rede de energia solar do Brasil",
+        "Input",
+        "Saiba quanto você pode economizar com a Solarprime",
+        "Tabela",
+        "A maior rede de franquias de energia solar do Brasil",
+        "unidades",
+        "estados",
+        "milhões"
+      ],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": [
+        "Tecnologia Digital & Planejamento 3D",
+        "25 anos de Experiência no Mercado"
+      ]
+    },
+    "dadosEnriquecidos": {
+      "instagram": "https://www.instagram.com/solarprime_oficial/",
+      "facebook": "https://www.facebook.com/solarprimefranquias/",
+      "whatsappPrincipal": "551634050666",
+      "whatsappFormatado": "(16) 3405-0666",
+      "website": "https://solarprime.com.br/franquia/franca/",
+      "bioInstagram": "solarprime_oficial\n20.3K followers\n204 following\nSolarprime\n⚡️| Soluções em energia,\nda geração ao armazenamento.\n🔋| Especialistas em BESS C&I\n☀️| + de 30mil clientes por todo o... \nmore\nsolarprime.com.br/seja-um-franqueado-lp?utm_source=instagram&utm_medium=link_bio and 1 more\nBESS C&I\nDepoimentos\nNa mídia\nComerciais\nVocê sabia?\nRurais\nResidenciais\nDúvidas\nEconomize",
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": [
+        "Tecnologia Digital & Planejamento 3D",
+        "25 anos de Experiência no Mercado"
+      ]
+    }
+  },
+  {
     "id": "lead_1789563008145_bnfw23",
     "createdAt": "2026-09-16T12:50:08.145Z",
-    "updatedAt": "2026-09-16T12:50:08.145Z",
+    "updatedAt": "2026-09-16T15:37:46.577Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "kell-distribuidora",
@@ -16,13 +322,12 @@
     "endereco": "Av. Amélia Antunes Pinheiro, 1325",
     "mapsUrl": "https://www.google.com/maps/place/Kell+Distribuidora/data=!4m7!3m6!1s0x94b0a646c4e1eab3:0x97c9ea855a55aaed!8m2!3d-20.520861!4d-47.3967732!16s%2Fg%2F1tf61cy6!19sChIJs-rhxEamsJQR7apVWoXqyZc?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
     "telefones": [
-      "(16) 9201-2222",
-      "(16) 3018-0000"
+      "(16) 9201-2222"
     ],
     "emails": [],
     "instagram": "https://www.instagram.com/kelldistribuidora/",
     "facebook": null,
-    "whatsappPrincipal": "1692012222",
+    "whatsappPrincipal": "551692012222",
     "whatsappFormatado": "(16) 9201-2222",
     "status": "oportunidade_quente",
     "motivoDescarte": null,
@@ -51,7 +356,18 @@
       "icone": "🏢",
       "cor": "#64748b",
       "badgeClass": "cat-other"
-    }
+    },
+    "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\kell-distribuidora\\index.html",
+    "prototypeUrl": "/previews/kell-distribuidora/index.html",
+    "messages": {
+      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Kell Distribuidora* tem uma excelente reputação, mas hoje quem pesquisa por *segurança eletronica* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: não possui site oficial cadastrado no Google — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, já com fotos reais e depoimentos dos seus clientes:\n👉 */previews/kell-distribuidora/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
+      "email": {
+        "assunto": "Kell Distribuidora em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial",
+        "corpo": "Prezada equipe da Kell Distribuidora,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por segurança eletronica em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Kell Distribuidora, já funcional e adaptada para smartphones:\n👉 /previews/kell-distribuidora/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
+      }
+    },
+    "archetype": "industrial",
+    "templateEscolhido": "industrial"
   },
   {
     "id": "lead_1789563001583_o1fryi",
@@ -71,17 +387,14 @@
     "mapsUrl": "https://www.google.com/maps/place/MobTech+Seguran%C3%A7a+Eletr%C3%B4nica+%7C+Franca/data=!4m7!3m6!1s0x94b0a7afdbf6cc9d:0xc02e0b6f1c5c4064!8m2!3d-20.5135761!4d-47.3932887!16s%2Fg%2F11ydz9t_tr!19sChIJncz226-nsJQRZEBcHG8LLsA?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
     "telefones": [
       "(16) 99972-2484",
-      "47667720",
-      "(47) 5884-4406",
-      "55169997",
-      "(11) 4551-1121"
+      "(16) 4766-7720"
     ],
     "emails": [],
-    "instagram": "https://www.instagram.com/whatsapp/",
+    "instagram": null,
     "facebook": "https://www.facebook.com/profile.php/",
     "whatsappPrincipal": "5516999722484",
     "whatsappFormatado": "(16) 99972-2484",
-    "status": "oportunidade_quente",
+    "status": "site_ativo",
     "motivoDescarte": null,
     "analiseIA": "💡 Oportunidade de Redesign Subzero: Site ativo com dados mapeados. Conteúdo, serviços e contatos extraídos diretamente do site atual (https://wa.me/5516999722484) para alimentar o protótipo mobile-first de alta conversão.",
     "siteData": {
@@ -97,7 +410,7 @@
       ]
     },
     "dadosEnriquecidos": {
-      "instagram": "https://www.instagram.com/whatsapp/",
+      "instagram": null,
       "facebook": "https://www.facebook.com/profile.php/",
       "whatsappPrincipal": "5516999722484",
       "whatsappFormatado": "(16) 99972-2484",
@@ -134,38 +447,15 @@
     "endereco": "R. Cap. Anselmo, 1254",
     "mapsUrl": "https://www.google.com/maps/place/Telepublico+Monitoramento+e+Rastreamento+24+HRS/data=!4m7!3m6!1s0x94b0a61543b220b7:0xe688c90f7610ea8e!8m2!3d-20.5261264!4d-47.3949408!16s%2Fg%2F11bwzz4227!19sChIJtyCyQxWmsJQRjuoQdg_JiOY?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
     "telefones": [
-      "(78) 94739-1893",
       "(16) 99977-7900",
-      "(16) 99639-5457",
-      "956259426",
-      "(36) 96769-1432",
-      "(89) 4739-1893",
-      "(16) 3707-7900",
-      "(16) 3135-1150",
-      "4334-5105",
-      "56234440",
-      "52971900",
-      "4738-8688",
-      "27914998",
-      "56259426",
-      "33300653",
-      "4814-4846",
-      "3391-9791",
-      "29178430",
-      "5604-1148",
-      "(86) 3369-6769"
+      "(16) 3707-7900"
     ],
-    "emails": [
-      "605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com",
-      "18d2f96d279149989b95faf0a4b41882@sentry-next.wixpress.com",
-      "8eb368c655b84e029ed79ad7a5c1718e@sentry.wixpress.com",
-      "5d1795a2db124a268f1e1bd88f503500@sentry.wixpress.com"
-    ],
+    "emails": [],
     "instagram": "https://www.instagram.com/telepublicomonitoramento/",
     "facebook": "https://www.facebook.com/telepublicomonitoramento/",
-    "whatsappPrincipal": "5578947391893",
-    "whatsappFormatado": "(78) 94739-1893",
-    "status": "descartado",
+    "whatsappPrincipal": "5516999777900",
+    "whatsappFormatado": "(16) 99977-7900",
+    "status": "site_ativo",
     "motivoDescarte": null,
     "analiseIA": "💡 Oportunidade de Redesign Subzero: Site ativo com dados mapeados. Conteúdo, serviços e contatos extraídos diretamente do site atual (https://www.telepublico.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
     "siteData": {
@@ -233,7 +523,7 @@
     "whatsappPrincipal": null,
     "whatsappFormatado": null,
     "status": "descartado",
-    "motivoDescarte": null,
+    "motivoDescarte": "Sem telefone ou contato local",
     "analiseIA": "🚨 GATILHO DE OURO: Empresa possui site cadastrado (http://www.blackoutmonitoramento.com.br/), porém está FORA DO AR / INACESSÍVEL (🚨 Site cadastrado está FORA DO AR (Tempo limite excedido (Timeout))). Com 4,6 estrelas 146 comentários, clientes perdem o contato e vão para a concorrência!",
     "siteData": {
       "title": null,
@@ -338,7 +628,7 @@
     "facebook": "https://www.facebook.com/iconmonitoramento/",
     "whatsappPrincipal": "5516992159550",
     "whatsappFormatado": "(16) 99215-9550",
-    "status": "oportunidade_quente",
+    "status": "site_ativo",
     "motivoDescarte": null,
     "analiseIA": "💡 Oportunidade de Redesign Subzero: 🚨 Site sem SSL (inseguro HTTP). Conteúdo, serviços e contatos extraídos diretamente do site atual (http://www.iconmonitoramento.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
     "siteData": {
@@ -384,22 +674,15 @@
     "endereco": "R. Augusto Marques, 1747",
     "mapsUrl": "https://www.google.com/maps/place/GMS+SERVI%C3%87OS/data=!4m7!3m6!1s0x94b0a708cba7fe23:0xb355c80484417ff7!8m2!3d-20.5374409!4d-47.4048001!16s%2Fg%2F11rpldwvxs!19sChIJI_6nywinsJQR939BhATIVbM?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
     "telefones": [
-      "(53) 91403-1309",
-      "91234-5678",
-      "30539140",
-      "(31) 3095-4586",
-      "23138256",
-      "37102127",
-      "51953125",
-      "28287889",
-      "(16) 99989-9777"
+      "(16) 91234-5678",
+      "(16) 3053-9140"
     ],
     "emails": [],
-    "instagram": "https://www.instagram.com/ferragensgms/",
+    "instagram": null,
     "facebook": "https://www.facebook.com/ferragensgms/",
-    "whatsappPrincipal": "5511950217811",
-    "whatsappFormatado": "(11) 95021-7811",
-    "status": "oportunidade_quente",
+    "whatsappPrincipal": "5516912345678",
+    "whatsappFormatado": "(16) 91234-5678",
+    "status": "site_ativo",
     "motivoDescarte": null,
     "analiseIA": "💡 Oportunidade de Redesign Subzero: Site ativo com dados mapeados. Conteúdo, serviços e contatos extraídos diretamente do site atual (https://gms.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
     "siteData": {
@@ -421,7 +704,7 @@
       ]
     },
     "dadosEnriquecidos": {
-      "instagram": "https://www.instagram.com/ferragensgms/",
+      "instagram": null,
       "facebook": "https://www.facebook.com/ferragensgms/",
       "whatsappPrincipal": "5511950217811",
       "whatsappFormatado": "(11) 95021-7811",
@@ -458,16 +741,14 @@
     "endereco": "R. Gen. Telles, 412",
     "mapsUrl": "https://www.google.com/maps/place/Espa%C3%A7o+Protect+-+Sistema+Eletr%C3%B4nico+de+Seguran%C3%A7a+e+Monitoramento+24+Horas/data=!4m7!3m6!1s0x94b0a7cb68b41505:0x8145ad7751b19b66!8m2!3d-20.5355151!4d-47.4113965!16s%2Fg%2F11c2nj1ql6!19sChIJBRW0aMunsJQRZpuxUXetRYE?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
     "telefones": [
-      "(27) 4531-5666",
-      "26173006",
-      "(16) 3721-3997"
+      "(16) 2617-3006"
     ],
     "emails": [],
     "instagram": null,
     "facebook": null,
-    "whatsappPrincipal": "552745315666",
-    "whatsappFormatado": "(27) 4531-5666",
-    "status": "oportunidade_quente",
+    "whatsappPrincipal": "551626173006",
+    "whatsappFormatado": "(16) 2617-3006",
+    "status": "site_ativo",
     "motivoDescarte": null,
     "analiseIA": "💡 Oportunidade de Redesign Subzero: Site ativo com dados mapeados. Conteúdo, serviços e contatos extraídos diretamente do site atual (https://espacoprotect.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
     "siteData": {
@@ -588,8 +869,8 @@
     "facebook": null,
     "whatsappPrincipal": "551637112300",
     "whatsappFormatado": "(16) 3711-2300",
-    "status": "oportunidade_quente",
-    "motivoDescarte": null,
+    "status": "descartado",
+    "motivoDescarte": "Grande Rede / Franquia Nacional",
     "analiseIA": "💡 Oportunidade de Redesign Subzero: 🚨 Site sem SSL (inseguro HTTP). Conteúdo, serviços e contatos extraídos diretamente do site atual (http://www.scalamonitoramento.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
     "siteData": {
       "title": "Scala Segurança Eletrônica | Câmeras, Alarmes e Portaria Remota",
@@ -641,8 +922,8 @@
     "facebook": null,
     "whatsappPrincipal": "5516992923889",
     "whatsappFormatado": "(16) 99292-3889",
-    "status": "oportunidade_quente",
-    "motivoDescarte": null,
+    "status": "descartado",
+    "motivoDescarte": "Grande Rede / Franquia Nacional",
     "analiseIA": "💡 Oportunidade de Redesign Subzero: Site ativo com dados mapeados. Conteúdo, serviços e contatos extraídos diretamente do site atual (https://omegatechfranca.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
     "siteData": {
       "title": "omegatechfranca.com.br – Automações Residenciaisomegatechfranca.com.br – Automações ResidenciaisJoinchat",
@@ -696,8 +977,6 @@
     "endereco": "R. Bolívia, 1214",
     "mapsUrl": "https://www.google.com/maps/place/Infratel+Seguran%C3%A7a+Eletr%C3%B4nica/data=!4m7!3m6!1s0x94b0a881bdafb525:0x2a3cd68e3f0de773!8m2!3d-20.5499146!4d-47.4073262!16s%2Fg%2F11bx1s7tb8!19sChIJJbWvvYGosJQRc-cNP47WPCo?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
     "telefones": [
-      "//0414133037502",
-      "(41) 3303-7502",
       "(16) 3723-9373"
     ],
     "emails": [
@@ -711,9 +990,9 @@
     ],
     "instagram": null,
     "facebook": null,
-    "whatsappPrincipal": "0414133037502",
-    "whatsappFormatado": "0414133037502",
-    "status": "oportunidade_quente",
+    "whatsappPrincipal": "551637239373",
+    "whatsappFormatado": "(16) 3723-9373",
+    "status": "site_ativo",
     "motivoDescarte": null,
     "analiseIA": "💡 Oportunidade de Redesign Subzero: Site ativo com dados mapeados. Conteúdo, serviços e contatos extraídos diretamente do site atual (https://www.infratel.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
     "siteData": {
@@ -773,49 +1052,15 @@
     "mapsUrl": "https://www.google.com/maps/place/Coltseg+eletr%C3%B4nica+-+C%C3%A2meras+e+alarmes+de+seguran%C3%A7a,+cercas+el%C3%A9tricas+e+motores+para+port%C3%A3o/data=!4m7!3m6!1s0x94b0a7f237aa18f9:0xb3a93a26760574fd!8m2!3d-20.5346422!4d-47.415326!16s%2Fg%2F11s3633dn5!19sChIJ-RiqN_KnsJQR_XQFdiY6qbM?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
     "telefones": [
       "(16) 98243-0774",
-      "(72) 91728-7271",
-      "(61) 93125-2056",
-      "(12) 94594-2540",
-      "(33) 94708-9891",
-      "(58) 92723-0952",
-      "(74) 93726-0599",
-      "917123593",
-      "938649160",
-      "(26) 93566-6405",
-      "(64) 94636-0372",
-      "(82) 90100-0000",
-      "(17) 3729-1728",
-      "27191620",
-      "(19) 3125-2056",
-      "30342643",
-      "28199326",
-      "(29) 4594-2540",
-      "33947089",
-      "(53) 3327-6511",
-      "42234084",
-      "(48) 4040-4025",
-      "59137633",
-      "58927230",
-      "(95) 2047-7299",
-      "47749372",
-      "59944833",
-      "(71) 2359-3349",
-      "(23) 4180-9386",
-      "49160156",
-      "(32) 2693-5666",
-      "40526623",
-      "(41) 4306-4946",
-      "36037286",
-      "20421641",
-      "29010000"
+      "(16) 2719-1620"
     ],
     "emails": [],
     "instagram": null,
     "facebook": null,
     "whatsappPrincipal": "5516982430774",
     "whatsappFormatado": "(16) 98243-0774",
-    "status": "oportunidade_quente",
-    "motivoDescarte": null,
+    "status": "descartado",
+    "motivoDescarte": "Grande Rede / Franquia Nacional",
     "analiseIA": "💡 Oportunidade de Redesign Subzero: Site ativo com dados mapeados. Conteúdo, serviços e contatos extraídos diretamente do site atual (https://lojalocal.com/parceirocredenciadointelbras/20421641000127) para alimentar o protótipo mobile-first de alta conversão.",
     "siteData": {
       "title": "Coltseg eletrônica - Câmeras e alarmes de segurança, cercas elétricas e motores para portão",
@@ -872,14 +1117,14 @@
     "endereco": "Av. Alonso Y Alonso, 3563",
     "mapsUrl": "https://www.google.com/maps/place/Rota+do+Pet/data=!4m7!3m6!1s0x94b0a78e4ee9f221:0xc8963cfa8eaf965e!8m2!3d-20.5359395!4d-47.3787097!16s%2Fg%2F11rhqtwzs5!19sChIJIfLpTo6nsJQRXpavjvo8lsg?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkwOS4wIJJjKgBIAVAD&rclk=1",
     "telefones": [
-      "(16) 9997-9313",
-      "(16) 99098-3563"
+      "(16) 99098-3563",
+      "(16) 9997-9313"
     ],
     "emails": [],
     "instagram": "https://www.instagram.com/rotadopet/",
     "facebook": null,
-    "whatsappPrincipal": "551699979313",
-    "whatsappFormatado": "(16) 9997-9313",
+    "whatsappPrincipal": "5516990983563",
+    "whatsappFormatado": "(16) 99098-3563",
     "status": "oportunidade_quente",
     "motivoDescarte": null,
     "analiseIA": "Excelente oportunidade em Franca SP: 4,9 estrelas, sem nenhum site oficial próprio cadastrado.",
@@ -978,14 +1223,12 @@
     "avaliacao": "4,6 estrelas",
     "endereco": "Avenida Doutor - Av. Antônio Barbosa Filho, 75",
     "mapsUrl": "https://www.google.com/maps/place/Cobasi+Franca/data=!4m7!3m6!1s0x94b0a7bfb36f225f:0x49059a649ed0503f!8m2!3d-20.5517471!4d-47.4092491!16s%2Fg%2F11jzs9mz79!19sChIJXyJvs7-nsJQRP1DQnmSaBUk?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkwOS4wIJJjKgBIAVAD&rclk=1",
-    "telefones": [
-      "(11) 93350-5743"
-    ],
+    "telefones": [],
     "emails": [],
     "instagram": null,
     "facebook": null,
-    "whatsappPrincipal": "5511933505743",
-    "whatsappFormatado": "(11) 93350-5743",
+    "whatsappPrincipal": null,
+    "whatsappFormatado": null,
     "status": "descartado",
     "motivoDescarte": "Grande Rede / Franquia Nacional",
     "analiseIA": "🏢 Grande rede corporativa nacional (cobasi.com.br). Incompatível com desenvolvimento de site local Subzero.",
@@ -1092,7 +1335,7 @@
     "facebook": null,
     "whatsappPrincipal": "5516994080809",
     "whatsappFormatado": "(16) 99408-0809",
-    "status": "prototipo_pronto",
+    "status": "oportunidade_quente",
     "motivoDescarte": null,
     "analiseIA": "Excelente oportunidade em Franca SP: 4,9 estrelas, sem nenhum site oficial próprio cadastrado.",
     "siteData": {
@@ -1521,17 +1764,15 @@
     "mapsUrl": "https://www.google.com/maps/place/Vet+Franca+Petshop+e+Cl%C3%ADnica+Veterin%C3%A1ria/data=!4m7!3m6!1s0x94b0a72dd55e6d93:0xf72019bbf9146a85!8m2!3d-20.549033!4d-47.409507!16s%2Fg%2F11ll47kwsb!19sChIJk21e1S2nsJQRhWoU-bsZIPc?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkwOS4wIJJjKgBIAVAD&rclk=1",
     "telefones": [
       "(16) 99946-6666",
-      "(16) 3704-6666",
-      "10006402",
-      "(16) 99946-6666"
+      "(16) 3704-6666"
     ],
     "emails": [],
-    "instagram": "https://www.instagram.com/vetfranca/",
+    "instagram": null,
     "facebook": null,
     "whatsappPrincipal": "5516999466666",
     "whatsappFormatado": "(16) 99946-6666",
-    "status": "oportunidade_quente",
-    "motivoDescarte": null,
+    "status": "descartado",
+    "motivoDescarte": "Grande Rede / Franquia Nacional",
     "analiseIA": "💡 Oportunidade de Redesign Subzero: Site ativo com dados mapeados. Cirurgias, internação e plantão 24h prontos para alimentar o protótipo mobile-first de alta conversão.",
     "siteData": {
       "title": null,
@@ -1542,7 +1783,7 @@
       "website": null
     },
     "dadosEnriquecidos": {
-      "instagram": "https://www.instagram.com/vetfranca/",
+      "instagram": null,
       "facebook": null,
       "whatsappPrincipal": "5516999466666",
       "whatsappFormatado": "(16) 99946-6666",
@@ -1578,15 +1819,12 @@
     "mapsUrl": "https://www.google.com/maps/place/Medc%C3%A3o+Cl%C3%ADnica+Veterin%C3%A1ria/data=!4m7!3m6!1s0x94b0a7674f8c062f:0xc0bfa414f68d069c!8m2!3d-20.531504!4d-47.419123!16s%2Fg%2F11rxrz81ys!19sChIJLwaMT2ensJQRnAaN9hSkv8A?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkwOS4wIJJjKgBIAVAD&rclk=1",
     "telefones": [
       "(16) 99432-3602",
-      "(16) 3704-6447",
-      "3704-6447",
-      "99432-3602",
-      "55448461"
+      "(16) 3704-6447"
     ],
     "emails": [],
     "instagram": "https://www.instagram.com/medcaofranca/",
     "facebook": null,
-    "whatsappPrincipal": "16994323602",
+    "whatsappPrincipal": "5516994323602",
     "whatsappFormatado": "(16) 99432-3602",
     "status": "oportunidade_quente",
     "motivoDescarte": null,
@@ -1635,20 +1873,16 @@
     "endereco": null,
     "mapsUrl": "https://www.google.com/maps/place/Agrolipe+Produtos+Agropecu%C3%A1rios+,Pet+Shop,+Clinica+Veterin%C3%A1ria+,Farm%C3%A1cia+veterin%C3%A1ria/data=!4m7!3m6!1s0x94b0af5a662a02e7:0xdc7b674d32cfd27b!8m2!3d-20.5415011!4d-47.3598137!16s%2Fg%2F11fps6pwv1!19sChIJ5wIqZlqvsJQRe9LPMk1ne9w?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkwOS4wIJJjKgBIAVAD&rclk=1",
     "telefones": [
-      "(16) 3725-4525",
       "(16) 99195-5779",
-      "10006689",
-      "27355958",
-      "(16) 9101-4646",
-      "14403785"
+      "(16) 3725-4525"
     ],
     "emails": [
       "stelacintraregatieri@gmail.com"
     ],
     "instagram": "https://www.instagram.com/agrolipe/",
     "facebook": null,
-    "whatsappPrincipal": "1637254525",
-    "whatsappFormatado": "(16) 3725-4525",
+    "whatsappPrincipal": "5516991955779",
+    "whatsappFormatado": "(16) 99195-5779",
     "status": "oportunidade_quente",
     "motivoDescarte": null,
     "analiseIA": "Excelente oportunidade em Franca SP: 4,9 estrelas, sem nenhum site oficial próprio cadastrado.",
@@ -1702,7 +1936,7 @@
     "whatsappPrincipal": "5516993265002",
     "whatsappFormatado": "(16) 99326-5002",
     "status": "descartado",
-    "motivoDescarte": null,
+    "motivoDescarte": "Grande Rede / Franquia Nacional",
     "analiseIA": "💡 REQUALIFICADO COM DADOS DO SITE: Clínica liderada pelo Dr. Ivan Ferreira (implantodontia 3D). Dados extraídos do site oficial prontos para gerar protótipo de alta performance.",
     "dadosEnriquecidos": {
       "whatsapp": "(16) 99326-5002",
@@ -1747,8 +1981,7 @@
     "mapsUrl": "https://www.google.com/maps/place/DentFran%20Unidade%201/@-20.5808765,-47.3800198,17z/",
     "telefones": [
       "(16) 99239-7028",
-      "(16) 3723-0100",
-      "(16) 99223-0257"
+      "(16) 3723-0100"
     ],
     "emails": [],
     "instagram": null,
@@ -1807,7 +2040,7 @@
     "emails": [],
     "instagram": "https://www.instagram.com/clinicaodontofranca/",
     "facebook": "https://www.facebook.com/odontofranca.clinica/",
-    "whatsappPrincipal": "5516999986906",
+    "whatsappPrincipal": "5516999867378",
     "whatsappFormatado": "(16) 99986-7378",
     "status": "oportunidade_quente",
     "motivoDescarte": null,
@@ -1854,7 +2087,6 @@
     "mapsUrl": "https://www.google.com/maps/place/Sano%20Clinic%20Odonto%20Prime%20-%20EST%C3%89TICA%20E%20REABILITA%C3%87%C3%83O%20ORAL%20%E2%80%93%20PR%C3%93TESE%2C%20ORTODONTIA%2C%20ENDODONTIA%2C%20CIR%C3%9ARGIAS%20E%20IMPLANTES./@-20.5382042,-47.3929882,17z/",
     "telefones": [
       "(16) 99606-5790",
-      "(16) 99631-9991",
       "(16) 3432-3010"
     ],
     "emails": [],
@@ -1862,7 +2094,7 @@
     "facebook": "https://www.facebook.com/p/Sano-Clinic-Odonto-100063901413813/",
     "whatsappPrincipal": "5516996065790",
     "whatsappFormatado": "(16) 99606-5790",
-    "status": "oportunidade_quente",
+    "status": "site_ativo",
     "motivoDescarte": null,
     "analiseIA": "Clínica odontológica prime multiespecialidades. O site atual possui design antigo; oportunidade de modernização Subzero focando em conversão mobile.",
     "dadosEnriquecidos": {
@@ -1916,7 +2148,7 @@
     "facebook": "https://www.facebook.com/silveiraodontologia",
     "whatsappPrincipal": "5516999133292",
     "whatsappFormatado": "(16) 99913-3292",
-    "status": "oportunidade_quente",
+    "status": "site_ativo",
     "motivoDescarte": null,
     "analiseIA": "💡 REQUALIFICADO COM DADOS RICOS EXTRAÍDOS DO SITE: 30+ anos de tradição, carga imediata (sorriso em até 72h), scanner 3D e sedação consciente. Excelente oportunidade para protótipo de alta conversão.",
     "dadosEnriquecidos": {
@@ -2023,7 +2255,7 @@
     "whatsappPrincipal": "5516981470693",
     "whatsappFormatado": "(16) 98147-0693",
     "status": "descartado",
-    "motivoDescarte": null,
+    "motivoDescarte": "Grande Rede / Franquia Nacional",
     "analiseIA": "Clínica especializada em implantes e protocolos com alta demanda em Franca. Oportunidade de protótipo de alta conversão para os plantões de implante.",
     "dadosEnriquecidos": {
       "instagram": "https://www.instagram.com/maxsorrisoimplantes/",
@@ -2076,7 +2308,7 @@
     "whatsappPrincipal": "5516992575962",
     "whatsappFormatado": "(16) 99257-5962",
     "status": "descartado",
-    "motivoDescarte": "Já possui site próprio ativo (https://sorridents.com.br/)",
+    "motivoDescarte": "Grande Rede / Franquia Nacional",
     "analiseIA": "Possui domínio oficial respondendo normalmente. Abordagem de criação de site descartada.",
     "categoria": {
       "slug": "odonto_saude",
@@ -2103,8 +2335,7 @@
     "mapsUrl": "https://www.google.com/maps/place/OralBellus%20Clinica%20de%20Odontologia%20%7C%20Implante%20Dent%C3%A1rio%20%7C%20Aparelho%20Dent%C3%A1rio%20%7C%20Centro%20%7C%20Franca%20-%20SP/@-20.5335979,-47.4108017,17z/",
     "telefones": [
       "(16) 99173-9805",
-      "(16) 3723-5218",
-      "(16) 3706-8604"
+      "(16) 3723-5218"
     ],
     "emails": [],
     "instagram": null,
@@ -2161,9 +2392,9 @@
     "instagram": null,
     "facebook": null,
     "whatsappPrincipal": "551637014040",
-    "whatsappFormatado": "551637014040",
+    "whatsappFormatado": "(16) 3701-4040",
     "status": "descartado",
-    "motivoDescarte": "Já possui site próprio ativo (https://clinicassempresorrindo.com.br/)",
+    "motivoDescarte": "Grande Rede / Franquia Nacional",
     "analiseIA": "Possui domínio oficial respondendo normalmente. Abordagem de criação de site descartada.",
     "categoria": {
       "slug": "odonto_saude",
@@ -2306,8 +2537,8 @@
     "instagram": null,
     "facebook": null,
     "whatsappPrincipal": "551637032244",
-    "whatsappFormatado": "551637032244",
-    "status": "descartado",
+    "whatsappFormatado": "(16) 3703-2244",
+    "status": "oportunidade_quente",
     "motivoDescarte": null,
     "analiseIA": "🚨 GATILHO DE OURO: Empresa possui site cadastrado (https://odontoclinic.com.br/unidades/franca/), porém está FORA DO AR / INACESSÍVEL (🚨 Site cadastrado está FORA DO AR (Tempo limite excedido (Timeout))). Com 4,8 estrelas, clientes perdem o contato e vão para a concorrência!",
     "categoria": {
@@ -2342,7 +2573,7 @@
     "whatsappPrincipal": "5516996707000",
     "whatsappFormatado": "(16) 99670-7000",
     "status": "descartado",
-    "motivoDescarte": "Já possui site próprio ativo (https://oralunicfranca.com.br/)",
+    "motivoDescarte": "Grande Rede / Franquia Nacional",
     "analiseIA": "Possui domínio oficial respondendo normalmente. Abordagem de criação de site descartada.",
     "categoria": {
       "slug": "odonto_saude",
@@ -2371,15 +2602,15 @@
       "(16) 99175-6434"
     ],
     "emails": [],
-    "instagram": "https://www.instagram.com/dlodontologiafranca/",
+    "instagram": null,
     "facebook": "https://www.facebook.com/people/DL-Odontologia-Franca/61556608560384/",
     "whatsappPrincipal": "5516991756434",
     "whatsappFormatado": "(16) 99175-6434",
-    "status": "prototipo_pronto",
-    "motivoDescarte": null,
+    "status": "descartado",
+    "motivoDescarte": "Grande Rede / Franquia Nacional",
     "analiseIA": "🚨 GATILHO COMERCIAL: O link cadastrado no Maps leva para página quebrada (404). Clínica de alta classe especializada em lentes e estética orofacial com excelente visual no Instagram.",
     "dadosEnriquecidos": {
-      "instagram": "https://www.instagram.com/dlodontologiafranca/",
+      "instagram": null,
       "facebook": "https://www.facebook.com/people/DL-Odontologia-Franca/61556608560384/",
       "whatsapp": "(16) 99175-6434",
       "site": "https://dlodontologiafranca.com.br/",
@@ -2438,7 +2669,7 @@
     "whatsappFormatado": "(16) 99998-6906",
     "prototypePath": "C:\\\\Users\\\\Gabriel\\\\dev\\\\prospector\\\\previews\\\\coltseg-seguranca-eletronica\\\\index.html",
     "prototypeUrl": "/previews/coltseg-seguranca-eletronica/index.html",
-    "status": "prototipo_pronto",
+    "status": "descartado",
     "analiseIA": "🔥 EXCELENTE OPORTUNIDADE: Avaliação 5.0★ máxima no Google e credenciamento oficial Intelbras, porém NÃO TEM SITE PRÓPRIO. O protótipo exclusivo entrega alta tecnologia, controle por aplicativo e posicionamento premium.",
     "messages": {
       "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Coltseg Eletrônica - Segurança, Câmeras e Cercas Inteligentes* tem uma excelente reputação, mas hoje quem pesquisa por *cerca eletrica e seguranca eletronica* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) não encontra um site oficial de vocês — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, já com fotos reais e depoimentos dos seus clientes:\n👉 */previews/coltseg-seguranca-eletronica/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
@@ -2472,7 +2703,8 @@
       "icone": "🛡️",
       "cor": "#3b82f6",
       "badgeClass": "cat-security"
-    }
+    },
+    "motivoDescarte": "Grande Rede / Franquia Nacional"
   },
   {
     "id": "lead_blitz_seguranca",
@@ -2497,7 +2729,7 @@
     "whatsappFormatado": "(16) 99397-4382",
     "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\blitz-seguranca-eletronica-concertinas-cercas-e-cftv\\index.html",
     "prototypeUrl": "/previews/blitz-seguranca-eletronica-concertinas-cercas-e-cftv/index.html",
-    "status": "prototipo_pronto",
+    "status": "descartado",
     "analiseIA": "💡 Oportunidade de Redesign Subzero: 🚨 Site sem SSL (inseguro HTTP). Conteúdo, serviços e contatos extraídos diretamente do site atual (http://www.blitzsegurancaeletronica.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
     "messages": {
       "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Blitz Segurança Eletrônica | Concertinas, Cercas e CFTV* tem uma excelente reputação, mas hoje quem pesquisa por *cerca eletrica e seguranca eletronica* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: não possui site oficial cadastrado no Google — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, já com fotos reais e depoimentos dos seus clientes:\n👉 */previews/blitz-seguranca-eletronica-concertinas-cercas-e-cftv/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
@@ -2532,7 +2764,7 @@
       "badgeClass": "cat-security"
     },
     "slug": "blitz-seguranca-eletronica-concertina-cameras-alarmes-cerca-eletrica-motor-de-portoes",
-    "motivoDescarte": null,
+    "motivoDescarte": "Grande Rede / Franquia Nacional",
     "siteData": {
       "title": "Blitz Segurança Eletrônica",
       "metaDescription": null,
@@ -2558,7 +2790,7 @@
     "emails": [],
     "instagram": "https://www.instagram.com/gelar_ar_condicionado.franca/",
     "facebook": "https://www.facebook.com/Gelararcondicionadoo/",
-    "status": "prototipo_pronto",
+    "status": "oportunidade_quente",
     "whatsappPrincipal": "5516999667658",
     "whatsappFormatado": "(16) 99966-7658",
     "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\gelar-ar-condicionado-assistencia-tecnica-franca-sp\\index.html",
@@ -2709,7 +2941,8 @@
       "icone": "❄️",
       "cor": "#0ea5e9",
       "badgeClass": "cat-hvac"
-    }
+    },
+    "motivoDescarte": null
   },
   {
     "id": "lead_1789434711739_1",
@@ -2725,15 +2958,13 @@
     "avaliacao": "4,2 estrelas (380 comentários)",
     "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Ecol+Ar+Condicionado+Franca+SP",
     "telefones": [
-      "(16) 3722-8315",
       "(16) 99999-3258",
-      "(16) 99999-3248",
-      "(16) 99997-5110"
+      "(16) 3722-8315"
     ],
     "emails": [],
     "instagram": "https://www.instagram.com/ecol_arcondicionado/",
     "facebook": "https://www.facebook.com/EcolArCondicionado/",
-    "status": "prototipo_pronto",
+    "status": "oportunidade_quente",
     "motivoDescarte": null,
     "analiseIA": "🚨 GATILHO DE OURO: A empresa possui site cadastrado no Google (ecolarcondicionado.com.br), porém está FORA DO AR / INACESSÍVEL (HTTP 403). Com 380 avaliações no Google (4.2★), clientes de Franca que tentam acessar o site pelo celular encontram página de erro e vão para o concorrente!",
     "whatsappPrincipal": "5516999993258",

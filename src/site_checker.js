@@ -148,7 +148,11 @@ async function checkWebsiteHealth(rawUrl) {
             // Mailto
             if (lowerHref.startsWith('mailto:')) {
               const mail = href.replace(/^mailto:/i, '').split('?')[0].trim();
-              if (mail && mail.includes('@')) emails.add(mail.toLowerCase());
+              if (mail && mail.includes('@')) {
+                const lm = mail.toLowerCase();
+                const isTelemetry = lm.includes('sentry') || lm.includes('wixpress') || lm.includes('w3.org') || lm.includes('schema.org') || lm.includes('google') || lm.includes('cloudflare') || lm.includes('example.com');
+                if (!isTelemetry) emails.add(lm);
+              }
             }
 
             // Tel
@@ -169,7 +173,8 @@ async function checkWebsiteHealth(rawUrl) {
           const mailMatches = text.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || [];
           mailMatches.forEach(m => {
             const lm = m.toLowerCase();
-            if (!lm.endsWith('.png') && !lm.endsWith('.jpg') && !lm.includes('w3.org')) emails.add(lm);
+            const isTelemetry = lm.includes('sentry') || lm.includes('wixpress') || lm.includes('w3.org') || lm.includes('schema.org') || lm.includes('google') || lm.includes('facebook') || lm.includes('cloudflare') || lm.includes('domain.com') || lm.includes('example.com') || lm.endsWith('.png') || lm.endsWith('.jpg') || lm.endsWith('.webp');
+            if (!isTelemetry) emails.add(lm);
           });
 
           // Extração de Conteúdo para Enriquecimento do Protótipo

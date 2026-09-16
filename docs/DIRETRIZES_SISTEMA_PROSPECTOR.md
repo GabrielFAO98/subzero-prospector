@@ -119,3 +119,4 @@ Antes de auditar qualquer dado, o sistema deve verificar se o nome ou domínio p
 ## 🚨 5. Regra de Ouro: Git & Deploy
 * **NUNCA FAÇA PUSH SEM PEDIDO EXPLÍCITO:** Todas as alterações, commits e builds devem permanecer locais. O comando `git push` só pode ser executado quando o Gabriel disser expressamente *"faça o push"*, *"pode subir"*, *"envie para produção"* ou equivalente.
 * **Autoria de Commits:** Nome: `Gabriel` | E-mail: `gfdaoliveira@gmail.com`.
+

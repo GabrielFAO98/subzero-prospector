@@ -86,6 +86,12 @@
         <small>Sem site / Foco comercial</small>
       </div>
 
+      <div class="stat-card stat-online" data-filter="site_ativo">
+        <span class="stat-label">🌐 Sites Ativos</span>
+        <strong id="statOnline">0</strong>
+        <small>Com site no ar (Redesign)</small>
+      </div>
+
       <div class="stat-card stat-ready" data-filter="prototipo_pronto">
         <span class="stat-label">🌐 Protótipos</span>
         <strong id="statReady">0</strong>
@@ -123,9 +129,10 @@
     <section class="table-toolbar">
       <div class="tabs-nav">
         <button class="tab-btn active" data-tab="oportunidade_quente">🔥 Oportunidades Quentes</button>
-        <button class="tab-btn" data-tab="prototipo_pronto">🌐 Protótipos Prontos</button>
+        <button class="tab-btn" data-tab="site_ativo">🌐 Sites Ativos</button>
+        <button class="tab-btn" data-tab="prototipo_pronto">⚡ Protótipos Prontos</button>
         <button class="tab-btn" data-tab="contatado">📞 Já Contatados</button>
-        <button class="tab-btn" data-tab="descartado">🚫 Descartados</button>
+        <button class="tab-btn" data-tab="descartado">🏢 Descartados</button>
         <button class="tab-btn" data-tab="todos">📋 Todos</button>
       </div>
 
@@ -212,11 +219,12 @@
           <div class="sidebar-block">
             <h4>🏷️ Alterar Status</h4>
             <select id="modalStatusSelect" class="status-select">
-              <option value="oportunidade_quente">🔥 Oportunidade Quente</option>
-              <option value="prototipo_pronto">🌐 Protótipo Pronto</option>
+              <option value="oportunidade_quente">🔥 Oportunidade Quente (Sem Site)</option>
+              <option value="site_ativo">🌐 Site Ativo (Redesign)</option>
+              <option value="prototipo_pronto">⚡ Protótipo Pronto</option>
               <option value="contatado">📞 Contatado</option>
               <option value="negociando">🤝 Em Negociação</option>
-              <option value="descartado">🚫 Descartado</option>
+              <option value="descartado">🏢 Descartado</option>
             </select>
           </div>
 

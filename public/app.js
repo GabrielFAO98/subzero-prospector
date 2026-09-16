@@ -16,6 +16,7 @@ const categoryChips = document.getElementById('categoryChips');
 
 const statTotal = document.getElementById('statTotal');
 const statHot = document.getElementById('statHot');
+const statOnline = document.getElementById('statOnline');
 const statReady = document.getElementById('statReady');
 const statContacted = document.getElementById('statContacted');
 const statDiscarded = document.getElementById('statDiscarded');
@@ -270,6 +271,7 @@ function renderCategoryChips() {
 function updateStats(stats) {
   statTotal.textContent = stats.total || 0;
   statHot.textContent = stats.oportunidadesQuentes || 0;
+  if (statOnline) statOnline.textContent = stats.sitesAtivos || 0;
   statReady.textContent = stats.prototiposProntos || 0;
   statContacted.textContent = (stats.contatados || 0) + (stats.negociando || 0);
   statDiscarded.textContent = stats.descartados || 0;
@@ -285,13 +287,13 @@ async function triggerProspecting(niche, city) {
   spinner.style.display = 'inline-block';
   searchNotice.className = 'search-notice';
   searchNotice.style.display = 'block';
-  searchNotice.textContent = `Buscando estabelecimentos de "${niche}" em ${city} com Playwright em segundo plano. Aguarde alguns instantes...`;
+  searchNotice.textContent = `Buscando até 5 estabelecimentos qualificados de "${niche}" em ${city} com Playwright em segundo plano. Aguarde alguns instantes...`;
 
   try {
     const res = await fetch('/api/prospect', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ niche, city, limit: 15 })
+      body: JSON.stringify({ niche, city, limit: 5 })
     });
 
     const data = await res.json();
@@ -783,6 +785,7 @@ async function generatePrototypeForLead(id, template = 'subzero') {
 function getBadgeClass(status) {
   switch(status) {
     case 'oportunidade_quente': return 'badge-hot';
+    case 'site_ativo': return 'badge-online';
     case 'prototipo_pronto': return 'badge-ready';
     case 'contatado': case 'negociando': return 'badge-contacted';
     case 'descartado': return 'badge-discarded';
@@ -793,10 +796,11 @@ function getBadgeClass(status) {
 function getBadgeLabel(status) {
   switch(status) {
     case 'oportunidade_quente': return '🔥 Oportunidade';
-    case 'prototipo_pronto': return '🌐 Protótipo Pronto';
+    case 'site_ativo': return '🌐 Site Ativo';
+    case 'prototipo_pronto': return '⚡ Protótipo Pronto';
     case 'contatado': return '📞 Contatado';
     case 'negociando': return '🤝 Negociando';
-    case 'descartado': return '🚫 Descartado';
+    case 'descartado': return '🏢 Descartado';
     default: return status;
   }
 }

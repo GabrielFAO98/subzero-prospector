@@ -213,6 +213,7 @@ class LeadDatabase {
     const stats = {
       total: this.leads.length,
       oportunidadesQuentes: 0,
+      sitesAtivos: 0,
       prototiposProntos: 0,
       contatados: 0,
       negociando: 0,
@@ -222,6 +223,7 @@ class LeadDatabase {
 
     this.leads.forEach(l => {
       if (l.status === 'oportunidade_quente') stats.oportunidadesQuentes++;
+      else if (l.status === 'site_ativo') stats.sitesAtivos++;
       else if (l.status === 'prototipo_pronto') stats.prototiposProntos++;
       else if (l.status === 'contatado') stats.contatados++;
       else if (l.status === 'negociando') stats.negociando++;

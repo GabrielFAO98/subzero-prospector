@@ -332,6 +332,7 @@ input[type="text"]:focus, select:focus, textarea:focus {
 }
 
 .stat-hot strong { color: #ff7675; }
+.stat-online strong { color: #38bdf8; }
 .stat-ready strong { color: var(--cyan); }
 .stat-contacted strong { color: var(--green); }
 .stat-discarded strong { color: var(--text-muted); }
@@ -601,6 +602,7 @@ input[type="text"]:focus, select:focus, textarea:focus {
 }
 
 .badge-hot { background: rgba(255, 107, 107, 0.2); color: #ff7675; border: 1px solid #ff7675; }
+.badge-online { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid #38bdf8; }
 .badge-ready { background: rgba(30, 228, 255, 0.2); color: var(--cyan); border: 1px solid var(--cyan); }
 .badge-contacted { background: rgba(37, 211, 102, 0.2); color: var(--green); border: 1px solid var(--green); }
 .badge-discarded { background: rgba(148, 163, 184, 0.2); color: var(--text-muted); border: 1px solid var(--text-muted); }
