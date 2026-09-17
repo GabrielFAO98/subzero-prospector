@@ -33,6 +33,28 @@ Além da visibilidade e ranqueamento, um site próprio oferece vantagens que o e
 * **Atendimento Autônomo 24 Horas por Dia:**
   O site tira dúvidas, exibe especialidades, credenciais, horários de plantão e localização mesmo à noite, aos domingos e feriados, alimentando o WhatsApp de contatos.
 
+### 1.3 Playbook de Abordagem & Follow-up (Quebra de Bloqueio com Funcionários / Secretárias)
+Quando o primeiro contato no WhatsApp for atendido por um funcionário, atendente ou recepcionista que informa *"vou passar para o patrão/responsável"*, a conduta nos dias seguintes **não deve ser de cobrança**, mas de **parceria/aliança** para desonerar o atendente e alcançar o tomador de decisão.
+
+#### A Realidade do Gatekeeper:
+1. **Em 80% dos casos:** O funcionário não foi rejeitado pelo chefe; a rotina da loja/balcão atropelou e a mensagem simplesmente desceu no feed de conversas.
+2. **Em 15% dos casos:** O funcionário comentou superficialmente, o patrão respondeu *"depois eu vejo"* e o assunto parou.
+3. **Regra de Ouro:** NUNCA usar termos como "cobrar" ou cobrar posicionamento que gere desconforto. Facilite o trabalho do atendente e posicione-se para poupar o tempo dele.
+
+#### Scripts de Follow-up (Após 48h sem retorno):
+
+* **Opção 1 — Amigável e Descompromissada (Padrão para a maioria dos casos):**
+  > *"Opa, [Nome ou tudo bem?]! Passando rapidinho só para saber se você conseguiu mostrar a prévia do site pro seu patrão. Sei que a correria aí na empresa deve estar grande! Se preferir, pode me passar o contato dele ou o melhor horário que falo direto com ele para não te atrapalhar por aí. Abraço!"*
+
+* **Opção 2 — Gatilho de Disponibilidade do Protótipo (Urgência Sutil & Valor):**
+  > *"Fala, [Nome]! Tudo joia? Só te dando um toque porque estou organizando os protótipos da semana e deixei o modelo exclusivo de vocês ativo no ar. O pessoal aí da diretoria conseguiu dar uma olhada no celular? Qualquer dúvida que ele tiver sobre o projeto, estou à disposição!"*
+
+* **Opção 3 — Direta para Obtenção do Contato do Decisor (Quando já se sabe o nome do dono):**
+  > *"Olá, [Nome]! Bom dia! Conseguiu encaminhar aquele link para o [Nome do Patrão]? Se ele estiver na correria do dia a dia, se quiser me passar o WhatsApp dele eu mesmo mando lá bem resumido em 1 minuto, sem tomar o seu tempo aí no balcão/atendimento. Valeu!"*
+
+* **Frase de Desbloqueio Imediato (Se o atendente responder "ele ainda não viu, tá corrido"):**
+  > *"Totalmente compreensível! Me passa o contato dele que eu mesmo deixo uma mensagem curta lá para quando ele tiver 1 minuto. Assim não te sobrecarrego aí!"*
+
 ---
 
 ## 🎨 2. Manifesto Visual & Diretriz de Imagens
