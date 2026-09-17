@@ -90,26 +90,12 @@ function setupEventListeners() {
     render();
   });
 
-  // Abas de navegação
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeTab = btn.dataset.tab;
-      render();
-    });
-  });
-
-  // Cards de métricas clicáveis
+  // Cards de métricas clicáveis (Filtro principal)
   document.querySelectorAll('.stat-card').forEach(card => {
     card.addEventListener('click', () => {
       document.querySelectorAll('.stat-card').forEach(c => c.classList.remove('active'));
       card.classList.add('active');
       activeTab = card.dataset.filter;
-      // Sincroniza aba correspondente
-      document.querySelectorAll('.tab-btn').forEach(b => {
-        b.classList.toggle('active', b.dataset.tab === activeTab);
-      });
       render();
     });
   });
@@ -317,8 +303,8 @@ async function triggerProspecting(niche, city) {
         activeTab = 'todos';
       }
 
-      document.querySelectorAll('.tab-btn').forEach(b => {
-        b.classList.toggle('active', b.dataset.tab === activeTab);
+      document.querySelectorAll('.stat-card').forEach(c => {
+        c.classList.toggle('active', c.dataset.filter === activeTab);
       });
       render();
     } else {

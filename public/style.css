@@ -418,45 +418,26 @@ input[type="text"]:focus, select:focus, textarea:focus {
 /* Table Toolbar */
 .table-toolbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   flex-wrap: wrap;
   gap: 16px;
   margin-bottom: 16px;
 }
 
-.tabs-nav {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.tab-btn {
-  background: transparent;
-  border: 1px solid var(--surface-border);
-  color: var(--text-muted);
-  padding: 8px 16px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-  transition: all 0.2s;
-}
-
-.tab-btn.active, .tab-btn:hover {
-  background: var(--cyan);
-  color: var(--navy-dark);
-  border-color: var(--cyan);
-}
-
 .toolbar-actions {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .search-input {
+  flex: 1;
   min-width: 260px;
+  max-width: 480px;
 }
 
 .view-toggle {
