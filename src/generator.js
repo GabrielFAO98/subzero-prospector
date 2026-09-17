@@ -278,6 +278,47 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
   };
 }
 
+function cleanCompanyNameSmart(rawName = '') {
+  let name = (rawName || '').trim();
+
+  // 1. Separadores comuns de título no Google Maps: | , - , / , : , •
+  for (const sep of ['|', ' - ', ' – ', ' / ', ':', '•']) {
+    if (name.includes(sep)) {
+      name = name.split(sep)[0].trim();
+    }
+  }
+
+  // 2. Caudas descritivas e palavras-chave de busca no Google Maps:
+  // ex: "Daniel climatização instalação e manutenção de ar condicionado"
+  const regexPatterns = [
+    /^(.*?climatiza[çc][aã]o)\s+(?:instala[çc][aã]o|manuten[çc][aã]o|vendas|assist[eê]ncia).*/i,
+    /^(.*?ar[- ]condicionado)\s+(?:instala[çc][aã]o|manuten[çc][aã]o|assist[eê]ncia).*/i,
+    /^(.*?seguran[çc]a\s+eletr[oô]nica)\s+(?:instala[çc][aã]o|monitoramento|c[aâ]meras).*/i,
+    /^(.*?energia\s+solar)\s+(?:instala[çc][aã]o|fotovoltaica|projetos).*/i
+  ];
+
+  for (const pattern of regexPatterns) {
+    const match = name.match(pattern);
+    if (match && match[1]) {
+      name = match[1].trim();
+      break;
+    }
+  }
+
+  // 3. Formatação Title Case elegante para nomes que vieram em minúsculo ou com pontuação estranha
+  const preps = ['de', 'da', 'do', 'das', 'dos', 'e', 'em', 'com'];
+  name = name.split(/\s+/).map((word, i) => {
+    if (word.length > 1 && word === word.toUpperCase() && !/[0-9]/.test(word) && word.length <= 4) {
+      return word; // Preserva siglas como CFTV, PMOC
+    }
+    const lower = word.toLowerCase();
+    if (i > 0 && preps.includes(lower)) return lower;
+    return lower.charAt(0).toUpperCase() + lower.slice(1);
+  }).join(' ');
+
+  return name;
+}
+
 function generateSlug(nome = '') {
   return (nome || '')
     .toLowerCase()
@@ -331,9 +372,7 @@ async function generatePrototype(lead, templateHint = null) {
   let html = fs.readFileSync(templateHtmlPath, 'utf-8');
 
   // 2. Extrair dados da empresa e inteligência de avaliações
-  const cleanCompanyName = lead.nome.includes('|')
-    ? lead.nome.split('|')[0].trim()
-    : (lead.nome.includes(' - ') ? lead.nome.split(' - ')[0].trim() : lead.nome);
+  const cleanCompanyName = cleanCompanyNameSmart(lead.nome);
 
   const cidade = lead.cidade || 'Franca SP';
   const ratingData = parseRatingData(lead.avaliacao, cidade);
