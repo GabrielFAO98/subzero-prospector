@@ -350,7 +350,8 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 5, 
         }
       };
 
-      const { lead } = db.upsert(leadRecord);
+      const { lead, isNew } = db.upsert(leadRecord);
+      lead._isNew = isNew;
       processedLeads.push(lead);
     }
 

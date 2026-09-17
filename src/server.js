@@ -43,10 +43,18 @@ app.post('/api/prospect', async (req, res) => {
   
   try {
     const rawLeads = await searchLeadsGoogleMaps(niche, city, safeLimit);
+    const newLeads = rawLeads.filter(l => l._isNew === true);
+    const existingLeads = rawLeads.filter(l => l._isNew === false);
+
     res.json({
       success: true,
-      message: `${rawLeads.length} empresas mineradas e catalogadas.`,
-      newLeads: rawLeads,
+      message: `${rawLeads.length} empresas analisadas: ${newLeads.length} nova(s) e ${existingLeads.length} já cadastrada(s).`,
+      totalFound: rawLeads.length,
+      newCount: newLeads.length,
+      existingCount: existingLeads.length,
+      newLeads,
+      existingLeads,
+      rawLeads,
       leads: db.getAll(),
       stats: db.getStats()
     });

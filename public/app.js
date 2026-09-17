@@ -287,20 +287,31 @@ async function triggerProspecting(niche, city) {
       allLeads = data.leads || [];
       updateStats(data.stats || {});
 
+      const totalFound = data.totalFound ?? (data.rawLeads ? data.rawLeads.length : 0);
       const newLeads = data.newLeads || [];
+      const newCount = data.newCount ?? newLeads.length;
+      const existingCount = data.existingCount ?? (totalFound - newCount);
       const hotCount = newLeads.filter(l => l.status === 'oportunidade_quente').length;
 
-      if (newLeads.length === 0) {
+      if (totalFound === 0) {
         searchNotice.className = 'search-notice';
-        searchNotice.textContent = `Nenhum estabelecimento novo encontrado para "${niche}" em ${city} (ou todos já foram minerados anteriormente).`;
-      } else if (hotCount > 0) {
-        searchNotice.className = 'search-notice success';
-        searchNotice.textContent = `🎉 Concluído! Encontrados ${newLeads.length} estabelecimentos, sendo ${hotCount} oportunidade(s) quente(s) (sem site ou site inseguro). Exibindo na aba Oportunidades Quentes!`;
-        activeTab = 'oportunidade_quente';
-      } else {
+        searchNotice.textContent = `Nenhum estabelecimento retornado pelo Google Maps para "${niche}" em ${city}.`;
+      } else if (newCount === 0) {
         searchNotice.className = 'search-notice';
-        searchNotice.textContent = `ℹ️ Concluído! ${newLeads.length} estabelecimentos analisados. Todos já possuem site ativo com SSL. Exibindo na aba "Todos os Leads" para conferência.`;
+        searchNotice.textContent = `ℹ️ ${totalFound} empresa(s) analisada(s) no Google Maps, mas TODAS as ${existingCount} já constavam na sua base de dados (dados e status foram sincronizados). Não há novos estabelecimentos para este nicho neste lote.`;
         activeTab = 'todos';
+      } else {
+        const existingInfo = existingCount > 0 ? ` (${existingCount} já constavam no histórico e foram atualizadas)` : '';
+        
+        if (hotCount > 0) {
+          searchNotice.className = 'search-notice success';
+          searchNotice.textContent = `🎉 Concluído! ${totalFound} empresas analisadas: ${newCount} NOVA(S) adicionada(s), sendo ${hotCount} oportunidade(s) quente(s) (sem site próprio)!${existingInfo}. Exibindo em Oportunidades!`;
+          activeTab = 'oportunidade_quente';
+        } else {
+          searchNotice.className = 'search-notice';
+          searchNotice.textContent = `ℹ️ Concluído! ${totalFound} empresas analisadas: ${newCount} NOVA(S) adicionada(s) (com site ativo com SSL)${existingInfo}. Exibindo em Sites Ativos!`;
+          activeTab = 'site_ativo';
+        }
       }
 
       document.querySelectorAll('.stat-card').forEach(c => {
