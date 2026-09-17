@@ -43,3 +43,4 @@ const { chromium } = require('playwright');
   await browser.close();
   console.log('\nAll Playwright mobile nav tests passed successfully!');
 })().catch(console.error);
+

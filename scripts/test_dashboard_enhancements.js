@@ -39,3 +39,4 @@ const { chromium } = require('playwright');
   await browser.close();
   console.log('\nAll dashboard verification tests completed successfully!');
 })().catch(console.error);
+

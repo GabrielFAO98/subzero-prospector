@@ -192,3 +192,4 @@ const path = require('path');
   fs.writeFileSync(genFile, gen, 'utf8');
   console.log('src/generator.js concise presentation copy updated!');
 }
+
