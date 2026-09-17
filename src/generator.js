@@ -161,25 +161,25 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
   if (n.includes('veterin') || n.includes('pet') || nameLower.includes('vet') || nameLower.includes('pet')) {
     return {
       subtitulo: 'Medicina Veterinária & Estética Animal',
-      tituloPrincipal: `Cuidado Dedicado e Medicina de Precisão para Seu Pet`,
-      chamadaPrincipal: 'Saúde, Prevenção e Amor em Cada Consulta',
-      slogan: 'Medicina veterinária humanizada, estrutura moderna e atendimento acolhedor.',
-      apresentacao: `Com atendimento cuidadoso em ${cidade}, a ${nomeEmpresa} oferece consultas preventivas, diagnósticos detalhados e cuidados estéticos completos para o bem-estar da sua família de quatro patas.`,
+      tituloPrincipal: 'Cuidado Dedicado e Medicina de Precisão para Seu Pet',
+      chamadaPrincipal: 'Saúde, Prevenção e Bem-Estar Animal em Franca',
+      slogan: 'Medicina preventiva, exames rápidos e atendimento acolhedor.',
+      apresentacao: `Atendimento veterinário humanizado em ${cidade}, com estrutura moderna e cuidados preventivos para a saúde do seu pet.`,
       servicos: [
-        { nome: 'Consultas Clínicas & Check-up Geral', desc: 'Atendimento atencioso com anamnese detalhada, controle de peso e exames preventivos completos.' },
-        { nome: 'Centro Cirúrgico & Procedimentos', desc: 'Estrutura cirúrgica esterilizada com monitoramento cardíaco multiparâmetro e foco absoluto na segurança.' },
-        { nome: 'Vacinação Importada & Prevenção', desc: 'Protocolos vacinais V10, antirrábica, gripe e giardíase com controle rigoroso de refrigeração e carteirinha digital.' },
-        { nome: 'Estética Animal, Banho & Tosa', desc: 'Banhos com cosméticos dermatológicos hipoalergênicos, tosa na máquina/tesoura e tosa higiênica sem estresse.' }
+        { nome: 'Consultas Clínicas & Check-up', desc: 'Avaliação clínica detalhada e exames preventivos completos.' },
+        { nome: 'Centro Cirúrgico & Procedimentos', desc: 'Estrutura cirúrgica esterilizada com monitoramento contínuo.' },
+        { nome: 'Vacinação Importada & Prevenção', desc: 'Protocolos vacinais completos com refrigeração rigorosa.' },
+        { nome: 'Estética Animal, Banho & Tosa', desc: 'Cosméticos hipoalergênicos e tosa especializada sem estresse.' }
       ],
       diferenciais: [
-        { titulo: 'Medicina Humanizada', desc: 'Trato empático, acolhedor e calmo, respeitando o tempo de adaptação e conforto de cada animalzinho.' },
-        { titulo: 'Diagnóstico Preciso', desc: 'Exames laboratoriais rápidos e conduta médica ética para tratar o problema na raiz.' },
-        { titulo: 'Clínica e Cuidados Integrados', desc: 'Consulta médica, procedimentos preventivos e produtos dermatológicos de alta qualidade no mesmo local.' }
+        { titulo: 'Medicina Humanizada', desc: 'Trato calmo e empático, respeitando o tempo do seu pet.' },
+        { titulo: 'Diagnóstico Preciso', desc: 'Exames laboratoriais ágeis para conduta médica segura.' },
+        { titulo: 'Clínica Integrada', desc: 'Consultas, cirurgias e estética animal no mesmo local.' }
       ],
       avaliacoes: prepareReviews(lead, [
-        { autor: 'Mariana Silveira', texto: `Equipe da ${nomeEmpresa} é maravilhosa! Cuidaram do meu cachorro com muito carinho e profissionalismo quando ele precisou. Recomendo!` },
+        { autor: 'Mariana Silveira', texto: `Equipe da ${nomeEmpresa} é maravilhosa! Cuidaram do meu cachorro com muito carinho e profissionalismo. Recomendo!` },
         { autor: 'Renato F. Oliveira', texto: `O melhor atendimento de Franca! Meus pets voltam sempre tranquilos, limpinhos e cheirosos. Lugar de total confiança.` },
-        { autor: 'Carla Beatriz Ramos', texto: `Profissionais muito capacitados e transparentes na ${nomeEmpresa}. Explicam tudo com calma e sem empurrar gastos desnecessários.` },
+        { autor: 'Carla Beatriz Ramos', texto: `Profissionais muito capacitados e transparentes na ${nomeEmpresa}. Explicam tudo com calma e sem empurrar gastos extras.` },
         { autor: 'Diego M. Santos', texto: `Ambiente super limpo e atendimento acolhedor desde a recepção. Toda a equipe da ${nomeEmpresa} está de parabéns.` }
       ], nomeEmpresa),
       imagensServicos: ['hero.jpg', 'workshop.jpg', 'hero.jpg', 'workshop.jpg']
@@ -190,21 +190,21 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
   if ((nameLower.includes('distribuidora') || nameLower.includes('atacado') || nameLower.includes('distribuicao')) && 
       (n.includes('seguranca') || n.includes('eletronica') || nameLower.includes('seguranca') || nameLower.includes('eletronica') || nameLower.includes('kell'))) {
     return {
-      subtitulo: 'Distribuidora Atacadista de Segurança Eletrônica',
+      subtitulo: 'Distribuidora de Segurança Eletrônica',
       tituloPrincipal: 'Equipamentos e Tecnologia para Integradores e Instaladores',
       chamadaPrincipal: 'Pronta-Entrega e Preço de Distribuidor em Franca',
-      slogan: 'Câmeras, alarmes, motores de portão e controle de acesso das melhores marcas.',
-      apresentacao: `Estoque local com pronta-entrega e suporte técnico especializado para instaladores e empresas de segurança em ${cidade}.`,
+      slogan: 'Câmeras, alarmes, motores e controle de acesso com suporte técnico.',
+      apresentacao: `Estoque local com pronta-entrega e suporte técnico para integradores e empresas de segurança em ${cidade}.`,
       servicos: [
-        { nome: 'Câmeras CFTV & Gravadores DVR/NVR', desc: 'Linhas completas em alta definição, com pronta-entrega para projetos residenciais, comerciais e industriais.' },
-        { nome: 'Centrais de Alarme & Sensores Infravermelho', desc: 'Sistemas com discadora, aplicativo móvel e detecção de alta precisão para máxima proteção perimetral.' },
-        { nome: 'Motores para Portão & Cremalheiras', desc: 'Automatizadores ultrarrápidos para portões deslizantes, basculantes e pivotantes com garantia de fábrica.' },
-        { nome: 'Concertinas, Fios de Choque & Acessórios', desc: 'Concertinas duplas galvalume, hastes reforçadas, baterias e cabeamento homologado com o melhor custo.' }
+        { nome: 'Câmeras CFTV & Gravadores', desc: 'Linhas completas em alta definição para residências e comércios.' },
+        { nome: 'Centrais de Alarme & Sensores', desc: 'Sistemas com alerta no celular e detecção perimetral precisa.' },
+        { nome: 'Motores para Portão & Acessórios', desc: 'Automatizadores ultrarrápidos com garantia oficial de fábrica.' },
+        { nome: 'Concertinas & Fios de Choque', desc: 'Hastes reforçadas, cabeamento homologado e concertinas galvalume.' }
       ],
       diferenciais: [
-        { titulo: 'Estoque Local & Pronta-Entrega', desc: 'Retirada imediata em Franca sem esperar frete para fechar seu projeto no prazo.' },
-        { titulo: 'Marcas Líderes Certificadas', desc: 'Equipamentos originais e certificados com garantia oficial e procedência garantida.' },
-        { titulo: 'Suporte Técnico aos Instaladores', desc: 'Equipe especializada para auxiliar na especificação do equipamento ideal para cada obra.' }
+        { titulo: 'Estoque Local em Franca', desc: 'Retirada imediata sem frete para cumprir seus prazos de obra.' },
+        { titulo: 'Marcas Líderes Originais', desc: 'Equipamentos certificados com garantia oficial dos fabricantes.' },
+        { titulo: 'Suporte aos Instaladores', desc: 'Equipe especializada para auxiliar na especificação de cada projeto.' }
       ],
       avaliacoes: prepareReviews(lead, [
         { autor: 'Marcos Vinicius (Instalador)', texto: `Melhor distribuidora de Franca! Preço justo de atacado e a ${nomeEmpresa} sempre tem o material a pronta entrega quando preciso.` },
@@ -216,24 +216,24 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
     };
   }
 
-  // 3. SEGURANÇA: MONITORAMENTO 24H, RASTREAMENTO & ALARMES (Ex: ICON MONITORAMENTO 24HS)
+  // 3. SEGURANÇA: MONITORAMENTO 24H, RASTREAMENTO & ALARMES (Ex: TELEPÚBLICO, ICON, BLACKOUT)
   if (nameLower.includes('monitoramento') || nameLower.includes('alarme') || nameLower.includes('rastreamento') || n.includes('monitoramento') || n.includes('rastreamento')) {
     return {
-      subtitulo: 'Central de Monitoramento 24 Horas & Segurança Eletrônica',
+      subtitulo: 'Central de Monitoramento 24 Horas & Segurança',
       tituloPrincipal: 'Vigilância Ativa e Resposta Rápida 24 Horas',
       chamadaPrincipal: 'Proteção Ininterrupta para Sua Residência e Empresa',
-      slogan: 'Monitoramento 24 horas de alta precisão, pronta-resposta e controle total no seu smartphone.',
-      apresentacao: `Com central operacional de prontidão em ${cidade}, a ${nomeEmpresa} protege o seu patrimônio dia e noite com tecnologia de ponta, conexão sem fio à central e equipe treinada para pronta-resposta imediata.`,
+      slogan: 'Monitoramento 24 horas de alta precisão com pronta-resposta e app móvel.',
+      apresentacao: `Proteção patrimonial ativa em ${cidade} com monitoramento 24 horas, equipe de pronta-resposta e alertas em tempo real no celular.`,
       servicos: [
-        { nome: 'Central de Monitoramento 24 Horas', desc: 'Vigilância ininterrupta 365 dias ao ano, com protocolo de checagem imediata e equipe de resposta rápida em campo.' },
-        { nome: 'Sistemas de Alarme com Sensores Inteligentes', desc: 'Centrais com sensores infravermelhos antimascaração, proteção contra animais domésticos e notificações no celular.' },
-        { nome: 'Câmeras CFTV HD com Acesso Móvel', desc: 'Monitoramento em alta definição com visão noturna no escuro total, gravação em nuvem e visualização ao vivo no smartphone.' },
-        { nome: 'Controle de Acesso & Automação de Portões', desc: 'Videoporteiros IP, biometria digital e motores rápidos para assegurar que apenas pessoas autorizadas acessem o local.' }
+        { nome: 'Central de Monitoramento 24 Horas', desc: 'Vigilância 365 dias ao ano com protocolo de checagem imediata.' },
+        { nome: 'Alarmes com Sensores Inteligentes', desc: 'Detecção precisa sem disparos falsos e alerta instantâneo no app.' },
+        { nome: 'Câmeras CFTV HD com Acesso Móvel', desc: 'Imagens em alta definição com visão noturna e visualização no celular.' },
+        { nome: 'Controle de Acesso & Automação', desc: 'Videoporteiros IP, biometria e motores rápidos para entrada segura.' }
       ],
       diferenciais: [
-        { titulo: 'Central Ativa 24h em Franca', desc: 'Equipe monitorando seu imóvel ininterruptamente com tempo recorde de atendimento.' },
-        { titulo: 'Controle Total no Aplicativo', desc: 'Arme, desarme e visualize imagens em tempo real de qualquer lugar pelo celular.' },
-        { titulo: 'Pronta-Resposta de Campo', desc: 'Deslocamento ágil de viatura tática em qualquer acionamento suspeito do alarme.' }
+        { titulo: 'Central Ativa 24h', desc: 'Equipe monitorando seu imóvel com tempo recorde de atendimento.' },
+        { titulo: 'Controle no Aplicativo', desc: 'Arme, desarme e visualize câmeras de qualquer lugar pelo celular.' },
+        { titulo: 'Apoio Tático em Campo', desc: 'Deslocamento ágil de equipe tática em acionamentos suspeitos.' }
       ],
       avaliacoes: prepareReviews(lead, [
         { autor: 'Eduardo Fagundes', texto: `A equipe da ${nomeEmpresa} instalou o sistema na nossa empresa em Franca. A central 24h é super atenta e o aplicativo no celular funciona perfeitamente.` },
@@ -251,18 +251,18 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
       subtitulo: 'Proteção Perimetral & CFTV em Franca',
       tituloPrincipal: 'Proteja Sua Família e Seu Patrimônio com Segurança Reforçada',
       chamadaPrincipal: 'Barreiras de Alta Resistência Que Fazem o Invasor Desistir',
-      slogan: 'Cercas elétricas de alta voltagem, concertinas galvalume e câmeras no celular com garantia.',
-      apresentacao: `Com sólida atuação em ${cidade}, a ${nomeEmpresa} instala sistemas perimétricos de máxima resistência e durabilidade, combinando barreiras físicas inibidoras com tecnologia de vigilância contínua.`,
+      slogan: 'Cercas elétricas, concertinas galvalume e câmeras no celular com garantia.',
+      apresentacao: `Instalação técnica de cercas elétricas, concertinas e câmeras em ${cidade} com agilidade e garantia documentada.`,
       servicos: [
-        { nome: 'Cerca Elétrica de Choque Ativo & Alarme', desc: 'Pulso de alta voltagem com disparo sonoro imediato em tentativa de corte ou toque na fiação reforçada.' },
-        { nome: 'Concertina Dupla em Aço Galvalume', desc: 'Lâminas afiadas altamente perfurantes com liga galvalume anticorrosão que blindam muros contra escaladas.' },
-        { nome: 'Câmeras CFTV HD com Visão Noturna', desc: 'Acesso em tempo real na tela do smartphone, com imagens nítidas no escuro, gravação e alertas inteligentes de movimento.' },
-        { nome: 'Motores para Portão & Automatização Rápida', desc: 'Abertura veloz em até 4 segundos com acionamento seguro no controle ou celular, reduzindo tempo de espera na rua.' }
+        { nome: 'Cercas Elétricas & Alarmes', desc: 'Proteção perimetral com choque pulsativo e sirene de alta potência.' },
+        { nome: 'Concertinas Duplas Galvalume', desc: 'Lâminas afiadas em aço galvalume resistente a cortes e corrosão.' },
+        { nome: 'Câmeras de Segurança CFTV', desc: 'Imagens nítidas no escuro com alertas e acompanhamento no celular.' },
+        { nome: 'Motores para Portão & Interfonia', desc: 'Abertura rápida com travas elétricas e acionamento seguro no controle.' }
       ],
       diferenciais: [
-        { titulo: 'Aço Galvalume & Equipamentos Certificados', desc: 'Materiais de altíssima resistência mecânica contra intempéries e tentativas de corte.' },
-        { titulo: 'Instalação Técnica Limpa e Rápida', desc: 'Técnicos especializados, acabamento profissional e zero sujeira no seu imóvel.' },
-        { titulo: 'Garantia e Assistência Local', desc: 'Suporte ágil direto em Franca com pós-venda garantido para sua total tranquilidade.' }
+        { titulo: 'Instalação Rápida e Limpa', desc: 'Execução técnica sem quebra-quebra, respeitando seu imóvel.' },
+        { titulo: 'Equipamentos Homologados', desc: 'Centrais e fiação normatizadas pelo Inmetro com máxima segurança.' },
+        { titulo: 'Garantia e Suporte Local', desc: 'Orçamento transparente e atendimento ágil direto no WhatsApp.' }
       ],
       avaliacoes: prepareReviews(lead, [
         { autor: 'André Martins', texto: `Instalação impecável da concertina e do motor de portão pela ${nomeEmpresa}. Ficou super alinhado e o atendimento foi rápido e pontual.` },
@@ -277,21 +277,21 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
   // 5. CLIMATIZAÇÃO, AR-CONDICIONADO & REFRIGERAÇÃO (Ex: HUNIFRIO)
   if (n.includes('ar condicionado') || n.includes('ar-condicionado') || n.includes('climatiza') || n.includes('refrigera') || nameLower.includes('frio') || nameLower.includes('clima') || nameLower.includes('ar condicionado')) {
     return {
-      subtitulo: 'Climatização & Refrigeração',
+      subtitulo: 'Climatização & Refrigeração Especializada',
       tituloPrincipal: 'Especialistas em Instalação, Higienização e Manutenção de Ar-Condicionado',
       chamadaPrincipal: 'Temperatura Ideal e Ar Puro para Sua Casa ou Empresa',
       slogan: 'Conforto térmico, economia de energia e ar puro o ano inteiro.',
-      apresentacao: `Com atendimento técnico especializado em ${cidade}, a ${nomeEmpresa} entrega serviços completos de instalação técnica, manutenção preventiva e higienização antibacteriana de aparelhos de ar-condicionado com pontualidade e garantia total.`,
+      apresentacao: `Instalação técnica, manutenção preventiva e higienização profunda em ${cidade} com pontualidade e garantia de fábrica.`,
       servicos: [
-        { nome: 'Instalação de Ar-Condicionado Split & Inverter', desc: 'Instalação especializada seguindo rigorosamente o manual dos fabricantes, com processo de vácuo e teste de estanqueidade para preservar a garantia.' },
-        { nome: 'Higienização Profunda & Limpeza Antibacteriana', desc: 'Eliminação completa de fungos, ácaros e bactérias com produtos bactericidas homologados, devolvendo ar 100% puro e reduzindo o consumo de energia.' },
-        { nome: 'Manutenção Preventiva & Carga de Gás', desc: 'Revisão completa das pressões operacionais, detecção de microvazamentos, recarga com fluido refrigerante ecológico e checagem elétrica.' },
-        { nome: 'Contratos PMOC & Climatização Comercial', desc: `Planos de Manutenção, Operação e Controle (PMOC) para clínicas, escritórios e comércios em ${cidade}, em total conformidade com as normas da Anvisa.` }
+        { nome: 'Instalação Split & Inverter', desc: 'Instalação técnica com bomba de vácuo preservando a garantia de fábrica.' },
+        { nome: 'Higienização Antibacteriana', desc: 'Limpeza profunda que elimina fungos, odores e reduz o consumo elétrico.' },
+        { nome: 'Manutenção Preventiva & Gás', desc: 'Detecção de microvazamentos, recarga ecológica e teste operacional.' },
+        { nome: 'Contratos PMOC para Empresas', desc: 'Planos de manutenção em conformidade total com as normas da Anvisa.' }
       ],
       diferenciais: [
-        { titulo: 'Instalação Padrão dos Fabricantes', desc: 'Procedimento com flangeadores de precisão e bomba de vácuo, garantindo máxima vida útil ao compressor.' },
-        { titulo: 'Ar Puro e Livre de Alergias', desc: 'Higienização química profunda que remove mofo e odores, protegendo a saúde da sua família ou equipe.' },
-        { titulo: 'Pontualidade e Garantia Formal', desc: 'Compromisso com o horário agendado, transparência de orçamento e garantia documentada do serviço.' }
+        { titulo: 'Padrão Rigoroso de Fábrica', desc: 'Ferramentas de precisão que preservam o compressor e a garantia.' },
+        { titulo: 'Ar Puro e Livre de Alergias', desc: 'Higienização química certificada para proteger a saúde de todos.' },
+        { titulo: 'Pontualidade e Garantia', desc: 'Horário respeitado e orçamento transparente sem custos ocultos.' }
       ],
       avaliacoes: prepareReviews(lead, [
         { autor: 'Marcelo Siqueira', texto: `Contratei a ${nomeEmpresa} para instalação de dois aparelhos split no meu escritório. Serviço impecável, técnicos organizados e deixaram tudo limpo. Nota 10!` },
@@ -309,18 +309,18 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
       subtitulo: 'Energia Solar Fotovoltaica em Franca',
       tituloPrincipal: 'Economize até 95% na Sua Conta de Luz com Energia Solar',
       chamadaPrincipal: 'Independência Energética com Engenharia de Alta Performance',
-      slogan: 'Projetos completos com módulos tier-1, engenharia especializada e homologação sem burocracia.',
-      apresentacao: `Especialistas em projetos fotovoltaicos conectados à rede em ${cidade}, a ${nomeEmpresa} cuida de cada etapa, desde o dimensionamento técnico de engenharia até a ativação na concessionária, com foco em máxima economia.`,
+      slogan: 'Projetos completos com módulos tier-1, engenharia e homologação rápida.',
+      apresentacao: `Reduza até 95% dos custos com energia solar fotovoltaica em ${cidade}, com homologação rápida e sem burocracia.`,
       servicos: [
-        { nome: 'Projetos Solares Residenciais', desc: 'Geração própria de energia limpa para abastecer sua casa, reduzindo sua conta de energia drasticamente com durabilidade de 25 anos.' },
-        { nome: 'Usinas Fotovoltaicas Comerciais', desc: 'Sistemas de alta potência para indústrias, comércios e galpões em Franca, reduzindo despesas fixas e aumentando a rentabilidade do negócio.' },
-        { nome: 'Manutenção Preventiva & Limpeza de Painéis', desc: 'Inspeção térmica dos módulos, checagem dos inversores e limpeza técnica especializada para garantir geração no pico máximo.' },
-        { nome: 'Homologação Completa na Concessionária', desc: 'Projeto elétrico com ART assinada e trâmite 100% gerenciado junto à concessionária local com zero burocracia para você.' }
+        { nome: 'Projetos Solares Residenciais', desc: 'Geração própria para zerar a conta de luz com garantia de 25 anos.' },
+        { nome: 'Usinas Comerciais & Galpões', desc: 'Sistemas de alta potência para reduzir despesas fixas da sua empresa.' },
+        { nome: 'Limpeza Técnica & Manutenção', desc: 'Inspeção e limpeza especializada para manter a geração no pico máximo.' },
+        { nome: 'Homologação na Concessionária', desc: 'Projeto elétrico com ART e aprovação técnica 100% gerenciada.' }
       ],
       diferenciais: [
-        { titulo: 'Módulos Tier-1 de Alta Eficiência', desc: 'Painéis fotovoltaicos e inversores líderes mundiais em tecnologia com 25 anos de garantia de geração.' },
-        { titulo: 'Engenharia Própria Especializada', desc: 'Dimensionamento milimétrico adaptado à sua demanda e orientação do telhado para maximizar o retorno.' },
-        { titulo: 'Homologação Rápida e Sem Surpresas', desc: 'Cuidamos de toda a documentação até o seu sistema começar a gerar créditos na conta.' }
+        { titulo: 'Módulos Tier-1 Certificados', desc: 'Painéis e inversores líderes mundiais com 25 anos de garantia.' },
+        { titulo: 'Engenharia Especializada', desc: 'Dimensionamento sob medida para maximizar o retorno do investimento.' },
+        { titulo: 'Aprovação Sem Burocracia', desc: 'Cuidamos de tudo até a ativação dos créditos junto à concessionária.' }
       ],
       avaliacoes: prepareReviews(lead, [
         { autor: 'Carlos Eduardo Silva', texto: `Minha conta de energia caiu para a taxa mínima! A equipe da ${nomeEmpresa} cuidou de tudo com muita seriedade e no prazo combinado.` },
@@ -338,17 +338,17 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
     tituloPrincipal: `Excelência e Soluções Confiáveis com a ${nomeEmpresa}`,
     chamadaPrincipal: 'Qualidade Comprovada e Compromisso com Seus Resultados',
     slogan: 'Profissionalismo, agilidade no atendimento e compromisso em cada detalhe.',
-    apresentacao: `Com sólida reputação em ${cidade}, a ${nomeEmpresa} oferece soluções sob medida com equipe qualificada, pontualidade rigorosa e foco total na satisfação de cada cliente.`,
+    apresentacao: `Soluções técnicas especializadas em ${cidade} com atendimento ágil, transparência e garantia em cada etapa.`,
     servicos: [
-      { nome: 'Atendimento Personalizado', desc: 'Consultoria detalhada para entender exatamente sua necessidade e entregar a melhor solução técnica com excelente custo-benefício.' },
-      { nome: 'Execução Técnica Especializada', desc: 'Profissionais experientes utilizando materiais de primeira linha para garantir alta durabilidade, segurança e acabamento impecável.' },
-      { nome: 'Diagnóstico Ágil e Transparente', desc: 'Orçamento claro e detalhado sem surpresas ou taxas ocultas, respeitando o seu tempo e o seu orçamento.' },
-      { nome: 'Garantia Formal e Suporte Local', desc: 'Atendimento direto com suporte completo e acompanhamento pós-serviço para sua total tranquilidade.' }
+      { nome: 'Atendimento Personalizado', desc: 'Consultoria técnica para entregar a solução ideal com custo justo.' },
+      { nome: 'Execução Especializada', desc: 'Profissionais capacitados utilizando materiais de alta durabilidade.' },
+      { nome: 'Orçamento Transparente', desc: 'Proposta clara e detalhada sem surpresas ou cobranças extras.' },
+      { nome: 'Garantia e Suporte Local', desc: 'Atendimento ágil com acompanhamento pós-serviço para tranquilidade.' }
     ],
     diferenciais: [
-      { titulo: 'Profissionais Qualificados', desc: 'Equipe com vasta experiência prática pronta para resolver com agilidade e eficiência.' },
-      { titulo: 'Pontualidade e Compromisso', desc: 'Respeito ao prazo e comunicação transparente em todas as etapas da contratação.' },
-      { titulo: 'Garantia Comprovada', desc: 'Segurança e confiança atestadas por avaliações positivas de clientes locais.' }
+      { titulo: 'Equipe Qualificada', desc: 'Profissionais experientes prontos para resolver com eficiência.' },
+      { titulo: 'Pontualidade Rigorosa', desc: 'Respeito ao prazo com comunicação transparente do início ao fim.' },
+      { titulo: 'Garantia Comprovada', desc: 'Segurança e confiança atestadas por clientes satisfeitos locais.' }
     ],
     avaliacoes: prepareReviews(lead, [
       { autor: 'Carlos Eduardo', texto: `Serviço de altíssimo nível. A ${nomeEmpresa} resolveu super rápido, com muita atenção e preço justo. Com certeza voltarei a contratar.` },
@@ -370,13 +370,14 @@ function cleanCompanyNameSmart(rawName = '') {
     }
   }
 
-  // 2. Caudas descritivas e palavras-chave de busca no Google Maps:
-  // ex: "Daniel climatização instalação e manutenção de ar condicionado"
+  // 2. Caudas descritivas e palavras-chave de busca no Google Maps
   const regexPatterns = [
     /^(.*?climatiza[çc][aã]o)\s+(?:instala[çc][aã]o|manuten[çc][aã]o|vendas|assist[eê]ncia).*/i,
     /^(.*?ar[- ]condicionado)\s+(?:instala[çc][aã]o|manuten[çc][aã]o|assist[eê]ncia).*/i,
     /^(.*?seguran[çc]a\s+eletr[oô]nica)\s+(?:instala[çc][aã]o|monitoramento|c[aâ]meras).*/i,
-    /^(.*?energia\s+solar)\s+(?:instala[çc][aã]o|fotovoltaica|projetos).*/i
+    /^(.*?energia\s+solar)\s+(?:instala[çc][aã]o|fotovoltaica|projetos).*/i,
+    /^(.*?\bmonitoramento)\s+(?:e\s+rastreamento|24\s*h(?:oras?|rs?)?).*/i,
+    /^(.*?\brastreamento)\s+(?:e\s+monitoramento|24\s*h(?:oras?|rs?)?).*/i
   ];
 
   for (const pattern of regexPatterns) {
@@ -387,6 +388,11 @@ function cleanCompanyNameSmart(rawName = '') {
     }
   }
 
+  // Caudas residuais
+  name = name.replace(/\s+24\s*(?:h(?:oras?|rs?)?)$/i, '');
+  name = name.replace(/\s+e\s+rastreamento.*$/i, '');
+  name = name.replace(/\s+(?:ltda|epp|me|s\/a|eireli)\b.*/i, '');
+
   // 3. Formatação Title Case elegante para nomes que vieram em minúsculo ou com pontuação estranha
   const preps = ['de', 'da', 'do', 'das', 'dos', 'e', 'em', 'com'];
   name = name.split(/\s+/).map((word, i) => {
@@ -395,7 +401,7 @@ function cleanCompanyNameSmart(rawName = '') {
     }
     const lower = word.toLowerCase();
     if (i > 0 && preps.includes(lower)) return lower;
-    return lower.charAt(0).toUpperCase() + lower.slice(1);
+    return lower.replace(/^([(["]?)([a-z\u00C0-\u00FF])/, (_, p1, p2) => p1 + p2.toUpperCase());
   }).join(' ');
 
   return name;
@@ -720,6 +726,7 @@ function generateFaviconSvg(lead, cleanName, archetype) {
 function generateOutreachMessages(lead, domain) {
   const cleanPhone = (lead.whatsappPrincipal || '').replace(/\D/g, '');
   const previewUrl = `/previews/${lead.slug}/index.html`;
+  const cleanName = cleanCompanyNameSmart(lead.nome);
 
   let gapReason = 'não possui site oficial cadastrado no Google';
   if (lead.siteStatus === 'inacessivel') {
@@ -732,7 +739,7 @@ function generateOutreachMessages(lead, domain) {
 
 Sou o Gabriel, atuo com tecnologia aqui em Franca.
 
-Vi que a *${lead.nome}* tem uma excelente reputação, mas hoje quem pesquisa por *${lead.nicho}* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: ${gapReason} — e essas ferramentas acabam indicando concorrentes da cidade.
+Vi que a *${cleanName}* tem uma excelente reputação, mas hoje quem pesquisa por *${lead.nicho}* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: ${gapReason} — e essas ferramentas acabam indicando concorrentes da cidade.
 
 Para mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, destacando as principais especialidades e os depoimentos dos seus clientes:
 👉 *${previewUrl}*
@@ -740,14 +747,14 @@ Para mostrar na prática como resolver isso, montei uma prévia pronta do site o
 Pode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.
 Gabriel Azevedo • (16) 99204-8856`;
 
-  const emailSubject = `${lead.nome} em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial`;
-  const emailBody = `Prezada equipe da ${lead.nome},
+  const emailSubject = `${cleanName} em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial`;
+  const emailBody = `Prezada equipe da ${cleanName},
 
 O motivo do meu contato é direto: a forma como os clientes procuram por ${lead.nicho} em Franca mudou.
 
 Hoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.
 
-Como sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da ${lead.nome}, já funcional e adaptada para smartphones:
+Como sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da ${cleanName}, já funcional e adaptada para smartphones:
 👉 ${previewUrl}
 
 Qual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?
