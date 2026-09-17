@@ -1,5 +1,78 @@
 [
   {
+    "id": "lead_1789608871007_1jlf7v",
+    "createdAt": "2026-09-17T01:34:31.007Z",
+    "updatedAt": "2026-09-17T02:02:11.705Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "coronas-energia-solar-consorcios-e-seguros-franca-sp",
+    "nome": "Coronas Energia Solar Consórcios E Seguros - Franca SP",
+    "nicho": "energia solar",
+    "cidade": "Franca SP",
+    "siteOriginal": "https://grupocoronas.com.br",
+    "siteStatus": "online",
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "5,0 estrelas",
+    "endereco": null,
+    "mapsUrl": "https://www.google.com/maps/place/Coronas+Energia+Solar+Cons%C3%B3rcios+E+Seguros+-+Franca+SP/data=!4m7!3m6!1s0x94b0a721b3811f6b:0x8fc85f8affde8db!8m2!3d-20.5383281!4d-47.3967883!16s%2Fg%2F11zfqgq0px!19sChIJax-BsyGnsJQR2-j9r_iF_Ag?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxNC4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 99763-1055",
+      "(16) 99299-9207"
+    ],
+    "emails": [],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "5516997631055",
+    "whatsappFormatado": "(16) 99763-1055",
+    "status": "descartado",
+    "motivoDescarte": null,
+    "analiseIA": "🌐 Site Ativo Detectado: Site institucional ativo. Empresa já possui presença web (https://grupocoronas.com.br). Candidata a redesign, melhoria de SEO local ou otimização de velocidade com template Subzero.",
+    "categoria": {
+      "slug": "solar",
+      "nome": "Energia Solar",
+      "icone": "☀️",
+      "cor": "#f59e0b",
+      "badgeClass": "cat-solar"
+    },
+    "siteData": {
+      "title": "Born To Be Wild",
+      "metaDescription": "Energia solar, consórcios e seguros em Franca SP. A CORONAS ajuda você a economizar, proteger o patrimônio e planejar melhor seus objetivos.",
+      "headings": [
+        "Sua conta de energia Só aumenta? Falta planejamento para conquistar seus objetivos.",
+        "O QUE VOCÊ PRECISA HOJE",
+        "ENERGIA SOLAR",
+        "CONSÓRCIOS",
+        "SEGUROS",
+        "Energia Solar",
+        "Como funciona",
+        "Consórcio imobiliário"
+      ],
+      "servicosExtraidos": [
+        "Baixa manutenção",
+        "Equipamentos de qualidade e instalação profissional."
+      ],
+      "diferenciaisExtraidos": [
+        "Tecnologia Digital & Planejamento 3D"
+      ]
+    },
+    "dadosEnriquecidos": {
+      "instagram": null,
+      "facebook": null,
+      "whatsappPrincipal": "5516997631055",
+      "whatsappFormatado": "(16) 99763-1055",
+      "website": "https://grupocoronas.com.br",
+      "bioInstagram": null,
+      "linkNaBio": null,
+      "servicosDetectados": [
+        "Baixa manutenção",
+        "Equipamentos de qualidade e instalação profissional."
+      ],
+      "diferenciais": [
+        "Tecnologia Digital & Planejamento 3D"
+      ]
+    }
+  },
+  {
     "id": "lead_1789574303434_2jkbr8",
     "createdAt": "2026-09-16T15:58:23.434Z",
     "updatedAt": "2026-09-17T00:33:02.819Z",
@@ -68,7 +141,7 @@
   {
     "id": "lead_1789574298661_x12wjh",
     "createdAt": "2026-09-16T15:58:18.661Z",
-    "updatedAt": "2026-09-17T00:33:14.648Z",
+    "updatedAt": "2026-09-17T01:34:33.042Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "luxsol-energia-solar",
@@ -80,12 +153,12 @@
     "siteHealthReason": "Utiliza link de Facebook no lugar de site institucional próprio",
     "avaliacao": "4,3 estrelas",
     "endereco": "Av. Eliza Verzola Gosuen, 3019 - Prol",
-    "mapsUrl": "https://www.google.com/maps/place/Luxsol+-+Energia+Solar/data=!4m7!3m6!1s0x94b0a9a89a5c6e4b:0xe67f449896ae8d4c!8m2!3d-20.5437496!4d-47.379925!16s%2Fg%2F11fmp_m6vj!19sChIJS25cmqipsJQRTI2ulphEf-Y?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
+    "mapsUrl": "https://www.google.com/maps/place/Luxsol+-+Energia+Solar/data=!4m7!3m6!1s0x94b0a9a89a5c6e4b:0xe67f449896ae8d4c!8m2!3d-20.5437496!4d-47.379925!16s%2Fg%2F11fmp_m6vj!19sChIJS25cmqipsJQRTI2ulphEf-Y?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxNC4wIJJjKgBIAVAD&rclk=1",
     "telefones": [
       "(16) 3939-2200"
     ],
     "emails": [],
-    "instagram": "https://www.instagram.com/luxsoloficial/",
+    "instagram": null,
     "facebook": "http://www.facebook.com/luxsolenergiasolar",
     "whatsappPrincipal": "551639392200",
     "whatsappFormatado": "(16) 3939-2200",
@@ -112,11 +185,10 @@
       "whatsappPrincipal": "551639392200",
       "whatsappFormatado": "(16) 3939-2200",
       "website": "http://www.facebook.com/luxsolenergiasolar",
-      "bioInstagram": "luxsoloficial\n1,694 followers\n4,143 following\nEnergia Solar / Franca-SP\n📉Diminua sua conta de energia em até 95%!\n💰Financie seu projeto em até 72x.\n🏠Valorize seu imóvel\n♻️Energia Renovável... \nmore\nwa.me/1639392200 and 1 more\nDestaques\nEconomia\nLocalização\nHélinho\nTiago Valentim\nIndicam",
-      "linkNaBio": "https://wa.me/1639392200",
+      "bioInstagram": null,
+      "linkNaBio": null,
       "servicosDetectados": [],
-      "diferenciais": [],
-      "websiteFromBio": null
+      "diferenciais": []
     },
     "siteHttpCode": null,
     "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\luxsol-energia-solar\\index.html",
@@ -134,7 +206,7 @@
   {
     "id": "lead_1789574296444_eu9z6f",
     "createdAt": "2026-09-16T15:58:16.444Z",
-    "updatedAt": "2026-09-16T15:58:16.444Z",
+    "updatedAt": "2026-09-17T02:02:05.102Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "viasol-energia-solar-aquecimento-solar-sistemas-fotovoltaicos-piscinas",
@@ -146,7 +218,7 @@
     "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
     "avaliacao": "4,4 estrelas",
     "endereco": "Av. Prof. Hilário Giovanella, 160",
-    "mapsUrl": "https://www.google.com/maps/place/VIASOL+Energia+Solar+-+Aquecimento+Solar+-+Sistemas+Fotovoltaicos+-+Piscinas/data=!4m7!3m6!1s0x94b0a7eed34cb499:0x9a716c259638a756!8m2!3d-20.5453116!4d-47.4344701!16s%2Fg%2F11c3vnq0hh!19sChIJmbRM0-6nsJQRVqc4liVscZo?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
+    "mapsUrl": "https://www.google.com/maps/place/VIASOL+Energia+Solar+-+Aquecimento+Solar+-+Sistemas+Fotovoltaicos+-+Piscinas/data=!4m7!3m6!1s0x94b0a7eed34cb499:0x9a716c259638a756!8m2!3d-20.5453116!4d-47.4344701!16s%2Fg%2F11c3vnq0hh!19sChIJmbRM0-6nsJQRVqc4liVscZo?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxNC4wIJJjKgBIAVAD&rclk=1",
     "telefones": [
       "(16) 99333-1401",
       "(16) 3703-3000"
@@ -158,7 +230,7 @@
     "facebook": "https://www.facebook.com/ViaSolEnergiaSolar/",
     "whatsappPrincipal": "5516993331401",
     "whatsappFormatado": "(16) 99333-1401",
-    "status": "site_ativo",
+    "status": "descartado",
     "motivoDescarte": null,
     "analiseIA": "🌐 Site Ativo Detectado: ⚠️ Site sem SSL (inseguro HTTP). Empresa já possui presença web (http://www.viasolenergiasolar.com.br). Candidata a redesign, melhoria de SEO local ou otimização de velocidade com template Subzero.",
     "categoria": {
@@ -199,7 +271,7 @@
   {
     "id": "lead_1789574293319_njqrjo",
     "createdAt": "2026-09-16T15:58:13.319Z",
-    "updatedAt": "2026-09-16T15:58:13.319Z",
+    "updatedAt": "2026-09-17T01:34:23.911Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "flix-solar-investimentos-sustentaveis",
@@ -211,12 +283,20 @@
     "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
     "avaliacao": "5,0 estrelas",
     "endereco": "R. Augusto Marques, 1747 - 1 Andar sala 06",
-    "mapsUrl": "https://www.google.com/maps/place/Flix+Solar+Investimentos+Sustent%C3%A1veis/data=!4m7!3m6!1s0x94b0a788014c9c59:0x4dbfcb5adc202a60!8m2!3d-20.5374409!4d-47.4048001!16s%2Fg%2F11q8t3zyqz!19sChIJWZxMAYinsJQRYCog3FrLv00?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
+    "mapsUrl": "https://www.google.com/maps/place/Flix+Solar+Investimentos+Sustent%C3%A1veis/data=!4m7!3m6!1s0x94b0a788014c9c59:0x4dbfcb5adc202a60!8m2!3d-20.5374409!4d-47.4048001!16s%2Fg%2F11q8t3zyqz!19sChIJWZxMAYinsJQRYCog3FrLv00?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxNC4wIJJjKgBIAVAD&rclk=1",
     "telefones": [
       "(16) 98860-1000",
       "(16) 4071-7919"
     ],
-    "emails": [],
+    "emails": [
+      "605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com",
+      "18d2f96d279149989b95faf0a4b41882@sentry-next.wixpress.com",
+      "8c30b2581acc426badc414e8a5dc04ef@sentry.wixpress.com",
+      "8c4075d5481d476e945486754f783364@sentry.io",
+      "9a65e97ebe8141fca0c4fd686f70996b@sentry.wixpress.com",
+      "8eb368c655b84e029ed79ad7a5c1718e@sentry.wixpress.com",
+      "5d1795a2db124a268f1e1bd88f503500@sentry.wixpress.com"
+    ],
     "instagram": "https://www.instagram.com/flixsolar/",
     "facebook": "https://www.facebook.com/flixsolar/",
     "whatsappPrincipal": "5516988601000",
@@ -266,7 +346,7 @@
   {
     "id": "lead_1789574290686_rjz01z",
     "createdAt": "2026-09-16T15:58:10.686Z",
-    "updatedAt": "2026-09-16T15:58:10.686Z",
+    "updatedAt": "2026-09-17T01:34:20.860Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "solarprime-solucoes-em-energia-unidade-franca",
@@ -278,7 +358,7 @@
     "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
     "avaliacao": "5,0 estrelas",
     "endereco": "Alameda Arminda Nogueira, 2148",
-    "mapsUrl": "https://www.google.com/maps/place/Solarprime+Solu%C3%A7%C3%B5es+em+Energia+%7C+Unidade+Franca/data=!4m7!3m6!1s0x94b0a626dcef2515:0xf2ad0b0a971eab7b!8m2!3d-20.5430202!4d-47.3961634!16s%2Fg%2F11f1m40sgr!19sChIJFSXv3CamsJQRe6selwoLrfI?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
+    "mapsUrl": "https://www.google.com/maps/place/Solarprime+Solu%C3%A7%C3%B5es+em+Energia+%7C+Unidade+Franca/data=!4m7!3m6!1s0x94b0a626dcef2515:0xf2ad0b0a971eab7b!8m2!3d-20.5430202!4d-47.3961634!16s%2Fg%2F11f1m40sgr!19sChIJFSXv3CamsJQRe6selwoLrfI?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxNC4wIJJjKgBIAVAD&rclk=1",
     "telefones": [
       "(16) 3405-0666"
     ],
@@ -398,7 +478,7 @@
   {
     "id": "lead_1789563001583_o1fryi",
     "createdAt": "2026-09-16T12:50:01.583Z",
-    "updatedAt": "2026-09-16T12:50:01.583Z",
+    "updatedAt": "2026-09-17T02:06:47.705Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "mobtech-seguranca-eletronica-franca",
@@ -420,7 +500,7 @@
     "facebook": "https://www.facebook.com/profile.php/",
     "whatsappPrincipal": "5516999722484",
     "whatsappFormatado": "(16) 99972-2484",
-    "status": "site_ativo",
+    "status": "oportunidade_quente",
     "motivoDescarte": null,
     "analiseIA": "💡 Oportunidade de Redesign Subzero: Site ativo com dados mapeados. Conteúdo, serviços e contatos extraídos diretamente do site atual (https://wa.me/5516999722484) para alimentar o protótipo mobile-first de alta conversão.",
     "siteData": {
@@ -459,7 +539,7 @@
   {
     "id": "lead_1789563000718_9ze114",
     "createdAt": "2026-09-16T12:50:00.718Z",
-    "updatedAt": "2026-09-16T13:42:27.437Z",
+    "updatedAt": "2026-09-17T02:03:10.978Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "telepublico-monitoramento-e-rastreamento-24-hrs",
@@ -481,7 +561,7 @@
     "facebook": "https://www.facebook.com/telepublicomonitoramento/",
     "whatsappPrincipal": "5516999777900",
     "whatsappFormatado": "(16) 99977-7900",
-    "status": "site_ativo",
+    "status": "oportunidade_quente",
     "motivoDescarte": null,
     "analiseIA": "💡 Oportunidade de Redesign Subzero: Site ativo com dados mapeados. Conteúdo, serviços e contatos extraídos diretamente do site atual (https://www.telepublico.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
     "siteData": {
@@ -633,7 +713,7 @@
   {
     "id": "lead_1789562989644_t0i06i",
     "createdAt": "2026-09-16T12:49:49.644Z",
-    "updatedAt": "2026-09-16T12:49:49.644Z",
+    "updatedAt": "2026-09-17T02:03:27.861Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "icon-monitoramento-24hs",
@@ -654,7 +734,7 @@
     "facebook": "https://www.facebook.com/iconmonitoramento/",
     "whatsappPrincipal": "5516992159550",
     "whatsappFormatado": "(16) 99215-9550",
-    "status": "site_ativo",
+    "status": "oportunidade_quente",
     "motivoDescarte": null,
     "analiseIA": "💡 Oportunidade de Redesign Subzero: 🚨 Site sem SSL (inseguro HTTP). Conteúdo, serviços e contatos extraídos diretamente do site atual (http://www.iconmonitoramento.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
     "siteData": {
@@ -686,7 +766,7 @@
   {
     "id": "lead_1789562987260_pxp5h3",
     "createdAt": "2026-09-16T12:49:47.260Z",
-    "updatedAt": "2026-09-16T12:49:47.260Z",
+    "updatedAt": "2026-09-17T02:04:47.066Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "gms-servicos",
@@ -708,7 +788,7 @@
     "facebook": "https://www.facebook.com/ferragensgms/",
     "whatsappPrincipal": "5516912345678",
     "whatsappFormatado": "(16) 91234-5678",
-    "status": "site_ativo",
+    "status": "descartado",
     "motivoDescarte": null,
     "analiseIA": "💡 Oportunidade de Redesign Subzero: Site ativo com dados mapeados. Conteúdo, serviços e contatos extraídos diretamente do site atual (https://gms.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
     "siteData": {
@@ -753,7 +833,7 @@
   {
     "id": "lead_1789562985961_fv6yfn",
     "createdAt": "2026-09-16T12:49:45.961Z",
-    "updatedAt": "2026-09-16T12:49:45.961Z",
+    "updatedAt": "2026-09-17T02:03:30.464Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "espaco-protect-sistema-eletronico-de-seguranca-e-monitoramento-24-horas",
@@ -774,7 +854,7 @@
     "facebook": null,
     "whatsappPrincipal": "551626173006",
     "whatsappFormatado": "(16) 2617-3006",
-    "status": "site_ativo",
+    "status": "oportunidade_quente",
     "motivoDescarte": null,
     "analiseIA": "💡 Oportunidade de Redesign Subzero: Site ativo com dados mapeados. Conteúdo, serviços e contatos extraídos diretamente do site atual (https://espacoprotect.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
     "siteData": {
@@ -989,7 +1069,7 @@
   {
     "id": "lead_1789562977366_daswgs",
     "createdAt": "2026-09-16T12:49:37.366Z",
-    "updatedAt": "2026-09-16T12:49:37.366Z",
+    "updatedAt": "2026-09-17T02:04:49.547Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "infratel-seguranca-eletronica",
@@ -1018,7 +1098,7 @@
     "facebook": null,
     "whatsappPrincipal": "551637239373",
     "whatsappFormatado": "(16) 3723-9373",
-    "status": "site_ativo",
+    "status": "descartado",
     "motivoDescarte": null,
     "analiseIA": "💡 Oportunidade de Redesign Subzero: Site ativo com dados mapeados. Conteúdo, serviços e contatos extraídos diretamente do site atual (https://www.infratel.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
     "siteData": {
@@ -1885,7 +1965,7 @@
   {
     "id": "lead_1789499395730_mo78ni",
     "createdAt": "2026-09-15T19:09:55.730Z",
-    "updatedAt": "2026-09-15T19:09:55.730Z",
+    "updatedAt": "2026-09-17T03:02:22.915Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "agrolipe-produtos-agropecuarios-pet-shop-clinica-veterinaria-farmacia-veterinaria",
@@ -2099,7 +2179,7 @@
   {
     "id": "lead_1789442880937_de1kl3",
     "createdAt": "2026-09-15T03:28:00.937Z",
-    "updatedAt": "2026-09-15T12:17:27.660Z",
+    "updatedAt": "2026-09-17T02:04:53.161Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "sano-clinic-odonto-prime-estetica-e-reabilitacao-oral-protese-ortodontia-endodontia-cirurgias-e-implantes-",
@@ -2120,7 +2200,7 @@
     "facebook": "https://www.facebook.com/p/Sano-Clinic-Odonto-100063901413813/",
     "whatsappPrincipal": "5516996065790",
     "whatsappFormatado": "(16) 99606-5790",
-    "status": "site_ativo",
+    "status": "descartado",
     "motivoDescarte": null,
     "analiseIA": "Clínica odontológica prime multiespecialidades. O site atual possui design antigo; oportunidade de modernização Subzero focando em conversão mobile.",
     "dadosEnriquecidos": {
@@ -2153,7 +2233,7 @@
   {
     "id": "lead_1789442880836_mx533r",
     "createdAt": "2026-09-15T03:28:00.836Z",
-    "updatedAt": "2026-09-15T12:15:09.918Z",
+    "updatedAt": "2026-09-17T02:04:55.378Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "clinica-silveira-odontologica-especialistas-em-implantes-e-protocolos",
@@ -2174,7 +2254,7 @@
     "facebook": "https://www.facebook.com/silveiraodontologia",
     "whatsappPrincipal": "5516999133292",
     "whatsappFormatado": "(16) 99913-3292",
-    "status": "site_ativo",
+    "status": "descartado",
     "motivoDescarte": null,
     "analiseIA": "💡 REQUALIFICADO COM DADOS RICOS EXTRAÍDOS DO SITE: 30+ anos de tradição, carga imediata (sorriso em até 72h), scanner 3D e sedação consciente. Excelente oportunidade para protótipo de alta conversão.",
     "dadosEnriquecidos": {

@@ -184,17 +184,20 @@ function setupEventListeners() {
       if (!currentSelectedLead) return;
 
       const submitBtn = document.getElementById('btnSaveLeadFields');
-      const origText = submitBtn.textContent;
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Salvando...';
+      const origText = submitBtn ? submitBtn.textContent : 'Salvar Alterações';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Salvando...';
+      }
 
-      const nome = editLeadName.value.trim();
-      const instagram = editLeadInsta.value.trim();
-      const facebook = editLeadFb.value.trim();
-      const whatsapp = editLeadWa.value.trim();
-      const siteOriginal = editLeadSite.value.trim();
+      const nome = editLeadName ? editLeadName.value.trim() : '';
+      const instagram = editLeadInsta ? editLeadInsta.value.trim() : '';
+      const facebook = editLeadFb ? editLeadFb.value.trim() : '';
+      const whatsapp = editLeadWa ? editLeadWa.value.trim() : '';
+      const siteOriginal = editLeadSite ? editLeadSite.value.trim() : '';
 
-      await updateLeadOnServer(currentSelectedLead.id, {
+      const targetId = currentSelectedLead.id || currentSelectedLead.slug;
+      const success = await updateLeadOnServer(targetId, {
         nome,
         instagram,
         facebook,
@@ -202,15 +205,23 @@ function setupEventListeners() {
         siteOriginal
       });
 
-      submitBtn.disabled = false;
-      submitBtn.textContent = origText;
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = success ? '✅ Salvo!' : origText;
+      }
 
-      leadEditForm.style.display = 'none';
-      leadViewFields.style.display = 'block';
-      btnToggleEditLead.textContent = '✏️ Editar';
-      
-      if (currentSelectedLead) {
-        openModal(currentSelectedLead);
+      if (success) {
+        setTimeout(() => {
+          if (submitBtn) submitBtn.textContent = origText;
+          leadEditForm.style.display = 'none';
+          leadViewFields.style.display = 'block';
+          btnToggleEditLead.textContent = '✏️ Editar';
+          if (currentSelectedLead) {
+            openModal(currentSelectedLead);
+          }
+        }, 350);
+      } else {
+        alert('Não foi possível salvar as alterações no momento.');
       }
     });
   }
@@ -840,7 +851,7 @@ async function updateLeadOnServer(id, updates) {
       body: JSON.stringify(updates)
     });
     const data = await res.json();
-    if (data.success) {
+    if (data.success && data.lead) {
       // Atualiza localmente
       const idx = allLeads.findIndex(l => (l.id === id || l.slug === id));
       if (idx !== -1) allLeads[idx] = data.lead;
@@ -848,13 +859,17 @@ async function updateLeadOnServer(id, updates) {
         currentSelectedLead = data.lead;
         modalLeadBadge.className = `badge ${getBadgeClass(data.lead.status)}`;
         modalLeadBadge.textContent = getBadgeLabel(data.lead.status);
+        if (modalLeadName) modalLeadName.textContent = data.lead.nome;
+        if (modalLeadNameDisplay) modalLeadNameDisplay.textContent = data.lead.nome;
       }
       updateStats(data.stats);
       render();
+      return true;
     }
   } catch (err) {
     console.error('Erro ao atualizar lead:', err);
   }
+  return false;
 }
 
 // Gerar protótipo para um lead
