@@ -67,6 +67,88 @@ function parseRatingData(avaliacaoStr, cidade = 'Franca SP') {
 /**
  * Retorna conteúdo bespoke, realista e persuasivo adaptado à empresa e nicho
  */
+/**
+ * Prepara depoimentos priorizando 100% depoimentos autênticos minerados do Google Maps
+ */
+function cleanAuthorName(author) {
+  let name = (author || 'Cliente Google Maps').trim();
+
+  // Remove corporate suffixes for cleaner badge display
+  name = name.replace(/\s+(?:Consultoria|Ltda|ME|EPP|S\/A|Assessoria|Com[eé]rcio|Servi[çc]os).*/i, '');
+  if (name.includes(' - ')) name = name.split(' - ')[0].trim();
+  if (name.includes(' | ')) name = name.split(' | ')[0].trim();
+
+  // Title case if lowercase or all uppercase
+  const preps = ['de', 'da', 'do', 'das', 'dos', 'e'];
+  name = name.split(/\s+/).map((w, i) => {
+    const lower = w.toLowerCase();
+    if (i > 0 && preps.includes(lower)) return lower;
+    return lower.replace(/^([(["]?)([a-z\u00C0-\u00FF])/, (_, p1, p2) => p1 + p2.toUpperCase());
+  }).join(' ');
+
+  return name;
+}
+
+function formatAddressNicely(rawAddress, cidade = 'Franca SP') {
+  if (!rawAddress || rawAddress.trim().length < 4) {
+    return {
+      linha1: 'Atendimento em Domicílio e Empresas',
+      bairroCidade: `${cidade} e Região`,
+      completo: `Atendimento em ${cidade} e Região`
+    };
+  }
+
+  let clean = rawAddress
+    .replace(/^[^a-zA-Z0-9]+/, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  // Fix doubled words like "Elias Elias"
+  clean = clean.replace(/\b(\w+)\s+\1\b/gi, '$1');
+
+  let linha1 = clean;
+  let bairroCidade = cidade;
+
+  if (clean.includes(',')) {
+    const parts = clean.split(',');
+    linha1 = parts[0].trim();
+    if (parts[1]) {
+      bairroCidade = parts.slice(1).join(', ').trim();
+    }
+  }
+
+  return {
+    linha1,
+    bairroCidade,
+    completo: clean
+  };
+}
+
+function prepareReviews(lead, defaultReviews, cleanCompanyName) {
+  const reviews = [];
+
+  if (lead && lead.depoimentosReais && Array.isArray(lead.depoimentosReais) && lead.depoimentosReais.length > 0) {
+    for (const r of lead.depoimentosReais) {
+      if (reviews.length >= 4) break;
+      if (r && r.text && r.text.trim().length > 15) {
+        reviews.push({
+          autor: cleanAuthorName(r.author),
+          texto: r.text.replace(/^"|"$/g, '').trim()
+        });
+      }
+    }
+  }
+
+  // Completa com fallbacks de alta conversão caso o estabelecimento tenha menos de 4 reviews textuais
+  let fbIdx = 0;
+  while (reviews.length < 4 && fbIdx < defaultReviews.length) {
+    reviews.push(defaultReviews[fbIdx]);
+    fbIdx++;
+  }
+
+  return reviews;
+}
+
 function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lead = {}) {
   const norm = (str = '') => str.toLowerCase()
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -94,12 +176,12 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
         { titulo: 'Diagnóstico Preciso', desc: 'Exames laboratoriais rápidos e conduta médica ética para tratar o problema na raiz.' },
         { titulo: 'Clínica e Cuidados Integrados', desc: 'Consulta médica, procedimentos preventivos e produtos dermatológicos de alta qualidade no mesmo local.' }
       ],
-      avaliacoes: [
+      avaliacoes: prepareReviews(lead, [
         { autor: 'Mariana Silveira', texto: `Equipe da ${nomeEmpresa} é maravilhosa! Cuidaram do meu cachorro com muito carinho e profissionalismo quando ele precisou. Recomendo!` },
         { autor: 'Renato F. Oliveira', texto: `O melhor atendimento de Franca! Meus pets voltam sempre tranquilos, limpinhos e cheirosos. Lugar de total confiança.` },
         { autor: 'Carla Beatriz Ramos', texto: `Profissionais muito capacitados e transparentes na ${nomeEmpresa}. Explicam tudo com calma e sem empurrar gastos desnecessários.` },
         { autor: 'Diego M. Santos', texto: `Ambiente super limpo e atendimento acolhedor desde a recepção. Toda a equipe da ${nomeEmpresa} está de parabéns.` }
-      ],
+      ], nomeEmpresa),
       imagensServicos: ['hero.jpg', 'workshop.jpg', 'hero.jpg', 'workshop.jpg']
     };
   }
@@ -124,12 +206,12 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
         { titulo: 'Marcas Líderes Certificadas', desc: 'Equipamentos originais e certificados com garantia oficial e procedência garantida.' },
         { titulo: 'Suporte Técnico aos Instaladores', desc: 'Equipe especializada para auxiliar na especificação do equipamento ideal para cada obra.' }
       ],
-      avaliacoes: [
+      avaliacoes: prepareReviews(lead, [
         { autor: 'Marcos Vinicius (Instalador)', texto: `Melhor distribuidora de Franca! Preço justo de atacado e a ${nomeEmpresa} sempre tem o material a pronta entrega quando preciso.` },
         { autor: 'Lucas Andrade', texto: `Compro equipamentos com a ${nomeEmpresa} há anos. O suporte técnico deles tira qualquer dúvida e os produtos são de ponta.` },
         { autor: 'Carlos Eduardo Souza', texto: `Atendimento nota dez! Agilidade na separação de pedidos e marcas confiáveis para quem trabalha com segurança profissional.` },
         { autor: 'Fernando Silveira', texto: `Excelente estoque de motores e câmeras. Parceria de confiança para instaladores em toda a região de Franca.` }
-      ],
+      ], nomeEmpresa),
       imagensServicos: ['camera-cftv.jpg', 'alarme-sensores.jpg', 'motor-portao.jpg', 'concertina-dupla.jpg']
     };
   }
@@ -153,12 +235,12 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
         { titulo: 'Controle Total no Aplicativo', desc: 'Arme, desarme e visualize imagens em tempo real de qualquer lugar pelo celular.' },
         { titulo: 'Pronta-Resposta de Campo', desc: 'Deslocamento ágil de viatura tática em qualquer acionamento suspeito do alarme.' }
       ],
-      avaliacoes: [
+      avaliacoes: prepareReviews(lead, [
         { autor: 'Eduardo Fagundes', texto: `A equipe da ${nomeEmpresa} instalou o sistema na nossa empresa em Franca. A central 24h é super atenta e o aplicativo no celular funciona perfeitamente.` },
         { autor: 'Luciana Bernardes', texto: `Depois que contratamos o monitoramento da ${nomeEmpresa}, temos total tranquilidade em casa. Quando disparou por engano, ligaram em menos de 1 minuto. Impecável!` },
         { autor: 'Roberto Guimarães', texto: `Profissionais muito qualificados. Fizeram uma instalação limpa, sem cabos aparentes, e explicaram todo o sistema com muita paciência. Recomendo!` },
         { autor: 'Patrícia Mendes', texto: `Melhor empresa de segurança e monitoramento de Franca. Pontualidade, suporte imediato e preço justo pelo nível do serviço prestado.` }
-      ],
+      ], nomeEmpresa),
       imagensServicos: ['camera-cftv.jpg', 'alarme-sensores.jpg', 'videoporteiro.jpg', 'motor-portao.jpg']
     };
   }
@@ -182,12 +264,12 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
         { titulo: 'Instalação Técnica Limpa e Rápida', desc: 'Técnicos especializados, acabamento profissional e zero sujeira no seu imóvel.' },
         { titulo: 'Garantia e Assistência Local', desc: 'Suporte ágil direto em Franca com pós-venda garantido para sua total tranquilidade.' }
       ],
-      avaliacoes: [
+      avaliacoes: prepareReviews(lead, [
         { autor: 'André Martins', texto: `Instalação impecável da concertina e do motor de portão pela ${nomeEmpresa}. Ficou super alinhado e o atendimento foi rápido e pontual.` },
         { autor: 'Luciana Meireles', texto: `A cerca elétrica e as câmeras ficaram excelentes. Acompanho tudo no celular. Equipe da ${nomeEmpresa} muito honesta e prestativa.` },
         { autor: 'Roberto Faria', texto: `Melhor empresa de segurança de Franca. Preço justo, serviço profissional e pontualidade na entrega.` },
         { autor: 'Patrícia Prado', texto: `Cerca elétrica muito bem estruturada. Passa muita segurança para quem mora em casa térrea. Recomendo a ${nomeEmpresa}!` }
-      ],
+      ], nomeEmpresa),
       imagensServicos: ['cerca-eletrica.jpg', 'concertina-dupla.jpg', 'camera-cftv.jpg', 'motor-portao.jpg']
     };
   }
@@ -211,12 +293,12 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
         { titulo: 'Ar Puro e Livre de Alergias', desc: 'Higienização química profunda que remove mofo e odores, protegendo a saúde da sua família ou equipe.' },
         { titulo: 'Pontualidade e Garantia Formal', desc: 'Compromisso com o horário agendado, transparência de orçamento e garantia documentada do serviço.' }
       ],
-      avaliacoes: [
+      avaliacoes: prepareReviews(lead, [
         { autor: 'Marcelo Siqueira', texto: `Contratei a ${nomeEmpresa} para instalação de dois aparelhos split no meu escritório. Serviço impecável, técnicos organizados e deixaram tudo limpo. Nota 10!` },
         { autor: 'Camila Andrade', texto: `Fizeram a higienização completa e manutenção preventiva do ar-condicionado da minha casa em Franca. Tirou totalmente o cheiro ruim e o aparelho voltou a gelar rápido. Recomendo!` },
         { autor: 'Dr. Marcos Vinicius', texto: `Empresa séria e de total confiança. O atendimento no WhatsApp foi ágil e o técnico da ${nomeEmpresa} chegou exatamente no horário agendado. Vale cada centavo.` },
         { autor: 'Renata Silveira', texto: `Excelente pós-venda da ${nomeEmpresa}. Fizeram o diagnóstico correto sem enrolação e resolveram o problema no mesmo dia. Recomendo de olhos fechados.` }
-      ],
+      ], nomeEmpresa),
       imagensServicos: ['instalacao-split.jpg', 'higienizacao-profunda.jpg', 'manutencao-preventiva.jpg', 'pmoc-comercial.jpg']
     };
   }
@@ -240,12 +322,12 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
         { titulo: 'Engenharia Própria Especializada', desc: 'Dimensionamento milimétrico adaptado à sua demanda e orientação do telhado para maximizar o retorno.' },
         { titulo: 'Homologação Rápida e Sem Surpresas', desc: 'Cuidamos de toda a documentação até o seu sistema começar a gerar créditos na conta.' }
       ],
-      avaliacoes: [
+      avaliacoes: prepareReviews(lead, [
         { autor: 'Carlos Eduardo Silva', texto: `Minha conta de energia caiu para a taxa mínima! A equipe da ${nomeEmpresa} cuidou de tudo com muita seriedade e no prazo combinado.` },
         { autor: 'Vanessa Toledo', texto: `Todo o processo de homologação foi super tranquilo. A ${nomeEmpresa} cuidou de cada detalhe e já estou gerando energia em casa.` },
         { autor: 'Gustavo Mendonça', texto: `Excelente investimento para minha empresa em Franca. A ${nomeEmpresa} tem corpo técnico capacitado e materiais de primeira linha.` },
         { autor: 'Tatiane Lopes', texto: `Profissionais transparentes e prestativos. Recomendo a ${nomeEmpresa} para quem quer energia solar confiável e sem enrolação.` }
-      ],
+      ], nomeEmpresa),
       imagensServicos: ['painel-solar-residencial.jpg', 'hero.jpg', 'manutencao-inversor.jpg', 'workshop.jpg']
     };
   }
@@ -268,12 +350,12 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
       { titulo: 'Pontualidade e Compromisso', desc: 'Respeito ao prazo e comunicação transparente em todas as etapas da contratação.' },
       { titulo: 'Garantia Comprovada', desc: 'Segurança e confiança atestadas por avaliações positivas de clientes locais.' }
     ],
-    avaliacoes: [
+    avaliacoes: prepareReviews(lead, [
       { autor: 'Carlos Eduardo', texto: `Serviço de altíssimo nível. A ${nomeEmpresa} resolveu super rápido, com muita atenção e preço justo. Com certeza voltarei a contratar.` },
       { autor: 'Juliana Prado', texto: `Excelente atendimento desde o primeiro contato no WhatsApp. Muito prestativos, honestos e pontuais.` },
       { autor: 'Marcos Vinicius', texto: `Profissionais sérios e de palavra na ${nomeEmpresa}. Entregaram exatamente o combinado com muita qualidade.` },
       { autor: 'Beatriz Costa', texto: `Super recomendo a ${nomeEmpresa}! Transparência total e equipe muito educada e caprichosa.` }
-    ],
+    ], nomeEmpresa),
     imagensServicos: ['hero.jpg', 'workshop.jpg', 'hero.jpg', 'workshop.jpg']
   };
 }
@@ -383,21 +465,11 @@ async function generatePrototype(lead, templateHint = null) {
   const encodedAddress = encodeURIComponent(lead.endereco ? `${cleanCompanyName}, ${lead.endereco}, ${cidade}` : `${cleanCompanyName}, ${cidade}`);
   const cleanDomain = lead.slug.endsWith('.com.br') ? lead.slug : `${lead.slug}.com.br`;
 
-  // Tratamento inteligente de endereço para evitar vazios
-  let enderecoLinha1 = 'Atendimento em Domicílio e Empresas';
-  let bairroCidadeUf = `${cidade} e Região`;
-
-  if (lead.endereco && lead.endereco.trim().length > 3) {
-    const rawEnd = lead.endereco.trim();
-    if (rawEnd.includes(',')) {
-      const parts = rawEnd.split(',');
-      enderecoLinha1 = parts[0].trim() + (parts[1] ? `, ${parts[1].trim()}` : '');
-      bairroCidadeUf = parts.slice(2).join(', ').trim() || cidade;
-    } else {
-      enderecoLinha1 = rawEnd;
-      bairroCidadeUf = cidade;
-    }
-  }
+  // Tratamento inteligente e limpo de endereço
+  const addrInfo = formatAddressNicely(lead.endereco, cidade);
+  const enderecoLinha1 = addrInfo.linha1;
+  const bairroCidadeUf = addrInfo.bairroCidade;
+  const enderecoCompleto = addrInfo.completo;
 
   const googleMapsUrl = lead.mapsUrl || `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
 
@@ -473,7 +545,7 @@ async function generatePrototype(lead, templateHint = null) {
     '{{DEPOIMENTO_DO_CLIENTE_4}}': content.avaliacoes[3].texto,
 
     // Contato e Localização
-    '{{ENDERECO_COMPLETO_DO_GOOGLE_MAPS}}': lead.endereco ? `${lead.endereco}, ${cidade}` : `${cleanCompanyName} - Atendimento em ${cidade}`,
+    '{{ENDERECO_COMPLETO_DO_GOOGLE_MAPS}}': enderecoCompleto,
     '{{LINK_DIRECIONAMENTO_ROTA_GOOGLE_MAPS}}': googleMapsUrl,
     '{{ENDERECO_URL_ENCODED}}': encodedAddress,
     '{{ENDERECO_LINHA_1}}': enderecoLinha1,

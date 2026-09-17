@@ -132,7 +132,7 @@
   {
     "id": "lead_1789657916714_a2xn5f",
     "createdAt": "2026-09-17T15:11:56.714Z",
-    "updatedAt": "2026-09-17T17:53:36.274Z",
+    "updatedAt": "2026-09-17T19:33:19.275Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "daniel-climatizacao-instalacao-e-manutencao-de-ar-condicionado",
@@ -143,8 +143,8 @@
     "siteStatus": "nenhum",
     "siteHttpCode": null,
     "siteHealthReason": "Nenhum site oficial cadastrado no Google Maps",
-    "avaliacao": "★ 4,9 (210 comentários)",
-    "endereco": null,
+    "avaliacao": "★ 4.9 (comentários)",
+    "endereco": "Wilson Abrão Elias Elias 475 Paulistano 2, Franca - SP, 14402-474",
     "mapsUrl": "https://www.google.com/maps/place/Daniel+climatiza%C3%A7%C3%A3o+instala%C3%A7%C3%A3o+e+manuten%C3%A7%C3%A3o+de+ar+condicionado/data=!4m7!3m6!1s0x94b0a557cd305e11:0x5b25a355453c1145!8m2!3d-20.5188696!4d-47.3605818!16s%2Fg%2F11jmwqq2y8!19sChIJEV4wzVelsJQRRRE8RVWjJVs?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxNC4wIJJjKgBIAVAD&rclk=1",
     "telefones": [
       "(16) 99172-2199"
@@ -180,12 +180,42 @@
       }
     },
     "archetype": "industrial",
-    "templateEscolhido": "industrial"
+    "templateEscolhido": "industrial",
+    "depoimentosReais": [
+      {
+        "author": "Organiza Plus Consultoria em Gestão Financeira",
+        "rating": "5 estrelas",
+        "text": "O Daniel instalou meu condicionador de ar perfeitamente. Muito rápido, cuidadoso, pontual é um ótimo profissional. Recomendo muito! Ah, e com um preço ótimo."
+      },
+      {
+        "author": "YARA CARRIJO",
+        "rating": "5 estrelas",
+        "text": "É um ótimo profissional, muito educado e disposto, fez um serviço excelente aqui na loja na limpeza dos ar condicionado com preço justo e ótima qualidade."
+      },
+      {
+        "author": "Antonio Carlos",
+        "rating": "5 estrelas",
+        "text": "Ótimo trabalho, preço justo! Super recomendo!"
+      },
+      {
+        "author": "marcus silva",
+        "rating": "5 estrelas",
+        "text": "Super profissional e algo que eu prezo muito... pontualidade... e claro, limpeza nos procedimentos, e instalação super rápida"
+      },
+      {
+        "author": "Stefany Sa",
+        "rating": "5 estrelas",
+        "text": "Otimo atendimento, Daniel me explicou tudo direitinho, me indicou o melhor aparelho para eu comprar ja que nunca tive um ar condicionado.\nMe indicou onde comprar com otimo Preço. Fez o trabalho rapido e muito bem feito. Super indico profissional sem enrolacao."
+      }
+    ],
+    "fotosReais": [
+      "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWknOLaNu6WwsTlFsCeX3c4mJbhtwWaC_5pPtjGL3ttirMBzz5I52jQeaugwFZtoCeP7wWbbOnI4VeMZhBLe0pFF0nhRWoQR5N0ufH4lHvjvJnsE9-50YUyuRJXWzPbx3cpzdkHK=w1200-h800-k-no"
+    ]
   },
   {
     "id": "lead_1789657908350_yvbt47",
     "createdAt": "2026-09-17T15:11:48.350Z",
-    "updatedAt": "2026-09-17T17:19:35.728Z",
+    "updatedAt": "2026-09-17T19:33:52.767Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "hunifrio-ar-condicionado",
@@ -729,7 +759,7 @@
   {
     "id": "lead_1789563008145_bnfw23",
     "createdAt": "2026-09-16T12:50:08.145Z",
-    "updatedAt": "2026-09-17T17:19:35.899Z",
+    "updatedAt": "2026-09-17T19:31:25.023Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "kell-distribuidora",
@@ -739,7 +769,7 @@
     "siteOriginal": null,
     "siteStatus": "nenhum",
     "siteHealthReason": "Nenhum site cadastrado",
-    "avaliacao": "4,6 estrelas 144 comentários",
+    "avaliacao": "★ 4.6 (comentários)",
     "endereco": "Av. Amélia Antunes Pinheiro, 1325",
     "mapsUrl": "https://www.google.com/maps/place/Kell+Distribuidora/data=!4m7!3m6!1s0x94b0a646c4e1eab3:0x97c9ea855a55aaed!8m2!3d-20.520861!4d-47.3967732!16s%2Fg%2F1tf61cy6!19sChIJs-rhxEamsJQR7apVWoXqyZc?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
     "telefones": [
@@ -788,7 +818,37 @@
       }
     },
     "archetype": "industrial",
-    "templateEscolhido": "industrial"
+    "templateEscolhido": "industrial",
+    "fotosReais": [
+      "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkoSObagypsOy_rLdJQsnJPAKcqdZX7FgmbhD2zbd_9FcZt-k13S_uTYNWvj9SFjVmVd9nP-Wn9dPL-o_9ss9mSOR0FRrcNWNMhhoRZX0t535W__DRXqUSZGnxa2IR_GkjIH3bNOQ=w1200-h800-k-no"
+    ],
+    "depoimentosReais": [
+      {
+        "author": "Maylon Meneghetti",
+        "rating": "5 estrelas",
+        "text": "Quero agradecer ao atendimento prestado pelo colaborador Alexandre e a todos desta empresa, muita atenção e responsabilidade e atenção com nós cliente. Super indico ... Meus parabéns"
+      },
+      {
+        "author": "marcia ferreira bianco",
+        "rating": "5 estrelas",
+        "text": "Sempre muito bem atendida pelos vendedores\nServiço rápido e eficiente\nGostei muito\nSou freguesa faz tempo"
+      },
+      {
+        "author": "Luis Fernando Rocha Rezende (Leitinho)",
+        "rating": "5 estrelas",
+        "text": "Excelente atendimento e ótimos produtos e preços justo"
+      },
+      {
+        "author": "Hermes Braga",
+        "rating": "5 estrelas",
+        "text": "Atendimento sempre bem atencioso, preços justos e qualidade !"
+      },
+      {
+        "author": "ANTONIO CARLOS DE PAULA",
+        "rating": "5 estrelas",
+        "text": "Muito bem atentido, sempre encontro tudo que preciso. Recomendo a todos amigos."
+      }
+    ]
   },
   {
     "id": "lead_1789563001583_o1fryi",
@@ -1170,7 +1230,7 @@
   {
     "id": "lead_1789562985961_fv6yfn",
     "createdAt": "2026-09-16T12:49:45.961Z",
-    "updatedAt": "2026-09-17T18:03:00.113Z",
+    "updatedAt": "2026-09-17T19:16:09.855Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "espaco-protect-sistema-eletronico-de-seguranca-e-monitoramento-24-horas",
@@ -1180,7 +1240,7 @@
     "siteOriginal": "https://espacoprotect.com.br/",
     "siteStatus": "online",
     "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
-    "avaliacao": "4,9 estrelas 119 comentários",
+    "avaliacao": "★ 4.9 (comentários)",
     "endereco": "R. Gen. Telles, 412",
     "mapsUrl": "https://www.google.com/maps/place/Espa%C3%A7o+Protect+-+Sistema+Eletr%C3%B4nico+de+Seguran%C3%A7a+e+Monitoramento+24+Horas/data=!4m7!3m6!1s0x94b0a7cb68b41505:0x8145ad7751b19b66!8m2!3d-20.5355151!4d-47.4113965!16s%2Fg%2F11c2nj1ql6!19sChIJBRW0aMunsJQRZpuxUXetRYE?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
     "telefones": [
@@ -1244,7 +1304,10 @@
       }
     },
     "archetype": "industrial",
-    "templateEscolhido": "industrial"
+    "templateEscolhido": "industrial",
+    "fotosReais": [
+      "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkCShJe8A-VZ5kibAdvtNGCqaGZ6BfXUEuX5sxm9zxwRI2WpXCSdsr0wiuJufL0zUZFx7PhFn5Z-hZGofPxUguWHM1sSGLpWT0TNlgFbB2FNl7ljtP6Z8eXz7p6OCSLjMWbsimE=w1200-h800-k-no"
+    ]
   },
   {
     "id": "lead_1789562983545_ix45yu",
@@ -3235,7 +3298,7 @@
   {
     "id": "lead_1789434711738_0",
     "createdAt": "2026-09-15T01:11:51.738Z",
-    "updatedAt": "2026-09-17T17:19:35.830Z",
+    "updatedAt": "2026-09-17T19:33:52.757Z",
     "slug": "gelar-ar-condicionado-assistencia-tecnica-franca-sp",
     "nome": "Gelar Ar Condicionado Assistência Técnica Franca/SP",
     "nicho": "ar condicionado",
@@ -3408,7 +3471,7 @@
   {
     "id": "lead_1789434711739_1",
     "createdAt": "2026-09-15T01:11:51.739Z",
-    "updatedAt": "2026-09-17T17:19:35.813Z",
+    "updatedAt": "2026-09-17T19:33:52.745Z",
     "slug": "ecol-ar-condicionado",
     "nome": "Ecol Ar Condicionado",
     "nicho": "ar condicionado",

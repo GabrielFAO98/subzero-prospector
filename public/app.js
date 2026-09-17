@@ -698,7 +698,7 @@ function attachActionEvents() {
       e.stopPropagation();
       const leadId = btn.dataset.id;
       btn.disabled = true;
-      btn.textContent = 'Gerando...';
+      btn.innerHTML = '⏳ Minerando...';
       const selectedTemplate = templateSelector ? templateSelector.value : 'subzero';
       await generatePrototypeForLead(leadId, selectedTemplate);
     });
@@ -872,28 +872,57 @@ async function updateLeadOnServer(id, updates) {
   return false;
 }
 
-// Gerar protótipo para um lead
+// Gerar protótipo para um lead com feedback visual e mineração real
 async function generatePrototypeForLead(id, template = 'subzero') {
+  const leadIdx = allLeads.findIndex(l => (l.id === id || l.slug === id));
+  const leadObj = leadIdx !== -1 ? allLeads[leadIdx] : null;
+
+  if (leadObj) {
+    leadObj.status = 'gerando_prototipo';
+    render();
+  }
+
+  if (btnGenerateProto) {
+    btnGenerateProto.disabled = true;
+    btnGenerateProto.innerHTML = '⏳ Minerando Google Maps & Construindo...';
+  }
+  if (prototypeStatusLabel) {
+    prototypeStatusLabel.innerHTML = '⏳ <strong>Minerando dados autênticos do Google Maps...</strong> Aguarde alguns segundos enquanto o site sob medida é construído.';
+  }
+
   try {
     const res = await fetch(`/api/leads/${id}/generate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ template })
+      body: JSON.stringify({ template, forceEnrich: true })
     });
     const data = await res.json();
     if (data.success) {
-      const idx = allLeads.findIndex(l => (l.id === id || l.slug === id));
-      if (idx !== -1) allLeads[idx] = data.lead;
+      if (leadIdx !== -1) allLeads[leadIdx] = data.lead;
       if (currentSelectedLead && (currentSelectedLead.id === id || currentSelectedLead.slug === id)) {
+        currentSelectedLead = data.lead;
         openModal(data.lead);
       }
       updateStats(data.stats);
       render();
     } else {
       alert(`Aviso ao gerar protótipo: ${data.error || 'Erro desconhecido'}`);
+      if (leadObj) {
+        leadObj.status = leadObj.prototypeUrl ? 'prototipo_pronto' : 'oportunidade_quente';
+        render();
+      }
     }
   } catch (err) {
     alert(`Erro ao gerar protótipo: ${err.message}`);
+    if (leadObj) {
+      leadObj.status = leadObj.prototypeUrl ? 'prototipo_pronto' : 'oportunidade_quente';
+      render();
+    }
+  } finally {
+    if (btnGenerateProto) {
+      btnGenerateProto.disabled = false;
+      btnGenerateProto.innerHTML = '🔄 Regerar Protótipo';
+    }
   }
 }
 
@@ -902,6 +931,7 @@ function getBadgeClass(status) {
   switch(status) {
     case 'oportunidade_quente': return 'badge-hot';
     case 'site_ativo': return 'badge-online';
+    case 'gerando_prototipo': return 'badge-generating';
     case 'prototipo_pronto': return 'badge-ready';
     case 'contatado': case 'negociando': return 'badge-contacted';
     case 'descartado': return 'badge-discarded';
@@ -913,6 +943,7 @@ function getBadgeLabel(status) {
   switch(status) {
     case 'oportunidade_quente': return '🔥 Oportunidade';
     case 'site_ativo': return '🌐 Site Ativo';
+    case 'gerando_prototipo': return '⏳ Minerando...';
     case 'prototipo_pronto': return '⚡ Protótipo Pronto';
     case 'contatado': return '📞 Contatado';
     case 'negociando': return '🤝 Negociando';

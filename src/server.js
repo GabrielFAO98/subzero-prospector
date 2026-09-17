@@ -83,24 +83,70 @@ app.post('/api/leads/:id/enrich', async (req, res) => {
   }
 });
 
-// Rota: Gerar protótipo Subzero sob demanda
+// Rota: Gerar protótipo Subzero sob demanda com Mineração Profunda do Google Maps
 app.post('/api/leads/:id/generate', async (req, res) => {
   let lead = db.getById(req.params.id);
   if (!lead) return res.status(404).json({ error: 'Lead não encontrado.' });
 
   try {
-    const { template = 'subzero' } = req.body || {};
-    // Garante que o WhatsApp principal e dados estejam preenchidos
+    const { template = 'subzero', forceEnrich = true } = req.body || {};
+
+    // Marca status transitório
+    db.update(lead.id, { status: 'gerando_prototipo' });
+
+    // 1. Mineração Profunda de Avaliações e Dados Reais no Google Maps (Playwright)
+    const mapsUrl = lead.mapsUrl || `https://www.google.com/maps/search/${encodeURIComponent(lead.nome + ' ' + (lead.cidade || 'Franca SP'))}`;
+
+    if (!lead.depoimentosReais || lead.depoimentosReais.length === 0 || forceEnrich) {
+      console.log(`\n🔍 [Deep Mining] Minerando dados autênticos do Google Maps para: "${lead.nome}"...`);
+      try {
+        const { extractMapsDeep } = require('./deep_extractor');
+        const mapsData = await extractMapsDeep(mapsUrl, msg => console.log('  📍 [Maps]', msg));
+
+        const updates = {};
+        if (mapsData.reviews && mapsData.reviews.length > 0) {
+          updates.depoimentosReais = mapsData.reviews;
+          console.log(`  ⭐ [Maps] ${mapsData.reviews.length} avaliações autênticas 5★ extraídas com sucesso!`);
+        }
+        if (mapsData.photos && mapsData.photos.length > 0) {
+          updates.fotosReais = mapsData.photos;
+        }
+        if (mapsData.endereco && (!lead.endereco || lead.endereco.trim().length < 5)) {
+          updates.endereco = mapsData.endereco;
+          console.log(`  📍 [Maps] Endereço real detectado: "${mapsData.endereco}"`);
+        }
+        if (mapsData.telefones && mapsData.telefones.length > 0 && (!lead.telefones || lead.telefones.length === 0)) {
+          updates.telefones = mapsData.telefones;
+        }
+        if (mapsData.ratingText && mapsData.ratingNum) {
+          const countStr = mapsData.reviewCount ? `${mapsData.reviewCount} comentários` : 'comentários';
+          updates.avaliacao = `★ ${mapsData.ratingNum} (${countStr})`;
+        }
+
+        db.update(lead.id, updates);
+        lead = db.getById(lead.id);
+      } catch (scrapErr) {
+        console.warn('⚠️ [Deep Mining] Falha ao extrair Maps (seguindo com fallback de alta qualidade):', scrapErr.message);
+      }
+    }
+
+    // 2. Garante que o WhatsApp principal e dados estejam preenchidos
     if (!lead.whatsappPrincipal && lead.telefones && lead.telefones[0]) {
       const num = lead.telefones[0].replace(/\D/g, '');
       lead.whatsappPrincipal = num.length === 11 ? '55' + num : num;
     }
 
     lead.templateEscolhido = template;
+
+    // 3. Constrói o protótipo com os dados reais
     lead = await generatePrototype(lead, template);
+    lead.status = 'prototipo_pronto';
+    db.update(lead.id, { status: 'prototipo_pronto' });
+
     res.json({ success: true, lead, stats: db.getStats() });
   } catch (err) {
     console.error('Erro ao gerar protótipo:', err);
+    db.update(lead.id, { status: lead.prototypeUrl ? 'prototipo_pronto' : 'oportunidade_quente' });
     res.status(500).json({ error: err.message });
   }
 });

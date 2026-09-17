@@ -159,7 +159,7 @@ async function extractInstagramDeep(handle, onProgress = console.log) {
 }
 
 async function extractMapsDeep(mapsUrl, onProgress = console.log) {
-  onProgress(`Extraindo avaliações e fotos reais do Google Maps...`);
+  onProgress(`Extraindo avaliações e dados reais do Google Maps...`);
 
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({
@@ -174,51 +174,142 @@ async function extractMapsDeep(mapsUrl, onProgress = console.log) {
     telefones: [],
     endereco: '',
     horario: '',
-    sobre: []
+    ratingText: '',
+    ratingNum: '',
+    reviewCount: ''
   };
 
   try {
-    await page.goto(mapsUrl, { waitUntil: 'domcontentloaded' });
-    await page.waitForTimeout(3500);
+    await page.goto(mapsUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
+    await page.waitForTimeout(3000);
 
-    const paneSelector = 'div[role="main"]';
-    await page.waitForSelector(paneSelector);
-    await page.hover(paneSelector);
+    // 1. Extrai dados da visão geral (Endereço, Telefone, Horário, Nota Geral)
+    const info = await page.evaluate(() => {
+      const addressEl = document.querySelector('button[data-item-id*="address"], div[data-item-id*="address"]');
+      const phoneEl = document.querySelector('button[data-item-id*="phone"]');
+      const hoursEl = document.querySelector('div[aria-label*="horas"], [data-item-id*="oh"]');
+      const ratingEl = document.querySelector('div.F7nice, span[aria-label*="estrelas"]');
 
-    // Scroll no painel para carregar avaliações e fotos
-    for (let i = 0; i < 8; i++) {
-      await page.mouse.wheel(0, 1000);
-      await page.waitForTimeout(400);
-    }
-
-    // Extrair avaliações da visão geral
-    const extractedReviews = await page.evaluate(() => {
-      const list = [];
-      // Seletor de cards de avaliações do Google Maps
-      document.querySelectorAll('div[data-review-id], div[class*="jftiEf"], div:has(> button[aria-label*="Gostei"])').forEach(el => {
-        const author = el.querySelector('.d4r55')?.innerText.trim() || el.querySelector('button[aria-label*="Foto"] + div')?.innerText.trim() || '';
-        const rating = el.querySelector('.kvMYJc')?.getAttribute('aria-label') || '5 estrelas';
-        const text = el.querySelector('.wiI7pd')?.innerText.trim() || '';
-        if (text && text.length > 25 && !list.some(r => r.text === text)) {
-          list.push({ author: author || 'Cliente Google', rating, text });
-        }
-      });
-      return list;
+      return {
+        endereco: addressEl ? addressEl.innerText.replace(/^[^\w\d]+/, '').replace(/^[\s\S]*?\n/, '').trim() : null,
+        telefone: phoneEl ? phoneEl.innerText.replace(/^[^\w\d(]+/, '').replace(/^[\s\S]*?\n/, '').trim() : null,
+        horario: hoursEl ? hoursEl.innerText.replace(/^[^\w\d]+/, '').trim() : null,
+        ratingText: ratingEl ? ratingEl.innerText.trim() : null
+      };
     });
 
-    // Filtrar apenas avaliações 5 estrelas para exibição comercial
-    mapsData.reviews = extractedReviews.filter(r => r.rating && (r.rating.includes('5') || !r.rating.includes('1')));
+    if (info.endereco) mapsData.endereco = info.endereco;
+    if (info.telefone) mapsData.telefones = [info.telefone];
+    if (info.horario) mapsData.horario = info.horario;
+    if (info.ratingText) {
+      mapsData.ratingText = info.ratingText;
+      const m = info.ratingText.match(/(\d+[\.,]\d+)/);
+      if (m) mapsData.ratingNum = m[1].replace(',', '.');
+      const countMatch = info.ratingText.match(/\((\d+)\)/);
+      if (countMatch) mapsData.reviewCount = countMatch[1];
+    }
 
-    // Extrair fotos de alta resolução
-    const extractedPhotos = await page.evaluate(() => {
+    // 2. Extrai fotos reais do estabelecimento
+    const photos = await page.evaluate(() => {
       return Array.from(document.querySelectorAll('img'))
         .map(img => img.src)
         .filter(s => s && s.includes('googleusercontent.com/gps-cs-s/'))
         .map(s => s.replace(/=w\d+-h\d+[^)]*/, '=w1200-h800-k-no'))
         .slice(0, 8);
     });
+    mapsData.photos = [...new Set(photos)];
 
-    mapsData.photos = [...new Set(extractedPhotos)];
+    // 3. Tenta clicar na aba "Avaliações" para carregar lista completa de reviews autênticas
+    const consentBtn = await page.$('button[aria-label*="Aceitar"], button:has-text("Aceitar tudo"), form[action*="consent"] button');
+    if (consentBtn) await consentBtn.click().catch(() => {});
+
+    await page.waitForSelector('div[role="tablist"], button[data-tab-index], div.F7nice', { timeout: 10000 }).catch(() => {});
+
+    // Estratégia multi-tier para acionar a lista completa de avaliações:
+    // Tier 1: Aba dedicada "Avaliações"
+    const reviewsTabHandle = await page.evaluateHandle(() => {
+      const btns = Array.from(document.querySelectorAll('button'));
+      return btns.find(b => {
+        const aria = (b.getAttribute('aria-label') || '').toLowerCase();
+        const text = (b.innerText || '').trim().toLowerCase();
+        if (aria.includes('sobre') || text === 'sobre' || text === 'visão geral') return false;
+
+        return (
+          aria.includes('avaliações de') ||
+          text === 'avaliações' ||
+          (b.getAttribute('data-tab-index') === '1' && (aria.includes('avalia') || text.includes('avalia')))
+        );
+      }) || null;
+    });
+    let reviewsControl = reviewsTabHandle ? reviewsTabHandle.asElement() : null;
+
+    // Tier 2: Botão de contagem de avaliações (ex: "144 avaliações" ou "(144)")
+    if (!reviewsControl) {
+      reviewsControl = await page.$('button:has-text("avaliações"), button:has-text("comentários"), button[aria-label*="avaliações" i]');
+    }
+
+    // Tier 3: Botão 'Mais avaliações'
+    if (!reviewsControl) {
+      reviewsControl = await page.$('button[aria-label*="Mais avaliações" i], button:has-text("Mais avaliações")');
+    }
+
+    onProgress(`Controle de avaliações encontrado: ${!!reviewsControl}`);
+    if (reviewsControl) {
+      await reviewsControl.click().catch(() => {});
+      await page.waitForTimeout(2500);
+    }
+
+    // Posiciona o mouse dentro do container de rolagem e rola para acionar lazy loading de avaliações
+    const pane = await page.$('div[role="main"], div.m6QErb.DxyBCb, div.m6QErb');
+    if (pane) {
+      const box = await pane.boundingBox();
+      if (box) {
+        await page.mouse.move(box.x + box.width / 2, box.y + Math.min(300, box.height / 2));
+      }
+    }
+    for (let i = 0; i < 8; i++) {
+      await page.mouse.wheel(0, 1500);
+      await page.waitForTimeout(300);
+    }
+
+    // Expande avaliações truncadas (botões "Mais")
+    await page.evaluate(() => {
+      document.querySelectorAll('button.w8nwRe, button[aria-label*="Ver mais"]').forEach(b => b.click());
+    }).catch(() => {});
+
+    // 4. Extrai avaliações com autor, estrelas e texto real
+    const rawElementsCount = await page.evaluate(() => {
+      return document.querySelectorAll('div[data-review-id], div[class*="jftiEf"]').length;
+    });
+    onProgress(`Elementos brutos de avaliações no DOM: ${rawElementsCount}`);
+
+    const extractedReviews = await page.evaluate(() => {
+      const list = [];
+      const negativeWords = ['pessimo', 'péssimo', 'horrivel', 'horrível', 'nao recomendo', 'não recomendo', 'decepcao', 'decepção', 'ruim', 'golpe', 'processo'];
+
+      document.querySelectorAll('div[data-review-id], div[class*="jftiEf"]').forEach(el => {
+        const author = el.querySelector('.d4r55')?.innerText.trim() || el.querySelector('button[aria-label*="Foto"] + div')?.innerText.trim() || '';
+        const rating = el.querySelector('.kvMYJc, span[role="img"][aria-label*="estrela"]')?.getAttribute('aria-label') || '5 estrelas';
+        const text = el.querySelector('.wiI7pd, .MyEned, span[class*="wiI7pd"]')?.innerText.trim() || '';
+
+        if (text && text.length > 15 && !list.some(r => r.text === text)) {
+          const textLower = text.toLowerCase();
+          const hasNeg = negativeWords.some(w => textLower.includes(w));
+          const isPositiveRating = rating.includes('5') || rating.includes('4') || (!rating.includes('1') && !rating.includes('2') && !rating.includes('3'));
+
+          if (!hasNeg && isPositiveRating) {
+            list.push({
+              author: author || 'Cliente Google Maps',
+              rating,
+              text
+            });
+          }
+        }
+      });
+      return list;
+    });
+
+    mapsData.reviews = extractedReviews;
 
   } catch (err) {
     onProgress(`Aviso Maps Deep: ${err.message}`);
@@ -226,13 +317,10 @@ async function extractMapsDeep(mapsUrl, onProgress = console.log) {
     await browser.close();
   }
 
-  onProgress(`Reviews autênticas 5★: ${mapsData.reviews.length} | Fotos reais: ${mapsData.photos.length}`);
+  onProgress(`Mineração Maps concluída: ${mapsData.reviews.length} avaliações 5★ | Endereço: ${mapsData.endereco || 'N/A'}`);
   return mapsData;
 }
 
-/**
- * Executa o enriquecimento profundo completo do Lead
- */
 async function deepEnrichLead(leadIdOrSlug, onProgress = console.log) {
   let lead = db.getById(leadIdOrSlug);
   if (!lead) throw new Error(`Lead "${leadIdOrSlug}" não encontrado.`);
