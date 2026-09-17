@@ -3,7 +3,7 @@ const db = require('./db');
 const { checkWebsiteHealth } = require('./site_checker');
 const { huntSocials } = require('./social_hunter');
 const { huntInstagramBio } = require('./instagram_bio_hunter');
-const { isNationalBrand, probeBrandWebsite } = require('./brand_detector');
+const { isNationalBrand } = require('./brand_detector');
 const { cleanAndNormalizeUrl } = require('./url_cleaner');
 const { getCategoryForLead } = require('./categories');
 const { sanitizePhonesForCity } = require('./phone_validator');
@@ -230,16 +230,6 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 5, 
         continue;
       }
 
-      // 2.0 Sondagem rápida de domínio corporativo se o Maps não exibir botão direto
-      if (!p.websiteUrl) {
-        try {
-          const probed = await probeBrandWebsite(p.name);
-          if (probed) {
-            p.websiteUrl = cleanAndNormalizeUrl(probed).cleanedUrl;
-          }
-        } catch (_) {}
-      }
-
       // 2.1 Auditoria profunda do Website informado no Google Maps (se houver)
       let siteHealth = await checkWebsiteHealth(p.websiteUrl);
 
@@ -267,9 +257,10 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 5, 
         siteHealth.reason = `Site oficial cadastrado na bio do Instagram (${domainClean}), porém está INACESSÍVEL / FORA DO AR (${siteHealth.statusCode ? 'HTTP ' + siteHealth.statusCode : (siteHealth.reason.includes('SSL') ? 'Certificado SSL Expirado' : siteHealth.reason)})`;
       }
 
-      // 2.4 Telefones consolidados brutos
-      const mapsPhones = (p.allText.match(/(?:\(?([1-9]{2})\)?\s?)?(?:(9\d{4})[-\s]?(\d{4})|(\d{4})[-\s]?(\d{4}))/g) || [])
-        .map(x => x.trim());
+      // 2.4 Telefones consolidados brutos (exige prefixo de fixo válido [2-5] e rejeita intervalos de anos)
+      const mapsPhones = (p.allText.match(/(?:\(?([1-9]{2})\)?\s?)?(?:(9\d{4})[-\s]?(\d{4})|([2-5]\d{3})[-\s]?(\d{4}))/g) || [])
+        .map(x => x.trim())
+        .filter(x => !/^(?:19|20)\d{2}[-\s]?(?:19|20)\d{2}$/.test(x));
 
       const rawAllPhones = [
         ...(igData.whatsappFromBio ? [igData.whatsappFromBio] : []),

@@ -51,11 +51,18 @@ function parseBrazilianPhone(phone, expectedDdd = '16') {
 
   const digits = phone.replace(/\D/g, '');
 
+  // Rejeita padrões explícitos de ano/intervalo de datas (ex: 2021-2023, 2020-2024, 1990-2025)
+  if (/^(?:19|20)\d{2}[-\s]?(?:19|20)\d{2}$/.test(phone.trim()) || /^(?:19|20)\d{2}(?:19|20)\d{2}$/.test(digits)) {
+    return { valid: false };
+  }
+
   // 1. Número com código de país 55 (12 ou 13 dígitos)
   if (digits.startsWith('55') && (digits.length === 12 || digits.length === 13)) {
     const ddd = digits.slice(2, 4);
     const num = digits.slice(4);
     const isMobile = num.length === 9 && num.startsWith('9');
+    // Para fixos com DDD, exige início com [2-5]
+    if (!isMobile && !/^[2-5]/.test(num)) return { valid: false };
     return {
       valid: true,
       ddd,
@@ -70,6 +77,8 @@ function parseBrazilianPhone(phone, expectedDdd = '16') {
     const ddd = digits.slice(0, 2);
     const num = digits.slice(2);
     const isMobile = num.length === 9 && num.startsWith('9');
+    // Para fixos com DDD, exige início com [2-5]
+    if (!isMobile && !/^[2-5]/.test(num)) return { valid: false };
     return {
       valid: true,
       ddd,
@@ -82,6 +91,11 @@ function parseBrazilianPhone(phone, expectedDdd = '16') {
   // 3. Número local sem DDD (8 ou 9 dígitos) -> Assume o DDD esperado da cidade
   if (digits.length === 8 || digits.length === 9) {
     const isMobile = digits.length === 9 && digits.startsWith('9');
+    // Fixo local de 8 dígitos deve começar com [2-5] e não pode ser ano
+    if (!isMobile) {
+      if (!/^[2-5]/.test(digits)) return { valid: false };
+      if (/^20[12]\d{5}$/.test(digits)) return { valid: false };
+    }
     return {
       valid: true,
       ddd: expectedDdd,

@@ -1,5 +1,309 @@
 [
   {
+    "id": "lead_1789657928168_voa2z9",
+    "createdAt": "2026-09-17T15:12:08.168Z",
+    "updatedAt": "2026-09-17T15:16:15.796Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "franca-prime-climatizadores-evaporativos-industriais-e-comerciais",
+    "nome": "Franca Prime Climatizadores Evaporativos - Industriais e Comerciais",
+    "nicho": "Climatização e Ar-Condicionado",
+    "cidade": "Franca SP",
+    "siteOriginal": "https://francaclimatizacao.com.br",
+    "siteStatus": "online",
+    "siteHttpCode": 200,
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "★ 5,0 (123 comentários)",
+    "endereco": "R. Augusto Marques, 1785",
+    "mapsUrl": "https://www.google.com/maps/place/Franca+Prime+Climatizadores+Evaporativos+-+Industriais+e+Comerciais/data=!4m7!3m6!1s0x94b0a7ad1ba605a1:0x9291d0209e10a64!8m2!3d-20.5370929!4d-47.4047618!16s%2Fg%2F11y3qb3tvc!19sChIJoQWmG62nsJQRZArhCQIdKQk?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxNC4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 3700-7071"
+    ],
+    "emails": [],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "551637007071",
+    "whatsappFormatado": "(16) 3700-7071",
+    "status": "descartado",
+    "motivoDescarte": null,
+    "analiseIA": "🌐 Site Ativo Detectado: Site institucional ativo. Empresa já possui presença web (https://francaclimatizacao.com.br). Candidata a redesign, melhoria de SEO local ou otimização de velocidade com template Subzero.",
+    "categoria": {
+      "slug": "outros",
+      "nome": "Climatização e Ar-Condicionado",
+      "icone": "🏢",
+      "cor": "#64748b",
+      "badgeClass": "cat-other"
+    },
+    "siteData": {
+      "title": "Franca Prime - Climatização Industrial",
+      "metaDescription": null,
+      "headings": [],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": []
+    },
+    "dadosEnriquecidos": {
+      "instagram": null,
+      "facebook": null,
+      "whatsappPrincipal": "551637007071",
+      "whatsappFormatado": "(16) 3700-7071",
+      "website": "https://francaclimatizacao.com.br",
+      "websiteFromBio": null,
+      "bioInstagram": null,
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": []
+    }
+  },
+  {
+    "id": "lead_1789657924252_cmz9u7",
+    "createdAt": "2026-09-17T15:12:04.252Z",
+    "updatedAt": "2026-09-17T15:16:12.059Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "brisa-climatizacao-ar-condicionado-em-franca",
+    "nome": "Brisa Climatização - Ar Condicionado em Franca",
+    "nicho": "Climatização e Ar-Condicionado",
+    "cidade": "Franca SP",
+    "siteOriginal": "https://brisaclimatizacao.com.br",
+    "siteStatus": "online",
+    "siteHttpCode": 200,
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "★ 4,2 (15 comentários)",
+    "endereco": "R. Homero Pachêco Alves, 2555",
+    "mapsUrl": "https://www.google.com/maps/place/Brisa+Climatiza%C3%A7%C3%A3o+-+Ar+Condicionado+em+Franca/data=!4m7!3m6!1s0x94b0a62d179b4207:0x669a25253d6ab96!8m2!3d-20.5307709!4d-47.4033841!16s%2Fg%2F11kq3pcgjm!19sChIJB0KbFy2msJQRlqvWU1KiaQY?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxNC4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 98237-2324",
+      "(16) 3721-6730"
+    ],
+    "emails": [
+      "atendimento@brisaclimatizacao.com.br"
+    ],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "5516982372324",
+    "whatsappFormatado": "(16) 98237-2324",
+    "status": "descartado",
+    "motivoDescarte": null,
+    "analiseIA": "🌐 Site Ativo Detectado: Site institucional ativo. Empresa já possui presença web (https://brisaclimatizacao.com.br). Candidata a redesign, melhoria de SEO local ou otimização de velocidade com template Subzero.",
+    "categoria": {
+      "slug": "climatizacao",
+      "nome": "Climatização & HVAC",
+      "icone": "❄️",
+      "cor": "#0ea5e9",
+      "badgeClass": "cat-hvac"
+    },
+    "siteData": {
+      "title": "Brisa Climatização – Manutenção de Ar Condicionado em Franca-SP",
+      "metaDescription": null,
+      "headings": [
+        "Manutenção de Ar Condicionado",
+        "O clima ideal em todas as estações!",
+        "Nossos Serviços",
+        "Nossos Números",
+        "Desenvolvido por"
+      ],
+      "servicosExtraidos": [
+        "Instalação",
+        "Manutenção"
+      ],
+      "diferenciaisExtraidos": [
+        "0\nAnos de Experiência no Mercado"
+      ]
+    },
+    "dadosEnriquecidos": {
+      "instagram": null,
+      "facebook": null,
+      "whatsappPrincipal": "5516982372324",
+      "whatsappFormatado": "(16) 98237-2324",
+      "website": "https://brisaclimatizacao.com.br",
+      "websiteFromBio": null,
+      "bioInstagram": null,
+      "linkNaBio": null,
+      "servicosDetectados": [
+        "Instalação",
+        "Manutenção"
+      ],
+      "diferenciais": [
+        "0\nAnos de Experiência no Mercado"
+      ]
+    },
+    "_isNew": false
+  },
+  {
+    "id": "lead_1789657916714_a2xn5f",
+    "createdAt": "2026-09-17T15:11:56.714Z",
+    "updatedAt": "2026-09-17T15:44:20.539Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "daniel-climatizacao-instalacao-e-manutencao-de-ar-condicionado",
+    "nome": "Daniel climatização instalação e manutenção de ar condicionado",
+    "nicho": "Climatização e Ar-Condicionado",
+    "cidade": "Franca SP",
+    "siteOriginal": null,
+    "siteStatus": "nenhum",
+    "siteHttpCode": null,
+    "siteHealthReason": "Nenhum site oficial cadastrado no Google Maps",
+    "avaliacao": "★ 4,9 (210 comentários)",
+    "endereco": null,
+    "mapsUrl": "https://www.google.com/maps/place/Daniel+climatiza%C3%A7%C3%A3o+instala%C3%A7%C3%A3o+e+manuten%C3%A7%C3%A3o+de+ar+condicionado/data=!4m7!3m6!1s0x94b0a557cd305e11:0x5b25a355453c1145!8m2!3d-20.5188696!4d-47.3605818!16s%2Fg%2F11jmwqq2y8!19sChIJEV4wzVelsJQRRRE8RVWjJVs?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxNC4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 99172-2199"
+    ],
+    "emails": [],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "5516991722199",
+    "whatsappFormatado": "(16) 99172-2199",
+    "status": "oportunidade_quente",
+    "motivoDescarte": null,
+    "analiseIA": "🔥 Oportunidade Quente de Climatização em Franca SP: empresa com 210 avaliações no Google Maps com nota 4,9 estrelas e WhatsApp ativo, porém totalmente sem site oficial cadastrado. Perfil perfeito para implantação do Subzero Engine!",
+    "categoria": {
+      "slug": "climatizacao",
+      "nome": "Climatização & HVAC",
+      "icone": "❄️",
+      "cor": "#0ea5e9",
+      "badgeClass": "cat-hvac"
+    },
+    "siteData": null,
+    "dadosEnriquecidos": {
+      "whatsappPrincipal": "5516991722199",
+      "whatsappFormatado": "(16) 99172-2199"
+    },
+    "_isNew": false
+  },
+  {
+    "id": "lead_1789657908350_yvbt47",
+    "createdAt": "2026-09-17T15:11:48.350Z",
+    "updatedAt": "2026-09-17T15:15:57.353Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "hunifrio-ar-condicionado",
+    "nome": "Hunifrio Ar-Condicionado",
+    "nicho": "Climatização e Ar-Condicionado",
+    "cidade": "Franca SP",
+    "siteOriginal": null,
+    "siteStatus": "nenhum",
+    "siteHttpCode": null,
+    "siteHealthReason": "Nenhum site cadastrado no Google Maps",
+    "avaliacao": "★ 3,9 (32 comentários)",
+    "endereco": null,
+    "mapsUrl": "https://www.google.com/maps/place/Hunifrio+Ar-Condicionado/data=!4m7!3m6!1s0x94b0a6121a6ead05:0x6c53d2e02e9bbcce!8m2!3d-20.5498926!4d-47.4035041!16s%2Fg%2F11fx7p4m1m!19sChIJBa1uGhKmsJQRzrybLuDSU2w?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxNC4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 3721-3025"
+    ],
+    "emails": [],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "551637213025",
+    "whatsappFormatado": "(16) 3721-3025",
+    "status": "prototipo_pronto",
+    "motivoDescarte": null,
+    "analiseIA": "🔥 Oportunidade de Ouro em Franca SP: Empresa com ★ 3,9 (32 comentários), porém SEM NENHUM SITE OFICIAL próprio cadastrado no Google ou no Instagram. Perde todo o tráfego orgânico diário!",
+    "categoria": {
+      "slug": "outros",
+      "nome": "Climatização e Ar-Condicionado",
+      "icone": "🏢",
+      "cor": "#64748b",
+      "badgeClass": "cat-other"
+    },
+    "siteData": {
+      "title": null,
+      "metaDescription": null,
+      "headings": [],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": []
+    },
+    "dadosEnriquecidos": {
+      "instagram": null,
+      "facebook": null,
+      "whatsappPrincipal": "551637213025",
+      "whatsappFormatado": "(16) 3721-3025",
+      "website": null,
+      "websiteFromBio": null,
+      "bioInstagram": null,
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": []
+    },
+    "_isNew": false,
+    "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\hunifrio-ar-condicionado\\index.html",
+    "prototypeUrl": "/previews/hunifrio-ar-condicionado/index.html",
+    "messages": {
+      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Hunifrio Ar-Condicionado* tem uma excelente reputação, mas hoje quem pesquisa por *Climatização e Ar-Condicionado* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: não possui site oficial cadastrado no Google — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, destacando as principais especialidades e os depoimentos dos seus clientes:\n👉 */previews/hunifrio-ar-condicionado/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
+      "email": {
+        "assunto": "Hunifrio Ar-Condicionado em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial",
+        "corpo": "Prezada equipe da Hunifrio Ar-Condicionado,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por Climatização e Ar-Condicionado em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Hunifrio Ar-Condicionado, já funcional e adaptada para smartphones:\n👉 /previews/hunifrio-ar-condicionado/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
+      }
+    },
+    "archetype": "industrial",
+    "templateEscolhido": "industrial"
+  },
+  {
+    "id": "lead_1789657904250_i8g9km",
+    "createdAt": "2026-09-17T15:11:44.250Z",
+    "updatedAt": "2026-09-17T15:15:53.614Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "kliver-climatizacao-ar-condicionado-em-franca",
+    "nome": "Kliver Climatização - Ar condicionado em Franca",
+    "nicho": "Climatização e Ar-Condicionado",
+    "cidade": "Franca SP",
+    "siteOriginal": "https://kliverclima.com.br",
+    "siteStatus": "online",
+    "siteHttpCode": 200,
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "★ 4,4 (27 comentários)",
+    "endereco": "Rua Isolina Telini, R. Antônio Scarabucci, 2581",
+    "mapsUrl": "https://www.google.com/maps/place/Kliver+Climatiza%C3%A7%C3%A3o+-+Ar+condicionado+em+Franca/data=!4m7!3m6!1s0x94b0a87f2c761675:0x19a1fc4d90c26e61!8m2!3d-20.5419976!4d-47.392053!16s%2Fg%2F11bxc5dnmk!19sChIJdRZ2LH-osJQRYW7CkE38oRk?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxNC4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 98131-3584"
+    ],
+    "emails": [],
+    "instagram": "https://www.instagram.com/kliverclimatizacao/",
+    "facebook": "https://www.facebook.com/kliverarcondicionado/",
+    "whatsappPrincipal": "5516981313584",
+    "whatsappFormatado": "(16) 98131-3584",
+    "status": "descartado",
+    "motivoDescarte": null,
+    "analiseIA": "🌐 Site Ativo Detectado: Site institucional ativo. Empresa já possui presença web (https://kliverclima.com.br). Candidata a redesign, melhoria de SEO local ou otimização de velocidade com template Subzero.",
+    "categoria": {
+      "slug": "climatizacao",
+      "nome": "Climatização & HVAC",
+      "icone": "❄️",
+      "cor": "#0ea5e9",
+      "badgeClass": "cat-hvac"
+    },
+    "siteData": {
+      "title": "Kliver Climatização – Manutenção de Ar Condicionado",
+      "metaDescription": null,
+      "headings": [
+        "E-mail",
+        "Franca",
+        "Fale Conosco",
+        "Nossos Diferenciais",
+        "Mão de Obra Especializada",
+        "Padronização de Processos",
+        "Atendimento e Suporte",
+        "Nossas Conquistas"
+      ],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": []
+    },
+    "dadosEnriquecidos": {
+      "instagram": "https://www.instagram.com/kliverclimatizacao/",
+      "facebook": "https://www.facebook.com/kliverarcondicionado/",
+      "whatsappPrincipal": "5516981313584",
+      "whatsappFormatado": "(16) 98131-3584",
+      "website": "https://kliverclima.com.br",
+      "websiteFromBio": null,
+      "bioInstagram": null,
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": []
+    },
+    "_isNew": false
+  },
+  {
     "id": "lead_1789608871007_1jlf7v",
     "createdAt": "2026-09-17T01:34:31.007Z",
     "updatedAt": "2026-09-17T02:02:11.705Z",
@@ -478,14 +782,14 @@
   {
     "id": "lead_1789563001583_o1fryi",
     "createdAt": "2026-09-16T12:50:01.583Z",
-    "updatedAt": "2026-09-17T02:06:47.705Z",
-    "anotacoes": "",
+    "updatedAt": "2026-09-17T03:08:26.103Z",
+    "anotacoes": "QUENTISSIMO - USA IA, TEM SITE BEM RUIM, MIDIA FORTE",
     "historicoContatos": [],
     "slug": "mobtech-seguranca-eletronica-franca",
-    "nome": "MobTech Segurança Eletrônica | Franca",
+    "nome": "MobTech Segurança Eletrônica",
     "nicho": "segurança eletronica",
     "cidade": "Franca SP",
-    "siteOriginal": "https://wa.me/5516999722484",
+    "siteOriginal": "https://sites.google.com/view/mobtech-franca/",
     "siteStatus": "online",
     "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
     "avaliacao": "5,0 estrelas 55 comentários",
@@ -496,11 +800,11 @@
       "(16) 4766-7720"
     ],
     "emails": [],
-    "instagram": null,
-    "facebook": "https://www.facebook.com/profile.php/",
+    "instagram": "https://www.instagram.com/mobtech50/",
+    "facebook": null,
     "whatsappPrincipal": "5516999722484",
     "whatsappFormatado": "(16) 99972-2484",
-    "status": "oportunidade_quente",
+    "status": "prototipo_pronto",
     "motivoDescarte": null,
     "analiseIA": "💡 Oportunidade de Redesign Subzero: Site ativo com dados mapeados. Conteúdo, serviços e contatos extraídos diretamente do site atual (https://wa.me/5516999722484) para alimentar o protótipo mobile-first de alta conversão.",
     "siteData": {
@@ -534,7 +838,18 @@
       "icone": "🏢",
       "cor": "#64748b",
       "badgeClass": "cat-other"
-    }
+    },
+    "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\mobtech-seguranca-eletronica-franca\\index.html",
+    "prototypeUrl": "/previews/mobtech-seguranca-eletronica-franca/index.html",
+    "messages": {
+      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *MobTech Segurança Eletrônica* tem uma excelente reputação, mas hoje quem pesquisa por *segurança eletronica* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: não possui site oficial cadastrado no Google — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, destacando as principais especialidades e os depoimentos dos seus clientes:\n👉 */previews/mobtech-seguranca-eletronica-franca/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
+      "email": {
+        "assunto": "MobTech Segurança Eletrônica em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial",
+        "corpo": "Prezada equipe da MobTech Segurança Eletrônica,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por segurança eletronica em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da MobTech Segurança Eletrônica, já funcional e adaptada para smartphones:\n👉 /previews/mobtech-seguranca-eletronica-franca/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
+      }
+    },
+    "archetype": "industrial",
+    "templateEscolhido": "industrial"
   },
   {
     "id": "lead_1789563000718_9ze114",
@@ -713,7 +1028,7 @@
   {
     "id": "lead_1789562989644_t0i06i",
     "createdAt": "2026-09-16T12:49:49.644Z",
-    "updatedAt": "2026-09-17T02:03:27.861Z",
+    "updatedAt": "2026-09-17T15:19:22.991Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "icon-monitoramento-24hs",
@@ -734,7 +1049,7 @@
     "facebook": "https://www.facebook.com/iconmonitoramento/",
     "whatsappPrincipal": "5516992159550",
     "whatsappFormatado": "(16) 99215-9550",
-    "status": "oportunidade_quente",
+    "status": "prototipo_pronto",
     "motivoDescarte": null,
     "analiseIA": "💡 Oportunidade de Redesign Subzero: 🚨 Site sem SSL (inseguro HTTP). Conteúdo, serviços e contatos extraídos diretamente do site atual (http://www.iconmonitoramento.com.br/) para alimentar o protótipo mobile-first de alta conversão.",
     "siteData": {
@@ -761,7 +1076,18 @@
       "icone": "🛡️",
       "cor": "#3b82f6",
       "badgeClass": "cat-security"
-    }
+    },
+    "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\icon-monitoramento-24hs\\index.html",
+    "prototypeUrl": "/previews/icon-monitoramento-24hs/index.html",
+    "messages": {
+      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *ICON MONITORAMENTO 24HS* tem uma excelente reputação, mas hoje quem pesquisa por *segurança eletronica* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: não possui site oficial cadastrado no Google — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, destacando as principais especialidades e os depoimentos dos seus clientes:\n👉 */previews/icon-monitoramento-24hs/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
+      "email": {
+        "assunto": "ICON MONITORAMENTO 24HS em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial",
+        "corpo": "Prezada equipe da ICON MONITORAMENTO 24HS,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por segurança eletronica em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da ICON MONITORAMENTO 24HS, já funcional e adaptada para smartphones:\n👉 /previews/icon-monitoramento-24hs/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
+      }
+    },
+    "archetype": "industrial",
+    "templateEscolhido": "industrial"
   },
   {
     "id": "lead_1789562987260_pxp5h3",
@@ -1965,11 +2291,11 @@
   {
     "id": "lead_1789499395730_mo78ni",
     "createdAt": "2026-09-15T19:09:55.730Z",
-    "updatedAt": "2026-09-17T03:02:22.915Z",
+    "updatedAt": "2026-09-17T03:05:19.980Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "agrolipe-produtos-agropecuarios-pet-shop-clinica-veterinaria-farmacia-veterinaria",
-    "nome": "Agrolipe Produtos Agropecuários ,Pet Shop, Clinica Veterinária ,Farmácia veterinária",
+    "nome": "Agrolipe",
     "nicho": "pet shop",
     "cidade": "Franca SP",
     "siteOriginal": null,

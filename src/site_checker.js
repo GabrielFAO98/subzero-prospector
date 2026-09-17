@@ -168,7 +168,10 @@ async function checkWebsiteHealth(rawUrl) {
           cellMatches.forEach(c => phones.add(c.trim()));
 
           const landMatches = text.match(/(?:\(?([1-9]{2})\)?\s?)?(?:[2-5]\d{3}[-\s]?\d{4})/g) || [];
-          landMatches.forEach(l => phones.add(l.trim()));
+          landMatches.forEach(l => {
+            if (/^(?:19|20)\d{2}[-\s]?(?:19|20)\d{2}$/.test(l.trim())) return;
+            phones.add(l.trim());
+          });
 
           const mailMatches = text.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || [];
           mailMatches.forEach(m => {
