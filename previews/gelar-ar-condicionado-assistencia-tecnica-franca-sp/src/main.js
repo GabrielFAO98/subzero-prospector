@@ -1,5 +1,5 @@
 /**
- * Gelar Ar Condicionado — Subzero Engine JavaScript Module
+ * Subzero Engine — JavaScript Modular
  * Padrões Técnicos: Headroom Navbar, Granular Scroll Reveal, Infinite Tracks, Mobile Menu
  */
 
@@ -15,11 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (Math.abs(currentScrollY - lastScrollY) < scrollThreshold) return;
 
     if (currentScrollY > lastScrollY && currentScrollY > 100) {
-      // Rolar para baixo
       header.classList.add('headroom--unpinned');
       header.classList.remove('headroom--pinned');
     } else if (currentScrollY < lastScrollY) {
-      // Rolar para cima
       header.classList.add('headroom--pinned');
       header.classList.remove('headroom--unpinned');
     }
@@ -32,48 +30,72 @@ document.addEventListener('DOMContentLoaded', () => {
   if (menuToggle && header) {
     menuToggle.addEventListener('click', () => {
       const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      menuToggle.setAttribute('aria-expanded', !isExpanded);
-      header.classList.toggle('menu-open');
+      const willOpen = !isExpanded;
+      menuToggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      header.classList.toggle('menu-open', willOpen);
+      document.body.classList.toggle('menu-open-scroll-lock', willOpen);
     });
 
-    // Fechar menu ao clicar em links
-    document.querySelectorAll('.header nav a').forEach(link => {
+    document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
         menuToggle.setAttribute('aria-expanded', 'false');
         header.classList.remove('menu-open');
+        document.body.classList.remove('menu-open-scroll-lock');
       });
     });
   }
 
-  // 3. Scroll Reveals Granulares por Item Individual (Regra Subzero)
+  // 3. Scroll Reveals Granulares por Item Individual (Regra Subzero) com Proteção Total Contra Void
   const revealElements = document.querySelectorAll('.stagger, .reveal-left, .reveal-right');
-  
+
+  // Revela o Hero imediatamente para visualização instantânea no carregamento
+  document.querySelectorAll('.hero .stagger').forEach(el => el.classList.add('visible'));
+
+  const makeVisible = (el) => el.classList.add('visible');
+
   if ('IntersectionObserver' in window) {
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          makeVisible(entry.target);
           observer.unobserve(entry.target);
         }
       });
     }, {
-      rootMargin: '0px 0px -65px 0px',
-      threshold: 0.15
+      rootMargin: '50px 0px 50px 0px',
+      threshold: 0.05
     });
 
     revealElements.forEach(el => revealObserver.observe(el));
   } else {
-    revealElements.forEach(el => el.classList.add('visible'));
+    revealElements.forEach(makeVisible);
   }
+
+  // Safety Fallback Universal: garante que em capturas automatizadas, iframes ou rolagem rápida nada fique invisível
+  const ensureVisibility = () => {
+    revealElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight + 350) {
+        makeVisible(el);
+      }
+    });
+  };
+
+  setTimeout(ensureVisibility, 350);
+  setTimeout(() => {
+    revealElements.forEach(makeVisible);
+  }, 1200);
+
+  window.addEventListener('scroll', ensureVisibility, { passive: true });
 
   // 4. Duplicação Automática para Loop Perfeito nos Marquees
-  const brandsTrack = document.querySelector('.brands-track');
-  if (brandsTrack) {
-    brandsTrack.innerHTML += brandsTrack.innerHTML;
-  }
+  const duplicateTrack = (selector) => {
+    const track = document.querySelector(selector);
+    if (!track) return;
+    const content = track.innerHTML;
+    track.innerHTML = content + content;
+  };
 
-  const testTrack = document.querySelector('.testimonial-track');
-  if (testTrack) {
-    testTrack.innerHTML += testTrack.innerHTML;
-  }
+  duplicateTrack('.specs-marquee-track');
+  duplicateTrack('.reviews-marquee-track');
 });

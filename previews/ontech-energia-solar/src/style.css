@@ -391,6 +391,10 @@ h1, h2, h3, h4 {
 /* ==========================================================================
    Continuous Specifications Marquee (Subzero Standard 24s)
    ========================================================================== */
+section[id] {
+  scroll-margin-top: 88px;
+}
+
 .specs-marquee-section {
   background: #040813;
   padding: 1rem 0;
@@ -1267,7 +1271,29 @@ body.menu-open-scroll-lock {
     margin-bottom: 2rem;
   }
   .hero-highlights-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  .hero-highlight-card {
+    padding: 0.85rem 0.75rem;
+  }
+  .highlight-icon-box {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 0.5rem;
+  }
+  .highlight-title {
+    font-size: 0.82rem;
+    line-height: 1.25;
+    margin-bottom: 0.25rem;
+  }
+  .highlight-desc {
+    font-size: 0.72rem;
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   .hero-actions {
     flex-direction: column;

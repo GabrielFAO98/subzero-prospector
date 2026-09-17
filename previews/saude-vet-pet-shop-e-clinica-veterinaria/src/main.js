@@ -1,20 +1,20 @@
 /**
- * Subzero Care — Engine JavaScript
- * Smart Headroom Navbar, Granular Scroll Reveal, Infinite Loops, Mobile Nav
+ * Subzero Engine — JavaScript Modular
+ * Padrões Técnicos: Headroom Navbar, Granular Scroll Reveal, Infinite Tracks, Mobile Menu
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Smart Headroom Navbar
+  // 1. Smart Headroom Navbar (Hide on scroll down, show on scroll up)
   const header = document.querySelector('.header');
   let lastScrollY = window.scrollY;
-  const scrollThreshold = 8;
+  const scrollThreshold = 10;
 
   window.addEventListener('scroll', () => {
     const currentScrollY = window.scrollY;
     
     if (Math.abs(currentScrollY - lastScrollY) < scrollThreshold) return;
 
-    if (currentScrollY > lastScrollY && currentScrollY > 80) {
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
       header.classList.add('headroom--unpinned');
       header.classList.remove('headroom--pinned');
     } else if (currentScrollY < lastScrollY) {
@@ -25,53 +25,77 @@ document.addEventListener('DOMContentLoaded', () => {
     lastScrollY = currentScrollY;
   }, { passive: true });
 
-  // 2. Scroll Reveals Granulares por Item Individual (Diretriz Subzero Engine)
-  const staggerItems = document.querySelectorAll('.stagger');
-  
+  // 2. Mobile Menu Toggle
+  const menuToggle = document.querySelector('.menu-toggle');
+  if (menuToggle && header) {
+    menuToggle.addEventListener('click', () => {
+      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      const willOpen = !isExpanded;
+      menuToggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      header.classList.toggle('menu-open', willOpen);
+      document.body.classList.toggle('menu-open-scroll-lock', willOpen);
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        header.classList.remove('menu-open');
+        document.body.classList.remove('menu-open-scroll-lock');
+      });
+    });
+  }
+
+  // 3. Scroll Reveals Granulares por Item Individual (Regra Subzero) com Proteção Total Contra Void
+  const revealElements = document.querySelectorAll('.stagger, .reveal-left, .reveal-right');
+
+  // Revela o Hero imediatamente para visualização instantânea no carregamento
+  document.querySelectorAll('.hero .stagger').forEach(el => el.classList.add('visible'));
+
+  const makeVisible = (el) => el.classList.add('visible');
+
   if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries, obs) => {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          obs.unobserve(entry.target);
+          makeVisible(entry.target);
+          observer.unobserve(entry.target);
         }
       });
     }, {
-      rootMargin: '0px 0px -65px 0px',
-      threshold: 0.15
+      rootMargin: '50px 0px 50px 0px',
+      threshold: 0.05
     });
 
-    staggerItems.forEach(el => observer.observe(el));
+    revealElements.forEach(el => revealObserver.observe(el));
   } else {
-    staggerItems.forEach(el => el.classList.add('visible'));
+    revealElements.forEach(makeVisible);
   }
 
-  // 3. Duplicação Automática para Loop Perfeito nos Marquees
-  const marqueeTracks = document.querySelectorAll('.marquee-track, .rev-track');
-  marqueeTracks.forEach(track => {
-    if (track) {
-      track.innerHTML += track.innerHTML;
-    }
-  });
-
-  // 4. Carrossel de Serviços com Setas
-  const svcTrack = document.getElementById('svcTrack');
-  const prevBtn = document.getElementById('svcPrevBtn');
-  const nextBtn = document.getElementById('svcNextBtn');
-
-  if (svcTrack && prevBtn && nextBtn) {
-    const getStep = () => {
-      const card = svcTrack.querySelector('.service-card');
-      return card ? card.offsetWidth + 20 : 320;
-    };
-
-    prevBtn.addEventListener('click', () => {
-      svcTrack.scrollBy({ left: -getStep(), behavior: 'smooth' });
+  // Safety Fallback Universal: garante que em capturas automatizadas, iframes ou rolagem rápida nada fique invisível
+  const ensureVisibility = () => {
+    revealElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight + 350) {
+        makeVisible(el);
+      }
     });
+  };
 
-    nextBtn.addEventListener('click', () => {
-      svcTrack.scrollBy({ left: getStep(), behavior: 'smooth' });
-    });
-  }
+  setTimeout(ensureVisibility, 350);
+  setTimeout(() => {
+    revealElements.forEach(makeVisible);
+  }, 1200);
+
+  window.addEventListener('scroll', ensureVisibility, { passive: true });
+
+  // 4. Duplicação Automática para Loop Perfeito nos Marquees
+  const duplicateTrack = (selector) => {
+    const track = document.querySelector(selector);
+    if (!track) return;
+    const content = track.innerHTML;
+    track.innerHTML = content + content;
+  };
+
+  duplicateTrack('.specs-marquee-track');
+  duplicateTrack('.reviews-marquee-track');
 });
-

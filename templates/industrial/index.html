@@ -100,8 +100,8 @@
     <div class="hero-overlay-grid"></div>
     <div class="hero-container">
       <div class="hero-badge-trust stagger">
-        <span class="stars">★★★★★</span>
-        <span>Referência em Qualidade • Avaliações Reais • {{CIDADE_UF}}</span>
+        <span class="stars">{{STARS_RATING}}</span>
+        <span>{{BADGE_TRUST_TEXT}}</span>
       </div>
 
       <h1 class="stagger">
@@ -218,11 +218,11 @@
         <p class="section-lead">Conheça em detalhes o padrão das soluções que disponibilizamos em {{CIDADE_UF}}:</p>
       </div>
 
-      <div class="obras-grid">
+            <div class="obras-grid">
         <!-- Card 1 -->
         <div class="obra-card stagger">
           <div class="obra-img-wrapper">
-            <img src="./img/hero.jpg" alt="{{NOME_SERVICO_1}}" loading="lazy" />
+            <img src="./img/{{IMG_SERVICO_1}}" alt="{{NOME_SERVICO_1}}" loading="lazy" />
             <span class="obra-badge">Especialidade</span>
           </div>
           <div class="obra-content">
@@ -245,7 +245,7 @@
         <!-- Card 2 -->
         <div class="obra-card stagger">
           <div class="obra-img-wrapper">
-            <img src="./img/workshop.jpg" alt="{{NOME_SERVICO_2}}" loading="lazy" />
+            <img src="./img/{{IMG_SERVICO_2}}" alt="{{NOME_SERVICO_2}}" loading="lazy" />
             <span class="obra-badge">Qualidade Garantida</span>
           </div>
           <div class="obra-content">
@@ -255,6 +255,52 @@
               <li><svg><use href="#icon-check"/></svg> Diagnóstico detalhado e orçamento sem surpresas</li>
               <li><svg><use href="#icon-check"/></svg> Agilidade no prazo e respeito à sua rotina</li>
               <li><svg><use href="#icon-check"/></svg> Suporte direto pós-atendimento</li>
+            </ul>
+            <div class="obra-footer">
+              <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="btn-obra-cta">
+                <span>Conversar no WhatsApp</span>
+                <svg width="16" height="16"><use href="#wa"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="obra-card stagger">
+          <div class="obra-img-wrapper">
+            <img src="./img/{{IMG_SERVICO_3}}" alt="{{NOME_SERVICO_3}}" loading="lazy" />
+            <span class="obra-badge">Alta Tecnologia</span>
+          </div>
+          <div class="obra-content">
+            <h3>{{NOME_SERVICO_3}}</h3>
+            <p>{{DESCRICAO_SERVICO_3}}</p>
+            <ul class="obra-specs-list">
+              <li><svg><use href="#icon-check"/></svg> Equipamentos modernos e calibração precisa</li>
+              <li><svg><use href="#icon-check"/></svg> Procedimentos alinhados às normas técnicas vigentes</li>
+              <li><svg><use href="#icon-check"/></svg> Máxima eficiência energética e operacional</li>
+            </ul>
+            <div class="obra-footer">
+              <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="btn-obra-cta">
+                <span>Conversar no WhatsApp</span>
+                <svg width="16" height="16"><use href="#wa"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="obra-card stagger">
+          <div class="obra-img-wrapper">
+            <img src="./img/{{IMG_SERVICO_4}}" alt="{{NOME_SERVICO_4}}" loading="lazy" />
+            <span class="obra-badge">Atendimento Ágil</span>
+          </div>
+          <div class="obra-content">
+            <h3>{{NOME_SERVICO_4}}</h3>
+            <p>{{DESCRICAO_SERVICO_4}}</p>
+            <ul class="obra-specs-list">
+              <li><svg><use href="#icon-check"/></svg> Equipe técnica com atendimento rápido</li>
+              <li><svg><use href="#icon-check"/></svg> Soluções sob medida para o seu espaço</li>
+              <li><svg><use href="#icon-check"/></svg> Manutenção e suporte com compromisso</li>
             </ul>
             <div class="obra-footer">
               <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="btn-obra-cta">

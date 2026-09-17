@@ -1,70 +1,90 @@
 const fs = require('fs');
 const path = require('path');
-const { generateFaviconSvg } = require('./favicon');
 
 const TEMPLATES_ROOT = path.join(__dirname, '..', 'templates');
-const FALLBACK_TEMPLATE_DIR = path.join('C:', 'Users', 'Gabriel', 'dev', 'template.subzero');
 const PREVIEWS_DIR = path.join(__dirname, '..', 'previews');
+const FALLBACK_TEMPLATE_DIR = path.join(TEMPLATES_ROOT, 'padrao');
 
 /**
- * Determina o arquétipo visual ideal de acordo com o nicho e regras de negócio
- * @param {string} nicho
- * @param {string} nomeEmpresa
- * @param {string} [templateHint]
- * @returns {'care' | 'clinical' | 'industrial'}
+ * Mapeia o nicho/empresa para o arquétipo ideal
  */
-function getArchetype(nicho = '', nomeEmpresa = '', templateHint = null) {
-  if (templateHint && typeof templateHint === 'string') {
-    const hint = templateHint.toLowerCase().trim();
-    if (['care', 'clinical', 'industrial'].includes(hint)) {
-      return hint;
-    }
+function getArchetype(nicho = '', nome = '', templateHint = null) {
+  if (templateHint && ['industrial', 'saude', 'institucional', 'comercio'].includes(templateHint)) {
+    return templateHint;
   }
 
-  const n = (nicho || '').toLowerCase();
-  const name = (nomeEmpresa || '').toLowerCase();
-
-  // 1. Care (Acolhedor, luminoso, humanizado: Pet Shops, Clínicas Veterinárias, Banho & Tosa, Cuidados)
-  if (n.includes('pet') || n.includes('vet') || n.includes('animal') || name.includes('pet') || name.includes('vet')) {
-    return 'care';
-  }
-
-  // 2. Clinical (Ultra-Clean, médico, higiênico: Odontologia, Clínicas Médicas, Estética, Fisioterapia, Saúde humana)
-  if (
-    n.includes('odonto') || n.includes('dent') || n.includes('sorriso') || n.includes('implante') ||
-    n.includes('ortodontia') || n.includes('medica') || n.includes('estetica') || n.includes('fisioterapia') ||
-    (n.includes('clinica') && !n.includes('vet')) ||
-    name.includes('odonto') || name.includes('dent') || name.includes('sorriso')
-  ) {
-    return 'clinical';
-  }
-
-  // 3. Industrial (Dark Tech / Alta Robustez: HVAC, Segurança Eletrônica, Energia Solar, Mecânica, Marcenaria)
-  return 'industrial';
-}
-
-
-/**
- * Inteligência de conteúdo por nicho para preencher o Subzero Engine
- */
-function getNicheContent(nicho, nomeEmpresa, cidade = 'Franca - SP', lead = {}) {
-  const normNFD = (str = '') => str.toLowerCase()
+  const norm = (str = '') => str.toLowerCase()
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .replace(/ç/g, 'c');
 
-  const n = normNFD(nicho);
-  const nameLower = normNFD(nomeEmpresa);
+  const n = norm(nicho);
+  const nameLower = norm(nome);
 
-  // 1. PET SHOP & CLÍNICA VETERINÁRIA
-  if (n.includes('pet') || n.includes('vet') || n.includes('animal') || nameLower.includes('vet') || nameLower.includes('pet')) {
+  if (n.includes('veterin') || n.includes('pet') || n.includes('odonto') || n.includes('clinic') || n.includes('saude') || n.includes('medic') || n.includes('psico') || n.includes('estetica')) {
+    return 'saude';
+  }
+
+  return 'industrial';
+}
+
+/**
+ * Analisa e extrai dados reais de avaliação do Google Maps
+ */
+function parseRatingData(avaliacaoStr, cidade = 'Franca SP') {
+  let starsRating = '★ 5.0';
+  let ratingNum = '5.0';
+  let reviewCount = null;
+
+  if (avaliacaoStr && typeof avaliacaoStr === 'string') {
+    const numMatch = avaliacaoStr.match(/(\d+[\.,]\d+)/);
+    if (numMatch) {
+      ratingNum = numMatch[1].replace(',', '.');
+      starsRating = `★ ${ratingNum}`;
+    }
+    const countMatch = avaliacaoStr.match(/(\d+)\s*(?:coment[aá]rios|avalia[çc][õo]es|reviews)/i);
+    if (countMatch) {
+      reviewCount = countMatch[1];
+    }
+  }
+
+  let badgeTrustText = '';
+  if (reviewCount) {
+    badgeTrustText = `Nota ${ratingNum} no Google Maps • Mais de ${reviewCount} avaliações em ${cidade}`;
+  } else if (ratingNum && ratingNum !== '5.0') {
+    badgeTrustText = `Nota ${ratingNum} no Google Maps • Clientes Satisfeitos em ${cidade}`;
+  } else {
+    badgeTrustText = `Referência em Qualidade • Avaliações Reais • ${cidade}`;
+  }
+
+  return {
+    starsRating,
+    ratingNum,
+    reviewCount,
+    badgeTrustText
+  };
+}
+
+/**
+ * Retorna conteúdo bespoke, realista e persuasivo adaptado à empresa e nicho
+ */
+function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lead = {}) {
+  const norm = (str = '') => str.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/ç/g, 'c');
+
+  const n = norm(nicho);
+  const nameLower = norm(nomeEmpresa);
+
+  // 1. CLÍNICA VETERINÁRIA & PET
+  if (n.includes('veterin') || n.includes('pet') || nameLower.includes('vet') || nameLower.includes('pet')) {
     return {
-      subtitulo: 'Clínica Veterinária & Pet Shop Especializado',
-      tituloPrincipal: 'Medicina Veterinária com Amor e Tecnologia',
-      chamadaPrincipal: 'O Cuidado Que Seu Pet Merece',
-      slogan: 'Medicina veterinária humanizada, exames, vacinas e cuidados completos.',
-      apresentacao: `Atendimento veterinário humanizado, exames rápidos e cuidados completos para a saúde e bem-estar do seu pet em ${cidade}.`,
+      subtitulo: 'Medicina Veterinária & Estética Animal',
+      tituloPrincipal: `Cuidado Dedicado e Medicina de Precisão para Seu Pet`,
+      chamadaPrincipal: 'Saúde, Prevenção e Amor em Cada Consulta',
+      slogan: 'Medicina veterinária humanizada, estrutura moderna e atendimento acolhedor.',
+      apresentacao: `Com atendimento cuidadoso em ${cidade}, a ${nomeEmpresa} oferece consultas preventivas, diagnósticos detalhados e cuidados estéticos completos para o bem-estar da sua família de quatro patas.`,
       servicos: [
-        { nome: 'Consultas Clínicas & Check-up', desc: 'Diagnóstico clínico detalhado, avaliação nutricional e acompanhamento integral da saúde e longevidade do seu pet.' },
+        { nome: 'Consultas Clínicas & Check-up Geral', desc: 'Atendimento atencioso com anamnese detalhada, controle de peso e exames preventivos completos.' },
         { nome: 'Centro Cirúrgico & Procedimentos', desc: 'Estrutura cirúrgica esterilizada com monitoramento cardíaco multiparâmetro e foco absoluto na segurança.' },
         { nome: 'Vacinação Importada & Prevenção', desc: 'Protocolos vacinais V10, antirrábica, gripe e giardíase com controle rigoroso de refrigeração e carteirinha digital.' },
         { nome: 'Estética Animal, Banho & Tosa', desc: 'Banhos com cosméticos dermatológicos hipoalergênicos, tosa na máquina/tesoura e tosa higiênica sem estresse.' }
@@ -72,18 +92,19 @@ function getNicheContent(nicho, nomeEmpresa, cidade = 'Franca - SP', lead = {}) 
       diferenciais: [
         { titulo: 'Medicina Humanizada', desc: 'Trato empático, acolhedor e calmo, respeitando o tempo de adaptação e conforto de cada animalzinho.' },
         { titulo: 'Diagnóstico Preciso', desc: 'Exames laboratoriais rápidos e conduta médica ética para tratar o problema na raiz.' },
-        { titulo: 'Clínica e Loja Integradas', desc: 'Consulta médica, farmácia completa de medicamentos e produtos de alta qualidade no mesmo lugar.' }
+        { titulo: 'Clínica e Cuidados Integrados', desc: 'Consulta médica, procedimentos preventivos e produtos dermatológicos de alta qualidade no mesmo local.' }
       ],
       avaliacoes: [
-        { autor: 'Mariana Silveira', texto: 'Equipe maravilhosa! Cuidaram do meu cachorro com muito profissionalismo e carinho quando ele precisou de cirurgia.' },
-        { autor: 'Renato F. Oliveira', texto: 'O melhor banho e tosa de Franca! Meus pets voltam limpinhos, cheirosos e sem trauma nenhum. Recomendo muito.' },
-        { autor: 'Carla Beatriz Ramos', texto: 'Veterinários muito capacitados e transparentes. Explicam tudo com calma e sem empurrar gastos desnecessários.' },
-        { autor: 'Diego M. Santos', texto: 'Ambiente super limpo e atendimento acolhedor desde a recepção. Lugar de total confiança para nossa família.' }
-      ]
+        { autor: 'Mariana Silveira', texto: `Equipe da ${nomeEmpresa} é maravilhosa! Cuidaram do meu cachorro com muito carinho e profissionalismo quando ele precisou. Recomendo!` },
+        { autor: 'Renato F. Oliveira', texto: `O melhor atendimento de Franca! Meus pets voltam sempre tranquilos, limpinhos e cheirosos. Lugar de total confiança.` },
+        { autor: 'Carla Beatriz Ramos', texto: `Profissionais muito capacitados e transparentes na ${nomeEmpresa}. Explicam tudo com calma e sem empurrar gastos desnecessários.` },
+        { autor: 'Diego M. Santos', texto: `Ambiente super limpo e atendimento acolhedor desde a recepção. Toda a equipe da ${nomeEmpresa} está de parabéns.` }
+      ],
+      imagensServicos: ['hero.jpg', 'workshop.jpg', 'hero.jpg', 'workshop.jpg']
     };
   }
 
-  // 2.0 DISTRIBUIDORA / ATACADISTA DE SEGURANÇA ELETRÔNICA
+  // 2. SEGURANÇA: DISTRIBUIDORA / ATACADISTA
   if ((nameLower.includes('distribuidora') || nameLower.includes('atacado') || nameLower.includes('distribuicao')) && 
       (n.includes('seguranca') || n.includes('eletronica') || nameLower.includes('seguranca') || nameLower.includes('eletronica') || nameLower.includes('kell'))) {
     return {
@@ -91,163 +112,169 @@ function getNicheContent(nicho, nomeEmpresa, cidade = 'Franca - SP', lead = {}) 
       tituloPrincipal: 'Equipamentos e Tecnologia para Integradores e Instaladores',
       chamadaPrincipal: 'Pronta-Entrega e Preço de Distribuidor em Franca',
       slogan: 'Câmeras, alarmes, motores de portão e controle de acesso das melhores marcas.',
-      apresentacao: `Estoque local com pronta-entrega e suporte técnico especializado para instaladores e empresas em ${cidade}.`,
+      apresentacao: `Estoque local com pronta-entrega e suporte técnico especializado para instaladores e empresas de segurança em ${cidade}.`,
       servicos: [
-        { nome: 'Câmeras CFTV & Gravadores DVR/NVR', desc: 'Linhas completas das marcas HB Tech, Intelbras e líderes, com pronta-entrega para projetos residenciais e industriais.' },
+        { nome: 'Câmeras CFTV & Gravadores DVR/NVR', desc: 'Linhas completas em alta definição, com pronta-entrega para projetos residenciais, comerciais e industriais.' },
         { nome: 'Centrais de Alarme & Sensores Infravermelho', desc: 'Sistemas com discadora, aplicativo móvel e detecção de alta precisão para máxima proteção perimetral.' },
-        { nome: 'Motores para Portão & Cremalheiras', desc: 'Automatizadores ultrarrápidos para portões deslizantes, basculantes e pivotantes (AGL, Líder, Acton, PPA).' },
-        { nome: 'Concertinas, Fios de Choque & Acessórios', desc: 'Concertinas duplas galvalume, hastes reforçadas, baterias e cabeamento homologado com garantia de fábrica.' }
+        { nome: 'Motores para Portão & Cremalheiras', desc: 'Automatizadores ultrarrápidos para portões deslizantes, basculantes e pivotantes com garantia de fábrica.' },
+        { nome: 'Concertinas, Fios de Choque & Acessórios', desc: 'Concertinas duplas galvalume, hastes reforçadas, baterias e cabeamento homologado com o melhor custo.' }
       ],
       diferenciais: [
         { titulo: 'Estoque Local & Pronta-Entrega', desc: 'Retirada imediata em Franca sem esperar frete para fechar seu projeto no prazo.' },
-        { titulo: 'Marcas Líderes Certificadas', desc: 'Parceiro oficial das fabricantes HB Tech, Líder, AGL e Acton com garantia total.' },
+        { titulo: 'Marcas Líderes Certificadas', desc: 'Equipamentos originais e certificados com garantia oficial e procedência garantida.' },
         { titulo: 'Suporte Técnico aos Instaladores', desc: 'Equipe especializada para auxiliar na especificação do equipamento ideal para cada obra.' }
       ],
       avaliacoes: [
-        { autor: 'Marcos Vinicius (Instalador)', texto: 'Melhor distribuidora de Franca! Preço justo de atacado e sempre têm o material a pronta entrega quando preciso.' },
-        { autor: 'Lucas Andrade', texto: 'Compro equipamentos com a Kell há anos. O suporte técnico deles tira qualquer dúvida e os produtos são de altíssima qualidade.' },
-        { autor: 'Carlos Eduardo Souza', texto: 'Atendimento nota dez! Agilidade na separação de pedidos e marcas confiáveis para quem trabalha com segurança.' },
-        { autor: 'Fernando Silveira', texto: 'Excelente estoque de motores e câmeras. Parceria de confiança para instaladores em toda a região.' }
-      ]
+        { autor: 'Marcos Vinicius (Instalador)', texto: `Melhor distribuidora de Franca! Preço justo de atacado e a ${nomeEmpresa} sempre tem o material a pronta entrega quando preciso.` },
+        { autor: 'Lucas Andrade', texto: `Compro equipamentos com a ${nomeEmpresa} há anos. O suporte técnico deles tira qualquer dúvida e os produtos são de ponta.` },
+        { autor: 'Carlos Eduardo Souza', texto: `Atendimento nota dez! Agilidade na separação de pedidos e marcas confiáveis para quem trabalha com segurança profissional.` },
+        { autor: 'Fernando Silveira', texto: `Excelente estoque de motores e câmeras. Parceria de confiança para instaladores em toda a região de Franca.` }
+      ],
+      imagensServicos: ['camera-cftv.jpg', 'alarme-sensores.jpg', 'motor-portao.jpg', 'concertina-dupla.jpg']
     };
   }
 
-  // 2.1 SEGURANÇA ELETRÔNICA, CERCAS & CFTV (Instaladores e Prestadores)
-  if (n.includes('seguranca') || n.includes('cerca') || n.includes('camera') || n.includes('alarme') || n.includes('cftv') || n.includes('portao') || nameLower.includes('seguranca') || nameLower.includes('eletronica')) {
+  // 3. SEGURANÇA: MONITORAMENTO 24H, RASTREAMENTO & ALARMES (Ex: ICON MONITORAMENTO 24HS)
+  if (nameLower.includes('monitoramento') || nameLower.includes('alarme') || nameLower.includes('rastreamento') || n.includes('monitoramento') || n.includes('rastreamento')) {
+    return {
+      subtitulo: 'Central de Monitoramento 24 Horas & Segurança Eletrônica',
+      tituloPrincipal: 'Vigilância Ativa e Resposta Rápida 24 Horas',
+      chamadaPrincipal: 'Proteção Ininterrupta para Sua Residência e Empresa',
+      slogan: 'Monitoramento 24 horas de alta precisão, pronta-resposta e controle total no seu smartphone.',
+      apresentacao: `Com central operacional de prontidão em ${cidade}, a ${nomeEmpresa} protege o seu patrimônio dia e noite com tecnologia de ponta, conexão sem fio à central e equipe treinada para pronta-resposta imediata.`,
+      servicos: [
+        { nome: 'Central de Monitoramento 24 Horas', desc: 'Vigilância ininterrupta 365 dias ao ano, com protocolo de checagem imediata e equipe de resposta rápida em campo.' },
+        { nome: 'Sistemas de Alarme com Sensores Inteligentes', desc: 'Centrais com sensores infravermelhos antimascaração, proteção contra animais domésticos e notificações no celular.' },
+        { nome: 'Câmeras CFTV HD com Acesso Móvel', desc: 'Monitoramento em alta definição com visão noturna no escuro total, gravação em nuvem e visualização ao vivo no smartphone.' },
+        { nome: 'Controle de Acesso & Automação de Portões', desc: 'Videoporteiros IP, biometria digital e motores rápidos para assegurar que apenas pessoas autorizadas acessem o local.' }
+      ],
+      diferenciais: [
+        { titulo: 'Central Ativa 24h em Franca', desc: 'Equipe monitorando seu imóvel ininterruptamente com tempo recorde de atendimento.' },
+        { titulo: 'Controle Total no Aplicativo', desc: 'Arme, desarme e visualize imagens em tempo real de qualquer lugar pelo celular.' },
+        { titulo: 'Pronta-Resposta de Campo', desc: 'Deslocamento ágil de viatura tática em qualquer acionamento suspeito do alarme.' }
+      ],
+      avaliacoes: [
+        { autor: 'Eduardo Fagundes', texto: `A equipe da ${nomeEmpresa} instalou o sistema na nossa empresa em Franca. A central 24h é super atenta e o aplicativo no celular funciona perfeitamente.` },
+        { autor: 'Luciana Bernardes', texto: `Depois que contratamos o monitoramento da ${nomeEmpresa}, temos total tranquilidade em casa. Quando disparou por engano, ligaram em menos de 1 minuto. Impecável!` },
+        { autor: 'Roberto Guimarães', texto: `Profissionais muito qualificados. Fizeram uma instalação limpa, sem cabos aparentes, e explicaram todo o sistema com muita paciência. Recomendo!` },
+        { autor: 'Patrícia Mendes', texto: `Melhor empresa de segurança e monitoramento de Franca. Pontualidade, suporte imediato e preço justo pelo nível do serviço prestado.` }
+      ],
+      imagensServicos: ['camera-cftv.jpg', 'alarme-sensores.jpg', 'videoporteiro.jpg', 'motor-portao.jpg']
+    };
+  }
+
+  // 4. SEGURANÇA: CERCAS ELÉTRICAS, CONCERTINAS & CFTV
+  if (n.includes('seguranca') || n.includes('cerca') || n.includes('camera') || n.includes('cftv') || n.includes('portao') || nameLower.includes('seguranca') || nameLower.includes('eletronica')) {
     return {
       subtitulo: 'Proteção Perimetral & CFTV em Franca',
-      tituloPrincipal: 'Proteja Sua Família e Seu Patrimônio',
-      chamadaPrincipal: 'Proteção Que Faz o Invasor Desistir',
-      slogan: 'Cercas elétricas, concertinas e monitoramento no celular com garantia.',
-      apresentacao: `Com atuação reconhecida em ${cidade}, entregamos barreiras físicas de alta visibilidade e máxima resistência com instalação técnica limpa e equipamentos líderes em durabilidade.`,
+      tituloPrincipal: 'Proteja Sua Família e Seu Patrimônio com Segurança Reforçada',
+      chamadaPrincipal: 'Barreiras de Alta Resistência Que Fazem o Invasor Desistir',
+      slogan: 'Cercas elétricas de alta voltagem, concertinas galvalume e câmeras no celular com garantia.',
+      apresentacao: `Com sólida atuação em ${cidade}, a ${nomeEmpresa} instala sistemas perimétricos de máxima resistência e durabilidade, combinando barreiras físicas inibidoras com tecnologia de vigilância contínua.`,
       servicos: [
-        { nome: 'Cerca Elétrica de Choque Ativo', desc: 'Choque imediato inibidor com sirene instantânea e alarme em caso de corte ou toque no fio.' },
-        { nome: 'Concertina Dupla & Rede Laminada', desc: 'Lâminas de aço galvalume afiadas que tornam qualquer tentativa de invasão pelo muro impossível.' },
-        { nome: 'Câmeras CFTV HD com Visão Noturna', desc: 'Acesso em tempo real na tela do smartphone, com imagens nítidas no escuro e alertas inteligentes.' },
-        { nome: 'Motores para Portão & Automatização', desc: 'Abertura rápida em até 4 segundos com acionamento seguro no controle ou celular.' }
+        { nome: 'Cerca Elétrica de Choque Ativo & Alarme', desc: 'Pulso de alta voltagem com disparo sonoro imediato em tentativa de corte ou toque na fiação reforçada.' },
+        { nome: 'Concertina Dupla em Aço Galvalume', desc: 'Lâminas afiadas altamente perfurantes com liga galvalume anticorrosão que blindam muros contra escaladas.' },
+        { nome: 'Câmeras CFTV HD com Visão Noturna', desc: 'Acesso em tempo real na tela do smartphone, com imagens nítidas no escuro, gravação e alertas inteligentes de movimento.' },
+        { nome: 'Motores para Portão & Automatização Rápida', desc: 'Abertura veloz em até 4 segundos com acionamento seguro no controle ou celular, reduzindo tempo de espera na rua.' }
       ],
       diferenciais: [
-        { titulo: 'Aço Galvalume & Equipamentos Certificados', desc: 'Materiais de altíssima resistência contra intempéries e tentativa de corte.' },
-        { titulo: 'Instalação Rápida e Limpa', desc: 'Técnicos próprios, pontualidade e zero sujeira no seu imóvel.' },
-        { titulo: 'Garantia e Pós-Venda Local', desc: 'Atendimento e suporte direto em Franca com suporte ágil.' }
+        { titulo: 'Aço Galvalume & Equipamentos Certificados', desc: 'Materiais de altíssima resistência mecânica contra intempéries e tentativas de corte.' },
+        { titulo: 'Instalação Técnica Limpa e Rápida', desc: 'Técnicos especializados, acabamento profissional e zero sujeira no seu imóvel.' },
+        { titulo: 'Garantia e Assistência Local', desc: 'Suporte ágil direto em Franca com pós-venda garantido para sua total tranquilidade.' }
       ],
       avaliacoes: [
-        { autor: 'André Martins', texto: 'Instalação impecável da concertina e do motor de portão. Ficou super alinhado e o atendimento foi rápido.' },
-        { autor: 'Luciana Meireles', texto: 'Agora consigo acompanhar as câmeras pelo celular de qualquer lugar. Equipe muito prestativa e honesta.' },
-        { autor: 'Roberto Faria', texto: 'Melhor empresa de segurança de Franca. Preço justo, serviço profissional e sem enrolação.' },
-        { autor: 'Patrícia Prado', texto: 'Cerca elétrica muito bem instalada. Passa muita segurança para quem mora em casa térrea.' }
-      ]
+        { autor: 'André Martins', texto: `Instalação impecável da concertina e do motor de portão pela ${nomeEmpresa}. Ficou super alinhado e o atendimento foi rápido e pontual.` },
+        { autor: 'Luciana Meireles', texto: `A cerca elétrica e as câmeras ficaram excelentes. Acompanho tudo no celular. Equipe da ${nomeEmpresa} muito honesta e prestativa.` },
+        { autor: 'Roberto Faria', texto: `Melhor empresa de segurança de Franca. Preço justo, serviço profissional e pontualidade na entrega.` },
+        { autor: 'Patrícia Prado', texto: `Cerca elétrica muito bem estruturada. Passa muita segurança para quem mora em casa térrea. Recomendo a ${nomeEmpresa}!` }
+      ],
+      imagensServicos: ['cerca-eletrica.jpg', 'concertina-dupla.jpg', 'camera-cftv.jpg', 'motor-portao.jpg']
     };
   }
 
-  // 3. AR-CONDICIONADO & REFRIGERAÇÃO
-  if (n.includes('ar condicionado') || n.includes('ar-condicionado') || n.includes('climatiza') || n.includes('refrigera')) {
+  // 5. CLIMATIZAÇÃO, AR-CONDICIONADO & REFRIGERAÇÃO (Ex: HUNIFRIO)
+  if (n.includes('ar condicionado') || n.includes('ar-condicionado') || n.includes('climatiza') || n.includes('refrigera') || nameLower.includes('frio') || nameLower.includes('clima') || nameLower.includes('ar condicionado')) {
     return {
       subtitulo: 'Climatização & Refrigeração',
-      tituloPrincipal: 'Especialistas em Ar-Condicionado',
-      chamadaPrincipal: 'Conforto e Ar Puro o Ano Todo',
-      slogan: 'Temperatura ideal para sua casa ou empresa com máxima economia.',
-      apresentacao: `Com atendimento técnico especializado em ${cidade}, entregamos serviços completos de instalação, manutenção e higienização de sistemas de ar-condicionado com pontualidade e garantia total.`,
+      tituloPrincipal: 'Especialistas em Instalação, Higienização e Manutenção de Ar-Condicionado',
+      chamadaPrincipal: 'Temperatura Ideal e Ar Puro para Sua Casa ou Empresa',
+      slogan: 'Conforto térmico, economia de energia e ar puro o ano inteiro.',
+      apresentacao: `Com atendimento técnico especializado em ${cidade}, a ${nomeEmpresa} entrega serviços completos de instalação técnica, manutenção preventiva e higienização antibacteriana de aparelhos de ar-condicionado com pontualidade e garantia total.`,
       servicos: [
-        { nome: 'Instalação de Ar-Condicionado', desc: 'Instalação técnica padrão de fábrica para modelos Split, Inverter e Cassete, garantindo máxima eficiência.' },
-        { nome: 'Higienização Antibacteriana', desc: 'Limpeza profunda de serpentinas e filtros com produtos bactericidas que eliminam ácaros, fungos e odores.' },
-        { nome: 'Manutenção Preventiva & Carga de Gás', desc: 'Diagnóstico elétrico, medição de pressão e recarga de gás ecológica para prolongar a vida útil do aparelho.' },
-        { nome: 'Contratos PMOC e Projetos Comerciais', desc: 'Dimensionamento térmico exato para residências, clínicas, lojas e indústrias com conformidade ANVISA.' }
+        { nome: 'Instalação de Ar-Condicionado Split & Inverter', desc: 'Instalação especializada seguindo rigorosamente o manual dos fabricantes, com processo de vácuo e teste de estanqueidade para preservar a garantia.' },
+        { nome: 'Higienização Profunda & Limpeza Antibacteriana', desc: 'Eliminação completa de fungos, ácaros e bactérias com produtos bactericidas homologados, devolvendo ar 100% puro e reduzindo o consumo de energia.' },
+        { nome: 'Manutenção Preventiva & Carga de Gás', desc: 'Revisão completa das pressões operacionais, detecção de microvazamentos, recarga com fluido refrigerante ecológico e checagem elétrica.' },
+        { nome: 'Contratos PMOC & Climatização Comercial', desc: `Planos de Manutenção, Operação e Controle (PMOC) para clínicas, escritórios e comércios em ${cidade}, em total conformidade com as normas da Anvisa.` }
       ],
       diferenciais: [
-        { titulo: 'Técnicos Certificados', desc: 'Profissionais experientes e atualizados com as principais marcas do mercado (Daikin, Gree, Midea).' },
-        { titulo: 'Pontualidade Rigorosa', desc: 'Respeitamos seu tempo com horário marcado e atendimento ágil em toda a cidade.' },
-        { titulo: 'Peças Originais e Garantia', desc: 'Uso de insumos de primeira linha e garantia por escrito em todos os serviços realizados.' }
+        { titulo: 'Instalação Padrão dos Fabricantes', desc: 'Procedimento com flangeadores de precisão e bomba de vácuo, garantindo máxima vida útil ao compressor.' },
+        { titulo: 'Ar Puro e Livre de Alergias', desc: 'Higienização química profunda que remove mofo e odores, protegendo a saúde da sua família ou equipe.' },
+        { titulo: 'Pontualidade e Garantia Formal', desc: 'Compromisso com o horário agendado, transparência de orçamento e garantia documentada do serviço.' }
       ],
       avaliacoes: [
-        { autor: 'Marcelo Ribeiro', texto: 'Atendimento impecável! Resolveram o problema do ar da minha sala no mesmo dia. Trabalho limpo e muito profissional.' },
-        { autor: 'Dra. Fernanda Castro', texto: 'Contratei para a higienização dos aparelhos do consultório. Muito atenciosos, pontuais e com preço justo. Recomendo!' },
-        { autor: 'Carlos Eduardo Santos', texto: 'Excelente instalação. Explicaram tudo sobre o funcionamento econômico do inverter. Nota 10!' },
-        { autor: 'Juliana Prado', texto: 'Melhor equipe de refrigeração de Franca. Sempre que preciso de manutenção já sei quem chamar.' }
-      ]
+        { autor: 'Marcelo Siqueira', texto: `Contratei a ${nomeEmpresa} para instalação de dois aparelhos split no meu escritório. Serviço impecável, técnicos organizados e deixaram tudo limpo. Nota 10!` },
+        { autor: 'Camila Andrade', texto: `Fizeram a higienização completa e manutenção preventiva do ar-condicionado da minha casa em Franca. Tirou totalmente o cheiro ruim e o aparelho voltou a gelar rápido. Recomendo!` },
+        { autor: 'Dr. Marcos Vinicius', texto: `Empresa séria e de total confiança. O atendimento no WhatsApp foi ágil e o técnico da ${nomeEmpresa} chegou exatamente no horário agendado. Vale cada centavo.` },
+        { autor: 'Renata Silveira', texto: `Excelente pós-venda da ${nomeEmpresa}. Fizeram o diagnóstico correto sem enrolação e resolveram o problema no mesmo dia. Recomendo de olhos fechados.` }
+      ],
+      imagensServicos: ['instalacao-split.jpg', 'higienizacao-profunda.jpg', 'manutencao-preventiva.jpg', 'pmoc-comercial.jpg']
     };
   }
 
-  // 4. ODONTOLOGIA & CLÍNICAS DENTÁRIAS
-  if (n.includes('odonto') || n.includes('dent') || n.includes('sorriso') || n.includes('implante') || nameLower.includes('odonto') || nameLower.includes('dentist')) {
+  // 6. ENERGIA SOLAR & FOTOVOLTAICA
+  if (n.includes('solar') || n.includes('fotovolta') || n.includes('energia') || nameLower.includes('solar')) {
     return {
-      subtitulo: 'Odontologia Especializada',
-      tituloPrincipal: 'Cuidando do Seu Sorriso com Excelência',
-      chamadaPrincipal: 'O Sorriso que Você Merece',
-      slogan: 'Tecnologia, conforto e cuidado humano para toda a família.',
-      apresentacao: `Referência em cuidados odontológicos em ${cidade}, aliamos tratamentos modernos a um ambiente acolhedor para transformar a sua saúde bucal e autoestima.`,
+      subtitulo: 'Energia Solar Fotovoltaica em Franca',
+      tituloPrincipal: 'Economize até 95% na Sua Conta de Luz com Energia Solar',
+      chamadaPrincipal: 'Independência Energética com Engenharia de Alta Performance',
+      slogan: 'Projetos completos com módulos tier-1, engenharia especializada e homologação sem burocracia.',
+      apresentacao: `Especialistas em projetos fotovoltaicos conectados à rede em ${cidade}, a ${nomeEmpresa} cuida de cada etapa, desde o dimensionamento técnico de engenharia até a ativação na concessionária, com foco em máxima economia.`,
       servicos: [
-        { nome: 'Implantes & Próteses Dentárias', desc: 'Reabilitação oral segura e com materiais de alta durabilidade para você mastigar e sorrir com segurança.' },
-        { nome: 'Ortodontia & Alinhadores Invisíveis', desc: 'Correção de alinhamento com aparelhos modernos e alinhadores discretos para adultos e crianças.' },
-        { nome: 'Estética Dental & Facetas', desc: 'Clareamento a laser e facetas em resina/porcelana para um sorriso uniforme, harmônico e natural.' },
-        { nome: 'Clínica Geral & Prevenção', desc: 'Limpeza profunda, restaurações estéticas e acompanhamento contínuo para manter sua saúde bucal em dia.' }
+        { nome: 'Projetos Solares Residenciais', desc: 'Geração própria de energia limpa para abastecer sua casa, reduzindo sua conta de energia drasticamente com durabilidade de 25 anos.' },
+        { nome: 'Usinas Fotovoltaicas Comerciais', desc: 'Sistemas de alta potência para indústrias, comércios e galpões em Franca, reduzindo despesas fixas e aumentando a rentabilidade do negócio.' },
+        { nome: 'Manutenção Preventiva & Limpeza de Painéis', desc: 'Inspeção térmica dos módulos, checagem dos inversores e limpeza técnica especializada para garantir geração no pico máximo.' },
+        { nome: 'Homologação Completa na Concessionária', desc: 'Projeto elétrico com ART assinada e trâmite 100% gerenciado junto à concessionária local com zero burocracia para você.' }
       ],
       diferenciais: [
-        { titulo: 'Tecnologia de Ponta', desc: 'Equipamentos modernos para diagnósticos precisos e procedimentos sem dor.' },
-        { titulo: 'Atendimento Personalizado', desc: 'Planejamento individualizado focado no seu conforto e bem-estar em cada etapa.' },
-        { titulo: 'Ambiente Confortável e Acolhedor', desc: 'Estrutura pensada para que você se sinta seguro e relaxado durante a consulta.' }
+        { titulo: 'Módulos Tier-1 de Alta Eficiência', desc: 'Painéis fotovoltaicos e inversores líderes mundiais em tecnologia com 25 anos de garantia de geração.' },
+        { titulo: 'Engenharia Própria Especializada', desc: 'Dimensionamento milimétrico adaptado à sua demanda e orientação do telhado para maximizar o retorno.' },
+        { titulo: 'Homologação Rápida e Sem Surpresas', desc: 'Cuidamos de toda a documentação até o seu sistema começar a gerar créditos na conta.' }
       ],
       avaliacoes: [
-        { autor: 'Camila Nogueira', texto: 'Melhor consultório da cidade! O atendimento é humanizado e fiz meu clareamento sem sensibilidade nenhuma.' },
-        { autor: 'Rodrigo Alcantara', texto: 'Profissionais de altíssimo nível. A clínica é linda e super limpa. Muito satisfeito com meu implante.' },
-        { autor: 'Patrícia Mendes', texto: 'Equipe super atenciosa desde a recepção. Me senti acolhida e o resultado superou minhas expectativas.' },
-        { autor: 'Lucas Silveira', texto: 'Pontuais e muito transparentes no orçamento. Recomendo de olhos fechados para toda a família.' }
-      ]
+        { autor: 'Carlos Eduardo Silva', texto: `Minha conta de energia caiu para a taxa mínima! A equipe da ${nomeEmpresa} cuidou de tudo com muita seriedade e no prazo combinado.` },
+        { autor: 'Vanessa Toledo', texto: `Todo o processo de homologação foi super tranquilo. A ${nomeEmpresa} cuidou de cada detalhe e já estou gerando energia em casa.` },
+        { autor: 'Gustavo Mendonça', texto: `Excelente investimento para minha empresa em Franca. A ${nomeEmpresa} tem corpo técnico capacitado e materiais de primeira linha.` },
+        { autor: 'Tatiane Lopes', texto: `Profissionais transparentes e prestativos. Recomendo a ${nomeEmpresa} para quem quer energia solar confiável e sem enrolação.` }
+      ],
+      imagensServicos: ['painel-solar-residencial.jpg', 'hero.jpg', 'manutencao-inversor.jpg', 'workshop.jpg']
     };
   }
 
-  // 5. ENERGIA SOLAR
-  if (n.includes('solar') || n.includes('fotovolta') || n.includes('energia')) {
-    return {
-      subtitulo: 'Engenharia Fotovoltaica & Energia Solar',
-      tituloPrincipal: 'Economize até 95% na Conta de Luz',
-      chamadaPrincipal: 'Energia Limpa, Sustentável e Lucrativa',
-      slogan: 'Projetos solares residenciais e comerciais com homologação completa.',
-      apresentacao: `Especialistas em projetos fotovoltaicos em ${cidade}, entregamos soluções completas de engenharia solar com painéis de alta eficiência e inversor com garantia de longa duração.`,
-      servicos: [
-        { nome: 'Energia Solar Residencial', desc: 'Reduza a conta de luz da sua casa e valorize seu imóvel gerando sua própria energia limpa.' },
-        { nome: 'Projetos Comerciais e Industriais', desc: 'Dimensionamento estratégico para empresas e indústrias reduzirem custos operacionais fixos.' },
-        { nome: 'Homologação junto à Concessionária', desc: 'Cuidamos de todo o processo burocrático de aprovação técnica e conexão à rede sem estresse.' },
-        { nome: 'Manutenção & Limpeza de Painéis', desc: 'Limpeza especializada e revisão preventiva para manter a geração no pico máximo de rendimento.' }
-      ],
-      diferenciais: [
-        { titulo: 'Engenharia Própria', desc: 'Projetos desenhados sob medida por engenheiros qualificados sem terceirização.' },
-        { titulo: 'Equipamentos Tier 1', desc: 'Módulos e inversores das marcas mais confiáveis do mercado global.' },
-        { titulo: 'Retorno Sobre o Investimento Rápido', desc: 'Sistema que se paga em poucos anos e gera economia por mais de 25 anos.' }
-      ],
-      avaliacoes: [
-        { autor: 'Fábio Guimarães', texto: 'Minha conta de energia caiu de R$ 900 para a taxa mínima. Instalação rápida e equipe muito atenciosa.' },
-        { autor: 'Vanessa Toledo', texto: 'Todo o processo de homologação foi super tranquilo. Eles cuidaram de tudo e já estou gerando energia.' },
-        { autor: 'Gustavo Mendonça', texto: 'Excelente investimento para minha empresa. Reduziu nosso custo fixo significativamente.' },
-        { autor: 'Tatiane Lopes', texto: 'Profissionais transparentes e materiais de primeira linha. Recomendo para quem quer energia solar sem surpresas.' }
-      ]
-    };
-  }
-
-  // Padrão Geral Premium Cuidadoso
+  // 7. PADRÃO GERAL INDUSTRIAL / PRESTAÇÃO DE SERVIÇOS
   return {
-    subtitulo: 'Atendimento Técnico Especializado',
-    tituloPrincipal: 'Excelência e Soluções Confiáveis em Franca',
-    chamadaPrincipal: 'Qualidade Comprovada para Você',
-    slogan: 'Profissionalismo, agilidade e compromisso em cada detalhe.',
-    apresentacao: `Com sólida reputação em ${cidade}, a ${nomeEmpresa} oferece soluções sob medida com equipe qualificada, pontualidade rigorosa e foco total na satisfação dos clientes.`,
+    subtitulo: 'Atendimento Técnico Especializado em Franca',
+    tituloPrincipal: `Excelência e Soluções Confiáveis com a ${nomeEmpresa}`,
+    chamadaPrincipal: 'Qualidade Comprovada e Compromisso com Seus Resultados',
+    slogan: 'Profissionalismo, agilidade no atendimento e compromisso em cada detalhe.',
+    apresentacao: `Com sólida reputação em ${cidade}, a ${nomeEmpresa} oferece soluções sob medida com equipe qualificada, pontualidade rigorosa e foco total na satisfação de cada cliente.`,
     servicos: [
-      { nome: 'Atendimento Personalizado', desc: 'Consultoria detalhada para entender exatamente sua necessidade e entregar a solução ideal com o melhor custo-benefício.' },
-      { nome: 'Execução Técnica Especializada', desc: 'Profissionais experientes utilizando métodos comprovados para garantir alta durabilidade e segurança.' },
-      { nome: 'Diagnóstico Ágil e Transparente', desc: 'Orçamento claro e detalhado sem surpresas ou taxas ocultas, respeitando o seu tempo.' },
-      { nome: 'Garantia e Suporte Local', desc: 'Atendimento direto com suporte completo e acompanhamento pós-serviço para sua tranquilidade.' }
+      { nome: 'Atendimento Personalizado', desc: 'Consultoria detalhada para entender exatamente sua necessidade e entregar a melhor solução técnica com excelente custo-benefício.' },
+      { nome: 'Execução Técnica Especializada', desc: 'Profissionais experientes utilizando materiais de primeira linha para garantir alta durabilidade, segurança e acabamento impecável.' },
+      { nome: 'Diagnóstico Ágil e Transparente', desc: 'Orçamento claro e detalhado sem surpresas ou taxas ocultas, respeitando o seu tempo e o seu orçamento.' },
+      { nome: 'Garantia Formal e Suporte Local', desc: 'Atendimento direto com suporte completo e acompanhamento pós-serviço para sua total tranquilidade.' }
     ],
     diferenciais: [
-      { titulo: 'Profissionais Qualificados', desc: 'Equipe com vasta experiência prática pronta para resolver com eficiência.' },
-      { titulo: 'Pontualidade e Compromisso', desc: 'Respeito ao prazo e clareza em todas as etapas da contratação.' },
+      { titulo: 'Profissionais Qualificados', desc: 'Equipe com vasta experiência prática pronta para resolver com agilidade e eficiência.' },
+      { titulo: 'Pontualidade e Compromisso', desc: 'Respeito ao prazo e comunicação transparente em todas as etapas da contratação.' },
       { titulo: 'Garantia Comprovada', desc: 'Segurança e confiança atestadas por avaliações positivas de clientes locais.' }
     ],
     avaliacoes: [
-      { autor: 'Carlos Eduardo', texto: 'Serviço de altíssimo nível. Resolveram rápido, com muita atenção e preço justo. Com certeza voltarei a contratar.' },
-      { autor: 'Juliana Prado', texto: 'Excelente atendimento desde o primeiro contato no WhatsApp. Muito prestativos e pontuais.' },
-      { autor: 'Marcos Vinicius', texto: 'Profissionais sérios e de palavra. Entregaram exatamente o combinado com muita qualidade.' },
-      { autor: 'Beatriz Costa', texto: 'Super recomendo! Transparência total e equipe muito educada e caprichosa.' }
-    ]
+      { autor: 'Carlos Eduardo', texto: `Serviço de altíssimo nível. A ${nomeEmpresa} resolveu super rápido, com muita atenção e preço justo. Com certeza voltarei a contratar.` },
+      { autor: 'Juliana Prado', texto: `Excelente atendimento desde o primeiro contato no WhatsApp. Muito prestativos, honestos e pontuais.` },
+      { autor: 'Marcos Vinicius', texto: `Profissionais sérios e de palavra na ${nomeEmpresa}. Entregaram exatamente o combinado com muita qualidade.` },
+      { autor: 'Beatriz Costa', texto: `Super recomendo a ${nomeEmpresa}! Transparência total e equipe muito educada e caprichosa.` }
+    ],
+    imagensServicos: ['hero.jpg', 'workshop.jpg', 'hero.jpg', 'workshop.jpg']
   };
 }
 
@@ -280,7 +307,7 @@ async function generatePrototype(lead, templateHint = null) {
   if (!fs.existsSync(targetDir)) {
     fs.mkdirSync(targetDir, { recursive: true });
   } else {
-    // Limpa pastas de mídia antigas para evitar conflitos entre arquétipos
+    // Limpa pastas de mídia antigas para evitar arquivos órfãos
     const oldAssets = path.join(targetDir, 'assets');
     const oldImg = path.join(targetDir, 'img');
     if (fs.existsSync(oldAssets)) fs.rmSync(oldAssets, { recursive: true, force: true });
@@ -303,26 +330,53 @@ async function generatePrototype(lead, templateHint = null) {
 
   let html = fs.readFileSync(templateHtmlPath, 'utf-8');
 
-  // 2. Gerar conteúdo inteligente e específico
+  // 2. Extrair dados da empresa e inteligência de avaliações
   const cleanCompanyName = lead.nome.includes('|')
     ? lead.nome.split('|')[0].trim()
     : (lead.nome.includes(' - ') ? lead.nome.split(' - ')[0].trim() : lead.nome);
 
-  const content = getNicheContent(lead.nicho, cleanCompanyName, lead.cidade, lead);
+  const cidade = lead.cidade || 'Franca SP';
+  const ratingData = parseRatingData(lead.avaliacao, cidade);
+  const content = getNicheContent(lead.nicho, cleanCompanyName, cidade, lead);
+
   const waMsg = encodeURIComponent(`Olá! Vim pelo site da ${cleanCompanyName} e gostaria de conversar com um atendente.`);
   const waLink = `https://wa.me/${lead.whatsappPrincipal}?text=${waMsg}`;
-  const encodedAddress = encodeURIComponent(`${cleanCompanyName}, ${lead.cidade}`);
+  const encodedAddress = encodeURIComponent(lead.endereco ? `${cleanCompanyName}, ${lead.endereco}, ${cidade}` : `${cleanCompanyName}, ${cidade}`);
   const cleanDomain = lead.slug.endsWith('.com.br') ? lead.slug : `${lead.slug}.com.br`;
+
+  // Tratamento inteligente de endereço para evitar vazios
+  let enderecoLinha1 = 'Atendimento em Domicílio e Empresas';
+  let bairroCidadeUf = `${cidade} e Região`;
+
+  if (lead.endereco && lead.endereco.trim().length > 3) {
+    const rawEnd = lead.endereco.trim();
+    if (rawEnd.includes(',')) {
+      const parts = rawEnd.split(',');
+      enderecoLinha1 = parts[0].trim() + (parts[1] ? `, ${parts[1].trim()}` : '');
+      bairroCidadeUf = parts.slice(2).join(', ').trim() || cidade;
+    } else {
+      enderecoLinha1 = rawEnd;
+      bairroCidadeUf = cidade;
+    }
+  }
+
+  const googleMapsUrl = lead.mapsUrl || `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
+
+  // Imagens dos 4 serviços
+  const img1 = content.imagensServicos[0] || 'hero.jpg';
+  const img2 = content.imagensServicos[1] || 'workshop.jpg';
+  const img3 = content.imagensServicos[2] || 'hero.jpg';
+  const img4 = content.imagensServicos[3] || 'workshop.jpg';
 
   // 3. Substituir tags de placeholder
   const replacements = {
     '{{NOME_DA_EMPRESA}}': cleanCompanyName,
     '{{TITULO_PRINCIPAL}}': content.tituloPrincipal,
-    '{{DESCRICAO_SEO_150_CARACTERES}}': `${cleanCompanyName} em Franca/SP. ${content.slogan} Fale conosco no WhatsApp!`,
-    '{{PALAVRAS_CHAVE_SEPARADAS_POR_VIRGULA}}': `${cleanCompanyName}, ${lead.nicho}, Franca SP, atendimento, servicos, avaliacoes`,
+    '{{DESCRICAO_SEO_150_CARACTERES}}': `${cleanCompanyName} em ${cidade}. ${content.slogan} Fale conosco no WhatsApp!`,
+    '{{PALAVRAS_CHAVE_SEPARADAS_POR_VIRGULA}}': `${cleanCompanyName}, ${lead.nicho}, ${cidade}, atendimento, servicos, avaliacoes, orcamento`,
     '{{SEU_DOMINIO}}': cleanDomain,
     '{{SUBTITULO_OU_SEGMENTO}}': content.subtitulo,
-    '{{SUBTITULO_LOCALIZACAO_EM_CAPS}}': `${(lead.cidade || 'FRANCA SP').toUpperCase()} • ATENDIMENTO ESPECIALIZADO`,
+    '{{SUBTITULO_LOCALIZACAO_EM_CAPS}}': `${cidade.toUpperCase()} • ATENDIMENTO ESPECIALIZADO`,
     '{{CHAMADA_PRINCIPAL}}': content.chamadaPrincipal,
     '{{SLOGAN_OU_PROMESSA}}': content.slogan,
     '{{TEXTO_DE_APRESENTACAO_DA_EMPRESA_FOCO_EM_CONFIANCA_E_QUALIDADE}}': content.apresentacao,
@@ -335,28 +389,41 @@ async function generatePrototype(lead, templateHint = null) {
     '{{HORARIO_RESUMIDO_LINHA_1}}': 'Segunda a Sexta: 08h às 18h',
     '{{HORARIO_RESUMIDO_LINHA_2}}': 'Sábados: 08h às 12h',
     '{{HORARIO_COMPLETO}}': 'Segunda a Sexta das 08h às 18h • Sábados das 08h às 12h',
-    '{{CIDADE_UF}}': lead.cidade || 'Franca - SP',
+    '{{CIDADE_UF}}': cidade,
+
+    // Avaliações & Trust Hero Badge
+    '{{STARS_RATING}}': ratingData.starsRating,
+    '{{BADGE_TRUST_TEXT}}': ratingData.badgeTrustText,
+
+    // Seção de Serviços / Soluções (4 Cards)
     '{{TITULO_SECAO_SERVICOS_LINHA_1}}': 'Soluções completas',
     '{{TITULO_SECAO_SERVICOS_LINHA_2}}': 'para sua tranquilidade',
-    '{{DESCRICAO_CURTA_DA_SECAO_DE_SERVICOS}}': 'Conheça as principais especialidades que tornam nosso atendimento diferenciado na cidade.',
+    '{{DESCRICAO_CURTA_DA_SECAO_DE_SERVICOS}}': 'Conheça em detalhes o padrão e as principais especialidades que tornam nosso atendimento diferenciado na cidade.',
     '{{NOME_SERVICO_1}}': content.servicos[0].nome,
     '{{DESCRICAO_SERVICO_1}}': content.servicos[0].desc,
+    '{{IMG_SERVICO_1}}': img1,
     '{{NOME_SERVICO_2}}': content.servicos[1].nome,
     '{{DESCRICAO_SERVICO_2}}': content.servicos[1].desc,
+    '{{IMG_SERVICO_2}}': img2,
     '{{NOME_SERVICO_3}}': content.servicos[2].nome,
     '{{DESCRICAO_SERVICO_3}}': content.servicos[2].desc,
+    '{{IMG_SERVICO_3}}': img3,
     '{{NOME_SERVICO_4}}': content.servicos[3].nome,
     '{{DESCRICAO_SERVICO_4}}': content.servicos[3].desc,
+    '{{IMG_SERVICO_4}}': img4,
+
     '{{SLOGAN_CURTO}}': content.slogan,
     '{{TITULO_DIFERENCIAIS_LINHA_1}}': 'Por que confiar',
     '{{TITULO_DIFERENCIAIS_LINHA_2}}': 'no nosso trabalho?',
-    '{{SUBTEXTO_DE_AUTORIDADE_E_CONFIANCA}}': 'Transparência, seriedade e dedicação em cada atendimento prestado em Franca.',
+    '{{SUBTEXTO_DE_AUTORIDADE_E_CONFIANCA}}': `Transparência, seriedade e dedicação em cada atendimento prestado em ${cidade}.`,
     '{{TITULO_DIFERENCIAL_1}}': content.diferenciais[0].titulo,
     '{{DESCRICAO_DIFERENCIAL_1}}': content.diferenciais[0].desc,
     '{{TITULO_DIFERENCIAL_2}}': content.diferenciais[1].titulo,
     '{{DESCRICAO_DIFERENCIAL_2}}': content.diferenciais[1].desc,
     '{{TITULO_DIFERENCIAL_3}}': content.diferenciais[2].titulo,
     '{{DESCRICAO_DIFERENCIAL_3}}': content.diferenciais[2].desc,
+
+    // Depoimentos Hiperpersonalizados
     '{{NOME_DO_CLIENTE_1}}': content.avaliacoes[0].autor,
     '{{DEPOIMENTO_DO_CLIENTE_1}}': content.avaliacoes[0].texto,
     '{{NOME_DO_CLIENTE_2}}': content.avaliacoes[1].autor,
@@ -365,10 +432,15 @@ async function generatePrototype(lead, templateHint = null) {
     '{{DEPOIMENTO_DO_CLIENTE_3}}': content.avaliacoes[2].texto,
     '{{NOME_DO_CLIENTE_4}}': content.avaliacoes[3].autor,
     '{{DEPOIMENTO_DO_CLIENTE_4}}': content.avaliacoes[3].texto,
-    '{{ENDERECO_COMPLETO_DO_GOOGLE_MAPS}}': lead.endereco || `${lead.cidade}`,
-    '{{LINK_DIRECIONAMENTO_ROTA_GOOGLE_MAPS}}': `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`,
 
-    // Compatibilidade com template industrial / Subzero clássico
+    // Contato e Localização
+    '{{ENDERECO_COMPLETO_DO_GOOGLE_MAPS}}': lead.endereco ? `${lead.endereco}, ${cidade}` : `${cleanCompanyName} - Atendimento em ${cidade}`,
+    '{{LINK_DIRECIONAMENTO_ROTA_GOOGLE_MAPS}}': googleMapsUrl,
+    '{{ENDERECO_URL_ENCODED}}': encodedAddress,
+    '{{ENDERECO_LINHA_1}}': enderecoLinha1,
+    '{{BAIRRO_CIDADE_UF}}': bairroCidadeUf,
+
+    // Compatibilidade reversa
     '{{TEXTO_DIFERENCIAL_1}}': content.diferenciais[0].desc,
     '{{TEXTO_DIFERENCIAL_2}}': content.diferenciais[1].desc,
     '{{TEXTO_DIFERENCIAL_3}}': content.diferenciais[2].desc,
@@ -382,19 +454,14 @@ async function generatePrototype(lead, templateHint = null) {
     '{{DEPOIMENTO_4_AUTOR}}': content.avaliacoes[3].autor,
     '{{CHAMADA_CONTATO_LINHA_1}}': 'Fale Conosco e Garanta',
     '{{CHAMADA_CONTATO_LINHA_2}}': 'Sua Tranquilidade Hoje',
-    '{{TEXTO_CHAMADA_CONTATO}}': 'Atendimento ágil direto no WhatsApp para tirar dúvidas, solicitar orçamentos e agendar visitas técnicas.',
-    '{{ENDERECO_URL_ENCODED}}': encodedAddress,
-    '{{ENDERECO_LINHA_1}}': (lead.endereco || `${lead.cidade}`).split(',')[0] || lead.endereco || lead.cidade,
-    '{{BAIRRO_CIDADE_UF}}': (lead.endereco && lead.endereco.includes(','))
-      ? lead.endereco.split(',').slice(1).join(',').trim()
-      : `${lead.cidade || 'Franca SP'}`
+    '{{TEXTO_CHAMADA_CONTATO}}': 'Atendimento ágil direto no WhatsApp para tirar dúvidas, solicitar orçamentos e agendar visitas técnicas.'
   };
 
   for (const [key, val] of Object.entries(replacements)) {
     html = html.replaceAll(key, val);
   }
 
-  // Validação estrita de segurança: nenhum placeholder {{...}} pode passar para produção
+  // Validação estrita de placeholders: remove qualquer tag não mapeada
   const remainingTags = html.match(/\{\{[A-Z0-9_]+\}\}/g);
   if (remainingTags && remainingTags.length > 0) {
     const uniqueRemaining = [...new Set(remainingTags)];
@@ -404,17 +471,24 @@ async function generatePrototype(lead, templateHint = null) {
     });
   }
 
-  // 4. Copiar assets estruturais do template selecionado (src, favicon, img ou assets)
+  // 4. Copiar assets estruturais do template selecionado
   copyDirSync(path.join(templateDir, 'src'), path.join(targetDir, 'src'));
 
+  const targetImgDir = path.join(targetDir, 'img');
+  fs.mkdirSync(targetImgDir, { recursive: true });
+
+  // Base fallback: copia imagens padrão do template
+  if (fs.existsSync(path.join(templateDir, 'public', 'img'))) {
+    copyDirSync(path.join(templateDir, 'public', 'img'), targetImgDir);
+  }
+  if (fs.existsSync(path.join(templateDir, 'img'))) {
+    copyDirSync(path.join(templateDir, 'img'), targetImgDir);
+  }
   if (fs.existsSync(path.join(templateDir, 'assets'))) {
     copyDirSync(path.join(templateDir, 'assets'), path.join(targetDir, 'assets'));
   }
-  if (fs.existsSync(path.join(templateDir, 'img'))) {
-    copyDirSync(path.join(templateDir, 'img'), path.join(targetDir, 'img'));
-  }
 
-  // Injeção contextual de imagens para nichos específicos no arquétipo industrial
+  // Injeção contextual refinada de banco de imagens para o arquétipo industrial
   if (archetype === 'industrial') {
     const normNFD = (str = '') => (str || '').toLowerCase()
       .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -422,22 +496,20 @@ async function generatePrototype(lead, templateHint = null) {
 
     const n = normNFD(lead.nicho);
     const nameLower = normNFD(lead.nome);
-    const targetImgDir = path.join(targetDir, 'img');
-    fs.mkdirSync(targetImgDir, { recursive: true });
 
-    if (n.includes('solar') || n.includes('fotovolta') || n.includes('energia')) {
+    if (n.includes('solar') || n.includes('fotovolta') || n.includes('energia') || nameLower.includes('solar')) {
       const solarImgDir = path.join(TEMPLATES_ROOT, 'assets', 'solar');
       if (fs.existsSync(solarImgDir)) {
         copyDirSync(solarImgDir, targetImgDir);
         console.log(`📸 [Generator] Imagens contextuais de ENERGIA SOLAR injetadas com sucesso em: ${targetImgDir}`);
       }
-    } else if (n.includes('seguranca') || n.includes('cerca') || n.includes('camera') || n.includes('cftv') || nameLower.includes('seguranca') || nameLower.includes('kell') || nameLower.includes('distribuidora') || nameLower.includes('blitz')) {
+    } else if (n.includes('seguranca') || n.includes('cerca') || n.includes('camera') || n.includes('cftv') || nameLower.includes('seguranca') || nameLower.includes('kell') || nameLower.includes('distribuidora') || nameLower.includes('blitz') || nameLower.includes('monitoramento')) {
       const secImgDir = path.join(TEMPLATES_ROOT, 'assets', 'seguranca');
       if (fs.existsSync(secImgDir)) {
         copyDirSync(secImgDir, targetImgDir);
         console.log(`📸 [Generator] Imagens contextuais de SEGURANÇA injetadas com sucesso em: ${targetImgDir}`);
       }
-    } else if (n.includes('ar condicionado') || n.includes('ar-condicionado') || n.includes('climatiza') || n.includes('refrigera')) {
+    } else if (n.includes('ar condicionado') || n.includes('ar-condicionado') || n.includes('climatiza') || n.includes('refrigera') || nameLower.includes('frio') || nameLower.includes('clima')) {
       const climImgDir = path.join(TEMPLATES_ROOT, 'assets', 'climatizacao');
       if (fs.existsSync(climImgDir)) {
         copyDirSync(climImgDir, targetImgDir);
@@ -446,7 +518,7 @@ async function generatePrototype(lead, templateHint = null) {
     }
   }
 
-  // 4.1 Gerar Favicon SVG sob demanda exclusivo para o protótipo (Zero favicon estático em templates)
+  // 4.1 Gerar Favicon SVG sob demanda exclusivo para o protótipo
   const faviconSvg = generateFaviconSvg(lead, cleanCompanyName, archetype);
   fs.writeFileSync(path.join(targetDir, 'favicon.svg'), faviconSvg, 'utf-8');
 
@@ -502,6 +574,38 @@ function copyDirSync(src, dest) {
   }
 }
 
+function generateFaviconSvg(lead, cleanName, archetype) {
+  const initial = (cleanName || 'S').trim().charAt(0).toUpperCase();
+  const isSolar = (lead.nicho || '').toLowerCase().includes('solar');
+  const isSec = (lead.nicho || '').toLowerCase().includes('segur') || (cleanName || '').toLowerCase().includes('monitoramento');
+
+  let gradStart = '#0284c7';
+  let gradEnd = '#0369a1';
+  let accent = '#38bdf8';
+
+  if (isSolar) {
+    gradStart = '#d97706';
+    gradEnd = '#b45309';
+    accent = '#fbbf24';
+  } else if (isSec) {
+    gradStart = '#2563eb';
+    gradEnd = '#1d4ed8';
+    accent = '#60a5fa';
+  }
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${gradStart}"/>
+      <stop offset="100%" stop-color="${gradEnd}"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#030712"/>
+  <rect x="2" y="2" width="60" height="60" rx="12" fill="url(#grad)" stroke="${accent}" stroke-width="2"/>
+  <text x="32" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="900" fill="#ffffff" text-anchor="middle">${initial}</text>
+</svg>`;
+}
+
 function generateOutreachMessages(lead, domain) {
   const cleanPhone = (lead.whatsappPrincipal || '').replace(/\D/g, '');
   const previewUrl = `/previews/${lead.slug}/index.html`;
@@ -554,6 +658,6 @@ module.exports = {
   generatePrototype,
   getNicheContent,
   generateOutreachMessages,
-  getArchetype
+  getArchetype,
+  parseRatingData
 };
-

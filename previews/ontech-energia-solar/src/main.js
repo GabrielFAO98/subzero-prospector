@@ -45,26 +45,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. Scroll Reveals Granulares por Item Individual (Regra Subzero)
+  // 3. Scroll Reveals Granulares por Item Individual (Regra Subzero) com Proteção Total Contra Void
   const revealElements = document.querySelectorAll('.stagger, .reveal-left, .reveal-right');
-  
+
+  // Revela o Hero imediatamente para visualização instantânea no carregamento
+  document.querySelectorAll('.hero .stagger').forEach(el => el.classList.add('visible'));
+
+  const makeVisible = (el) => el.classList.add('visible');
+
   if ('IntersectionObserver' in window) {
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          makeVisible(entry.target);
           observer.unobserve(entry.target);
         }
       });
     }, {
-      rootMargin: '0px 0px -65px 0px',
-      threshold: 0.15
+      rootMargin: '50px 0px 50px 0px',
+      threshold: 0.05
     });
 
     revealElements.forEach(el => revealObserver.observe(el));
   } else {
-    revealElements.forEach(el => el.classList.add('visible'));
+    revealElements.forEach(makeVisible);
   }
+
+  // Safety Fallback Universal: garante que em capturas automatizadas, iframes ou rolagem rápida nada fique invisível
+  const ensureVisibility = () => {
+    revealElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight + 350) {
+        makeVisible(el);
+      }
+    });
+  };
+
+  setTimeout(ensureVisibility, 350);
+  setTimeout(() => {
+    revealElements.forEach(makeVisible);
+  }, 1200);
+
+  window.addEventListener('scroll', ensureVisibility, { passive: true });
 
   // 4. Duplicação Automática para Loop Perfeito nos Marquees
   const duplicateTrack = (selector) => {

@@ -132,7 +132,7 @@
   {
     "id": "lead_1789657916714_a2xn5f",
     "createdAt": "2026-09-17T15:11:56.714Z",
-    "updatedAt": "2026-09-17T15:44:20.539Z",
+    "updatedAt": "2026-09-17T17:20:41.089Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "daniel-climatizacao-instalacao-e-manutencao-de-ar-condicionado",
@@ -154,7 +154,7 @@
     "facebook": null,
     "whatsappPrincipal": "5516991722199",
     "whatsappFormatado": "(16) 99172-2199",
-    "status": "oportunidade_quente",
+    "status": "prototipo_pronto",
     "motivoDescarte": null,
     "analiseIA": "🔥 Oportunidade Quente de Climatização em Franca SP: empresa com 210 avaliações no Google Maps com nota 4,9 estrelas e WhatsApp ativo, porém totalmente sem site oficial cadastrado. Perfil perfeito para implantação do Subzero Engine!",
     "categoria": {
@@ -169,12 +169,23 @@
       "whatsappPrincipal": "5516991722199",
       "whatsappFormatado": "(16) 99172-2199"
     },
-    "_isNew": false
+    "_isNew": false,
+    "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\daniel-climatizacao-instalacao-e-manutencao-de-ar-condicionado\\index.html",
+    "prototypeUrl": "/previews/daniel-climatizacao-instalacao-e-manutencao-de-ar-condicionado/index.html",
+    "messages": {
+      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Daniel climatização instalação e manutenção de ar condicionado* tem uma excelente reputação, mas hoje quem pesquisa por *Climatização e Ar-Condicionado* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: não possui site oficial cadastrado no Google — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, destacando as principais especialidades e os depoimentos dos seus clientes:\n👉 */previews/daniel-climatizacao-instalacao-e-manutencao-de-ar-condicionado/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
+      "email": {
+        "assunto": "Daniel climatização instalação e manutenção de ar condicionado em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial",
+        "corpo": "Prezada equipe da Daniel climatização instalação e manutenção de ar condicionado,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por Climatização e Ar-Condicionado em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Daniel climatização instalação e manutenção de ar condicionado, já funcional e adaptada para smartphones:\n👉 /previews/daniel-climatizacao-instalacao-e-manutencao-de-ar-condicionado/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
+      }
+    },
+    "archetype": "industrial",
+    "templateEscolhido": "industrial"
   },
   {
     "id": "lead_1789657908350_yvbt47",
     "createdAt": "2026-09-17T15:11:48.350Z",
-    "updatedAt": "2026-09-17T15:15:57.353Z",
+    "updatedAt": "2026-09-17T17:19:35.728Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "hunifrio-ar-condicionado",
@@ -379,7 +390,7 @@
   {
     "id": "lead_1789574303434_2jkbr8",
     "createdAt": "2026-09-16T15:58:23.434Z",
-    "updatedAt": "2026-09-17T00:33:02.819Z",
+    "updatedAt": "2026-09-17T17:19:35.783Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "ontech-energia-solar",
@@ -445,7 +456,7 @@
   {
     "id": "lead_1789574298661_x12wjh",
     "createdAt": "2026-09-16T15:58:18.661Z",
-    "updatedAt": "2026-09-17T01:34:33.042Z",
+    "updatedAt": "2026-09-17T17:19:35.767Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "luxsol-energia-solar",
@@ -718,7 +729,7 @@
   {
     "id": "lead_1789563008145_bnfw23",
     "createdAt": "2026-09-16T12:50:08.145Z",
-    "updatedAt": "2026-09-16T17:34:36.815Z",
+    "updatedAt": "2026-09-17T17:19:35.899Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "kell-distribuidora",
@@ -782,7 +793,7 @@
   {
     "id": "lead_1789563001583_o1fryi",
     "createdAt": "2026-09-16T12:50:01.583Z",
-    "updatedAt": "2026-09-17T03:08:26.103Z",
+    "updatedAt": "2026-09-17T17:19:35.749Z",
     "anotacoes": "QUENTISSIMO - USA IA, TEM SITE BEM RUIM, MIDIA FORTE",
     "historicoContatos": [],
     "slug": "mobtech-seguranca-eletronica-franca",
@@ -1028,7 +1039,7 @@
   {
     "id": "lead_1789562989644_t0i06i",
     "createdAt": "2026-09-16T12:49:49.644Z",
-    "updatedAt": "2026-09-17T15:19:22.991Z",
+    "updatedAt": "2026-09-17T17:19:35.710Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "icon-monitoramento-24hs",
@@ -1746,7 +1757,7 @@
   {
     "id": "lead_1789499412688_lqzxmx",
     "createdAt": "2026-09-15T19:10:12.688Z",
-    "updatedAt": "2026-09-16T19:22:13.321Z",
+    "updatedAt": "2026-09-17T17:19:35.797Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "saude-vet-pet-shop-e-clinica-veterinaria",
@@ -1797,8 +1808,8 @@
         "corpo": "Prezada equipe da Saúde Vet - Pet Shop e Clinica Veterinária,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por pet shop em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Saúde Vet - Pet Shop e Clinica Veterinária, já funcional e adaptada para smartphones:\n👉 /previews/saude-vet-pet-shop-e-clinica-veterinaria/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
       }
     },
-    "archetype": "care",
-    "templateEscolhido": "care",
+    "archetype": "saude",
+    "templateEscolhido": "saude",
     "categoria": {
       "slug": "pet_vet",
       "nome": "Pet & Veterinária",
@@ -3018,7 +3029,7 @@
   {
     "id": "lead_1789442618036_6696xn",
     "createdAt": "2026-09-15T03:23:38.036Z",
-    "updatedAt": "2026-09-15T22:50:00.638Z",
+    "updatedAt": "2026-09-17T17:19:35.911Z",
     "anotacoes": "ja tem site criado por IA",
     "historicoContatos": [],
     "slug": "dl-odontologia-clinica",
@@ -3038,7 +3049,7 @@
     "facebook": "https://www.facebook.com/people/DL-Odontologia-Franca/61556608560384/",
     "whatsappPrincipal": "5516991756434",
     "whatsappFormatado": "(16) 99175-6434",
-    "status": "descartado",
+    "status": "prototipo_pronto",
     "motivoDescarte": "Grande Rede / Franquia Nacional",
     "analiseIA": "🚨 GATILHO COMERCIAL: O link cadastrado no Maps leva para página quebrada (404). Clínica de alta classe especializada em lentes e estética orofacial com excelente visual no Instagram.",
     "dadosEnriquecidos": {
@@ -3069,8 +3080,8 @@
         "corpo": "Prezada equipe da DL Odontologia Clínica & Harmonização Orofacial,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por clinica odontologica em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da DL Odontologia Clínica & Harmonização Orofacial, já funcional e adaptada para smartphones:\n👉 /previews/dl-odontologia-clinica/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
       }
     },
-    "archetype": "clinical",
-    "templateEscolhido": "clinical",
+    "archetype": "saude",
+    "templateEscolhido": "saude",
     "categoria": {
       "slug": "odonto_saude",
       "nome": "Saúde & Odontologia",
@@ -3082,7 +3093,7 @@
   {
     "id": "lead_coltseg_seguranca",
     "createdAt": "2026-09-15T03:14:29.772Z",
-    "updatedAt": "2026-09-16T18:59:52.428Z",
+    "updatedAt": "2026-09-17T17:19:35.850Z",
     "anotacoes": "",
     "historicoContatos": [],
     "nome": "Coltseg Eletrônica - Segurança, Câmeras e Cercas Inteligentes",
@@ -3099,15 +3110,15 @@
     ],
     "whatsappPrincipal": "5516999986906",
     "whatsappFormatado": "(16) 99998-6906",
-    "prototypePath": "C:\\\\Users\\\\Gabriel\\\\dev\\\\prospector\\\\previews\\\\coltseg-seguranca-eletronica\\\\index.html",
-    "prototypeUrl": "/previews/coltseg-seguranca-eletronica/index.html",
+    "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\coltseg-eletronica-seguranca-cameras-e-cercas-inteligentes\\index.html",
+    "prototypeUrl": "/previews/coltseg-eletronica-seguranca-cameras-e-cercas-inteligentes/index.html",
     "status": "prototipo_pronto",
     "analiseIA": "🔥 EXCELENTE OPORTUNIDADE: Avaliação 5.0★ máxima no Google e credenciamento oficial Intelbras, porém NÃO TEM SITE PRÓPRIO. O protótipo exclusivo entrega alta tecnologia, controle por aplicativo e posicionamento premium.",
     "messages": {
-      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Coltseg Eletrônica - Segurança, Câmeras e Cercas Inteligentes* tem uma excelente reputação, mas hoje quem pesquisa por *cerca eletrica e seguranca eletronica* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) não encontra um site oficial de vocês — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, destacando as principais especialidades e os depoimentos dos seus clientes:\n👉 */previews/coltseg-seguranca-eletronica/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
+      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Coltseg Eletrônica - Segurança, Câmeras e Cercas Inteligentes* tem uma excelente reputação, mas hoje quem pesquisa por *cerca eletrica e seguranca eletronica* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: não possui site oficial cadastrado no Google — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, destacando as principais especialidades e os depoimentos dos seus clientes:\n👉 */previews/coltseg-eletronica-seguranca-cameras-e-cercas-inteligentes/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
       "email": {
         "assunto": "Coltseg Eletrônica - Segurança, Câmeras e Cercas Inteligentes em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial",
-        "corpo": "Prezada equipe da Coltseg Eletrônica - Segurança, Câmeras e Cercas Inteligentes,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por cerca eletrica e seguranca eletronica em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas só indicam empresas que possuem um site oficial registrado.\n\nEmpresas sem site acabam ficando invisíveis nessas buscas, fazendo com que o cliente feche com o concorrente.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Coltseg Eletrônica - Segurança, Câmeras e Cercas Inteligentes, já funcional e adaptada para smartphones:\n👉 /previews/coltseg-seguranca-eletronica/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
+        "corpo": "Prezada equipe da Coltseg Eletrônica - Segurança, Câmeras e Cercas Inteligentes,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por cerca eletrica e seguranca eletronica em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Coltseg Eletrônica - Segurança, Câmeras e Cercas Inteligentes, já funcional e adaptada para smartphones:\n👉 /previews/coltseg-eletronica-seguranca-cameras-e-cercas-inteligentes/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
       }
     },
     "facebook": "https://www.facebook.com/61555258761464/",
@@ -3136,12 +3147,14 @@
       "cor": "#3b82f6",
       "badgeClass": "cat-security"
     },
-    "motivoDescarte": "Grande Rede / Franquia Nacional"
+    "motivoDescarte": "Grande Rede / Franquia Nacional",
+    "archetype": "industrial",
+    "templateEscolhido": "industrial"
   },
   {
     "id": "lead_blitz_seguranca",
     "createdAt": "2026-09-15T03:14:29.770Z",
-    "updatedAt": "2026-09-16T18:01:20.122Z",
+    "updatedAt": "2026-09-17T17:19:35.874Z",
     "anotacoes": "",
     "historicoContatos": [],
     "nome": "Blitz Segurança Eletrônica | Concertina | Câmeras | Alarmes | Cerca Elétrica | Motor de Portões",
@@ -3211,7 +3224,7 @@
   {
     "id": "lead_1789434711738_0",
     "createdAt": "2026-09-15T01:11:51.738Z",
-    "updatedAt": "2026-09-16T19:21:47.336Z",
+    "updatedAt": "2026-09-17T17:19:35.830Z",
     "slug": "gelar-ar-condicionado-assistencia-tecnica-franca-sp",
     "nome": "Gelar Ar Condicionado Assistência Técnica Franca/SP",
     "nicho": "ar condicionado",
@@ -3231,10 +3244,10 @@
     "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\gelar-ar-condicionado-assistencia-tecnica-franca-sp\\index.html",
     "prototypeUrl": "/previews/gelar-ar-condicionado-assistencia-tecnica-franca-sp/index.html",
     "messages": {
-      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Gelar Ar Condicionado Assistência Técnica Franca/SP* tem uma excelente reputação, mas hoje quem pesquisa por *ar condicionado* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) não encontra um site oficial de vocês — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, destacando as principais especialidades e os depoimentos dos seus clientes:\n👉 */previews/gelar-ar-condicionado-assistencia-tecnica-franca-sp/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
+      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Gelar Ar Condicionado Assistência Técnica Franca/SP* tem uma excelente reputação, mas hoje quem pesquisa por *ar condicionado* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: não possui site oficial cadastrado no Google — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, destacando as principais especialidades e os depoimentos dos seus clientes:\n👉 */previews/gelar-ar-condicionado-assistencia-tecnica-franca-sp/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
       "email": {
         "assunto": "Gelar Ar Condicionado Assistência Técnica Franca/SP em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial",
-        "corpo": "Prezada equipe da Gelar Ar Condicionado Assistência Técnica Franca/SP,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por ar condicionado em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas só indicam empresas que possuem um site oficial registrado.\n\nEmpresas sem site acabam ficando invisíveis nessas buscas, fazendo com que o cliente feche com o concorrente.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Gelar Ar Condicionado Assistência Técnica Franca/SP, já funcional e adaptada para smartphones:\n👉 /previews/gelar-ar-condicionado-assistencia-tecnica-franca-sp/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
+        "corpo": "Prezada equipe da Gelar Ar Condicionado Assistência Técnica Franca/SP,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por ar condicionado em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Gelar Ar Condicionado Assistência Técnica Franca/SP, já funcional e adaptada para smartphones:\n👉 /previews/gelar-ar-condicionado-assistencia-tecnica-franca-sp/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
       }
     },
     "anotacoes": "Teste de anotação no dashboard",
@@ -3377,12 +3390,14 @@
       "cor": "#0ea5e9",
       "badgeClass": "cat-hvac"
     },
-    "motivoDescarte": null
+    "motivoDescarte": null,
+    "archetype": "industrial",
+    "templateEscolhido": "industrial"
   },
   {
     "id": "lead_1789434711739_1",
     "createdAt": "2026-09-15T01:11:51.739Z",
-    "updatedAt": "2026-09-16T19:21:54.323Z",
+    "updatedAt": "2026-09-17T17:19:35.813Z",
     "slug": "ecol-ar-condicionado",
     "nome": "Ecol Ar Condicionado",
     "nicho": "ar condicionado",
@@ -3407,15 +3422,15 @@
     "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\ecol-ar-condicionado\\index.html",
     "prototypeUrl": "/previews/ecol-ar-condicionado/index.html",
     "messages": {
-      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nNotei que o site cadastrado de vocês (*https://www.ecolarcondicionado.com.br/*) está fora do ar / inacessível no momento. Hoje, quando as pessoas ou as buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) tentam acessar a *Ecol Ar Condicionado*, o cliente se depara com uma tela de erro e acaba contratando outro da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, destacando as principais especialidades e os depoimentos dos seus clientes:\n👉 */previews/ecol-ar-condicionado/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
+      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Ecol Ar Condicionado* tem uma excelente reputação, mas hoje quem pesquisa por *ar condicionado* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: está com o site (https://www.ecolarcondicionado.com.br/) fora do ar — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, destacando as principais especialidades e os depoimentos dos seus clientes:\n👉 */previews/ecol-ar-condicionado/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
       "email": {
-        "assunto": "Ecol Ar Condicionado — site oficial fora do ar e perda de clientes nas buscas por IA em Franca",
-        "corpo": "Prezada equipe da Ecol Ar Condicionado,\n\nO motivo do meu contato é direto e urgente: notei que o site oficial da Ecol Ar Condicionado (https://www.ecolarcondicionado.com.br/) está atualmente fora do ar / inacessível.\n\nHoje, a maioria das pessoas e das ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) pesquisam quem é a empresa recomendada em Franca. Quando o link de vocês dá erro, o cliente perde a confiança e fecha imediatamente com o concorrente.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Ecol Ar Condicionado, já funcional e adaptada para smartphones:\n👉 /previews/ecol-ar-condicionado/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
+        "assunto": "Ecol Ar Condicionado em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial",
+        "corpo": "Prezada equipe da Ecol Ar Condicionado,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por ar condicionado em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Ecol Ar Condicionado, já funcional e adaptada para smartphones:\n👉 /previews/ecol-ar-condicionado/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
       }
     },
     "anotacoes": "",
     "historicoContatos": [],
-    "templateEscolhido": "subzero",
+    "templateEscolhido": "industrial",
     "instagramProfile": {
       "handle": "ecol_arcondicionado",
       "bio": "ecol_arcondicionado\n5.660 seguidores\n4.560 seguindo\nEcol Ar Condicionado\nEspecializada em Climatização ❄️\nVenda\nManutenção\nInstalação... \nmais\nbit.ly/atendimentoecol",
@@ -3624,6 +3639,7 @@
       "icone": "❄️",
       "cor": "#0ea5e9",
       "badgeClass": "cat-hvac"
-    }
+    },
+    "archetype": "industrial"
   }
 ]

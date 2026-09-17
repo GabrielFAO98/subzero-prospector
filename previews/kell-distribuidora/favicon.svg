@@ -1,25 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs>
-    <linearGradient id="whlBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#070f22"/>
-      <stop offset="100%" stop-color="#0e1d3d"/>
-    </linearGradient>
-    <linearGradient id="whlCyan" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#06b6d4"/>
-      <stop offset="100%" stop-color="#38bdf8"/>
-    </linearGradient>
-    <linearGradient id="whlGold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f59e0b"/>
-      <stop offset="100%" stop-color="#fbbf24"/>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
     </linearGradient>
   </defs>
-  <rect width="64" height="64" rx="15" fill="url(#whlBg)"/>
-  <rect x="1.5" y="1.5" width="61" height="61" rx="13.5" fill="none" stroke="rgba(6, 182, 212, 0.35)" stroke-width="1.5"/>
-  
-  <!-- Geometric Bold Monogram Initial -->
-  <text x="32" y="44" font-family="'Montserrat', 'Arial Black', sans-serif" font-size="34" font-weight="900" text-anchor="middle" fill="url(#whlCyan)">K</text>
-  
-  <!-- Tech Accent Indicator -->
-  <circle cx="48" cy="18" r="4" fill="url(#whlGold)"/>
-  <circle cx="48" cy="18" r="7" fill="none" stroke="rgba(245, 158, 11, 0.4)" stroke-width="1.5"/>
+  <rect width="64" height="64" rx="14" fill="#030712"/>
+  <rect x="2" y="2" width="60" height="60" rx="12" fill="url(#grad)" stroke="#60a5fa" stroke-width="2"/>
+  <text x="32" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="900" fill="#ffffff" text-anchor="middle">K</text>
 </svg>
