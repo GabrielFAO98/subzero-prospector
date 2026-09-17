@@ -30,14 +30,17 @@ document.addEventListener('DOMContentLoaded', () => {
   if (menuToggle && header) {
     menuToggle.addEventListener('click', () => {
       const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      menuToggle.setAttribute('aria-expanded', !isExpanded);
-      header.classList.toggle('menu-open');
+      const willOpen = !isExpanded;
+      menuToggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      header.classList.toggle('menu-open', willOpen);
+      document.body.classList.toggle('menu-open-scroll-lock', willOpen);
     });
 
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
         menuToggle.setAttribute('aria-expanded', 'false');
         header.classList.remove('menu-open');
+        document.body.classList.remove('menu-open-scroll-lock');
       });
     });
   }
