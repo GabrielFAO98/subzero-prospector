@@ -196,8 +196,14 @@
           </div>
 
           <div class="sidebar-block">
-            <h4>📍 Canais Oficiais da Empresa</h4>
-            <ul class="contact-list">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <h4 style="margin: 0;">📍 Canais & Dados da Empresa</h4>
+              <button id="btnToggleEditLead" class="btn btn-outline btn-xs" type="button" title="Editar dados da empresa">✏️ Editar</button>
+            </div>
+
+            <!-- Modo Visualização -->
+            <ul id="leadViewFields" class="contact-list">
+              <li><strong>Nome:</strong> <span id="modalLeadNameDisplay">-</span></li>
               <li><strong>Google Maps:</strong> <a id="modalLeadMapsLink" href="#" target="_blank" class="link-highlight">📍 Abrir Ficha no Maps</a></li>
               <li><strong>Site Original:</strong> <span id="modalLeadSite">-</span></li>
               <li><strong>WhatsApp:</strong> <span id="modalLeadWa">-</span></li>
@@ -205,12 +211,40 @@
               <li><strong>Instagram:</strong> <a id="modalLeadInsta" href="#" target="_blank" class="link-highlight">-</a></li>
               <li><strong>Facebook:</strong> <a id="modalLeadFb" href="#" target="_blank" class="link-highlight">-</a></li>
             </ul>
+
+            <!-- Modo Edição -->
+            <form id="leadEditForm" style="display: none; margin-top: 8px;">
+              <div class="form-group-compact">
+                <label style="font-size: 11px; color: var(--text-muted); font-weight: 600;">Nome da Empresa:</label>
+                <input type="text" id="editLeadName" class="input-compact" />
+              </div>
+              <div class="form-group-compact">
+                <label style="font-size: 11px; color: var(--text-muted); font-weight: 600;">Instagram (@usuario ou link):</label>
+                <input type="text" id="editLeadInsta" class="input-compact" placeholder="@empresa ou https://..." />
+              </div>
+              <div class="form-group-compact">
+                <label style="font-size: 11px; color: var(--text-muted); font-weight: 600;">Facebook (link ou página):</label>
+                <input type="text" id="editLeadFb" class="input-compact" placeholder="https://facebook.com/..." />
+              </div>
+              <div class="form-group-compact">
+                <label style="font-size: 11px; color: var(--text-muted); font-weight: 600;">WhatsApp / Telefone:</label>
+                <input type="text" id="editLeadWa" class="input-compact" placeholder="(16) 99999-9999" />
+              </div>
+              <div class="form-group-compact">
+                <label style="font-size: 11px; color: var(--text-muted); font-weight: 600;">Site Original:</label>
+                <input type="text" id="editLeadSite" class="input-compact" placeholder="https://empresa.com.br" />
+              </div>
+              <div style="display: flex; gap: 6px; margin-top: 10px;">
+                <button type="submit" id="btnSaveLeadFields" class="btn btn-primary btn-sm" style="flex: 1;">💾 Salvar Dados</button>
+                <button type="button" id="btnCancelEditLead" class="btn btn-outline btn-sm">Cancelar</button>
+              </div>
+            </form>
           </div>
 
           <div class="sidebar-block">
             <h4>🏷️ Alterar Status</h4>
             <select id="modalStatusSelect" class="status-select">
-              <option value="oportunidade_quente">🔥 Oportunidade Quente (Sem Site)</option>
+              <option value="oportunidade_quente">🔥 Oportunidade Quente</option>
               <option value="site_ativo">🌐 Site Ativo (Redesign)</option>
               <option value="prototipo_pronto">⚡ Protótipo Pronto</option>
               <option value="contatado">📞 Contatado</option>

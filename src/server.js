@@ -105,13 +105,54 @@ app.post('/api/leads/:id/generate', async (req, res) => {
   }
 });
 
-// Rota: Atualizar status ou anotações do lead
+// Rota: Atualizar status, dados da empresa ou anotações do lead
 app.patch('/api/leads/:id', (req, res) => {
-  const { status, anotacoes, motivoDescarte } = req.body;
+  const { status, anotacoes, motivoDescarte, nome, instagram, facebook, whatsapp, siteOriginal } = req.body;
   const updates = {};
   if (status !== undefined) updates.status = status;
   if (anotacoes !== undefined) updates.anotacoes = anotacoes;
   if (motivoDescarte !== undefined) updates.motivoDescarte = motivoDescarte;
+
+  if (nome !== undefined && typeof nome === 'string' && nome.trim()) {
+    updates.nome = nome.trim();
+  }
+
+  if (instagram !== undefined) {
+    let ig = (instagram || '').trim();
+    if (ig && !ig.startsWith('http')) {
+      ig = ig.replace(/^@/, '');
+      ig = `https://www.instagram.com/${ig}/`;
+    }
+    updates.instagram = ig || null;
+  }
+
+  if (facebook !== undefined) {
+    let fb = (facebook || '').trim();
+    if (fb && !fb.startsWith('http')) {
+      fb = fb.replace(/^@/, '');
+      fb = `https://www.facebook.com/${fb}/`;
+    }
+    updates.facebook = fb || null;
+  }
+
+  if (whatsapp !== undefined) {
+    const raw = (whatsapp || '').trim();
+    const digits = raw.replace(/\D/g, '');
+    if (digits.length >= 10) {
+      const waNumber = digits.startsWith('55') ? digits : `55${digits}`;
+      updates.whatsappPrincipal = waNumber;
+      const ddd = digits.slice(-11, -9);
+      const num = digits.slice(-9);
+      updates.whatsappFormatado = `(${ddd}) ${num.slice(0, 5)}-${num.slice(5)}`;
+    } else {
+      updates.whatsappPrincipal = digits || null;
+      updates.whatsappFormatado = raw || null;
+    }
+  }
+
+  if (siteOriginal !== undefined) {
+    updates.siteOriginal = (siteOriginal || '').trim() || null;
+  }
 
   // Registrar histórico se status mudou para contatado
   if (status === 'contatado') {

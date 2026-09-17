@@ -45,6 +45,37 @@ const modalNotes = document.getElementById('modalNotes');
 const btnSaveNotes = document.getElementById('btnSaveNotes');
 const templateSelector = document.getElementById('templateSelector');
 
+// Lead Fields Edit Elements
+const btnToggleEditLead = document.getElementById('btnToggleEditLead');
+const leadViewFields = document.getElementById('leadViewFields');
+const leadEditForm = document.getElementById('leadEditForm');
+const modalLeadNameDisplay = document.getElementById('modalLeadNameDisplay');
+const editLeadName = document.getElementById('editLeadName');
+const editLeadInsta = document.getElementById('editLeadInsta');
+const editLeadFb = document.getElementById('editLeadFb');
+const editLeadWa = document.getElementById('editLeadWa');
+const editLeadSite = document.getElementById('editLeadSite');
+const btnCancelEditLead = document.getElementById('btnCancelEditLead');
+
+// Helper: Formata avaliações no modelo "★ 4,2 (380 comentários)"
+function formatRating(raw) {
+  if (!raw || typeof raw !== 'string') return '<span style="color: var(--text-muted); font-size: 12px;">Sem nota</span>';
+  
+  const scoreMatch = raw.match(/(\d+[,\.]\d+|\d+)/);
+  const countMatch = raw.match(/(?:estrelas?\s*|\(|\b)(\d+)\s*(?:coment[aá]rios|\))/i) || raw.match(/estrelas?\s+(\d+)/i) || raw.match(/\((\d+)\)/);
+  
+  if (!scoreMatch) return `<span style="color: var(--text-muted); font-size: 12px;">${escapeHtml(raw)}</span>`;
+  
+  const score = scoreMatch[1].replace('.', ',');
+  const count = countMatch ? countMatch[1] : null;
+
+  if (count) {
+    return `<span class="rating-badge" title="${score} estrelas (${count} comentários)"><span class="rating-star">★</span> ${score} <span class="rating-count">(${count} comentários)</span></span>`;
+  }
+  
+  return `<span class="rating-badge" title="${score} estrelas"><span class="rating-star">★</span> ${score}</span>`;
+}
+
 const modalWaText = document.getElementById('modalWaText');
 const btnCopyWa = document.getElementById('btnCopyWa');
 const btnOpenWaWeb = document.getElementById('btnOpenWaWeb');
@@ -122,6 +153,67 @@ function setupEventListeners() {
   leadModal.addEventListener('click', (e) => {
     if (e.target === leadModal) closeModal();
   });
+
+  // Alternar Modo de Edição de Dados da Empresa
+  if (btnToggleEditLead) {
+    btnToggleEditLead.addEventListener('click', () => {
+      const isEditing = leadEditForm.style.display !== 'none';
+      if (isEditing) {
+        leadEditForm.style.display = 'none';
+        leadViewFields.style.display = 'block';
+        btnToggleEditLead.textContent = '✏️ Editar';
+      } else {
+        leadEditForm.style.display = 'block';
+        leadViewFields.style.display = 'none';
+        btnToggleEditLead.textContent = '👁️ Ver';
+      }
+    });
+  }
+
+  if (btnCancelEditLead) {
+    btnCancelEditLead.addEventListener('click', () => {
+      leadEditForm.style.display = 'none';
+      leadViewFields.style.display = 'block';
+      btnToggleEditLead.textContent = '✏️ Editar';
+    });
+  }
+
+  if (leadEditForm) {
+    leadEditForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!currentSelectedLead) return;
+
+      const submitBtn = document.getElementById('btnSaveLeadFields');
+      const origText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Salvando...';
+
+      const nome = editLeadName.value.trim();
+      const instagram = editLeadInsta.value.trim();
+      const facebook = editLeadFb.value.trim();
+      const whatsapp = editLeadWa.value.trim();
+      const siteOriginal = editLeadSite.value.trim();
+
+      await updateLeadOnServer(currentSelectedLead.id, {
+        nome,
+        instagram,
+        facebook,
+        whatsapp,
+        siteOriginal
+      });
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = origText;
+
+      leadEditForm.style.display = 'none';
+      leadViewFields.style.display = 'block';
+      btnToggleEditLead.textContent = '✏️ Editar';
+      
+      if (currentSelectedLead) {
+        openModal(currentSelectedLead);
+      }
+    });
+  }
 
   // Abas do Modal
   document.querySelectorAll('.modal-tab-btn').forEach(btn => {
@@ -407,7 +499,6 @@ function renderTableRow(lead) {
     siteDiagnosticHtml = `
       <div>
         <span class="badge-site badge-site-none">⚠️ SEM SITE OFICIAL</span>
-        <div style="margin-top: 3px; color: var(--text-muted); font-size: 11px;">Invisível nas buscas de IA</div>
       </div>
     `;
   } else if (lead.siteStatus === 'apenas_social') {
@@ -471,7 +562,7 @@ function renderTableRow(lead) {
         <div style="margin-top: 4px;"><a href="${accurateMapsUrl}" target="_blank" class="maps-link-btn" title="Abrir ficha oficial no Google Maps">📍 Ver no Google Maps</a></div>
       </td>
       <td>
-        <strong>${lead.avaliacao || 'Sem nota'}</strong>
+        ${formatRating(lead.avaliacao)}
       </td>
       <td>
         ${siteDiagnosticHtml}
@@ -557,6 +648,7 @@ function renderCard(lead) {
         ${socialChips}
 
         <div class="lead-card-body">
+          <p><strong>Avaliação:</strong> ${formatRating(lead.avaliacao)}</p>
           <p><strong>Contato:</strong> ${lead.whatsappPrincipal ? `<a href="${waLink}" target="_blank" class="contact-link-wa">${phoneDisplay}</a>` : phoneDisplay}</p>
           <p><strong>Diagnóstico:</strong> ${lead.motivoDescarte || lead.analiseIA || 'Em análise'}</p>
         </div>
@@ -628,6 +720,18 @@ function openModal(lead) {
     analysisText = lead.analiseIA || 'Empresa qualificada sem presença web oficial.';
   }
   modalLeadAnalysis.textContent = analysisText;
+
+  // Sincronização dos campos de visualização e edição
+  if (modalLeadNameDisplay) modalLeadNameDisplay.textContent = lead.nome;
+  if (editLeadName) editLeadName.value = lead.nome || '';
+  if (editLeadInsta) editLeadInsta.value = lead.instagram || '';
+  if (editLeadFb) editLeadFb.value = lead.facebook || '';
+  if (editLeadWa) editLeadWa.value = lead.whatsappFormatado || (lead.whatsappPrincipal ? '+' + lead.whatsappPrincipal : '');
+  if (editLeadSite) editLeadSite.value = lead.siteOriginal || '';
+
+  if (leadEditForm) leadEditForm.style.display = 'none';
+  if (leadViewFields) leadViewFields.style.display = 'block';
+  if (btnToggleEditLead) btnToggleEditLead.textContent = '✏️ Editar';
 
   // Google Maps Ficha
   const modalMapsHref = (lead.mapsUrl && lead.mapsUrl.includes('search/?api=1'))

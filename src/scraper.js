@@ -96,9 +96,33 @@ async function searchLeadsGoogleMaps(niche, city = 'Franca SP', maxResults = 5, 
           if (!name || seenNames.has(name.toLowerCase())) return;
           seenNames.add(name.toLowerCase());
 
-          // Avaliação e estrelas
-          const ratingEl = card.querySelector('span.MW4etd, span[role="img"]');
-          const ratingText = ratingEl ? (ratingEl.getAttribute('aria-label') || ratingEl.innerText || '').trim() : '';
+          // Avaliação e estrelas (modelo: ★ 4,2 (380 comentários))
+          let ratingScore = '';
+          let reviewCount = '';
+          const imgEl = card.querySelector('span[role="img"][aria-label*="estrela"], span[role="img"][aria-label*="star"]');
+          if (imgEl) {
+            const aria = imgEl.getAttribute('aria-label') || '';
+            const match = aria.match(/([\d,\.]+)\s*estrelas?(?:\s*(\d+)\s*coment[aá]rios?)?/i);
+            if (match) {
+              ratingScore = match[1];
+              if (match[2]) reviewCount = match[2];
+            }
+          }
+          if (!ratingScore) {
+            ratingScore = card.querySelector('span.MW4etd')?.innerText?.trim() || '';
+          }
+          if (!reviewCount) {
+            const countEl = card.querySelector('span.UY7F9');
+            if (countEl) {
+              reviewCount = countEl.innerText.replace(/\D/g, '').trim();
+            }
+          }
+          let ratingText = '';
+          if (ratingScore && reviewCount) {
+            ratingText = `★ ${ratingScore.replace('.', ',')} (${reviewCount} comentários)`;
+          } else if (ratingScore) {
+            ratingText = `★ ${ratingScore.replace('.', ',')}`;
+          }
 
           const allText = card.innerText || '';
 
