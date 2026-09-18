@@ -9,21 +9,28 @@ const FALLBACK_TEMPLATE_DIR = path.join(TEMPLATES_ROOT, 'padrao');
  * Mapeia o nicho/empresa para o arquétipo ideal
  */
 function getArchetype(nicho = '', nome = '', templateHint = null) {
-  if (templateHint && ['industrial', 'saude', 'institucional', 'comercio'].includes(templateHint)) {
+  if (templateHint && ['industrial', 'clinical', 'care'].includes(templateHint)) {
     return templateHint;
   }
 
-  const norm = (str = '') => str.toLowerCase()
+  const norm = (str = '') => (str || '').toLowerCase()
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .replace(/ç/g, 'c');
 
   const n = norm(nicho);
   const nameLower = norm(nome);
 
-  if (n.includes('veterin') || n.includes('pet') || n.includes('odonto') || n.includes('clinic') || n.includes('saude') || n.includes('medic') || n.includes('psico') || n.includes('estetica')) {
-    return 'saude';
+  // 1. Odontologia, Médicos, Clínicas e Saúde -> clinical
+  if (n.includes('odonto') || n.includes('dent') || n.includes('medic') || n.includes('clinic') || n.includes('saude') || n.includes('psico') || n.includes('estetica') || n.includes('fisio') || nameLower.includes('odonto') || nameLower.includes('dent')) {
+    return 'clinical';
   }
 
+  // 2. Veterinárias, Pet Shops, Banho & Tosa -> care
+  if (n.includes('veterin') || n.includes('pet') || n.includes('cao') || n.includes('cachorro') || n.includes('gato') || n.includes('banho') || n.includes('tosa') || n.includes('animal') || nameLower.includes('pet') || nameLower.includes('vet')) {
+    return 'care';
+  }
+
+  // 3. Engenharia, Construção, Climatização, Segurança, Solar, B2B e outros -> industrial
   return 'industrial';
 }
 
@@ -332,8 +339,66 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
     };
   }
 
-  // 7. PADRÃO GERAL INDUSTRIAL / PRESTAÇÃO DE SERVIÇOS
-  return {
+  // 7. ODONTOLOGIA & SAÚDE INTEGRADA (Estilo Silveira / DL Odontologia)
+  if (n.includes('odonto') || n.includes('dent') || n.includes('medic') || n.includes('saude') || n.includes('clinic') || nameLower.includes('odonto') || nameLower.includes('dent')) {
+    return applyMinedOverrides({
+      subtitulo: 'Odontologia Especializada & Estética Orofacial',
+      tituloPrincipal: 'A Confiança de um Sorriso Perfeito com Conforto e Tecnologia',
+      chamadaPrincipal: `Tratamentos Odontológicos Avançados em ${cidade}`,
+      slogan: 'Atendimento particular com tecnologia 3D, conforto e biossegurança.',
+      apresentacao: `Consultório moderno em ${cidade} dedicado a tratamentos de alta precisão, reabilitação oral e odontologia humanizada sem dor.`,
+      servicos: [
+        { nome: 'Implantes Dentários & Protocolo', desc: 'Recupere sua mastigação e sorriso com implantes guiados e seguros.' },
+        { nome: 'Lentes de Contato & Clareamento', desc: 'Estética dental com porcelana de alta durabilidade e acabamento natural.' },
+        { nome: 'Harmonização Orofacial Avançada', desc: 'Procedimentos seguros de equilíbrio estético e rejuvenescimento facial.' },
+        { nome: 'Prevenção & Odontologia Sem Dor', desc: 'Protocolos modernos com anestesia precisa e atendimento acolhedor.' }
+      ],
+      diferenciais: [
+        { titulo: 'Tecnologia Digital 3D', desc: 'Planejamento computadorizado para tratamentos precisos e confortáveis.' },
+        { titulo: 'Atendimento Particular', desc: 'Pontualidade rigorosa e atenção individualizada a cada paciente.' },
+        { titulo: 'Biossegurança Hospitalar', desc: 'Protocolos estéreis rigorosos para a sua total proteção e tranquilidade.' }
+      ],
+      avaliacoes: prepareReviews(lead, [
+        { autor: 'Camila Ferreira', texto: `Excelente atendimento! A equipe da ${nomeEmpresa} é extremamente cuidadosa e pontual. Recomendo de olhos fechados.` },
+        { autor: 'Rodrigo Alcantara', texto: `Ambiente impecável e tecnologia de ponta. Fiquei muito satisfeito com o resultado do meu tratamento na ${nomeEmpresa}.` },
+        { autor: 'Patricia Meireles', texto: `Profissionais maravilhosos! Tiraram todas as minhas dúvidas com calma e o procedimento foi completamente indolor.` },
+        { autor: 'Thiago Nogueira', texto: `A melhor experiência odontológica que já tive em Franca. Super atenciosos desde a recepção!` }
+      ], nomeEmpresa),
+      imagensServicos: ['hero.jpg', 'workshop.jpg', 'hero.jpg', 'workshop.jpg']
+    }, lead);
+  }
+
+  // 8. ENGENHARIA & CONSTRUÇÃO CIVIL (Estilo Ulo Engenharia)
+  if (n.includes('engenharia') || n.includes('construc') || nameLower.includes('engenharia') || nameLower.includes('construc') || nameLower.includes('obras')) {
+    return applyMinedOverrides({
+      subtitulo: 'Engenharia Civil, Obras & Projetos Estruturais',
+      tituloPrincipal: 'Projetos de Alta Precisão e Execução de Obras Sem Dor de Cabeça',
+      chamadaPrincipal: `Engenharia, Construção e Regularização em ${cidade}`,
+      slogan: 'Projetos estruturais, acompanhamento rigoroso e entrega no prazo.',
+      apresentacao: `Soluções completas em engenharia civil e construção em ${cidade}, unindo rigor técnico, segurança e economia inteligente de materiais.`,
+      servicos: [
+        { nome: 'Gerenciamento & Execução de Obras', desc: 'Acompanhamento técnico diário do alicerce ao acabamento fino.' },
+        { nome: 'Cálculo Estrutural de Precisão', desc: 'Dimensionamento em concreto e aço com segurança máxima e economia.' },
+        { nome: 'Projetos Arquitetônicos & 3D', desc: 'Planejamento detalhado em 3D para visualização antes de construir.' },
+        { nome: 'Regularização Imobiliária & Laudos', desc: 'Habite-se, desdobros, alvarás e laudos periciais junto à prefeitura.' }
+      ],
+      diferenciais: [
+        { titulo: 'Rigor Técnico & ART', desc: 'Projetos assinados com responsabilidade técnica e conformidade total.' },
+        { titulo: 'Economia de Materiais', desc: 'Dimensionamento exato que evita desperdícios e reduz o custo da obra.' },
+        { titulo: 'Compromisso com Prazos', desc: 'Cronograma de execução planejado e cumprido com transparência.' }
+      ],
+      avaliacoes: prepareReviews(lead, [
+        { autor: 'Marcelo Rezende', texto: `A equipe da ${nomeEmpresa} gerenciou minha obra com muita seriedade. Entregaram no prazo e sem surpresas no orçamento.` },
+        { autor: 'Luciana Fontes', texto: `Projeto estrutural impecável e acompanhamento técnico nota 10. Excelente empresa de engenharia em Franca!` },
+        { autor: 'Fábio Guimarães', texto: `Profissionais capacitados e muito transparentes na ${nomeEmpresa}. Resolveram toda a regularização do imóvel com agilidade.` },
+        { autor: 'Daniela P. Castro', texto: `Muito capricho e rigor técnico em cada detalhe. Recomendo com total certeza para quem vai construir ou reformar.` }
+      ], nomeEmpresa),
+      imagensServicos: ['hero.jpg', 'workshop.jpg', 'hero.jpg', 'workshop.jpg']
+    }, lead);
+  }
+
+  // 9. PADRÃO GERAL INDUSTRIAL / PRESTAÇÃO DE SERVIÇOS
+  return applyMinedOverrides({
     subtitulo: 'Atendimento Técnico Especializado em Franca',
     tituloPrincipal: `Excelência e Soluções Confiáveis com a ${nomeEmpresa}`,
     chamadaPrincipal: 'Qualidade Comprovada e Compromisso com Seus Resultados',
@@ -357,7 +422,20 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
       { autor: 'Beatriz Costa', texto: `Super recomendo a ${nomeEmpresa}! Transparência total e equipe muito educada e caprichosa.` }
     ], nomeEmpresa),
     imagensServicos: ['hero.jpg', 'workshop.jpg', 'hero.jpg', 'workshop.jpg']
-  };
+  }, lead);
+}
+
+function applyMinedOverrides(content, lead) {
+  if (!content) return content;
+  if (lead && lead.dadosEnriquecidos) {
+    if (Array.isArray(lead.dadosEnriquecidos.servicosDetectados) && lead.dadosEnriquecidos.servicosDetectados.length >= 2) {
+      content.servicos = lead.dadosEnriquecidos.servicosDetectados.slice(0, 4);
+    }
+    if (Array.isArray(lead.dadosEnriquecidos.diferenciais) && lead.dadosEnriquecidos.diferenciais.length >= 2) {
+      content.diferenciais = lead.dadosEnriquecidos.diferenciais.slice(0, 3);
+    }
+  }
+  return content;
 }
 
 function cleanCompanyNameSmart(rawName = '') {
@@ -413,6 +491,30 @@ function generateSlug(nome = '') {
     .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '') || `lead-${Date.now()}`;
+}
+
+async function downloadRealPhotos(photoUrls, targetImgDir) {
+  const downloaded = [];
+  if (!Array.isArray(photoUrls) || photoUrls.length === 0) return downloaded;
+
+  for (let i = 0; i < Math.min(4, photoUrls.length); i++) {
+    const url = photoUrls[i];
+    if (!url || typeof url !== 'string' || !url.startsWith('http')) continue;
+    try {
+      const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' }, signal: AbortSignal.timeout(5000) });
+      if (res.ok) {
+        const buffer = Buffer.from(await res.arrayBuffer());
+        if (buffer.length > 1000) {
+          const filename = `real-${i + 1}.jpg`;
+          fs.writeFileSync(path.join(targetImgDir, filename), buffer);
+          downloaded.push(filename);
+        }
+      }
+    } catch (e) {
+      // Ignora falha de download individual
+    }
+  }
+  return downloaded;
 }
 
 /**
@@ -479,11 +581,23 @@ async function generatePrototype(lead, templateHint = null) {
 
   const googleMapsUrl = lead.mapsUrl || `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
 
-  // Imagens dos 4 serviços
-  const img1 = content.imagensServicos[0] || 'hero.jpg';
-  const img2 = content.imagensServicos[1] || 'workshop.jpg';
-  const img3 = content.imagensServicos[2] || 'hero.jpg';
-  const img4 = content.imagensServicos[3] || 'workshop.jpg';
+  const targetImgDir = path.join(targetDir, 'img');
+  fs.mkdirSync(targetImgDir, { recursive: true });
+
+  // Download e vinculação de fotos autênticas da empresa (Instagram / Google Maps)
+  let realPhotoFiles = [];
+  if (Array.isArray(lead.fotosReais) && lead.fotosReais.length > 0) {
+    realPhotoFiles = await downloadRealPhotos(lead.fotosReais, targetImgDir);
+    if (realPhotoFiles.length > 0) {
+      console.log(`📸 [Generator] ${realPhotoFiles.length} fotos reais vinculadas à vitrine do protótipo!`);
+    }
+  }
+
+  // Imagens dos 4 serviços (prioriza fotos autênticas de obras/atendimento)
+  const img1 = realPhotoFiles[0] || content.imagensServicos[0] || 'hero.jpg';
+  const img2 = realPhotoFiles[1] || content.imagensServicos[1] || 'workshop.jpg';
+  const img3 = realPhotoFiles[2] || content.imagensServicos[2] || 'hero.jpg';
+  const img4 = realPhotoFiles[3] || content.imagensServicos[3] || 'workshop.jpg';
 
   // 3. Substituir tags de placeholder
   const replacements = {
@@ -589,10 +703,9 @@ async function generatePrototype(lead, templateHint = null) {
   }
 
   // 4. Copiar assets estruturais do template selecionado
-  copyDirSync(path.join(templateDir, 'src'), path.join(targetDir, 'src'));
-
-  const targetImgDir = path.join(targetDir, 'img');
-  fs.mkdirSync(targetImgDir, { recursive: true });
+  if (fs.existsSync(path.join(templateDir, 'src'))) {
+    copyDirSync(path.join(templateDir, 'src'), path.join(targetDir, 'src'));
+  }
 
   // Base fallback: copia imagens padrão do template
   if (fs.existsSync(path.join(templateDir, 'public', 'img'))) {
@@ -700,7 +813,15 @@ function generateFaviconSvg(lead, cleanName, archetype) {
   let gradEnd = '#0369a1';
   let accent = '#38bdf8';
 
-  if (isSolar) {
+  if (archetype === 'care') {
+    gradStart = '#059669'; // Emerald Care
+    gradEnd = '#047857';
+    accent = '#34d399';
+  } else if (archetype === 'clinical') {
+    gradStart = '#0284c7'; // Clinical Cyan
+    gradEnd = '#0369a1';
+    accent = '#38bdf8';
+  } else if (isSolar) {
     gradStart = '#d97706';
     gradEnd = '#b45309';
     accent = '#fbbf24';

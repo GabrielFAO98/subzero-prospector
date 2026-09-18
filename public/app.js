@@ -76,6 +76,25 @@ function formatRating(raw) {
   return `<span class="rating-badge" title="${score} estrelas"><span class="rating-star">★</span> ${score}</span>`;
 }
 
+function getRecommendedArchetype(lead) {
+  if (!lead) return 'industrial';
+  if (lead.templateEscolhido && ['industrial', 'clinical', 'care'].includes(lead.templateEscolhido)) {
+    return lead.templateEscolhido;
+  }
+  if (lead.archetype && ['industrial', 'clinical', 'care'].includes(lead.archetype)) {
+    return lead.archetype;
+  }
+  const n = (lead.nicho || '').toLowerCase();
+  const nm = (lead.nome || '').toLowerCase();
+  if (n.includes('odonto') || n.includes('dent') || n.includes('medic') || n.includes('clinic') || n.includes('saude') || n.includes('estet') || n.includes('fisio') || nm.includes('odonto') || nm.includes('clinica')) {
+    return 'clinical';
+  }
+  if (n.includes('pet') || n.includes('vet') || n.includes('cao') || n.includes('cachorro') || n.includes('gato') || n.includes('banho') || n.includes('tosa') || nm.includes('pet') || nm.includes('vet')) {
+    return 'care';
+  }
+  return 'industrial';
+}
+
 const modalWaText = document.getElementById('modalWaText');
 const btnCopyWa = document.getElementById('btnCopyWa');
 const btnOpenWaWeb = document.getElementById('btnOpenWaWeb');
@@ -269,7 +288,7 @@ function setupEventListeners() {
   // Gerar Protótipo dentro do Modal
   btnGenerateProto.addEventListener('click', async () => {
     if (!currentSelectedLead) return;
-    const selectedTemplate = templateSelector ? templateSelector.value : 'subzero';
+    const selectedTemplate = templateSelector ? templateSelector.value : getRecommendedArchetype(currentSelectedLead);
     btnGenerateProto.disabled = true;
     btnGenerateProto.textContent = 'Gerando Protótipo...';
     await generatePrototypeForLead(currentSelectedLead.id || currentSelectedLead.slug, selectedTemplate);
@@ -699,7 +718,8 @@ function attachActionEvents() {
       const leadId = btn.dataset.id;
       btn.disabled = true;
       btn.innerHTML = '⏳ Minerando...';
-      const selectedTemplate = templateSelector ? templateSelector.value : 'subzero';
+      const leadObj = allLeads.find(l => (l.id === leadId || l.slug === leadId));
+      const selectedTemplate = getRecommendedArchetype(leadObj);
       await generatePrototypeForLead(leadId, selectedTemplate);
     });
   });
@@ -784,9 +804,9 @@ function openModal(lead) {
     modalLeadFb.removeAttribute('href');
   }
 
-  // Sincroniza seletor de template
+  // Sincroniza seletor de template com arquétipo recomendado ou salvo
   if (templateSelector) {
-    templateSelector.value = lead.templateEscolhido || 'subzero';
+    templateSelector.value = getRecommendedArchetype(lead);
   }
 
   modalStatusSelect.value = lead.status;
@@ -884,17 +904,17 @@ async function generatePrototypeForLead(id, template = 'subzero') {
 
   if (btnGenerateProto) {
     btnGenerateProto.disabled = true;
-    btnGenerateProto.innerHTML = '⏳ Minerando Google Maps & Construindo...';
+    btnGenerateProto.innerHTML = '⏳ Minerando Redes & Construindo...';
   }
   if (prototypeStatusLabel) {
-    prototypeStatusLabel.innerHTML = '⏳ <strong>Minerando dados autênticos do Google Maps...</strong> Aguarde alguns segundos enquanto o site sob medida é construído.';
+    prototypeStatusLabel.innerHTML = '⏳ <strong>Minerando redes sociais, Google Maps & construindo site sob medida...</strong> Aguarde alguns segundos...';
   }
 
   try {
     const res = await fetch(`/api/leads/${id}/generate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ template, forceEnrich: true })
+      body: JSON.stringify({ template, archetype: template, forceEnrich: true })
     });
     const data = await res.json();
     if (data.success) {

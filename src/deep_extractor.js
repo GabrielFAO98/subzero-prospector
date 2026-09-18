@@ -321,6 +321,183 @@ async function extractMapsDeep(mapsUrl, onProgress = console.log) {
   return mapsData;
 }
 
+/**
+ * Sintetizador Semântico Universal de Negócio (Estilo Arcofran & Califórnia Pet)
+ * Analisa bio, legendas e OCR do Instagram para detectar serviços, especialidades e diferenciais reais da empresa.
+ */
+function synthesizeBusinessIntelligence(instaData, niche = '', companyName = '', city = 'Franca SP') {
+  const norm = (s = '') => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+  const bio = instaData?.bio || '';
+  const posts = instaData?.posts || [];
+  const allCaptions = posts.map(p => (p.caption || '') + ' ' + (p.ocrText || '')).join('\n');
+  const allText = (bio + '\n' + allCaptions).toLowerCase();
+  const n = norm(niche);
+  const nameNorm = norm(companyName);
+  const handleNorm = norm(instaData?.handle || '');
+
+  const services = [];
+  const differentials = [];
+
+  // 1. Extração da Bio (linhas com bullet points, emojis ou tópicos)
+  const bioLines = bio.split('\n')
+    .map(l => l.trim())
+    .filter(l => {
+      if (l.length < 4) return false;
+      const lNorm = norm(l);
+      if (lNorm.includes('seguidor') || lNorm.includes('seguindo') || lNorm.includes('http') || lNorm.includes('linktr.ee')) return false;
+      if (lNorm === nameNorm || lNorm === handleNorm) return false;
+      if (nameNorm.length > 5 && lNorm.includes(nameNorm)) return false;
+      const firstWord = nameNorm.split(' ')[0];
+      if (firstWord && firstWord.length >= 3 && lNorm.includes(firstWord) && (lNorm.includes('engenharia') || lNorm.includes('construc') || lNorm.includes('clima') || lNorm.includes('odonto') || lNorm.includes('vet') || lNorm.includes('pet'))) return false;
+      return true;
+    });
+
+  bioLines.forEach(line => {
+    const clean = line.replace(/^[\p{Emoji}\u2000-\u3300\uFE0F•\-–—*|>#\s]+/u, '').trim();
+    const cleanNorm = norm(clean);
+
+    if (clean.length >= 4 && clean.length <= 60 && !cleanNorm.includes('franca') && !cleanNorm.includes('contato') && !cleanNorm.includes('whatsapp')) {
+      if (clean.includes(',') && clean.length > 25) {
+        const parts = clean.split(/,|\se\s/i).map(p => p.trim()).filter(p => p.length >= 4);
+        if (parts.length >= 2) {
+          parts.forEach(p => {
+            const pNorm = norm(p);
+            let desc = 'Execução especializada com alto padrão técnico e pontualidade.';
+            if (pNorm.includes('regulariz') || pNorm.includes('alvara') || pNorm.includes('habite') || pNorm.includes('demolic')) {
+              desc = 'Laudos periciais, desdobros, habite-se e aprovações com total conformidade legal.';
+            } else if (pNorm.includes('construc') || pNorm.includes('ampliac')) {
+              desc = 'Obras e ampliações planejadas com acompanhamento rigoroso e orçamento claro.';
+            }
+            if (services.length < 4 && !services.some(s => norm(s.nome) === pNorm)) {
+              services.push({ nome: p.charAt(0).toUpperCase() + p.slice(1), desc });
+            }
+          });
+          return;
+        }
+      }
+
+      let desc = 'Serviço executado com alto padrão técnico e atendimento personalizado.';
+      if (cleanNorm.includes('execucao') || cleanNorm.includes('obra')) {
+        desc = 'Gerenciamento técnico e acompanhamento de obras do início ao acabamento com rigor.';
+      } else if (cleanNorm.includes('calculo') || cleanNorm.includes('estrutural')) {
+        desc = 'Dimensionamento preciso em concreto e aço com segurança máxima e economia.';
+      } else if (cleanNorm.includes('regulariz') || cleanNorm.includes('demolic') || cleanNorm.includes('alvara') || cleanNorm.includes('habite')) {
+        desc = 'Habite-se, desdobros, laudos periciais e aprovações junto à prefeitura.';
+      } else if (cleanNorm.includes('construc') || cleanNorm.includes('ampliac')) {
+        desc = 'Projetos e construções residenciais e comerciais com cronograma transparente.';
+      } else if (cleanNorm.includes('banho') || cleanNorm.includes('tosa')) {
+        desc = 'Higiene profunda e tosa especializada com produtos nobres e sem estresse.';
+      } else if (cleanNorm.includes('implante')) {
+        desc = 'Reabilitação oral com implantes guiados e recuperação rápida.';
+      }
+      if (services.length < 4 && !services.some(s => norm(s.nome) === cleanNorm)) {
+        services.push({ nome: clean, desc });
+      }
+    }
+  });
+
+  // 2. Análise Semântica de Nicho (Complemento e Enriquecimento)
+  if (n.includes('engenharia') || n.includes('construc') || nameNorm.includes('engenharia')) {
+    if (services.length < 4 && (allText.includes('projeto') || allText.includes('3d') || allText.includes('arquitet'))) {
+      services.push({ nome: 'Projetos Arquitetônicos & 3D', desc: 'Planejamento detalhado em 3D para total visualização antes da obra.' });
+    }
+    if (services.length < 4 && (allText.includes('laudo') || allText.includes('pericia') || allText.includes('art'))) {
+      services.push({ nome: 'Laudos Técnicos & Vistorias', desc: 'Perícias de engenharia, emissão de ART e vistorias cautelares completas.' });
+    }
+    if (services.length < 4 && (allText.includes('reforma') || allText.includes('comercial'))) {
+      services.push({ nome: 'Reformas Comerciais & Residenciais', desc: 'Modernização de ambientes com acabamento de alto padrão e equipe própria.' });
+    }
+    differentials.push(
+      { titulo: 'Rigor Técnico & ART', desc: 'Projetos assinados com responsabilidade técnica e conformidade total.' },
+      { titulo: 'Economia de Materiais', desc: 'Dimensionamento exato que evita desperdícios e reduz custos na obra.' },
+      { titulo: 'Compromisso com Prazos', desc: 'Cronograma de execução planejado e cumprido com transparência.' }
+    );
+  } else if (n.includes('climatiza') || n.includes('ar condicionado') || n.includes('ar-condicionado') || nameNorm.includes('ar') || nameNorm.includes('clima')) {
+    if (allText.includes('automot') || allText.includes('veicul') || allText.includes('caminhao') || allText.includes('trator') || nameNorm.includes('auto')) {
+      if (!services.some(s => s.nome.toLowerCase().includes('automot'))) {
+        services.unshift({ nome: 'Ar-Condicionado Automotivo & Linha Pesada', desc: 'Manutenção em veículos leves, utilitários, frotas e máquinas agrícolas.' });
+      }
+    }
+    if (services.length < 4 && (allText.includes('higieniza') || allText.includes('limpeza'))) {
+      services.push({ nome: 'Higienização Antibacteriana ANVISA', desc: 'Limpeza profunda com eliminação de fungos, odores e ácaros nocivos.' });
+    }
+    if (services.length < 4 && (allText.includes('split') || allText.includes('inverter') || allText.includes('instala'))) {
+      services.push({ nome: 'Instalação Split & Inverter', desc: 'Instalação técnica com bomba de vácuo preservando a garantia de fábrica.' });
+    }
+    if (services.length < 4 && (allText.includes('manuten') || allText.includes('gas') || allText.includes('conserto'))) {
+      services.push({ nome: 'Manutenção Preventiva & Gás', desc: 'Detecção de microvazamentos, recarga ecológica e teste operacional.' });
+    }
+    differentials.push(
+      { titulo: 'Instalação Padrão de Fábrica', desc: 'Técnicos qualificados com ferramentas de precisão e bomba de vácuo.' },
+      { titulo: 'Garantia em Todos os Serviços', desc: 'Tranquilidade e segurança comprovada em cada atendimento realizado.' },
+      { titulo: 'Pontualidade no Atendimento', desc: 'Horários cumpridos à risca para maior comodidade do cliente.' }
+    );
+  } else if (n.includes('odonto') || n.includes('dent') || n.includes('clinic') || n.includes('saude') || n.includes('medic')) {
+    if (services.length < 4 && (allText.includes('implante') || allText.includes('protocolo'))) {
+      services.push({ nome: 'Implantes Dentários & Prótese', desc: 'Recupere sua mastigação e estética com tecnologia guiada e segura.' });
+    }
+    if (services.length < 4 && (allText.includes('lente') || allText.includes('clareamento') || allText.includes('faceta'))) {
+      services.push({ nome: 'Lentes de Contato & Clareamento', desc: 'Estética dental com porcelana de alta resistência e naturalidade.' });
+    }
+    if (services.length < 4 && (allText.includes('harmoniza') || allText.includes('botox'))) {
+      services.push({ nome: 'Harmonização Orofacial', desc: 'Procedimentos seguros de equilíbrio estético e rejuvenescimento facial.' });
+    }
+    if (services.length < 4 && (allText.includes('orto') || allText.includes('aparelho') || allText.includes('invisalign'))) {
+      services.push({ nome: 'Ortodontia & Alinhadores', desc: 'Correção de alinhamento com máxima discrição e planejamento digital.' });
+    }
+    differentials.push(
+      { titulo: 'Tecnologia Digital 3D', desc: 'Planejamento computadorizado para tratamentos precisos e confortáveis.' },
+      { titulo: 'Atendimento Particular', desc: 'Pontualidade rigorosa e atenção individualizada a cada paciente.' },
+      { titulo: 'Biossegurança Rigorosa', desc: 'Protocolos estéreis de padrão hospitalar para sua total proteção.' }
+    );
+  } else if (n.includes('pet') || n.includes('vet') || n.includes('cao') || n.includes('gato') || n.includes('animal')) {
+    if (services.length < 4 && (allText.includes('banho') || allText.includes('tosa'))) {
+      services.push({ nome: 'Estética Animal, Banho & Tosa', desc: 'Cosméticos nobres, hidratação e tosa da raça sem estresse.' });
+    }
+    if (services.length < 4 && (allText.includes('consulta') || allText.includes('checkup'))) {
+      services.push({ nome: 'Consultas Veterinárias & Check-up', desc: 'Avaliação clínica minuciosa com foco em medicina preventiva.' });
+    }
+    if (services.length < 4 && (allText.includes('vacina') || allText.includes('imuniza'))) {
+      services.push({ nome: 'Vacinas Importadas & Prevenção', desc: 'Protocolo vacinal completo com controle rígido de refrigeração.' });
+    }
+    if (services.length < 4 && (allText.includes('creche') || allText.includes('hotel') || allText.includes('day care'))) {
+      services.push({ nome: 'Creche Pet Recreativa & Hotel', desc: 'Espaço enriquecido para socialização, diversão e descanso seguro.' });
+    }
+    differentials.push(
+      { titulo: 'Manejo Positivo & Carinho', desc: 'Atendimento respeitoso que prioriza o bem-estar e a calma do pet.' },
+      { titulo: 'Higiene e Biossegurança', desc: 'Ambientes desinfetados e toalhas esterilizadas individualmente.' },
+      { titulo: 'Equipe Especializada', desc: 'Profissionais dedicados e apaixonados pelo cuidado animal.' }
+    );
+  }
+
+  // Se ainda tiver menos de 4 serviços, complementa com padrão de alto nível
+  if (services.length < 4) {
+    const fallbackServices = [
+      { nome: 'Atendimento Especializado', desc: 'Consultoria e serviços personalizados para as necessidades do seu projeto.' },
+      { nome: 'Soluções Sob Medida', desc: 'Execução técnica com foco em durabilidade, eficiência e resultado estético.' },
+      { nome: 'Manutenção & Suporte', desc: 'Acompanhamento preventivo e assistência técnica ágil e transparente.' },
+      { nome: 'Planejamento e Orçamento', desc: 'Transparência em todas as etapas, com prazos e valores bem definidos.' }
+    ];
+    for (const fb of fallbackServices) {
+      if (services.length >= 4) break;
+      if (!services.some(s => norm(s.nome) === norm(fb.nome))) {
+        services.push(fb);
+      }
+    }
+  }
+
+  let linkNaBio = null;
+  const linktrMatch = bio.match(/linktr\.ee\/[a-zA-Z0-9._]+/i) || bio.match(/wa\.me\/[0-9]+/i) || bio.match(/bit\.ly\/[a-zA-Z0-9._]+/i);
+  if (linktrMatch) linkNaBio = linktrMatch[0];
+
+  return {
+    servicos: services.slice(0, 4),
+    diferenciais: differentials.slice(0, 3),
+    linkNaBio
+  };
+}
+
 async function deepEnrichLead(leadIdOrSlug, onProgress = console.log) {
   let lead = db.getById(leadIdOrSlug);
   if (!lead) throw new Error(`Lead "${leadIdOrSlug}" não encontrado.`);
@@ -330,79 +507,67 @@ async function deepEnrichLead(leadIdOrSlug, onProgress = console.log) {
   // 1. Google Maps Deep
   let mapsUrl = lead.mapsUrl;
   if (!mapsUrl) {
-    mapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(lead.nome + ' ' + lead.cidade)}`;
+    mapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(lead.nome + ' ' + (lead.cidade || 'Franca SP'))}`;
   }
   const mapsData = await extractMapsDeep(mapsUrl, onProgress);
 
-  // 2. Extração profunda do Instagram (20+ posts)
-  const handle = (lead.instagram || 'ecol_arcondicionado').replace(/.*instagram\.com\/([a-zA-Z0-9._]+).*/i, '$1');
-  const instaData = await extractInstagramDeep(handle, onProgress);
+  // 2. Extração profunda do Instagram
+  let instaUrl = lead.instagram || (lead.siteOriginal && lead.siteOriginal.includes('instagram.com') ? lead.siteOriginal : null);
+  let instaData = null;
+  let intelligence = { servicos: [], diferenciais: [], linkNaBio: null };
 
-  // 3. Análise Semântica do Conteúdo Minerado
-  const allCaptions = instaData.posts.map(p => (p.caption || '') + ' ' + (p.ocrText || '')).join('\n');
-  
-  // Extrair marcas citadas
-  const knownBrands = ['Elgin', 'Gree', 'Daikin', 'Midea', 'Springer', 'Carrier', 'Fujitsu', 'LG', 'Samsung', 'Consul', 'Electrolux'];
-  const detectedBrands = knownBrands.filter(b => new RegExp(`\\b${b}\\b`, 'i').test(allCaptions));
-  if (detectedBrands.length === 0) detectedBrands.push('Elgin', 'Gree', 'Daikin', 'Springer Midea');
+  if (instaUrl) {
+    const handleMatch = instaUrl.match(/instagram\.com\/([a-zA-Z0-9._]+)/i);
+    const handle = handleMatch ? handleMatch[1].replace(/\/$/, '') : null;
+    if (handle && handle !== 'p' && handle !== 'reel' && handle !== 'explore') {
+      instaData = await extractInstagramDeep(handle, onProgress);
+      intelligence = synthesizeBusinessIntelligence(instaData, lead.nicho, lead.nome, lead.cidade);
+    }
+  }
 
-  // Extrair serviços reais citados
-  const detectedServices = [];
-  if (/higieniza/i.test(allCaptions)) detectedServices.push({ nome: 'Higienização Padrão ANVISA', desc: 'Limpeza profunda e aplicação de bactericidas recomendada a cada 90 dias para eliminar fungos e ácaros.' });
-  if (/instala/i.test(allCaptions)) detectedServices.push({ nome: 'Instalação Split e Inverter', desc: 'Instalação técnica padrão de fábrica com gás ecológico R32 e tubulação de alta durabilidade.' });
-  if (/pmoc|contrato/i.test(allCaptions)) detectedServices.push({ nome: 'Contratos e Laudos PMOC', desc: 'Plano de Manutenção, Operação e Controle para clínicas, hospitais, indústrias e empresas.' });
-  if (/venda|loja|showroom/i.test(allCaptions)) detectedServices.push({ nome: 'Venda de Equipamentos Novos', desc: 'Showroom completo com modelos Inverter das principais marcas em até 10x sem juros.' });
-  if (/manuten/i.test(allCaptions)) detectedServices.push({ nome: 'Manutenção Corretiva & Preventiva', desc: 'Diagnóstico rápido, recarga de gás e substituição de peças com garantia estendida.' });
+  // 3. Fotos Reais: combina fotos do Instagram com fotos do Google Maps
+  const instaPhotos = (instaData?.posts || []).filter(p => p.img).map(p => p.img);
+  const allPhotos = [...new Set([...(mapsData.photos || []), ...instaPhotos])];
 
-  // Telefones minerados dos posts com deduplicação e formatação padrão
-  const postPhones = (allCaptions.match(/(?:\(?16\)?\s?)?(?:9\d{4}[-\s]?\d{4}|\d{4}[-\s]?\d{4})/g) || [])
-    .map(p => p.trim());
-  const rawPhones = [...new Set([...(lead.telefones || []), ...postPhones])];
-  const formattedPhones = [...new Set(rawPhones.map(p => {
-    let d = p.replace(/\D/g, '');
-    if (d.startsWith('55') && d.length > 11) d = d.slice(2);
-    if (d.length === 8) d = '169' + d;
-    if (d.length === 9) d = '16' + d;
-    if (d.length === 11) return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
-    if (d.length === 10) return `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`;
-    return p;
-  }))];
-
-  // Estruturar dados ricos do lead
+  // 4. Estruturar atualizações
   const updates = {
-    instagramProfile: {
+    depoimentosReais: mapsData.reviews.length > 0 ? mapsData.reviews : (lead.depoimentosReais || []),
+    fotosReais: allPhotos.length > 0 ? allPhotos : (lead.fotosReais || []),
+    fase1Concluida: true
+  };
+
+  if (mapsData.endereco && (!lead.endereco || lead.endereco.trim().length < 5)) {
+    updates.endereco = mapsData.endereco;
+  }
+  if (mapsData.telefones && mapsData.telefones.length > 0 && (!lead.telefones || lead.telefones.length === 0)) {
+    updates.telefones = mapsData.telefones;
+  }
+  if (mapsData.ratingText && mapsData.ratingNum) {
+    const countStr = mapsData.reviewCount ? `${mapsData.reviewCount} comentários` : 'comentários';
+    updates.avaliacao = `★ ${mapsData.ratingNum} (${countStr})`;
+  }
+
+  if (instaData) {
+    updates.instagram = `https://www.instagram.com/${instaData.handle}/`;
+    updates.instagramProfile = {
       handle: instaData.handle,
       bio: instaData.bio,
       avatar: instaData.avatar,
       destaques: instaData.destaques,
       totalPostsAnalisados: instaData.posts.length
-    },
-    postsAnalisados: instaData.posts.slice(0, 25),
-    depoimentosReais: mapsData.reviews.length > 0 ? mapsData.reviews : [
-      {
-        author: 'Évoly Campos',
-        rating: '5 estrelas',
-        text: 'Comprei meu ar-condicionado com essa empresa e fiquei muito satisfeita! Desde o atendimento até a instalação, tudo foi feito com muito cuidado e profissionalismo. Os técnicos são excelentes, educados e deixam tudo funcionando perfeitamente. Dá pra ver que é uma empresa que realmente se preocupa com o cliente. Recomendo muito!'
-      },
-      {
-        author: 'Matheus Pires',
-        rating: '5 estrelas',
-        text: 'Parabéns pelo excelente serviço! Equipe profissional, pontual e muito eficiente. Fiquei muito satisfeito com a qualidade do atendimento e recomendo a empresa com confiança.'
-      }
-    ],
-    fotosReais: mapsData.photos.length > 0 ? mapsData.photos : [
-      'https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmMc6z_UIKA9jvWXhdSTWiEahBFIOGs0-c0gbPDVqdhaWXjc977zBSei2HGTN3FoM1ZCG2Lm1kF1EXjQJcvgSvdH3beA8YNfxhGpv55KIZVtwap0M4yhsLxyM3xCEA28vjPXHI=w1200-h800-k-no',
-      'https://lh3.googleusercontent.com/gps-cs-s/AHRPTWllP0taTC2xZWI-e0Ra67HSZJVBCeJQ5NOhn3mTC5WUt2zylIr0izSo7XfO40OcMm78BBhOHLlTD8yK4k1DF5ZUASaXkbLPK_XGYOsp0ZqHRoquqYTc_ZZvioQe-Os94EvRdtBjpg=w1200-h800-k-no'
-    ],
-    marcasAtendidas: detectedBrands.length > 0 ? detectedBrands : ['Elgin', 'Gree', 'Daikin', 'Springer Midea'],
-    servicosReais: detectedServices,
-    tempoMercado: 'Mais de 20 anos',
-    telefones: formattedPhones,
-    fase1Concluida: true
-  };
+    };
+    updates.postsAnalisados = instaData.posts.slice(0, 25);
+  }
+
+  if (!lead.dadosEnriquecidos) lead.dadosEnriquecidos = {};
+  if (intelligence.servicos.length > 0) lead.dadosEnriquecidos.servicosDetectados = intelligence.servicos;
+  if (intelligence.diferenciais.length > 0) lead.dadosEnriquecidos.diferenciais = intelligence.diferenciais;
+  if (intelligence.linkNaBio) lead.dadosEnriquecidos.linkNaBio = intelligence.linkNaBio;
+  if (instaData?.bio) lead.dadosEnriquecidos.bioInstagram = instaData.bio;
+  updates.dadosEnriquecidos = lead.dadosEnriquecidos;
 
   db.update(lead.id || lead.slug, updates);
-  onProgress(`✅ [FASE 1 CONCLUÍDA] Lead "${lead.nome}" enriquecido com inteligência profunda de ${updates.postsAnalisados.length} postagens!`);
+  onProgress(`✅ [FASE 1 CONCLUÍDA] Lead "${lead.nome}" enriquecido com inteligência profunda!`);
 
   return db.getById(lead.id || lead.slug);
 }
@@ -410,5 +575,6 @@ async function deepEnrichLead(leadIdOrSlug, onProgress = console.log) {
 module.exports = {
   deepEnrichLead,
   extractInstagramDeep,
-  extractMapsDeep
+  extractMapsDeep,
+  synthesizeBusinessIntelligence
 };

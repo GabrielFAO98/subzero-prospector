@@ -1,5 +1,410 @@
 [
   {
+    "id": "lead_1789766210748_5gquk5",
+    "createdAt": "2026-09-18T21:16:50.748Z",
+    "updatedAt": "2026-09-18T21:55:29.256Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "ulo-engenharia-e-construcoes",
+    "nome": "Ulo Engenharia e Construção",
+    "nicho": "engenharia",
+    "cidade": "Franca SP",
+    "siteOriginal": "https://www.instagram.com/uloengenharia/",
+    "siteStatus": "apenas_social",
+    "siteHttpCode": null,
+    "siteHealthReason": "Utiliza link de Instagram no lugar de site institucional próprio",
+    "avaliacao": "★ 5.0 (20 comentários)",
+    "endereco": "Av. Maj. Nicácio, 1306 - Sl 11",
+    "mapsUrl": "https://www.google.com/maps/place/Ulo+Engenharia+e+Constru%C3%A7%C3%B5es/data=!4m7!3m6!1s0x94b0a78d48971985:0xcbf13c11d9651e31!8m2!3d-20.5303241!4d-47.3996148!16s%2Fg%2F11rcrh4dng!19sChIJhRmXSI2nsJQRMR5l2RE88cs?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxNi4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 99191-0097"
+    ],
+    "emails": [],
+    "instagram": "https://www.instagram.com/uloengenharia/",
+    "facebook": "https://www.facebook.com/ulo.engenharia/",
+    "whatsappPrincipal": "5516991910097",
+    "whatsappFormatado": "(16) 99191-0097",
+    "status": "prototipo_pronto",
+    "motivoDescarte": null,
+    "analiseIA": "📱 Oportunidade Quente: Utiliza apenas rede social no Google. Não possui site próprio para ranquear organicamente nem reter visitantes profissionais.",
+    "categoria": {
+      "slug": "outros",
+      "nome": "Engenharia",
+      "icone": "🏢",
+      "cor": "#64748b",
+      "badgeClass": "cat-other"
+    },
+    "siteData": {
+      "title": null,
+      "metaDescription": null,
+      "headings": [],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": []
+    },
+    "dadosEnriquecidos": {
+      "instagram": "https://www.instagram.com/uloengenharia/",
+      "facebook": null,
+      "whatsappPrincipal": "5516991910097",
+      "whatsappFormatado": "(16) 99191-0097",
+      "website": "https://www.instagram.com/uloengenharia/",
+      "websiteFromBio": null,
+      "bioInstagram": "uloengenharia\n682 seguidores\n512 seguindo\nỤlọ Engenharia & Construções\n🏗️ Execução de obras\n🧱 Cálculo Estrutural\n🏚️ Construção, Regularização, Ampliação e Demolição\n📍 Franca e região\nlinktr.ee/uloengenharia",
+      "linkNaBio": "linktr.ee/uloengenharia",
+      "servicosDetectados": [
+        {
+          "nome": "Execução de obras",
+          "desc": "Gerenciamento técnico e acompanhamento de obras do início ao acabamento com rigor."
+        },
+        {
+          "nome": "Cálculo Estrutural",
+          "desc": "Dimensionamento preciso em concreto e aço com segurança máxima e economia."
+        },
+        {
+          "nome": "Construção",
+          "desc": "Obras e ampliações planejadas com acompanhamento rigoroso e orçamento claro."
+        },
+        {
+          "nome": "Regularização",
+          "desc": "Laudos periciais, desdobros, habite-se e aprovações com total conformidade legal."
+        }
+      ],
+      "diferenciais": [
+        {
+          "titulo": "Rigor Técnico & ART",
+          "desc": "Projetos assinados com responsabilidade técnica e conformidade total."
+        },
+        {
+          "titulo": "Economia de Materiais",
+          "desc": "Dimensionamento exato que evita desperdícios e reduz custos na obra."
+        },
+        {
+          "titulo": "Compromisso com Prazos",
+          "desc": "Cronograma de execução planejado e cumprido com transparência."
+        }
+      ]
+    },
+    "depoimentosReais": [
+      {
+        "author": "Breno Bernal",
+        "rating": "5 estrelas",
+        "text": "Meninos são excelentes, em partes de execução e parte de documentação, são rápidos, eficiente, e muito profissional, ficou perfeito a casa, acabamento muito top. Estou muito satisfeito com tudo."
+      },
+      {
+        "author": "liene Viana",
+        "rating": "5 estrelas",
+        "text": "Wolf é um engenheiro excelente: tem muito conhecimento técnico, mas também é ótimo no atendimento ao cliente - atencioso, detalhista e paciente. Sem dúvida, é a melhor escolha."
+      },
+      {
+        "author": "Karla Souza",
+        "rating": "5 estrelas",
+        "text": "Serviço maravilhoso e impecável. Profissionais muito competentes com um trabalho excelente, realizaram meu sonho. Um ótimo preço. Vocês são incríveis!!!"
+      },
+      {
+        "author": "Priscila Perim",
+        "rating": "5 estrelas",
+        "text": "Serviço prestado com competência, profissionalismo, pontualidade e de total qualidade!!! Garantia de satisfação na contratação!! Vale a pena conferir!! 😉☺😃😃 …"
+      },
+      {
+        "author": "Luciano Jacintho",
+        "rating": "5 estrelas",
+        "text": "O Wolf e o Sidinei são excelentes profissionais. O projeto estrutural que eles fizeram foi primoroso. Recomendo."
+      }
+    ],
+    "fotosReais": [
+      "https://scontent.cdninstagram.com/v/t51.82787-15/545333087_18054815096626359_654001757141976157_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=108&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=n8AFMEGKhYQQ7kNvwE06-n5&_nc_oc=AdrpKygurCGEgTD9e8ZECIhu1YfAONqLH7MEqdEbnYyh0wAd1PyTMH5O8c_2A4SXAIM&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=JuCNX0pGA8RUc6-B0jT1mA&_nc_ss=7aa8c&oh=00_AQKKPUuDioFjB2jmocy1_ayemUGscxtPYksLR45tro364A&oe=6AB38D44",
+      "https://scontent.cdninstagram.com/v/t51.82787-15/514626934_18046628282626359_5127556897738956827_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=105&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=gCiyHksBJ_YQ7kNvwHPormf&_nc_oc=Adq58Hhu0vl6YdtCvDuBgptJjkL7k59AgA_-czX40RY41z6jG22qJlid_RrfKsAd5O0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=JuCNX0pGA8RUc6-B0jT1mA&_nc_ss=7aa8c&oh=00_AQK4hR3MiGVX6LfG9fAzndNLRfGxXhlmJIFnJE3KAicS6w&oe=6AB386FE",
+      "https://scontent.cdninstagram.com/v/t51.75761-15/508551321_18044995919626359_7131523207286809332_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=100&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=4n_-hLSf5vEQ7kNvwGZ9R88&_nc_oc=Ado-BGHyWPz5b15jbNwcW9JPm4eaLfcG0GAfvx7lS0pajHYYE30nMswZhVzEL1ue_Zo&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=JuCNX0pGA8RUc6-B0jT1mA&_nc_ss=7aa8c&oh=00_AQL5U4eqy3_j17w1qlfPNAj3pwlSZeHQDlnPSSrLHG-org&oe=6AB37F91",
+      "https://scontent.cdninstagram.com/v/t51.75761-15/491443992_18037923785626359_4595650664638129613_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=100&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=WFSFRjJInfkQ7kNvwG_exx3&_nc_oc=Adpn2rejIgmx8z2RJsSTwGYAR7P9g-5WJU3o9d2PzCjduLxDZ0KzmCCgCfG8_pgvvX0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=JuCNX0pGA8RUc6-B0jT1mA&_nc_ss=7aa8c&oh=00_AQK0DIIUiBwrbl6DLlZoZgdzWsowtiK0b3NFz98tNb7Hqg&oe=6AB3935D",
+      "https://scontent.cdninstagram.com/v/t51.75761-15/489441993_18037587815626359_8980611824755761191_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=102&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=LoVt616-5v4Q7kNvwHJ20IP&_nc_oc=AdoED7OfQV3GchL76IRivwOJLRhUZHERBamtSM9lrZTYbkBrg7iFxqJ2ivtXzDBkvtM&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=JuCNX0pGA8RUc6-B0jT1mA&_nc_ss=7aa8c&oh=00_AQIKkjlqbxPHQJl4uSDQUlVQlHCwyWh6sUMAjmKM2sVhNQ&oe=6AB36E18",
+      "https://scontent.cdninstagram.com/v/t51.75761-15/488729452_18037378253626359_6057144586445297898_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=102&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=xbftdqBvv6oQ7kNvwEVIAgV&_nc_oc=AdqBQweTOQAjqUkm6EMbO69lOyMfx-RwiFLlRukFE4ehUQHOt0nHF3x0iToq5slnYLY&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=JuCNX0pGA8RUc6-B0jT1mA&_nc_ss=7aa8c&oh=00_AQJc48MJkIYCox_21HO_uAIVQ6RETSV8XLG9eVhFU7ZnwA&oe=6AB37444",
+      "https://scontent.cdninstagram.com/v/t51.75761-15/487501407_18036586754626359_4113492903913217274_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=108&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=ghO_vFmCR2MQ7kNvwFnA94v&_nc_oc=AdoLWtU8z1VutrNClBd-07JISO8FUjuVZ0i3XIZaRRjNZwOSb0lz0-zciIwqCjmxiyk&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=JuCNX0pGA8RUc6-B0jT1mA&_nc_ss=7aa8c&oh=00_AQKG6OxHDwZMYxob5tv6gmhsyfQkj36m9c3Kp_BU531kJQ&oe=6AB37417",
+      "https://scontent.cdninstagram.com/v/t39.30808-6/469999734_18023314955626359_3466189443256898949_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=100&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=UqU3TqxZGk0Q7kNvwEDie1E&_nc_oc=Adp_QWHoZpxIHa7MqtTVBrIHFrcpTJuTP2p9XmU1LscVDSUvxLLnAIK81xP9wD2GAX4&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=JuCNX0pGA8RUc6-B0jT1mA&_nc_ss=7aa8c&oh=00_AQKIfrs-5tVsAOYW5B0su1EpYdBNOK14obeOrEsuoePkeg&oe=6AB3915A",
+      "https://scontent.cdninstagram.com/v/t39.30808-6/469886935_18023314586626359_1919246691622707161_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=105&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=KFEMyPGg4dYQ7kNvwGPzYAA&_nc_oc=AdoDKVZAA3W6t0rDrvnSJX4nr5HmegmduGYESop4zczwHWEl9_y7OJpou17dsynGIgo&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=JuCNX0pGA8RUc6-B0jT1mA&_nc_ss=7aa8c&oh=00_AQIqbfCTlx9hltbwxszDCkOO6jTK3tPzbXfYSUxTfUO5Iw&oe=6AB379D6",
+      "https://scontent.cdninstagram.com/v/t39.30808-6/469805075_18023313350626359_7063894889618487362_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=106&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=LyduPkgUFxMQ7kNvwE_pPpX&_nc_oc=Adpz3FF7xbb62B6D7j9B07lbC3cxst8El1WYzPYn4ztlc88-kXFj9RvEGKH8GH3HSgA&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=JuCNX0pGA8RUc6-B0jT1mA&_nc_ss=7aa8c&oh=00_AQJSX4Y41BQclN0DcFvlH3Pp34oVzzkXEpJ3geNcTE1p1g&oe=6AB39AD3",
+      "https://scontent.cdninstagram.com/v/t51.82787-15/622122081_18079660970004620_9074305504806400541_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=101&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=F5YI_nLKNjEQ7kNvwGc0xS3&_nc_oc=Adr_xN_ct4s28cCbB0RvGjfoea01EFmKYVoz8lnMgG5g7N9L6ZUM-mFL1CUPgcRhjfg&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=JuCNX0pGA8RUc6-B0jT1mA&_nc_ss=7aa8c&oh=00_AQIw9PKwHD9NECZx15KJgHLMaWsZVLa1kZmqILe9UE7dCg&oe=6AB381F1",
+      "https://scontent.cdninstagram.com/v/t51.71878-15/499287068_993789429593106_8849045283115210939_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=108&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=9Z-MyWA41c4Q7kNvwGsAXIw&_nc_oc=AdodOUwjjJBKFpgYTOhLorTqtK8Elb8DeRGOViVzQFGxz6PXq1BWLsB8SZ_0TQyI2mU&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=JuCNX0pGA8RUc6-B0jT1mA&_nc_ss=7aa8c&oh=00_AQKYRbr0ILsUmeI73cUiaG79DVbW2W1DJnFFrn2aES88Kw&oe=6AB38CA6",
+      "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlHGR0AoNJMxnMJlxlQBdxN7oFQhyjm49KlLqxcwd0rp3Wi-UosNC7_KHeAq9Nb0urNSldUQAt93IvgeIiQctgnv9d2xFluqZA8A3-4IDB2GmOK6G5UP6B00UqeAB3KcJOSwXj_RA=w1200-h800-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnOppEziL07RIQHgmmv6MktBlttpLj3OIS-BWThVOVVbYUGM9zx_Sj2EJEtpbegsg-g8U7B7ZsqHyTJ84ZM-tcJXfGOwYaEJ3DdCZ1DnlzNeOM-e7pxjUCFcr8XiXDq4c2yzwiebLZEVVM=w1200-h800-k-no"
+    ],
+    "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\ulo-engenharia-e-construcoes\\index.html",
+    "prototypeUrl": "/previews/ulo-engenharia-e-construcoes/index.html",
+    "messages": {
+      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Ulo Engenharia e Construção* tem uma excelente reputação, mas hoje quem pesquisa por *engenharia* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: utiliza apenas rede social no Google em vez de um site próprio de conversão — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, destacando as principais especialidades e os depoimentos dos seus clientes:\n👉 */previews/ulo-engenharia-e-construcoes/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
+      "email": {
+        "assunto": "Ulo Engenharia e Construção em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial",
+        "corpo": "Prezada equipe da Ulo Engenharia e Construção,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por engenharia em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Ulo Engenharia e Construção, já funcional e adaptada para smartphones:\n👉 /previews/ulo-engenharia-e-construcoes/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
+      }
+    },
+    "archetype": "industrial",
+    "templateEscolhido": "industrial",
+    "instagramProfile": {
+      "handle": "uloengenharia",
+      "bio": "uloengenharia\n682 seguidores\n512 seguindo\nỤlọ Engenharia & Construções\n🏗️ Execução de obras\n🧱 Cálculo Estrutural\n🏚️ Construção, Regularização, Ampliação e Demolição\n📍 Franca e região\nlinktr.ee/uloengenharia",
+      "avatar": "https://scontent.cdninstagram.com/v/t51.2885-19/473044482_933741708940327_4097795667153636250_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=101&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=sqmQN2FC3WkQ7kNvwG8Rzdk&_nc_oc=Adrqr5cN94mUrWYO2dILgEIWBvd1G5L4cH1EDdo9jz9rmeX1NkmZPR8luMTTiyDTU1c&_nc_zt=24&_nc_ht=scontent.cdninstagram.com&_nc_ss=7aa8c&oh=00_AQIZQ3k6Ims4f0HvrumJ5fXtg1S3luZdIohVD2vxpL7qyw&oe=6AB37D7E",
+      "destaques": [
+        {
+          "title": "512 seguindo"
+        }
+      ],
+      "totalPostsAnalisados": 12
+    }
+  },
+  {
+    "id": "lead_1789766207165_ypquxk",
+    "createdAt": "2026-09-18T21:16:47.165Z",
+    "updatedAt": "2026-09-18T21:16:47.165Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "triad-construtora-e-engenharia-bruno-borges-ferreira-engenheiro-civil",
+    "nome": "TRÍAD CONSTRUTORA E ENGENHARIA - BRUNO BORGES FERREIRA ENGENHEIRO CIVIL",
+    "nicho": "engenharia",
+    "cidade": "Franca SP",
+    "siteOriginal": null,
+    "siteStatus": "nenhum",
+    "siteHttpCode": null,
+    "siteHealthReason": "Nenhum site cadastrado no Google Maps",
+    "avaliacao": "★ 5,0",
+    "endereco": "R. Geraldo Gomes de Souza, 741",
+    "mapsUrl": "https://www.google.com/maps/place/TR%C3%8DAD+CONSTRUTORA+E+ENGENHARIA+-+BRUNO+BORGES+FERREIRA+ENGENHEIRO+CIVIL/data=!4m7!3m6!1s0x94b0a95100a4de5f:0xc8d6f7e565cafdd5!8m2!3d-20.5569865!4d-47.3951021!16s%2Fg%2F11j38pvy0c!19sChIJX96kAFGpsJQR1f3KZeX31sg?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxNi4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 99190-0356"
+    ],
+    "emails": [],
+    "instagram": null,
+    "facebook": null,
+    "whatsappPrincipal": "5516991900356",
+    "whatsappFormatado": "(16) 99190-0356",
+    "status": "oportunidade_quente",
+    "motivoDescarte": null,
+    "analiseIA": "🔥 Oportunidade de Ouro em Franca SP: Empresa com ★ 5,0, porém SEM NENHUM SITE OFICIAL próprio cadastrado no Google ou no Instagram. Perde todo o tráfego orgânico diário!",
+    "categoria": {
+      "slug": "outros",
+      "nome": "Engenharia",
+      "icone": "🏢",
+      "cor": "#64748b",
+      "badgeClass": "cat-other"
+    },
+    "siteData": {
+      "title": null,
+      "metaDescription": null,
+      "headings": [],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": []
+    },
+    "dadosEnriquecidos": {
+      "instagram": null,
+      "facebook": null,
+      "whatsappPrincipal": "5516991900356",
+      "whatsappFormatado": "(16) 99190-0356",
+      "website": null,
+      "websiteFromBio": null,
+      "bioInstagram": null,
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": []
+    },
+    "_isNew": true
+  },
+  {
+    "id": "lead_1789766203412_1i5qn0",
+    "createdAt": "2026-09-18T21:16:43.412Z",
+    "updatedAt": "2026-09-18T21:16:43.412Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "fabor-engenharia",
+    "nome": "Fabor Engenharia",
+    "nicho": "engenharia",
+    "cidade": "Franca SP",
+    "siteOriginal": "https://www.faborengenharia.com.br",
+    "siteStatus": "online",
+    "siteHttpCode": 200,
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "★ 5,0",
+    "endereco": "Av. Alonso Y Alonso, 1219",
+    "mapsUrl": "https://www.google.com/maps/place/Fabor+Engenharia/data=!4m7!3m6!1s0x94b0a743352c279d:0x8d6f544d405a8e1b!8m2!3d-20.5449582!4d-47.3982563!16s%2Fg%2F11frnsh2nt!19sChIJnScsNUOnsJQRG45aQE1Ub40?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxNi4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 99300-2163",
+      "(16) 4997-7430"
+    ],
+    "emails": [
+      "willian.souza19@gmail.com",
+      "willian.souza19@gmail.comredes"
+    ],
+    "instagram": "https://www.instagram.com/faborengenharia/",
+    "facebook": "https://www.facebook.com/ENGFABOR/",
+    "whatsappPrincipal": "5516993002163",
+    "whatsappFormatado": "(16) 99300-2163",
+    "status": "descartado",
+    "motivoDescarte": "Grande Rede / Franquia (Múltiplos DDDs: 11, 78, 14, 16, 76, 89, 21, 38, 77)",
+    "analiseIA": "🏢 Identificada rede ou portal multi-regional com números de vários DDDs (11, 78, 14, 16, 76, 89, 21, 38, 77). Incompatível com prospecção e desenvolvimento de site local Subzero.",
+    "categoria": {
+      "slug": "outros",
+      "nome": "Engenharia",
+      "icone": "🏢",
+      "cor": "#64748b",
+      "badgeClass": "cat-other"
+    },
+    "siteData": {
+      "title": "Início | My Site 1",
+      "metaDescription": null,
+      "headings": [
+        "Construindo um futuro concreto",
+        "Construir é o nosso forte",
+        "Quem somos",
+        "Nossos serviços",
+        "O que fazemos",
+        "Nossos clientes"
+      ],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": [
+        "Tecnologia Digital & Planejamento 3D"
+      ]
+    },
+    "dadosEnriquecidos": {
+      "instagram": "https://www.instagram.com/faborengenharia/",
+      "facebook": "https://www.facebook.com/ENGFABOR/",
+      "whatsappPrincipal": "5516993002163",
+      "whatsappFormatado": "(16) 99300-2163",
+      "website": "https://www.faborengenharia.com.br",
+      "websiteFromBio": "https://www.faborengenharia.com.br/",
+      "bioInstagram": "faborengenharia\n1,395 followers\n1,238 following\nFabor Engenharia\nPlanejamento • Gestão • Resultado\n🧑🏻‍💻 Regularização de imóveis| Habite-se| Receita Federal\n🧱 Reforma•Construção... \nmore\nwww.faborengenharia.com.br\nVISTORIAS\nOBRAS\nREFORMAS\nPARCERIA\nSHOPPING\nAPROVAÇÕES\nPARCEIROS\nCONTATO",
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": [
+        "Tecnologia Digital & Planejamento 3D"
+      ]
+    },
+    "_isNew": true
+  },
+  {
+    "id": "lead_1789766195008_alr1ff",
+    "createdAt": "2026-09-18T21:16:35.008Z",
+    "updatedAt": "2026-09-18T21:16:35.008Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "premmia-engenharia-projetos-e-construcoes",
+    "nome": "Premmia Engenharia - Projetos e Construções",
+    "nicho": "engenharia",
+    "cidade": "Franca SP",
+    "siteOriginal": "http://premmiaengenharia.com.br",
+    "siteStatus": "online",
+    "siteHttpCode": 200,
+    "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
+    "avaliacao": "★ 5,0",
+    "endereco": "R. Floriano Peixoto, 1061",
+    "mapsUrl": "https://www.google.com/maps/place/Premmia+Engenharia+-+Projetos+e+Constru%C3%A7%C3%B5es/data=!4m7!3m6!1s0x94b0a7cdeb05b51b:0x9419157d6fe6e917!8m2!3d-20.5448063!4d-47.3996113!16s%2Fg%2F11nmnypbcx!19sChIJG7UF682nsJQRF-nmb30VGZQ?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxNi4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 97403-5368",
+      "(16) 4993-9639"
+    ],
+    "emails": [
+      "contato@premmiaengenharia.com.br"
+    ],
+    "instagram": "https://www.instagram.com/premmiaengenharia/",
+    "facebook": "https://www.facebook.com/premmiaengenharia/",
+    "whatsappPrincipal": "5516974035368",
+    "whatsappFormatado": "(16) 97403-5368",
+    "status": "site_ativo",
+    "motivoDescarte": null,
+    "analiseIA": "🌐 Site Ativo Detectado: ⚠️ Site sem SSL (inseguro HTTP). Empresa já possui presença web (http://premmiaengenharia.com.br). Candidata a redesign, melhoria de SEO local ou otimização de velocidade com template Subzero.",
+    "categoria": {
+      "slug": "outros",
+      "nome": "Engenharia",
+      "icone": "🏢",
+      "cor": "#64748b",
+      "badgeClass": "cat-other"
+    },
+    "siteData": {
+      "title": "Premmia Projetos e Construções – Empresa especializada em Obras Financiadas e Projetos em Franca-SP!",
+      "metaDescription": null,
+      "headings": [
+        "Mais do que edificações,construímos SONHOS!",
+        "Sua conquista está a um passo de se realizar!",
+        "Solicite uma consultoria!",
+        "Nossos diferenciais!",
+        "Projetos",
+        "Administração de Obra",
+        "Construções Financiadas",
+        "Agilidade e Praticidade"
+      ],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": [
+        "Tecnologia Digital & Planejamento 3D"
+      ]
+    },
+    "dadosEnriquecidos": {
+      "instagram": "https://www.instagram.com/premmiaengenharia/",
+      "facebook": "https://www.facebook.com/premmiaengenharia/",
+      "whatsappPrincipal": "5516974035368",
+      "whatsappFormatado": "(16) 97403-5368",
+      "website": "http://premmiaengenharia.com.br",
+      "websiteFromBio": null,
+      "bioInstagram": null,
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": [
+        "Tecnologia Digital & Planejamento 3D"
+      ]
+    },
+    "_isNew": true
+  },
+  {
+    "id": "lead_1789766187994_409o53",
+    "createdAt": "2026-09-18T21:16:27.994Z",
+    "updatedAt": "2026-09-18T21:16:27.994Z",
+    "anotacoes": "",
+    "historicoContatos": [],
+    "slug": "leandro-freitas-arquiteto-engenheiro-civil-em-franca-sp",
+    "nome": "LEANDRO FREITAS ARQUITETO ENGENHEIRO CIVIL EM FRANCA SP",
+    "nicho": "engenharia",
+    "cidade": "Franca SP",
+    "siteOriginal": "https://www.instagram.com/leandrofreitasengenheiro",
+    "siteStatus": "apenas_social",
+    "siteHttpCode": null,
+    "siteHealthReason": "Utiliza link de Instagram no lugar de site institucional próprio",
+    "avaliacao": "★ 4,9",
+    "endereco": "Avenida Doutor Armando Salles de Oliveira, 400",
+    "mapsUrl": "https://www.google.com/maps/place/LEANDRO+FREITAS+ARQUITETO+ENGENHEIRO+CIVIL+EM+FRANCA+SP/data=!4m7!3m6!1s0x94b0a60ba68f071b:0x977851f1ae1329d0!8m2!3d-20.5702083!4d-47.4073425!16s%2Fg%2F11bxc52014!19sChIJGwePpgumsJQR0CkTrvFReJc?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxNi4wIJJjKgBIAVAD&rclk=1",
+    "telefones": [
+      "(16) 98143-3404"
+    ],
+    "emails": [],
+    "instagram": "https://www.instagram.com/leandrofreitasengenheiro/",
+    "facebook": "https://www.facebook.com/LeFreArq/",
+    "whatsappPrincipal": "5516981433404",
+    "whatsappFormatado": "(16) 98143-3404",
+    "status": "oportunidade_quente",
+    "motivoDescarte": null,
+    "analiseIA": "📱 Oportunidade Quente: Utiliza apenas rede social no Google. Não possui site próprio para ranquear organicamente nem reter visitantes profissionais.",
+    "categoria": {
+      "slug": "outros",
+      "nome": "Engenharia",
+      "icone": "🏢",
+      "cor": "#64748b",
+      "badgeClass": "cat-other"
+    },
+    "siteData": {
+      "title": null,
+      "metaDescription": null,
+      "headings": [],
+      "servicosExtraidos": [],
+      "diferenciaisExtraidos": []
+    },
+    "dadosEnriquecidos": {
+      "instagram": "https://www.instagram.com/leandrofreitasengenheiro/",
+      "facebook": "https://www.facebook.com/LeFreArq/",
+      "whatsappPrincipal": "5516981433404",
+      "whatsappFormatado": "(16) 98143-3404",
+      "website": "https://www.instagram.com/leandrofreitasengenheiro",
+      "websiteFromBio": null,
+      "bioInstagram": "arqleandrofreitas\n1,032 followers\n4,707 following\nLeandro Freitas\nArquitetura\nConstrução\nDesign de interiores\nDesign de móveis... \nmore\nfacebook.com/lefrearq\nPaulinha, Paulet\nPratique Yôga\nUrgente!!\nApartamento\nVida\nCorporativos\nLavabo\nDormitório\nPassarela Mangue\nComl e Resid",
+      "linkNaBio": null,
+      "servicosDetectados": [],
+      "diferenciais": []
+    },
+    "_isNew": true
+  },
+  {
     "id": "lead_1789657928168_voa2z9",
     "createdAt": "2026-09-17T15:12:08.168Z",
     "updatedAt": "2026-09-17T15:16:15.796Z",
@@ -1084,7 +1489,7 @@
   {
     "id": "lead_1789562990222_pnqq7l",
     "createdAt": "2026-09-16T12:49:50.222Z",
-    "updatedAt": "2026-09-16T12:49:50.222Z",
+    "updatedAt": "2026-09-17T20:08:22.175Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "o-guardiao-seguranca-eletronica",
@@ -1094,7 +1499,7 @@
     "siteOriginal": null,
     "siteStatus": "nenhum",
     "siteHealthReason": "Nenhum site cadastrado",
-    "avaliacao": "4,1 estrelas 10 comentários",
+    "avaliacao": "★ 4.1 (comentários)",
     "endereco": "R. Fued Zacarias Cury, 650",
     "mapsUrl": "https://www.google.com/maps/place/O+Guardi%C3%A3o+Seguran%C3%A7a+Eletronica/data=!4m7!3m6!1s0x94b0a890827b12a7:0x63faa40572ae2ba3!8m2!3d-20.5557818!4d-47.3972021!16s%2Fg%2F11ckvnhhns!19sChIJpxJ7gpCosJQRoyuucgWk-mM?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkxMy4wIJJjKgBIAVAD&rclk=1",
     "telefones": [
@@ -1105,7 +1510,7 @@
     "facebook": null,
     "whatsappPrincipal": "551637051548",
     "whatsappFormatado": "(16) 3705-1548",
-    "status": "oportunidade_quente",
+    "status": "prototipo_pronto",
     "motivoDescarte": null,
     "analiseIA": "Excelente oportunidade em Franca SP: 4,1 estrelas 10 comentários, sem nenhum site oficial próprio cadastrado.",
     "siteData": {
@@ -1132,7 +1537,21 @@
       "icone": "🏢",
       "cor": "#64748b",
       "badgeClass": "cat-other"
-    }
+    },
+    "fotosReais": [
+      "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkfPtidTprFKiwKCubXmzm7jnegQQ4xu_ZVvbc4BCGFDa0KHLVt1a22oqvMdjhSmJKlYJc06YuvGcBxR38Jom8IHAl6hlf3rV2cHgWRyNI_aTdZfxjtWltk-vyjvKUvBjQ5sHuX=w1200-h800-k-no"
+    ],
+    "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\o-guardiao-seguranca-eletronica\\index.html",
+    "prototypeUrl": "/previews/o-guardiao-seguranca-eletronica/index.html",
+    "messages": {
+      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *O Guardião Segurança Eletronica* tem uma excelente reputação, mas hoje quem pesquisa por *segurança eletronica* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: não possui site oficial cadastrado no Google — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, destacando as principais especialidades e os depoimentos dos seus clientes:\n👉 */previews/o-guardiao-seguranca-eletronica/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
+      "email": {
+        "assunto": "O Guardião Segurança Eletronica em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial",
+        "corpo": "Prezada equipe da O Guardião Segurança Eletronica,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por segurança eletronica em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da O Guardião Segurança Eletronica, já funcional e adaptada para smartphones:\n👉 /previews/o-guardiao-seguranca-eletronica/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
+      }
+    },
+    "archetype": "industrial",
+    "templateEscolhido": "industrial"
   },
   {
     "id": "lead_1789562989644_t0i06i",

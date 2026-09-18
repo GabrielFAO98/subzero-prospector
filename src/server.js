@@ -89,7 +89,8 @@ app.post('/api/leads/:id/generate', async (req, res) => {
   if (!lead) return res.status(404).json({ error: 'Lead não encontrado.' });
 
   try {
-    const { template = 'subzero', forceEnrich = true } = req.body || {};
+    const { template = 'industrial', archetype, forceEnrich = true } = req.body || {};
+    const chosenArchetype = archetype || template;
 
     // Marca status transitório
     db.update(lead.id, { status: 'gerando_prototipo' });
@@ -130,18 +131,66 @@ app.post('/api/leads/:id/generate', async (req, res) => {
       }
     }
 
+    // 1.5 Mineração Profunda de Redes Sociais / Instagram (Bio, Destaques, Postagens & Legendas estilo Arcofran)
+    const instaUrl = lead.instagram || (lead.siteOriginal && lead.siteOriginal.includes('instagram.com') ? lead.siteOriginal : null);
+    if (instaUrl && (!lead.dadosEnriquecidos?.servicosDetectados?.length || forceEnrich)) {
+      console.log(`\n📸 [Instagram Deep] Minerando bio, legendas e postagens de: "${instaUrl}"...`);
+      try {
+        const handleMatch = instaUrl.match(/instagram\.com\/([a-zA-Z0-9._]+)/i);
+        const handle = handleMatch ? handleMatch[1].replace(/\/$/, '') : null;
+        if (handle && handle !== 'p' && handle !== 'reel' && handle !== 'explore') {
+          const { extractInstagramDeep, synthesizeBusinessIntelligence } = require('./deep_extractor');
+          const instaData = await extractInstagramDeep(handle, msg => console.log('  📱 [Instagram]', msg));
+
+          if (instaData) {
+            const intelligence = synthesizeBusinessIntelligence(instaData, lead.nicho, lead.nome, lead.cidade);
+
+            const updates = {
+              instagram: `https://www.instagram.com/${handle}/`,
+              instagramProfile: {
+                handle: instaData.handle,
+                bio: instaData.bio,
+                avatar: instaData.avatar,
+                destaques: instaData.destaques,
+                totalPostsAnalisados: instaData.posts.length
+              }
+            };
+
+            const postImgs = instaData.posts.filter(p => p.img).map(p => p.img);
+            if (postImgs.length > 0) {
+              const existingPhotos = lead.fotosReais || [];
+              updates.fotosReais = [...new Set([...postImgs, ...existingPhotos])];
+            }
+
+            if (!lead.dadosEnriquecidos) lead.dadosEnriquecidos = {};
+            lead.dadosEnriquecidos.bioInstagram = instaData.bio;
+            lead.dadosEnriquecidos.servicosDetectados = intelligence.servicos;
+            lead.dadosEnriquecidos.diferenciais = intelligence.diferenciais;
+            if (intelligence.linkNaBio) lead.dadosEnriquecidos.linkNaBio = intelligence.linkNaBio;
+            updates.dadosEnriquecidos = lead.dadosEnriquecidos;
+
+            db.update(lead.id, updates);
+            lead = db.getById(lead.id);
+            console.log(`  ✨ [Instagram] ${intelligence.servicos.length} serviços reais minerados com sucesso!`);
+          }
+        }
+      } catch (instaErr) {
+        console.warn('⚠️ [Instagram Deep] Falha ao extrair Instagram (seguindo com fallback):', instaErr.message);
+      }
+    }
+
     // 2. Garante que o WhatsApp principal e dados estejam preenchidos
     if (!lead.whatsappPrincipal && lead.telefones && lead.telefones[0]) {
       const num = lead.telefones[0].replace(/\D/g, '');
       lead.whatsappPrincipal = num.length === 11 ? '55' + num : num;
     }
 
-    lead.templateEscolhido = template;
+    lead.templateEscolhido = chosenArchetype;
 
     // 3. Constrói o protótipo com os dados reais
-    lead = await generatePrototype(lead, template);
+    lead = await generatePrototype(lead, chosenArchetype);
     lead.status = 'prototipo_pronto';
-    db.update(lead.id, { status: 'prototipo_pronto' });
+    db.update(lead.id, { status: 'prototipo_pronto', templateEscolhido: chosenArchetype, archetype: chosenArchetype });
 
     res.json({ success: true, lead, stats: db.getStats() });
   } catch (err) {
