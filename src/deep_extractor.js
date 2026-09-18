@@ -326,6 +326,9 @@ async function extractMapsDeep(mapsUrl, onProgress = console.log) {
  * Analisa bio, legendas e OCR do Instagram para detectar serviços, especialidades e diferenciais reais da empresa.
  */
 function synthesizeBusinessIntelligence(instaData, niche = '', companyName = '', city = 'Franca SP') {
+  if (!instaData || (!instaData.bio && (!instaData.posts || instaData.posts.length === 0))) {
+    return { servicos: [], diferenciais: [], linkNaBio: null };
+  }
   const norm = (s = '') => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
   const bio = instaData?.bio || '';
@@ -469,22 +472,6 @@ function synthesizeBusinessIntelligence(instaData, niche = '', companyName = '',
       { titulo: 'Higiene e Biossegurança', desc: 'Ambientes desinfetados e toalhas esterilizadas individualmente.' },
       { titulo: 'Equipe Especializada', desc: 'Profissionais dedicados e apaixonados pelo cuidado animal.' }
     );
-  }
-
-  // Se ainda tiver menos de 4 serviços, complementa com padrão de alto nível
-  if (services.length < 4) {
-    const fallbackServices = [
-      { nome: 'Atendimento Especializado', desc: 'Consultoria e serviços personalizados para as necessidades do seu projeto.' },
-      { nome: 'Soluções Sob Medida', desc: 'Execução técnica com foco em durabilidade, eficiência e resultado estético.' },
-      { nome: 'Manutenção & Suporte', desc: 'Acompanhamento preventivo e assistência técnica ágil e transparente.' },
-      { nome: 'Planejamento e Orçamento', desc: 'Transparência em todas as etapas, com prazos e valores bem definidos.' }
-    ];
-    for (const fb of fallbackServices) {
-      if (services.length >= 4) break;
-      if (!services.some(s => norm(s.nome) === norm(fb.nome))) {
-        services.push(fb);
-      }
-    }
   }
 
   let linkNaBio = null;

@@ -164,8 +164,12 @@ app.post('/api/leads/:id/generate', async (req, res) => {
 
             if (!lead.dadosEnriquecidos) lead.dadosEnriquecidos = {};
             lead.dadosEnriquecidos.bioInstagram = instaData.bio;
-            lead.dadosEnriquecidos.servicosDetectados = intelligence.servicos;
-            lead.dadosEnriquecidos.diferenciais = intelligence.diferenciais;
+            if (Array.isArray(intelligence.servicos) && intelligence.servicos.length >= 2) {
+              lead.dadosEnriquecidos.servicosDetectados = intelligence.servicos;
+            }
+            if (Array.isArray(intelligence.diferenciais) && intelligence.diferenciais.length >= 2) {
+              lead.dadosEnriquecidos.diferenciais = intelligence.diferenciais;
+            }
             if (intelligence.linkNaBio) lead.dadosEnriquecidos.linkNaBio = intelligence.linkNaBio;
             updates.dadosEnriquecidos = lead.dadosEnriquecidos;
 

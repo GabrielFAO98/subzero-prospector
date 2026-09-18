@@ -281,33 +281,92 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
     };
   }
 
-  // 5. CLIMATIZAÇÃO, AR-CONDICIONADO & REFRIGERAÇÃO (Ex: HUNIFRIO)
+  // 5. CLIMATIZAÇÃO, AR-CONDICIONADO & REFRIGERAÇÃO
   if (n.includes('ar condicionado') || n.includes('ar-condicionado') || n.includes('climatiza') || n.includes('refrigera') || nameLower.includes('frio') || nameLower.includes('clima') || nameLower.includes('ar condicionado')) {
-    return {
-      subtitulo: 'Climatização & Refrigeração Especializada',
-      tituloPrincipal: 'Especialistas em Instalação, Higienização e Manutenção de Ar-Condicionado',
-      chamadaPrincipal: 'Temperatura Ideal e Ar Puro para Sua Casa ou Empresa',
-      slogan: 'Conforto térmico, economia de energia e ar puro o ano inteiro.',
-      apresentacao: `Instalação técnica, manutenção preventiva e higienização profunda em ${cidade} com pontualidade e garantia de fábrica.`,
-      servicos: [
-        { nome: 'Instalação Split & Inverter', desc: 'Instalação técnica com bomba de vácuo preservando a garantia de fábrica.' },
-        { nome: 'Higienização Antibacteriana', desc: 'Limpeza profunda que elimina fungos, odores e reduz o consumo elétrico.' },
-        { nome: 'Manutenção Preventiva & Gás', desc: 'Detecção de microvazamentos, recarga ecológica e teste operacional.' },
-        { nome: 'Contratos PMOC para Empresas', desc: 'Planos de manutenção em conformidade total com as normas da Anvisa.' }
-      ],
-      diferenciais: [
-        { titulo: 'Padrão Rigoroso de Fábrica', desc: 'Ferramentas de precisão que preservam o compressor e a garantia.' },
-        { titulo: 'Ar Puro e Livre de Alergias', desc: 'Higienização química certificada para proteger a saúde de todos.' },
-        { titulo: 'Pontualidade e Garantia', desc: 'Horário respeitado e orçamento transparente sem custos ocultos.' }
-      ],
-      avaliacoes: prepareReviews(lead, [
-        { autor: 'Marcelo Siqueira', texto: `Contratei a ${nomeEmpresa} para instalação de dois aparelhos split no meu escritório. Serviço impecável, técnicos organizados e deixaram tudo limpo. Nota 10!` },
-        { autor: 'Camila Andrade', texto: `Fizeram a higienização completa e manutenção preventiva do ar-condicionado da minha casa em Franca. Tirou totalmente o cheiro ruim e o aparelho voltou a gelar rápido. Recomendo!` },
-        { autor: 'Dr. Marcos Vinicius', texto: `Empresa séria e de total confiança. O atendimento no WhatsApp foi ágil e o técnico da ${nomeEmpresa} chegou exatamente no horário agendado. Vale cada centavo.` },
-        { autor: 'Renata Silveira', texto: `Excelente pós-venda da ${nomeEmpresa}. Fizeram o diagnóstico correto sem enrolação e resolveram o problema no mesmo dia. Recomendo de olhos fechados.` }
-      ], nomeEmpresa),
-      imagensServicos: ['instalacao-split.jpg', 'higienizacao-profunda.jpg', 'manutencao-preventiva.jpg', 'pmoc-comercial.jpg']
-    };
+    const rawClim = `${lead?.nome || ''} ${nomeEmpresa} ${lead?.dadosEnriquecidos?.bioInstagram || ''} ${n}`.toLowerCase();
+    
+    if (rawClim.includes('evaporativo') || rawClim.includes('industrial') || rawClim.includes('prime')) {
+      // Ângulo Industrial & Evaporativo (Ex: Franca Prime)
+      return {
+        subtitulo: 'Climatização Evaporativa Industrial & Comercial',
+        tituloPrincipal: 'Conforto Térmico e Renovação de Ar para Grandes Ambientes Industriais',
+        chamadaPrincipal: `Climatizadores Evaporativos e Manutenção em ${cidade}`,
+        slogan: 'Ambientes mais frescos, produtividade elevada e redução de custos energéticos.',
+        apresentacao: `Especialistas em sistemas de climatização evaporativa industrial e comercial em ${cidade}. Proporcionamos alívio térmico contínuo com alta eficiência e economia energética.`,
+        servicos: [
+          { nome: 'Climatizadores Evaporativos Industriais', desc: 'Instalação técnica para galpões, fábricas e grandes comércios com fluxo contínuo.' },
+          { nome: 'Projetos e Dimensionamento Sob Medida', desc: 'Cálculo de vazão e renovação de ar para atender plenamente a área útil.' },
+          { nome: 'Higienização e Troca de Colmeias', desc: 'Limpeza profunda e substituição de filtros para ar purificado e sem odores.' },
+          { nome: 'Manutenção Preventiva & Contratos', desc: 'Acompanhamento periódico garantindo vida útil máxima aos equipamentos.' }
+        ],
+        diferenciais: [
+          { titulo: 'Economia de Até 90% de Energia', desc: 'Eficiência incomparável se comparada a sistemas de ar-condicionado convencionais.' },
+          { titulo: 'Renovação Contínua do Ar', desc: 'Ar sempre novo e filtrado, reduzindo poeira e aumentando o conforto da equipe.' },
+          { titulo: 'Assistência Técnica Especializada', desc: 'Corpo técnico experiente com reposição rápida de peças e suporte ágil.' }
+        ],
+        avaliacoes: prepareReviews(lead, [
+          { autor: 'Fernando Galvão', texto: `Instalamos os climatizadores da ${nomeEmpresa} no nosso galpão em Franca. A temperatura caiu mais de 8 graus e o consumo de energia é super baixo. Recomendo muito!` },
+          { autor: 'Cláudia Meireles', texto: `Excelente atendimento comercial e instalação impecável. Equipe técnica muito educada e entregaram no prazo.` },
+          { autor: 'Rodrigo Salles', texto: `A manutenção preventiva da ${nomeEmpresa} salvou nossa linha de produção no verão. Empresa ágil e de palavra.` },
+          { autor: 'Vanessa Toledo', texto: `Melhor escolha para nosso atacado. O ar fica fresco e muito agradável o dia todo!` }
+        ], nomeEmpresa),
+        imagensServicos: ['higienizacao-profunda.jpg', 'instalacao-split.jpg', 'pmoc-comercial.jpg', 'manutencao-preventiva.jpg']
+      };
+    } else if (rawClim.includes('assistencia') || rawClim.includes('conserto') || rawClim.includes('gelar') || rawClim.includes('tecnica')) {
+      // Ângulo Assistência Técnica & Conserto Rápido (Ex: Gelar)
+      return {
+        subtitulo: 'Assistência Técnica Especializada em Ar-Condicionado',
+        tituloPrincipal: 'Conserto Rápido, Manutenção Preventiva e Higienização Profunda',
+        chamadaPrincipal: `Diagnóstico Preciso e Assistência Técnica em ${cidade}`,
+        slogan: 'Diagnóstico ágil, ferramentas de precisão e garantia documentada no reparo.',
+        apresentacao: `Assistência técnica ágil em ${cidade} especializada em conserto, recarga ecológica de gás e higienização profunda com garantia e transparência no orçamento.`,
+        servicos: [
+          { nome: 'Conserto & Diagnóstico Eletrônico', desc: 'Detecção ágil de placas, compressores e falhas que impedem o aparelho de gelar.' },
+          { nome: 'Recarga Ecológica de Gás & Vácuo', desc: 'Eliminação de microvazamentos e recarga precisa com bomba de vácuo profissional.' },
+          { nome: 'Higienização Antibacteriana ANVISA', desc: 'Limpeza química detalhada eliminando fungos, bactérias e odores desagradáveis.' },
+          { nome: 'Instalação e Desinstalação Técnica', desc: 'Montagem padrão de fábrica para modelos Split, Inverter e Cassete.' }
+        ],
+        diferenciais: [
+          { titulo: 'Atendimento Rápido e Sem Enrolação', desc: 'Técnicos pontuais que resolvem o problema no menor tempo possível.' },
+          { titulo: 'Orçamento Claro e Justo', desc: 'Preço fechado antes do serviço sem surpresas ou cobranças extras.' },
+          { titulo: 'Garantia Comprovada no Reparo', desc: 'Tranquilidade e segurança com suporte pós-serviço em Franca.' }
+        ],
+        avaliacoes: prepareReviews(lead, [
+          { autor: 'Otávio Mendonça', texto: `Meu ar parou de gelar no calor e a equipe da ${nomeEmpresa} veio no mesmo dia. Trocaram a peça e ficou perfeito. Salvou o verão!` },
+          { autor: 'Beatriz Fontes', texto: `Preço honesto e atendimento super atencioso. Fizeram o vácuo correto e explicaram tudo. Muito satisfeita.` },
+          { autor: 'Luciano Prado', texto: `Melhor assistência de Franca. Técnicos limpos, organizados e de confiança.` },
+          { autor: 'Camila Duarte', texto: `Higienização impecável! O cheiro ruim sumiu completamente e o ar voltou a gelar como novo.` }
+        ], nomeEmpresa),
+        imagensServicos: ['manutencao-preventiva.jpg', 'higienizacao-profunda.jpg', 'instalacao-split.jpg', 'pmoc-comercial.jpg']
+      };
+    } else {
+      // Ângulo Padrão Residencial / Comercial (Ex: Hunifrio, Daniel Climatização, Kliver)
+      return {
+        subtitulo: 'Climatização & Refrigeração Especializada',
+        tituloPrincipal: 'Especialistas em Instalação, Higienização e Manutenção de Ar-Condicionado',
+        chamadaPrincipal: 'Temperatura Ideal e Ar Puro para Sua Casa ou Empresa',
+        slogan: 'Conforto térmico, economia de energia e ar puro o ano inteiro.',
+        apresentacao: `Instalação técnica, manutenção preventiva e higienização profunda em ${cidade} com pontualidade e garantia de fábrica.`,
+        servicos: [
+          { nome: 'Instalação Split & Inverter', desc: 'Instalação técnica com bomba de vácuo preservando a garantia de fábrica.' },
+          { nome: 'Higienização Antibacteriana', desc: 'Limpeza profunda que elimina fungos, odores e reduz o consumo elétrico.' },
+          { nome: 'Manutenção Preventiva & Gás', desc: 'Detecção de microvazamentos, recarga ecológica e teste operacional.' },
+          { nome: 'Contratos PMOC para Empresas', desc: 'Planos de manutenção em conformidade total com as normas da Anvisa.' }
+        ],
+        diferenciais: [
+          { titulo: 'Padrão Rigoroso de Fábrica', desc: 'Ferramentas de precisão que preservam o compressor e a garantia.' },
+          { titulo: 'Ar Puro e Livre de Alergias', desc: 'Higienização química certificada para proteger a saúde de todos.' },
+          { titulo: 'Pontualidade e Garantia', desc: 'Horário respeitado e orçamento transparente sem custos ocultos.' }
+        ],
+        avaliacoes: prepareReviews(lead, [
+          { autor: 'Marcelo Siqueira', texto: `Contratei a ${nomeEmpresa} para instalação de dois aparelhos split no meu escritório. Serviço impecável, técnicos organizados e deixaram tudo limpo. Nota 10!` },
+          { autor: 'Camila Andrade', texto: `Fizeram a higienização completa e manutenção preventiva do ar-condicionado da minha casa em Franca. Tirou totalmente o cheiro ruim e o aparelho voltou a gelar rápido. Recomendo!` },
+          { autor: 'Dr. Marcos Vinicius', texto: `Empresa séria e de total confiança. O atendimento no WhatsApp foi ágil e o técnico da ${nomeEmpresa} chegou exatamente no horário agendado. Vale cada centavo.` },
+          { autor: 'Renata Silveira', texto: `Excelente pós-venda da ${nomeEmpresa}. Fizeram o diagnóstico correto sem enrolação e resolveram o problema no mesmo dia. Recomendo de olhos fechados.` }
+        ], nomeEmpresa),
+        imagensServicos: ['instalacao-split.jpg', 'higienizacao-profunda.jpg', 'manutencao-preventiva.jpg', 'pmoc-comercial.jpg']
+      };
+    }
   }
 
   // 6. ENERGIA SOLAR & FOTOVOLTAICA
@@ -368,33 +427,94 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
     }, lead);
   }
 
-  // 8. ENGENHARIA & CONSTRUÇÃO CIVIL (Estilo Ulo Engenharia)
-  if (n.includes('engenharia') || n.includes('construc') || nameLower.includes('engenharia') || nameLower.includes('construc') || nameLower.includes('obras')) {
-    return applyMinedOverrides({
-      subtitulo: 'Engenharia Civil, Obras & Projetos Estruturais',
-      tituloPrincipal: 'Projetos de Alta Precisão e Execução de Obras Sem Dor de Cabeça',
-      chamadaPrincipal: `Engenharia, Construção e Regularização em ${cidade}`,
-      slogan: 'Projetos estruturais, acompanhamento rigoroso e entrega no prazo.',
-      apresentacao: `Soluções completas em engenharia civil e construção em ${cidade}, unindo rigor técnico, segurança e economia inteligente de materiais.`,
-      servicos: [
-        { nome: 'Gerenciamento & Execução de Obras', desc: 'Acompanhamento técnico diário do alicerce ao acabamento fino.' },
-        { nome: 'Cálculo Estrutural de Precisão', desc: 'Dimensionamento em concreto e aço com segurança máxima e economia.' },
-        { nome: 'Projetos Arquitetônicos & 3D', desc: 'Planejamento detalhado em 3D para visualização antes de construir.' },
-        { nome: 'Regularização Imobiliária & Laudos', desc: 'Habite-se, desdobros, alvarás e laudos periciais junto à prefeitura.' }
-      ],
-      diferenciais: [
-        { titulo: 'Rigor Técnico & ART', desc: 'Projetos assinados com responsabilidade técnica e conformidade total.' },
-        { titulo: 'Economia de Materiais', desc: 'Dimensionamento exato que evita desperdícios e reduz o custo da obra.' },
-        { titulo: 'Compromisso com Prazos', desc: 'Cronograma de execução planejado e cumprido com transparência.' }
-      ],
-      avaliacoes: prepareReviews(lead, [
-        { autor: 'Marcelo Rezende', texto: `A equipe da ${nomeEmpresa} gerenciou minha obra com muita seriedade. Entregaram no prazo e sem surpresas no orçamento.` },
-        { autor: 'Luciana Fontes', texto: `Projeto estrutural impecável e acompanhamento técnico nota 10. Excelente empresa de engenharia em Franca!` },
-        { autor: 'Fábio Guimarães', texto: `Profissionais capacitados e muito transparentes na ${nomeEmpresa}. Resolveram toda a regularização do imóvel com agilidade.` },
-        { autor: 'Daniela P. Castro', texto: `Muito capricho e rigor técnico em cada detalhe. Recomendo com total certeza para quem vai construir ou reformar.` }
-      ], nomeEmpresa),
-      imagensServicos: ['hero.jpg', 'workshop.jpg', 'hero.jpg', 'workshop.jpg']
-    }, lead);
+  // 8. ENGENHARIA & CONSTRUÇÃO CIVIL (Sub-ângulos dinâmicos: Arquitetura/3D, Construtora/Obras, Estrutural/Laudos)
+  if (n.includes('engenharia') || n.includes('construc') || nameLower.includes('engenharia') || nameLower.includes('construc') || nameLower.includes('obras') || nameLower.includes('arquit')) {
+    const rawAll = `${lead?.nome || ''} ${nomeEmpresa} ${lead?.dadosEnriquecidos?.bioInstagram || ''} ${n}`.toLowerCase();
+    const hasArq = rawAll.includes('arquit');
+    const hasConstrutora = rawAll.includes('construtora') || rawAll.includes('construc') || rawAll.includes('obras');
+
+    if (hasArq) {
+      // Ângulo 1: Arquitetura Contemporânea & Engenharia Estrutural (Ex: Leandro Freitas)
+      return applyMinedOverrides({
+        subtitulo: 'Arquitetura Contemporânea & Engenharia Estrutural',
+        tituloPrincipal: 'Do Conceito Arquitetônico à Execução Estrutural de Alta Precisão',
+        chamadaPrincipal: `Arquitetura Autoral, Estruturas e Obras em ${cidade}`,
+        slogan: 'Projetos autorais em 3D, compatibilização técnica e direção de obras.',
+        apresentacao: `Escritório integrado de arquitetura e engenharia em ${cidade}. Unimos soluções arquitetônicas contemporâneas, cálculo estrutural rigoroso e assessoria completa para transformar ideias em construções seguras, elegantes e sem desperdícios.`,
+        servicos: [
+          { nome: 'Projetos Arquitetônicos & Design 3D', desc: 'Plantas humanizadas, volumetria detalhada e modelagem realista antes de iniciar a obra.' },
+          { nome: 'Cálculo Estrutural & Fundações', desc: 'Dimensionamento inteligente em concreto armado e aço, unindo segurança máxima e economia de materiais.' },
+          { nome: 'Direção & Acompanhamento de Obras', desc: 'Supervisão técnica contínua garantindo fidelidade absoluta ao projeto e alto padrão de acabamento.' },
+          { nome: 'Regularização Imobiliária & Habite-se', desc: 'Aprovações municipais, alvarás, desdobros e laudos periciais com celeridade e total conformidade.' }
+        ],
+        diferenciais: [
+          { titulo: 'Arquitetura + Engenharia Integradas', desc: 'Concepção estética e viabilidade estrutural compatibilizadas sem improvisos ou retrabalhos.' },
+          { titulo: 'Economia Inteligente na Execução', desc: 'Detalhamento minucioso que evita compras excessivas de insumos e desperdícios no canteiro.' },
+          { titulo: 'Acompanhamento Técnico com ART', desc: 'Direção presencial com responsabilidade técnica registrada e conformidade total com normas.' }
+        ],
+        avaliacoes: prepareReviews(lead, [
+          { autor: 'Ricardo Silveira', texto: `O projeto 3D da ${nomeEmpresa} superou todas as expectativas. Ver cada detalhe da casa antes de construir nos deu total segurança. Trabalho impecável!` },
+          { autor: 'Carolina Prado', texto: `Excelente profissionalismo da ${nomeEmpresa}. Uniu um design moderno incrível com cálculo estrutural preciso e econômico. Super recomendo!` },
+          { autor: 'Fernando Vasconcelos', texto: `Fizeram toda a aprovação na prefeitura e o acompanhamento técnico da nossa obra. Transparência, pontualidade e muita competência.` },
+          { autor: 'Mariana Duarte', texto: `Capricho em cada planta e muito cuidado com o nosso orçamento. A equipe da ${nomeEmpresa} é diferenciada em Franca.` }
+        ], nomeEmpresa),
+        imagensServicos: ['hero.jpg', 'workshop.jpg', 'hero.jpg', 'workshop.jpg']
+      }, lead);
+    } else if (hasConstrutora) {
+      // Ângulo 2: Construtora & Gestão Integral de Obras (Ex: Ulo Engenharia, Tríad)
+      return applyMinedOverrides({
+        subtitulo: 'Construção Civil, Reformas & Gestão de Obras',
+        tituloPrincipal: 'Construções e Obras de Alto Padrão com Gestão Transparente e Sem Dor de Cabeça',
+        chamadaPrincipal: `Execução de Obras Residenciais e Comerciais em ${cidade}`,
+        slogan: 'Cronograma físico-financeiro rigoroso, equipe qualificada e entrega no prazo combinado.',
+        apresentacao: `Atuação sólida em ${cidade}, especializada em construções residenciais e comerciais com controle orçamentário transparente, materiais de primeira linha e compromisso total com o cronograma.`,
+        servicos: [
+          { nome: 'Execução & Gerenciamento de Obras', desc: 'Acompanhamento técnico diário do alicerce aos acabamentos de fino padrão.' },
+          { nome: 'Cálculo Estrutural de Precisão', desc: 'Dimensionamento avançado com segurança estrutural e otimização inteligente de insumos.' },
+          { nome: 'Construções & Ampliações Comerciais', desc: 'Estruturação ágil para residências e empresas com cronograma pontual e total limpeza.' },
+          { nome: 'Regularização Imobiliária & Laudos', desc: 'Habite-se, desdobros, alvarás e laudos periciais com total conformidade na prefeitura.' }
+        ],
+        diferenciais: [
+          { titulo: 'Controle Orçamentário Rígido', desc: 'Transparência nos custos para sua construção não sofrer com aditivos ou despesas imprevistas.' },
+          { titulo: 'Pontualidade e Cronograma', desc: 'Acompanhamento etapa por etapa para entrega rigorosamente no dia contratado.' },
+          { titulo: 'Equipe Própria e Qualificada', desc: 'Profissionais experientes sob supervisão de engenharia do alicerce ao acabamento.' }
+        ],
+        avaliacoes: prepareReviews(lead, [
+          { autor: 'Marcelo Rezende', texto: `A equipe da ${nomeEmpresa} gerenciou minha obra com muita seriedade. Entregaram no prazo e sem surpresas no orçamento.` },
+          { autor: 'Luciana Fontes', texto: `Acompanhamento técnico diário e mão de obra de altíssimo nível. A melhor construtora de Franca!` },
+          { autor: 'Fábio Guimarães', texto: `Profissionais capacitados e muito transparentes na ${nomeEmpresa}. Resolveram toda a regularização do imóvel com agilidade.` },
+          { autor: 'Daniela P. Castro', texto: `Muito capricho e rigor técnico em cada detalhe. Recomendo com total certeza para quem vai construir ou reformar.` }
+        ], nomeEmpresa),
+        imagensServicos: ['hero.jpg', 'workshop.jpg', 'hero.jpg', 'workshop.jpg']
+      }, lead);
+    } else {
+      // Ângulo 3: Engenharia Estrutural, Projetos Técnicos & Laudos (Ex: Fabor, Premmia)
+      return applyMinedOverrides({
+        subtitulo: 'Engenharia Civil, Projetos Estruturais & Laudos',
+        tituloPrincipal: 'Segurança Estrutural, Rigor Técnico e Engenharia de Precisão',
+        chamadaPrincipal: `Projetos Estruturais e Engenharia Especializada em ${cidade}`,
+        slogan: 'Projetos estruturais seguros, laudos periciais e responsabilidade técnica documental.',
+        apresentacao: `Engenharia de precisão em ${cidade}, prestando assessoria técnica especializada em cálculos estruturais, regularizações imobiliárias e vistorias cautelares de alta confiabilidade.`,
+        servicos: [
+          { nome: 'Cálculo Estrutural & Fundações', desc: 'Dimensionamento avançado em concreto armado e estruturas metálicas com segurança estrita.' },
+          { nome: 'Laudos Técnicos & Vistorias Cautelares', desc: 'Perícias de engenharia, vistorias de vizinhança e emissão oficial de ART.' },
+          { nome: 'Supervisão & Gerenciamento de Obras', desc: 'Acompanhamento técnico independente para assegurar a conformidade da construção.' },
+          { nome: 'Desdobros, Alvarás e Regularizações', desc: 'Assessoria completa para habite-se e regularização junto aos órgãos municipais.' }
+        ],
+        diferenciais: [
+          { titulo: 'Rigor Normativo & ART', desc: 'Projetos homologados de acordo com as normas ABNT mais recentes.' },
+          { titulo: 'Otimização Estrutural de Custos', desc: 'Dimensionamento preciso que reduz consumo de aço e concreto sem abrir mão da segurança.' },
+          { titulo: 'Agilidade Documental', desc: 'Laudos e memoriais descritivos prontos com celeridade para aprovação imediata.' }
+        ],
+        avaliacoes: prepareReviews(lead, [
+          { autor: 'Eduardo Mantovani', texto: `O cálculo estrutural da ${nomeEmpresa} gerou uma economia fantástica de concreto e aço sem comprometer nada na segurança. Nota 10!` },
+          { autor: 'Patrícia Alvarenga', texto: `Laudo técnico extremamente detalhado e entregue antes do prazo previsto. Excelente atendimento da ${nomeEmpresa}.` },
+          { autor: 'Marcos Aurélio Lima', texto: `Empresa séria e altamente capacitada tecnicamente. Facilitaram todo o processo de aprovação na prefeitura.` },
+          { autor: 'Beatriz Zanin', texto: `Supervisão de obra impecável. Tiraram todas as dúvidas com clareza e nos deram total tranquilidade.` }
+        ], nomeEmpresa),
+        imagensServicos: ['hero.jpg', 'workshop.jpg', 'hero.jpg', 'workshop.jpg']
+      }, lead);
+    }
   }
 
   // 9. PADRÃO GERAL INDUSTRIAL / PRESTAÇÃO DE SERVIÇOS
@@ -441,14 +561,41 @@ function applyMinedOverrides(content, lead) {
 function cleanCompanyNameSmart(rawName = '') {
   let name = (rawName || '').trim();
 
-  // 1. Separadores comuns de título no Google Maps: | , - , / , : , •
-  for (const sep of ['|', ' - ', ' – ', ' / ', ':', '•']) {
+  // 1. Remove cidade no final (Franca, Franca SP, EM Franca SP, Centro Franca, Franca/SP, etc)
+  name = name.replace(/\s*(?:[-–—|/]\s*)?(?:em\s+)?(?:franca|sp|franca\s*[-/]?\s*sp|centro\s+franca|franca\s+centro)\s*$/i, '');
+  name = name.replace(/\s+(?:em\s+)?franca(?:\s*[-/]?\s*sp)?$/i, '');
+  name = name.replace(/\s+(?:franca\s*\/sp|franca\s*centro|centro\s*franca)$/i, '');
+
+  // 2. Separadores comuns de título no Google Maps
+  for (const sep of [' | ', ' - ', ' – ', ' — ', ' / ', ' • ']) {
     if (name.includes(sep)) {
       name = name.split(sep)[0].trim();
     }
   }
 
-  // 2. Caudas descritivas e palavras-chave de busca no Google Maps
+  // 3. Caso especial: Profissionais liberais com palavras-chave de busca (ex: LEANDRO FREITAS ARQUITETO ENGENHEIRO CIVIL)
+  const profMatch = name.match(/^([A-Za-zÀ-ÖØ-öø-ÿ\s]{4,30}?)\s+(?:arquiteto|arquiteta|engenheiro|engenheira)\b(.*)$/i);
+  if (profMatch) {
+    const personName = profMatch[1].trim();
+    const rest = (profMatch[0]).toLowerCase();
+    const hasArq = rest.includes('arquit');
+    const hasEng = rest.includes('engenh');
+    if (hasArq && hasEng) {
+      name = personName + ' | Arquitetura & Engenharia';
+    } else if (hasArq) {
+      name = personName + ' | Arquitetura';
+    } else if (hasEng) {
+      name = personName + ' | Engenharia Civil';
+    }
+  }
+
+  // 4. Caso especial: Médicos / Dentistas
+  const docMatch = name.match(/^((?:Dra?\.?|Dr\.)\s+[A-Za-zÀ-ÖØ-öø-ÿ\s]{4,30}?)\s+(?:cirurgi[aã]|dentista|m[eé]dic[ao])\b/i);
+  if (docMatch) {
+    name = docMatch[1].trim();
+  }
+
+  // 5. Caudas descritivas e palavras-chave de busca no Google Maps
   const regexPatterns = [
     /^(.*?climatiza[çc][aã]o)\s+(?:instala[çc][aã]o|manuten[çc][aã]o|vendas|assist[eê]ncia).*/i,
     /^(.*?ar[- ]condicionado)\s+(?:instala[çc][aã]o|manuten[çc][aã]o|assist[eê]ncia).*/i,
@@ -471,15 +618,19 @@ function cleanCompanyNameSmart(rawName = '') {
   name = name.replace(/\s+e\s+rastreamento.*$/i, '');
   name = name.replace(/\s+(?:ltda|epp|me|s\/a|eireli)\b.*/i, '');
 
-  // 3. Formatação Title Case elegante para nomes que vieram em minúsculo ou com pontuação estranha
-  const preps = ['de', 'da', 'do', 'das', 'dos', 'e', 'em', 'com'];
+  // 6. Formatação Title Case elegante para nomes com preservação de siglas e hífens
+  const preps = ['de', 'da', 'do', 'das', 'dos', 'e', 'em', 'com', '&', '|'];
   name = name.split(/\s+/).map((word, i) => {
+    if (word === '|' || word === '&') return word;
     if (word.length > 1 && word === word.toUpperCase() && !/[0-9]/.test(word) && word.length <= 4) {
-      return word; // Preserva siglas como CFTV, PMOC
+      return word; // Preserva siglas como CFTV, PMOC, ART, 3D
     }
-    const lower = word.toLowerCase();
-    if (i > 0 && preps.includes(lower)) return lower;
-    return lower.replace(/^([(["]?)([a-z\u00C0-\u00FF])/, (_, p1, p2) => p1 + p2.toUpperCase());
+    const parts = word.split('-');
+    return parts.map((part, pIdx) => {
+      const lower = part.toLowerCase();
+      if (i > 0 && pIdx === 0 && preps.includes(lower)) return lower;
+      return lower.charAt(0).toUpperCase() + lower.slice(1);
+    }).join('-');
   }).join(' ');
 
   return name;
@@ -898,5 +1049,6 @@ module.exports = {
   getNicheContent,
   generateOutreachMessages,
   getArchetype,
-  parseRatingData
+  parseRatingData,
+  cleanCompanyNameSmart
 };
