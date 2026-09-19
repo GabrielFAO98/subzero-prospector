@@ -9,7 +9,7 @@ const FALLBACK_TEMPLATE_DIR = path.join(TEMPLATES_ROOT, 'padrao');
  * Mapeia o nicho/empresa para o arquétipo ideal
  */
 function getArchetype(nicho = '', nome = '', templateHint = null) {
-  if (templateHint && ['industrial', 'clinical', 'care'].includes(templateHint)) {
+  if (templateHint && ['industrial', 'clinical', 'care', 'architectural'].includes(templateHint)) {
     return templateHint;
   }
 
@@ -20,17 +20,22 @@ function getArchetype(nicho = '', nome = '', templateHint = null) {
   const n = norm(nicho);
   const nameLower = norm(nome);
 
-  // 1. Odontologia, Médicos, Clínicas e Saúde -> clinical
+  // 1. Arquitetura, Engenharia Civil, Cálculo Estrutural, Obras & Design -> architectural
+  if (n.includes('arquitet') || n.includes('engenharia') || n.includes('construc') || n.includes('obras') || n.includes('interiores') || nameLower.includes('arquit') || nameLower.includes('engenharia') || nameLower.includes('construc') || nameLower.includes('obras')) {
+    return 'architectural';
+  }
+
+  // 2. Odontologia, Médicos, Clínicas e Saúde -> clinical
   if (n.includes('odonto') || n.includes('dent') || n.includes('medic') || n.includes('clinic') || n.includes('saude') || n.includes('psico') || n.includes('estetica') || n.includes('fisio') || nameLower.includes('odonto') || nameLower.includes('dent')) {
     return 'clinical';
   }
 
-  // 2. Veterinárias, Pet Shops, Banho & Tosa -> care
+  // 3. Veterinárias, Pet Shops, Banho & Tosa -> care
   if (n.includes('veterin') || n.includes('pet') || n.includes('cao') || n.includes('cachorro') || n.includes('gato') || n.includes('banho') || n.includes('tosa') || n.includes('animal') || nameLower.includes('pet') || nameLower.includes('vet')) {
     return 'care';
   }
 
-  // 3. Engenharia, Construção, Climatização, Segurança, Solar, B2B e outros -> industrial
+  // 4. Climatização, Segurança, Solar, B2B e outros -> industrial
   return 'industrial';
 }
 
@@ -458,7 +463,7 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
           { autor: 'Fernando Vasconcelos', texto: `Fizeram toda a aprovação na prefeitura e o acompanhamento técnico da nossa obra. Transparência, pontualidade e muita competência.` },
           { autor: 'Mariana Duarte', texto: `Capricho em cada planta e muito cuidado com o nosso orçamento. A equipe da ${nomeEmpresa} é diferenciada em Franca.` }
         ], nomeEmpresa),
-        imagensServicos: ['hero.jpg', 'workshop.jpg', 'hero.jpg', 'workshop.jpg']
+        imagensServicos: ['project-1.jpg', 'project-2.jpg', 'project-3.jpg', 'hero-bg.jpg']
       }, lead);
     } else if (hasConstrutora) {
       // Ângulo 2: Construtora & Gestão Integral de Obras (Ex: Ulo Engenharia, Tríad)
@@ -485,7 +490,7 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
           { autor: 'Fábio Guimarães', texto: `Profissionais capacitados e muito transparentes na ${nomeEmpresa}. Resolveram toda a regularização do imóvel com agilidade.` },
           { autor: 'Daniela P. Castro', texto: `Muito capricho e rigor técnico em cada detalhe. Recomendo com total certeza para quem vai construir ou reformar.` }
         ], nomeEmpresa),
-        imagensServicos: ['hero.jpg', 'workshop.jpg', 'hero.jpg', 'workshop.jpg']
+        imagensServicos: ['project-1.jpg', 'project-2.jpg', 'project-3.jpg', 'hero-bg.jpg']
       }, lead);
     } else {
       // Ângulo 3: Engenharia Estrutural, Projetos Técnicos & Laudos (Ex: Fabor, Premmia)
@@ -512,7 +517,7 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
           { autor: 'Marcos Aurélio Lima', texto: `Empresa séria e altamente capacitada tecnicamente. Facilitaram todo o processo de aprovação na prefeitura.` },
           { autor: 'Beatriz Zanin', texto: `Supervisão de obra impecável. Tiraram todas as dúvidas com clareza e nos deram total tranquilidade.` }
         ], nomeEmpresa),
-        imagensServicos: ['hero.jpg', 'workshop.jpg', 'hero.jpg', 'workshop.jpg']
+        imagensServicos: ['project-1.jpg', 'project-2.jpg', 'project-3.jpg', 'hero-bg.jpg']
       }, lead);
     }
   }
@@ -745,14 +750,21 @@ async function generatePrototype(lead, templateHint = null) {
   }
 
   // Imagens dos 4 serviços (prioriza fotos autênticas de obras/atendimento)
-  const img1 = realPhotoFiles[0] || content.imagensServicos[0] || 'hero.jpg';
-  const img2 = realPhotoFiles[1] || content.imagensServicos[1] || 'workshop.jpg';
-  const img3 = realPhotoFiles[2] || content.imagensServicos[2] || 'hero.jpg';
-  const img4 = realPhotoFiles[3] || content.imagensServicos[3] || 'workshop.jpg';
+  const defaultImgs = archetype === 'architectural'
+    ? ['project-1.jpg', 'project-2.jpg', 'project-3.jpg', 'hero-bg.jpg']
+    : ['hero.jpg', 'workshop.jpg', 'hero.jpg', 'workshop.jpg'];
+  const heroImg = archetype === 'architectural' ? 'hero-bg.jpg' : 'hero.jpg';
+  const img1 = realPhotoFiles[0] || content.imagensServicos[0] || defaultImgs[0];
+  const img2 = realPhotoFiles[1] || content.imagensServicos[1] || defaultImgs[1];
+  const img3 = realPhotoFiles[2] || content.imagensServicos[2] || defaultImgs[2];
+  const img4 = realPhotoFiles[3] || content.imagensServicos[3] || defaultImgs[3];
 
   // 3. Substituir tags de placeholder
   const replacements = {
     '{{NOME_DA_EMPRESA}}': cleanCompanyName,
+    '{{INICIAL_EMPRESA}}': cleanCompanyName.charAt(0).toUpperCase(),
+    '{{ANO_ATUAL}}': new Date().getFullYear().toString(),
+    '{{IMG_HERO}}': heroImg,
     '{{TITULO_PRINCIPAL}}': content.tituloPrincipal,
     '{{DESCRICAO_SEO_150_CARACTERES}}': `${cleanCompanyName} em ${cidade}. ${content.slogan} Fale conosco no WhatsApp!`,
     '{{PALAVRAS_CHAVE_SEPARADAS_POR_VIRGULA}}': `${cleanCompanyName}, ${lead.nicho}, ${cidade}, atendimento, servicos, avaliacoes, orcamento`,
@@ -781,29 +793,29 @@ async function generatePrototype(lead, templateHint = null) {
     '{{TITULO_SECAO_SERVICOS_LINHA_1}}': 'Soluções completas',
     '{{TITULO_SECAO_SERVICOS_LINHA_2}}': 'para sua tranquilidade',
     '{{DESCRICAO_CURTA_DA_SECAO_DE_SERVICOS}}': 'Conheça em detalhes o padrão e as principais especialidades que tornam nosso atendimento diferenciado na cidade.',
-    '{{NOME_SERVICO_1}}': content.servicos[0].nome,
-    '{{DESCRICAO_SERVICO_1}}': content.servicos[0].desc,
+    '{{NOME_SERVICO_1}}': content.servicos[0]?.nome || 'Atendimento Especializado',
+    '{{DESCRICAO_SERVICO_1}}': content.servicos[0]?.desc || 'Execução técnica de alto padrão.',
     '{{IMG_SERVICO_1}}': img1,
-    '{{NOME_SERVICO_2}}': content.servicos[1].nome,
-    '{{DESCRICAO_SERVICO_2}}': content.servicos[1].desc,
+    '{{NOME_SERVICO_2}}': content.servicos[1]?.nome || 'Projetos e Soluções',
+    '{{DESCRICAO_SERVICO_2}}': content.servicos[1]?.desc || 'Dimensionamento preciso e pontualidade.',
     '{{IMG_SERVICO_2}}': img2,
-    '{{NOME_SERVICO_3}}': content.servicos[2].nome,
-    '{{DESCRICAO_SERVICO_3}}': content.servicos[2].desc,
+    '{{NOME_SERVICO_3}}': content.servicos[2]?.nome || 'Acompanhamento Técnico',
+    '{{DESCRICAO_SERVICO_3}}': content.servicos[2]?.desc || 'Supervisão contínua em cada etapa.',
     '{{IMG_SERVICO_3}}': img3,
-    '{{NOME_SERVICO_4}}': content.servicos[3].nome,
-    '{{DESCRICAO_SERVICO_4}}': content.servicos[3].desc,
+    '{{NOME_SERVICO_4}}': content.servicos[3]?.nome || 'Regularização & Suporte',
+    '{{DESCRICAO_SERVICO_4}}': content.servicos[3]?.desc || 'Aprovações e suporte com conformidade total.',
     '{{IMG_SERVICO_4}}': img4,
 
     '{{SLOGAN_CURTO}}': content.slogan,
     '{{TITULO_DIFERENCIAIS_LINHA_1}}': 'Por que confiar',
     '{{TITULO_DIFERENCIAIS_LINHA_2}}': 'no nosso trabalho?',
     '{{SUBTEXTO_DE_AUTORIDADE_E_CONFIANCA}}': `Transparência, seriedade e dedicação em cada atendimento prestado em ${cidade}.`,
-    '{{TITULO_DIFERENCIAL_1}}': content.diferenciais[0].titulo,
-    '{{DESCRICAO_DIFERENCIAL_1}}': content.diferenciais[0].desc,
-    '{{TITULO_DIFERENCIAL_2}}': content.diferenciais[1].titulo,
-    '{{DESCRICAO_DIFERENCIAL_2}}': content.diferenciais[1].desc,
-    '{{TITULO_DIFERENCIAL_3}}': content.diferenciais[2].titulo,
-    '{{DESCRICAO_DIFERENCIAL_3}}': content.diferenciais[2].desc,
+    '{{TITULO_DIFERENCIAL_1}}': content.diferenciais[0]?.titulo || 'Rigor Técnico & ART',
+    '{{DESCRICAO_DIFERENCIAL_1}}': content.diferenciais[0]?.desc || 'Responsabilidade técnica registrada e conformidade.',
+    '{{TITULO_DIFERENCIAL_2}}': content.diferenciais[1]?.titulo || 'Economia Inteligente',
+    '{{DESCRICAO_DIFERENCIAL_2}}': content.diferenciais[1]?.desc || 'Planejamento minucioso que evita desperdícios.',
+    '{{TITULO_DIFERENCIAL_3}}': content.diferenciais[2]?.titulo || 'Pontualidade Rigorosa',
+    '{{DESCRICAO_DIFERENCIAL_3}}': content.diferenciais[2]?.desc || 'Cronograma transparente do início ao fim.',
 
     // Depoimentos Hiperpersonalizados
     '{{NOME_DO_CLIENTE_1}}': content.avaliacoes[0].autor,
@@ -869,8 +881,14 @@ async function generatePrototype(lead, templateHint = null) {
     copyDirSync(path.join(templateDir, 'assets'), path.join(targetDir, 'assets'));
   }
 
-  // Injeção contextual refinada de banco de imagens para o arquétipo industrial
-  if (archetype === 'industrial') {
+  // Injeção contextual de banco de imagens para os arquétipos
+  if (archetype === 'architectural') {
+    const archImgDir = path.join(TEMPLATES_ROOT, 'assets', 'architectural');
+    if (fs.existsSync(archImgDir)) {
+      copyDirSync(archImgDir, targetImgDir);
+      console.log(`📸 [Generator] Imagens contextuais de ARQUITETURA & ESTRUTURAS injetadas com sucesso em: ${targetImgDir}`);
+    }
+  } else if (archetype === 'industrial') {
     const normNFD = (str = '') => (str || '').toLowerCase()
       .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
       .replace(/ç/g, 'c');
@@ -964,7 +982,11 @@ function generateFaviconSvg(lead, cleanName, archetype) {
   let gradEnd = '#0369a1';
   let accent = '#38bdf8';
 
-  if (archetype === 'care') {
+  if (archetype === 'architectural') {
+    gradStart = '#c5a880'; // Architectural Sand & Bronze
+    gradEnd = '#8a6d45';
+    accent = '#e2c399';
+  } else if (archetype === 'care') {
     gradStart = '#059669'; // Emerald Care
     gradEnd = '#047857';
     accent = '#34d399';

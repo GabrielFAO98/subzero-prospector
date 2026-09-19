@@ -418,11 +418,11 @@
   {
     "id": "lead_1789766187994_409o53",
     "createdAt": "2026-09-18T21:16:27.994Z",
-    "updatedAt": "2026-09-18T22:49:19.235Z",
+    "updatedAt": "2026-09-19T00:24:55.727Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "leandro-freitas-arquiteto-engenheiro-civil-em-franca-sp",
-    "nome": "LEANDRO FREITAS ARQUITETO ENGENHEIRO CIVIL EM FRANCA SP",
+    "nome": "Leandro Freitas Arquiteto Engenheiro Civil",
     "nicho": "engenharia",
     "cidade": "Franca SP",
     "siteOriginal": "https://www.instagram.com/leandrofreitasengenheiro",
@@ -466,8 +466,34 @@
       "websiteFromBio": null,
       "bioInstagram": "",
       "linkNaBio": null,
-      "servicosDetectados": [],
-      "diferenciais": []
+      "servicosDetectados": [
+        {
+          "nome": "Projetos Arquitetônicos & 3D",
+          "desc": "Planejamento detalhado em 3D para total visualização antes da obra."
+        },
+        {
+          "nome": "Laudos Técnicos & Vistorias",
+          "desc": "Perícias de engenharia, emissão de ART e vistorias cautelares completas."
+        },
+        {
+          "nome": "Reformas Comerciais & Residenciais",
+          "desc": "Modernização de ambientes com acabamento de alto padrão e equipe própria."
+        }
+      ],
+      "diferenciais": [
+        {
+          "titulo": "Rigor Técnico & ART",
+          "desc": "Projetos assinados com responsabilidade técnica e conformidade total."
+        },
+        {
+          "titulo": "Economia de Materiais",
+          "desc": "Dimensionamento exato que evita desperdícios e reduz custos na obra."
+        },
+        {
+          "titulo": "Compromisso com Prazos",
+          "desc": "Cronograma de execução planejado e cumprido com transparência."
+        }
+      ]
     },
     "_isNew": true,
     "fotosReais": [
@@ -479,7 +505,7 @@
       "bio": "",
       "avatar": "",
       "destaques": [],
-      "totalPostsAnalisados": 0
+      "totalPostsAnalisados": 6
     },
     "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\leandro-freitas-arquiteto-engenheiro-civil-em-franca-sp\\index.html",
     "prototypeUrl": "/previews/leandro-freitas-arquiteto-engenheiro-civil-em-franca-sp/index.html",
@@ -490,8 +516,8 @@
         "corpo": "Prezada equipe da Leandro Freitas | Arquitetura & Engenharia,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por engenharia em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Leandro Freitas | Arquitetura & Engenharia, já funcional e adaptada para smartphones:\n👉 /previews/leandro-freitas-arquiteto-engenheiro-civil-em-franca-sp/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
       }
     },
-    "archetype": "industrial",
-    "templateEscolhido": "industrial",
+    "archetype": "architectural",
+    "templateEscolhido": "architectural",
     "depoimentosReais": [
       {
         "author": "Leonardo Freitas Corsini",

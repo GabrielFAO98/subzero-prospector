@@ -78,20 +78,30 @@ function formatRating(raw) {
 
 function getRecommendedArchetype(lead) {
   if (!lead) return 'industrial';
-  if (lead.templateEscolhido && ['industrial', 'clinical', 'care'].includes(lead.templateEscolhido)) {
+  if (lead.templateEscolhido && ['industrial', 'clinical', 'care', 'architectural'].includes(lead.templateEscolhido)) {
     return lead.templateEscolhido;
   }
-  if (lead.archetype && ['industrial', 'clinical', 'care'].includes(lead.archetype)) {
+  if (lead.archetype && ['industrial', 'clinical', 'care', 'architectural'].includes(lead.archetype)) {
     return lead.archetype;
   }
   const n = (lead.nicho || '').toLowerCase();
   const nm = (lead.nome || '').toLowerCase();
+
+  // 1. Arquitetura, Engenharia Civil, Interiores e Obras -> architectural
+  if (n.includes('arquitet') || n.includes('engenharia') || n.includes('construc') || n.includes('obras') || n.includes('interiores') || nm.includes('arquit') || nm.includes('engenharia') || nm.includes('construc') || nm.includes('obras')) {
+    return 'architectural';
+  }
+
+  // 2. Odontologia, Médicos, Clínicas e Saúde -> clinical
   if (n.includes('odonto') || n.includes('dent') || n.includes('medic') || n.includes('clinic') || n.includes('saude') || n.includes('estet') || n.includes('fisio') || nm.includes('odonto') || nm.includes('clinica')) {
     return 'clinical';
   }
+
+  // 3. Veterinárias, Pet Shops, Banho & Tosa -> care
   if (n.includes('pet') || n.includes('vet') || n.includes('cao') || n.includes('cachorro') || n.includes('gato') || n.includes('banho') || n.includes('tosa') || nm.includes('pet') || nm.includes('vet')) {
     return 'care';
   }
+
   return 'industrial';
 }
 
