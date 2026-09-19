@@ -115,6 +115,7 @@ const btnCopyEmail = document.getElementById('btnCopyEmail');
 
 const prototypeIframe = document.getElementById('prototypeIframe');
 const btnGenerateProto = document.getElementById('btnGenerateProto');
+const btnForceEnrichProto = document.getElementById('btnForceEnrichProto');
 const btnOpenProtoTab = document.getElementById('btnOpenProtoTab');
 const prototypeStatusLabel = document.getElementById('prototypeStatusLabel');
 
@@ -304,6 +305,15 @@ function setupEventListeners() {
     await generatePrototypeForLead(currentSelectedLead.id || currentSelectedLead.slug, selectedTemplate);
     btnGenerateProto.disabled = false;
   });
+
+  // Forçar Re-mineração Completa (Google Maps + Instagram)
+  if (btnForceEnrichProto) {
+    btnForceEnrichProto.addEventListener('click', async () => {
+      if (!currentSelectedLead) return;
+      const selectedTemplate = templateSelector ? templateSelector.value : getRecommendedArchetype(currentSelectedLead);
+      await generatePrototypeForLead(currentSelectedLead.id || currentSelectedLead.slug, selectedTemplate, true);
+    });
+  }
 }
 
 function showTempBtnText(btn, tempText) {
@@ -903,7 +913,7 @@ async function updateLeadOnServer(id, updates) {
 }
 
 // Gerar protótipo para um lead com feedback visual e mineração real
-async function generatePrototypeForLead(id, template = 'subzero') {
+async function generatePrototypeForLead(id, template = 'subzero', forceEnrich = null) {
   const leadIdx = allLeads.findIndex(l => (l.id === id || l.slug === id));
   const leadObj = leadIdx !== -1 ? allLeads[leadIdx] : null;
 
@@ -912,19 +922,25 @@ async function generatePrototypeForLead(id, template = 'subzero') {
     render();
   }
 
+  // Se já temos avaliações ou dados minerados, geramos instantaneamente em 1s!
+  const hasMinedData = (leadObj?.depoimentosReais?.length > 0) || (leadObj?.dadosEnriquecidos?.servicosDetectados?.length > 0) || (leadObj?.fotosReais?.length > 0);
+  const shouldForceEnrich = (forceEnrich !== null) ? forceEnrich : !hasMinedData;
+
   if (btnGenerateProto) {
     btnGenerateProto.disabled = true;
-    btnGenerateProto.innerHTML = '⏳ Minerando Redes & Construindo...';
+    btnGenerateProto.innerHTML = shouldForceEnrich ? '⏳ Minerando Redes & Construindo...' : '⚡ Compilando Protótipo...';
   }
   if (prototypeStatusLabel) {
-    prototypeStatusLabel.innerHTML = '⏳ <strong>Minerando redes sociais, Google Maps & construindo site sob medida...</strong> Aguarde alguns segundos...';
+    prototypeStatusLabel.innerHTML = shouldForceEnrich 
+      ? '⏳ <strong>Minerando redes sociais, Google Maps & construindo site sob medida...</strong> Aguarde alguns segundos...'
+      : '⚡ <strong>Compilando novo protótipo com os dados já minerados...</strong> Pronto em segundos!';
   }
 
   try {
     const res = await fetch(`/api/leads/${id}/generate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ template, archetype: template, forceEnrich: true })
+      body: JSON.stringify({ template, archetype: template, forceEnrich: shouldForceEnrich })
     });
     const data = await res.json();
     if (data.success) {

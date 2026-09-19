@@ -1,101 +1,168 @@
 /**
- * Subzero Engine — JavaScript Modular
- * Padrões Técnicos: Headroom Navbar, Granular Scroll Reveal, Infinite Tracks, Mobile Menu
+ * Atelier Structural — Architectural Archetype Engine
+ * Vanilla JavaScript Modular (Subzero Engine Standard)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Smart Headroom Navbar (Hide on scroll down, show on scroll up)
-  const header = document.querySelector('.header');
-  let lastScrollY = window.scrollY;
+  initSmartHeadroom();
+  initGranularScrollAnimations();
+  initMarqueeLoop();
+  initPortfolioFilters();
+  initMobileMenu();
+});
+
+/**
+ * Smart Headroom Navbar
+ * Oculta ao rolar para baixo, reaparece de imediato ao rolar para cima
+ */
+function initSmartHeadroom() {
+  const header = document.querySelector('.smart-header');
+  if (!header) return;
+
+  let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
   const scrollThreshold = 10;
 
   window.addEventListener('scroll', () => {
-    const currentScrollY = window.scrollY;
-    
+    const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Background blur & border ao rolar além do topo
+    if (currentScrollY > 40) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+
+    // Lógica de direção de rolagem
     if (Math.abs(currentScrollY - lastScrollY) < scrollThreshold) return;
 
-    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+    if (currentScrollY > lastScrollY && currentScrollY > 120) {
+      // Rolando para baixo
       header.classList.add('headroom--unpinned');
       header.classList.remove('headroom--pinned');
-    } else if (currentScrollY < lastScrollY) {
+    } else {
+      // Rolando para cima
       header.classList.add('headroom--pinned');
       header.classList.remove('headroom--unpinned');
     }
 
-    lastScrollY = currentScrollY;
+    lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
   }, { passive: true });
+}
 
-  // 2. Mobile Menu Toggle
-  const menuToggle = document.querySelector('.menu-toggle');
-  if (menuToggle && header) {
-    menuToggle.addEventListener('click', () => {
-      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      const willOpen = !isExpanded;
-      menuToggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
-      header.classList.toggle('menu-open', willOpen);
-      document.body.classList.toggle('menu-open-scroll-lock', willOpen);
-    });
+/**
+ * Animações de Scroll Granulares
+ * Disparo por item individual com timing intencional (0.84 * innerHeight)
+ */
+function initGranularScrollAnimations() {
+  const revealElements = document.querySelectorAll('.subzero-reveal, .subzero-reveal-left');
+  if (!revealElements.length) return;
 
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        menuToggle.setAttribute('aria-expanded', 'false');
-        header.classList.remove('menu-open');
-        document.body.classList.remove('menu-open-scroll-lock');
-      });
-    });
-  }
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px 0px -65px 0px',
+    threshold: 0.12
+  };
 
-  // 3. Scroll Reveals Granulares por Item Individual (Regra Subzero) com Proteção Total Contra Void
-  const revealElements = document.querySelectorAll('.stagger, .reveal-left, .reveal-right');
-
-  // Revela o Hero imediatamente para visualização instantânea no carregamento
-  document.querySelectorAll('.hero .stagger').forEach(el => el.classList.add('visible'));
-
-  const makeVisible = (el) => el.classList.add('visible');
-
-  if ('IntersectionObserver' in window) {
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          makeVisible(entry.target);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      rootMargin: '50px 0px 50px 0px',
-      threshold: 0.05
-    });
-
-    revealElements.forEach(el => revealObserver.observe(el));
-  } else {
-    revealElements.forEach(makeVisible);
-  }
-
-  // Safety Fallback Universal: garante que em capturas automatizadas, iframes ou rolagem rápida nada fique invisível
-  const ensureVisibility = () => {
-    revealElements.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight + 350) {
-        makeVisible(el);
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
       }
     });
+  }, observerOptions);
+
+  revealElements.forEach(el => revealObserver.observe(el));
+}
+
+/**
+ * Duplicação Automática do Marquee de Avaliações
+ * Garante loop contínuo perfeito sem saltos visuais
+ */
+function initMarqueeLoop() {
+  const track = document.querySelector('.marquee-track');
+  if (!track) return;
+
+  // Duplica os cards para preenchimento de 100% da largura
+  const cards = Array.from(track.children);
+  cards.forEach(card => {
+    const clone = card.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    track.appendChild(clone);
+  });
+}
+
+/**
+ * Filtro Interativo do Portfólio de Obras
+ */
+function initPortfolioFilters() {
+  const filterBtns = document.querySelectorAll('.filter-pill-btn');
+  const projectCards = document.querySelectorAll('.project-card-item');
+
+  if (!filterBtns.length || !projectCards.length) return;
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => {
+        b.classList.remove('bg-primary-container', 'text-on-primary-container', 'border-primary-container');
+        b.classList.add('bg-transparent', 'text-on-surface-variant', 'border-outline-variant');
+      });
+
+      btn.classList.remove('bg-transparent', 'text-on-surface-variant', 'border-outline-variant');
+      btn.classList.add('bg-primary-container', 'text-on-primary-container', 'border-primary-container');
+
+      const filter = btn.getAttribute('data-filter') || 'all';
+
+      projectCards.forEach(card => {
+        const category = card.getAttribute('data-category') || 'all';
+        if (filter === 'all' || category === filter || category.includes(filter)) {
+          card.style.display = 'flex';
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'scale(1)';
+          }, 50);
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'scale(0.96)';
+          setTimeout(() => {
+            card.style.display = 'none';
+          }, 300);
+        }
+      });
+    });
+  });
+}
+
+/**
+ * Menu Mobile Drawer
+ */
+function initMobileMenu() {
+  const menuBtn = document.getElementById('mobileMenuToggle');
+  const mobileNav = document.getElementById('mobileNavDrawer');
+  const closeBtn = document.getElementById('closeMobileNav');
+
+  if (!menuBtn || !mobileNav) return;
+
+  const toggle = () => {
+    const isOpen = mobileNav.classList.contains('open');
+    if (isOpen) {
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    } else {
+      mobileNav.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
   };
 
-  setTimeout(ensureVisibility, 350);
-  setTimeout(() => {
-    revealElements.forEach(makeVisible);
-  }, 1200);
+  menuBtn.addEventListener('click', toggle);
+  if (closeBtn) closeBtn.addEventListener('click', toggle);
 
-  window.addEventListener('scroll', ensureVisibility, { passive: true });
+  // Fecha menu ao clicar em links
+  mobileNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+}
 
-  // 4. Duplicação Automática para Loop Perfeito nos Marquees
-  const duplicateTrack = (selector) => {
-    const track = document.querySelector(selector);
-    if (!track) return;
-    const content = track.innerHTML;
-    track.innerHTML = content + content;
-  };
-
-  duplicateTrack('.specs-marquee-track');
-  duplicateTrack('.reviews-marquee-track');
-});
