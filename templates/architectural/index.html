@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{NOME_DA_EMPRESA}} | Arquitetura & Engenharia de Precisão</title>
+  <title>{{NOME_DA_EMPRESA}} | Arquitetura &amp; Engenharia</title>
   <meta name="description" content="{{DESCRICAO_SEO_150_CARACTERES}}" />
   <meta name="keywords" content="{{PALAVRAS_CHAVE_SEPARADAS_POR_VIRGULA}}" />
   <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
@@ -12,698 +12,728 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
+  <script id="tailwind-config">
     tailwind.config = {
-      darkMode: 'class',
+      darkMode: "class",
       theme: {
         extend: {
-          colors: {
-            brand: {
-              navy: '#0b1326',
-              slate: '#1e293b',
-              gold: '#c5a880',
-              goldHover: '#b39265',
-              champagne: '#e2c399',
-              greenWa: '#25D366',
-              lightA: '#ffffff',
-              lightB: '#f8fafc',
-              lightC: '#f1f5f9'
-            }
+          "colors": {
+            "primary-container": "#c5a880",
+            "primary-fixed-dim": "#e0c298",
+            "surface-container": "#1e293b",
+            "surface-tint": "#e0c298",
+            "surface-container-high": "#283548",
+            "primary-fixed": "#fedeb2",
+            "on-secondary-fixed-variant": "#574500",
+            "secondary-fixed-dim": "#e9c349",
+            "on-secondary-container": "#342800",
+            "on-tertiary-fixed-variant": "#4b463d",
+            "surface-bright": "#334155",
+            "on-tertiary-container": "#453f36",
+            "error": "#ffb4ab",
+            "on-background": "#dae2fd",
+            "surface-container-lowest": "#0a0f1d",
+            "tertiary": "#cfc6ba",
+            "inverse-surface": "#dae2fd",
+            "outline-variant": "#475569",
+            "background": "#0f172a",
+            "inverse-primary": "#725b38",
+            "on-surface": "#dae2fd",
+            "tertiary-fixed": "#eae1d4",
+            "on-surface-variant": "#cbd5e1",
+            "on-error-container": "#ffdad6",
+            "secondary-container": "#af8d11",
+            "outline": "#94a3b8",
+            "surface": "#0f172a",
+            "inverse-on-surface": "#283044",
+            "tertiary-fixed-dim": "#cec5b9",
+            "on-secondary-fixed": "#241a00",
+            "on-primary-container": "#513d1d",
+            "on-primary-fixed": "#281800",
+            "error-container": "#93000a",
+            "surface-variant": "#334155",
+            "on-tertiary": "#343027",
+            "surface-dim": "#0f172a",
+            "on-error": "#690005",
+            "primary": "#e2c399",
+            "secondary-fixed": "#ffe088",
+            "on-primary-fixed-variant": "#584323",
+            "on-primary": "#402d0f",
+            "tertiary-container": "#b3ab9f",
+            "on-tertiary-fixed": "#1f1b13",
+            "surface-container-highest": "#334155",
+            "secondary": "#e9c349",
+            "surface-container-low": "#1e293b",
+            "on-secondary": "#3c2f00"
           },
-          fontFamily: {
-            serif: ['"Noto Serif"', 'serif'],
-            sans: ['"Space Grotesk"', 'sans-serif']
+          "spacing": {
+            "space-lg": "1.75rem",
+            "margin": "2rem",
+            "space-sm": "0.5rem",
+            "margin-desktop": "4rem",
+            "space-xs": "0.25rem",
+            "gutter-desktop": "2.5rem",
+            "space-md": "1rem",
+            "space-xl": "3rem",
+            "margin-mobile": "1.25rem",
+            "gutter-mobile": "1rem",
+            "gutter": "1.5rem"
+          },
+          "fontFamily": {
+            "display-lg": ["Noto Serif"],
+            "display-md": ["Noto Serif"],
+            "headline-lg": ["Noto Serif"],
+            "headline-md": ["Noto Serif"],
+            "headline-sm": ["Space Grotesk"],
+            "body-lg": ["Space Grotesk"],
+            "body-md": ["Space Grotesk"],
+            "body-sm": ["Space Grotesk"],
+            "label-lg": ["Space Grotesk"],
+            "label-md": ["Space Grotesk"],
+            "label-sm": ["Space Grotesk"]
+          },
+          "fontSize": {
+            "display-lg": ["64px", { "lineHeight": "76px", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+            "display-md": ["48px", { "lineHeight": "58px", "letterSpacing": "-0.015em", "fontWeight": "400" }],
+            "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "headline-md": ["28px", { "lineHeight": "36px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-md": ["15px", { "lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.08em", "fontWeight": "500" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.12em", "fontWeight": "600" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.18em", "fontWeight": "700" }]
           }
         }
       }
-    }
+    };
   </script>
   <link rel="stylesheet" href="./src/style.css" />
   <script src="./src/main.js" defer></script>
 </head>
-<body class="bg-white font-sans text-slate-800 antialiased selection:bg-amber-100 selection:text-amber-900">
+<body class="bg-background font-body-md text-body-md text-on-surface antialiased">
 
   <!-- ========================================================================
-       NAVBAR LIMPA E FUNCIONAL (Inspirada no estilo Arcofran)
+       NAVBAR (Clean e Funcional - Inspiração Arcofran com Design System Stitch)
        ======================================================================== -->
-  <header class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-all duration-300 smart-header">
-    <div class="max-w-7xl mx-auto h-20 px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+  <header class="fixed top-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-xl border-b border-outline-variant/30 smart-header transition-all duration-300">
+    <div class="h-20 w-full px-margin-mobile lg:px-margin-desktop flex items-center justify-between gap-gutter">
       
-      <!-- Marca: Logo Monograma + Nome & Subtítulo (sem quebra em mobile) -->
-      <a href="#inicio" class="flex items-center gap-3.5 group min-w-0">
-        <div class="w-10 h-10 rounded-lg bg-slate-900 border border-amber-600/30 flex items-center justify-center text-amber-300 font-bold text-lg font-serif shrink-0 shadow-sm transition-transform group-hover:scale-105">
+      <!-- Marca: Monograma + Nome & Subtítulo Elegante -->
+      <a href="#inicio" class="flex items-center gap-space-md group min-w-0">
+        <div class="w-10 h-10 border border-primary/60 bg-surface-container flex items-center justify-center text-primary font-bold text-lg font-display-lg shrink-0 transition-transform group-hover:scale-105 shadow-sm">
           {{INICIAL_EMPRESA}}
         </div>
         <div class="flex flex-col min-w-0">
-          <span class="font-bold text-slate-900 text-sm sm:text-base tracking-tight truncate group-hover:text-amber-800 transition-colors">
+          <span class="font-headline-sm text-headline-sm tracking-tight text-on-surface uppercase font-bold truncate group-hover:text-primary transition-colors text-sm sm:text-base">
             {{NOME_DA_EMPRESA}}
           </span>
-          <span class="text-[10px] tracking-widest text-slate-500 font-semibold uppercase truncate">
+          <span class="font-label-sm text-[10px] text-primary tracking-widest uppercase truncate">
             ARQUITETURA &amp; ENGENHARIA
           </span>
         </div>
       </a>
 
-      <!-- Navegação Desktop -->
-      <nav class="hidden lg:flex items-center gap-8">
-        <a href="#projetos" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors uppercase tracking-wider">Projetos</a>
-        <a href="#sobre" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors uppercase tracking-wider">Sobre</a>
-        <a href="#depoimentos" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors uppercase tracking-wider">Depoimentos</a>
-        <a href="#contato" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors uppercase tracking-wider">Contato</a>
+      <!-- Links Desktop -->
+      <nav class="hidden xl:flex items-center gap-gutter">
+        <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors tracking-widest uppercase" href="#portfolio-dossier">Projetos</a>
+        <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors tracking-widest uppercase" href="#sobre">Sobre</a>
+        <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors tracking-widest uppercase" href="#depoimentos">Depoimentos</a>
+        <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors tracking-widest uppercase" href="#contato">Contato</a>
       </nav>
 
-      <!-- CTAs Desktop (Telefone + WhatsApp estilo Arcofran) -->
-      <div class="hidden sm:flex items-center gap-3">
-        <a href="tel:{{TELEFONE_DIGITOS}}" class="hidden xl:inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold tracking-wide transition-colors">
-          <span class="material-symbols-outlined text-[16px] text-slate-600">call</span>
+      <!-- Ações Desktop (Telefone + WhatsApp estilo Arcofran) -->
+      <div class="flex items-center gap-space-sm sm:gap-space-md">
+        <a href="tel:{{TELEFONE_DIGITOS}}" class="hidden sm:inline-flex items-center gap-space-xs bg-surface-container text-on-surface px-space-md py-space-sm font-label-md text-label-md uppercase tracking-wider hover:bg-surface-bright transition-colors border border-outline-variant/30">
+          <span class="material-symbols-outlined text-[16px] text-primary">call</span>
           <span>{{TELEFONE_FORMATADO}}</span>
         </a>
-        <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider shadow-sm transition-all hover:shadow-md">
+        <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-space-xs bg-primary text-on-primary px-space-md py-space-sm font-label-md text-label-md uppercase tracking-widest hover:bg-secondary transition-colors shadow-md">
           <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
             <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.159.57 4.185 1.564 5.939l-1.564 5.889 6.088-1.597c1.704.929 3.659 1.469 5.74 1.469 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/>
           </svg>
           <span>WhatsApp</span>
         </a>
+
+        <!-- Botão Hambúrguer Mobile (2 linhas limpas - Imagem 2 Arcofran) -->
+        <button id="mobileMenuToggle" type="button" aria-label="Abrir Menu" class="xl:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 p-2 rounded hover:bg-surface-container transition-colors">
+          <span class="w-6 h-0.5 bg-on-surface rounded-full transition-all"></span>
+          <span class="w-6 h-0.5 bg-on-surface rounded-full transition-all"></span>
+        </button>
       </div>
 
-      <!-- Botão Hambúrguer Mobile (2 linhas limpas - Imagem 2 Arcofran) -->
-      <button id="mobileMenuToggle" type="button" aria-label="Abrir Menu de Navegação" class="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 p-2 rounded-md hover:bg-slate-100 transition-colors">
-        <span class="w-6 h-0.5 bg-slate-800 rounded-full transition-all"></span>
-        <span class="w-6 h-0.5 bg-slate-800 rounded-full transition-all"></span>
-      </button>
     </div>
 
     <!-- Gaveta Mobile -->
-    <div id="mobileNavDrawer" class="hidden lg:hidden bg-white border-b border-slate-200 px-6 py-5 flex-col gap-4 shadow-xl">
-      <nav class="flex flex-col gap-3">
-        <a href="#projetos" class="text-sm font-semibold text-slate-700 hover:text-slate-900 py-1.5 border-b border-slate-100">Projetos em Destaque</a>
-        <a href="#sobre" class="text-sm font-semibold text-slate-700 hover:text-slate-900 py-1.5 border-b border-slate-100">Sobre o Escritório</a>
-        <a href="#depoimentos" class="text-sm font-semibold text-slate-700 hover:text-slate-900 py-1.5 border-b border-slate-100">Depoimentos Verificados</a>
-        <a href="#contato" class="text-sm font-semibold text-slate-700 hover:text-slate-900 py-1.5">Contato &amp; Localização</a>
+    <div id="mobileNavDrawer" class="hidden xl:hidden bg-surface-container border-b border-outline-variant/30 px-margin-mobile py-space-md flex-col gap-space-sm shadow-2xl">
+      <nav class="flex flex-col gap-space-xs">
+        <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary py-space-xs uppercase tracking-widest border-b border-outline-variant/20" href="#portfolio-dossier">Projetos em Destaque</a>
+        <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary py-space-xs uppercase tracking-widest border-b border-outline-variant/20" href="#sobre">Sobre o Escritório</a>
+        <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary py-space-xs uppercase tracking-widest border-b border-outline-variant/20" href="#depoimentos">Depoimentos Verificados</a>
+        <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary py-space-xs uppercase tracking-widest" href="#contato">Contato &amp; Localização</a>
       </nav>
-      <div class="pt-3 border-t border-slate-100 flex flex-col gap-2.5">
-        <a href="tel:{{TELEFONE_DIGITOS}}" class="inline-flex items-center justify-center gap-2 py-2.5 rounded-lg bg-slate-100 text-slate-800 text-xs font-semibold">
-          <span class="material-symbols-outlined text-[16px]">call</span>
+      <div class="pt-space-sm border-t border-outline-variant/20 flex flex-col gap-space-xs">
+        <a href="tel:{{TELEFONE_DIGITOS}}" class="inline-flex items-center justify-center gap-space-xs bg-surface-container-high text-on-surface py-space-sm font-label-md text-label-md uppercase tracking-wider">
+          <span class="material-symbols-outlined text-[16px] text-primary">call</span>
           <span>{{TELEFONE_FORMATADO}}</span>
         </a>
-        <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 py-2.5 rounded-lg bg-emerald-600 text-white text-xs font-bold uppercase tracking-wider">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.159.57 4.185 1.564 5.939l-1.564 5.889 6.088-1.597c1.704.929 3.659 1.469 5.74 1.469 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/>
-          </svg>
+        <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-space-xs bg-primary text-on-primary py-space-sm font-label-md text-label-md uppercase tracking-widest">
+          <span class="material-symbols-outlined text-[16px]">chat</span>
           <span>Falar no WhatsApp</span>
         </a>
       </div>
     </div>
   </header>
 
-  <main class="w-full pt-20">
+  <main class="w-full pt-20 bg-background">
+    <div class="flex flex-col w-full">
 
-    <!-- ========================================================================
-         HERO SECTION (Cinematográfico, Alto Impacto)
-         ======================================================================== -->
-    <section id="inicio" class="relative w-full min-h-[88vh] lg:min-h-screen flex items-end overflow-hidden bg-slate-950">
-      
-      <!-- Imagem de Fundo em Alta Resolução -->
-      <div class="absolute inset-0 z-0">
-        <img src="./img/{{IMG_HERO}}" alt="{{NOME_DA_EMPRESA}} - Arquitetura e Engenharia" class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-1000 ease-out" />
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-slate-950/40"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/50 to-transparent"></div>
-      </div>
-
-      <!-- Conteúdo do Hero -->
-      <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
-        <div class="max-w-4xl flex flex-col gap-5">
-          
-          <!-- H1 Monumental -->
-          <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-[1.15] subzero-reveal">
-            Transformamos ideias em <span class="text-amber-300 font-normal italic">realidade</span>
-          </h1>
-
-          <!-- H2 Subtítulo -->
-          <h2 class="text-slate-200 text-base sm:text-xl lg:text-2xl font-light leading-relaxed max-w-2xl subzero-reveal stagger-1">
-            Excelência técnica, criatividade e compromisso em cada etapa do seu projeto.
-          </h2>
-
-          <!-- Botões de Ação com o Mesmo Tamanho -->
-          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4 subzero-reveal stagger-2">
-            <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="hero-action-btn bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold px-8 py-4 rounded-lg uppercase tracking-wider text-xs sm:text-sm text-center shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2">
-              <span class="material-symbols-outlined text-[20px]">calendar_month</span>
-              <span>Agendar Consulta</span>
-            </a>
-            <a href="#projetos" class="hero-action-btn bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 font-bold px-8 py-4 rounded-lg uppercase tracking-wider text-xs sm:text-sm text-center transition-all flex items-center justify-center gap-2">
-              <span class="material-symbols-outlined text-[20px]">architecture</span>
-              <span>Nossos Trabalhos</span>
-            </a>
-          </div>
-
-          <!-- Div com Copy Útil & Dados de Impacto ao Cliente -->
-          <div class="mt-8 pt-6 border-t border-white/15 grid grid-cols-1 sm:grid-cols-3 gap-6 subzero-reveal stagger-3">
-            <div class="flex flex-col">
-              <span class="text-amber-300 font-bold text-xl sm:text-2xl">+15 Anos</span>
-              <span class="text-white text-xs font-semibold uppercase tracking-wider mt-0.5">Atuação Consolidada</span>
-              <p class="text-slate-300 text-xs mt-1 leading-relaxed">Experiência comprovada em residências de alto padrão e projetos comerciais.</p>
-            </div>
-            <div class="flex flex-col">
-              <span class="text-amber-300 font-bold text-xl sm:text-2xl">100% Homologado</span>
-              <span class="text-white text-xs font-semibold uppercase tracking-wider mt-0.5">Aprovação &amp; Alvarás</span>
-              <p class="text-slate-300 text-xs mt-1 leading-relaxed">Condução documental ágil de habite-se, laudos e conformidade na prefeitura.</p>
-            </div>
-            <div class="flex flex-col">
-              <span class="text-amber-300 font-bold text-xl sm:text-2xl">Economia Real</span>
-              <span class="text-white text-xs font-semibold uppercase tracking-wider mt-0.5">Cálculo Preciso</span>
-              <p class="text-slate-300 text-xs mt-1 leading-relaxed">Dimensionamento inteligente que evita compras excessivas de aço e concreto.</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================================
-         SEÇÃO 1: CREDIBILIDADE & RIGOR (Fundo Claro 1: Slate Suave #f8fafc)
-         ======================================================================== -->
-    <section class="w-full bg-slate-50 py-16 lg:py-20 border-b border-slate-200/80">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- ========================================================================
+           SEÇÃO HERO (Monumental, Cinematográfico)
+           ======================================================================== -->
+      <section id="inicio" class="relative w-full -mt-20 overflow-hidden bg-surface-container-lowest">
         
-        <!-- 3 Cards Informativos com Nova Copy Criativa -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          
-          <!-- Card 1: Mantido intacto -->
-          <div class="bg-white p-7 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between subzero-reveal">
-            <div>
-              <span class="text-xs uppercase tracking-widest text-amber-700 font-bold block mb-2">Escritório Central</span>
-              <h3 class="font-serif text-2xl font-bold text-slate-900 mb-2">{{CIDADE_UF}}</h3>
-              <p class="text-slate-600 text-sm leading-relaxed">Atendimento dedicado para o interior paulista, capitais e empreendimentos sob medida.</p>
-            </div>
-            <div class="pt-4 mt-4 border-t border-slate-100 flex items-center text-xs font-medium text-slate-500">
-              <span class="material-symbols-outlined text-[16px] text-amber-700 mr-1.5">location_city</span>
-              <span>Sede Própria &amp; Atendimento Presencial</span>
-            </div>
+        <!-- Canvas de Imagem de Fundo com Scrims de Contraste -->
+        <div class="relative w-full min-h-[90vh] lg:min-h-screen flex items-end">
+          <div class="absolute inset-0 z-0">
+            <img src="./img/{{IMG_HERO}}" alt="{{NOME_DA_EMPRESA}} - Arquitetura e Engenharia" class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-1000 ease-out" />
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/80 to-surface/40"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-surface-container-lowest/95 via-surface-container-lowest/50 to-transparent"></div>
           </div>
 
-          <!-- Card 2: Modelagem 3D & BIM -->
-          <div class="bg-white p-7 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between subzero-reveal stagger-1">
-            <div>
-              <span class="text-xs uppercase tracking-widest text-amber-700 font-bold block mb-2">Modelagem 3D &amp; BIM</span>
-              <h3 class="font-serif text-2xl font-bold text-slate-900 mb-2">Visão Real da Obra</h3>
-              <p class="text-slate-600 text-sm leading-relaxed">Plantas humanizadas e volumetria realista que antecipam cada detalhe antes do canteiro de obras.</p>
-            </div>
-            <div class="pt-4 mt-4 border-t border-slate-100 flex items-center text-xs font-medium text-slate-500">
-              <span class="material-symbols-outlined text-[16px] text-amber-700 mr-1.5">view_in_ar</span>
-              <span>Zero Improvisos no Canteiro</span>
-            </div>
-          </div>
+          <!-- Conteúdo do Hero -->
+          <div class="relative z-10 w-full px-margin-mobile lg:px-margin-desktop pt-32 pb-space-xl">
+            <div class="max-w-5xl flex flex-col gap-space-md">
+              
+              <!-- H1 Solicitado -->
+              <h1 class="font-display-lg text-display-lg-mobile lg:text-display-lg text-on-surface tracking-tight max-w-4xl subzero-reveal">
+                Transformamos ideias em <span class="text-primary italic font-headline-lg font-normal">realidade</span>
+              </h1>
 
-          <!-- Card 3: Supervisão Técnica Rigorosa -->
-          <div class="bg-white p-7 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between subzero-reveal stagger-2">
-            <div>
-              <span class="text-xs uppercase tracking-widest text-amber-700 font-bold block mb-2">Supervisão Técnica Rigorosa</span>
-              <h3 class="font-serif text-2xl font-bold text-slate-900 mb-2">Fidelidade Total</h3>
-              <p class="text-slate-600 text-sm leading-relaxed">Acompanhamento presencial minucioso do alicerce ao acabamento, garantindo alto padrão e pontualidade.</p>
-            </div>
-            <div class="pt-4 mt-4 border-t border-slate-100 flex items-center text-xs font-medium text-slate-500">
-              <span class="material-symbols-outlined text-[16px] text-amber-700 mr-1.5">verified</span>
-              <span>Responsabilidade Técnica Documentada</span>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Credenciamento Técnico Reduzido para 3 Certificações -->
-        <div class="bg-white rounded-xl border border-slate-200/80 p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm subzero-reveal">
-          <span class="text-xs uppercase tracking-widest font-bold text-slate-700">Credenciamento &amp; Normas Oficiais:</span>
-          <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-xs font-semibold text-slate-600 uppercase tracking-wider">
-            <span class="flex items-center gap-1.5 hover:text-amber-800 transition-colors">
-              <span class="material-symbols-outlined text-[18px] text-amber-700">account_balance</span>
-              CAU / CREA Registrado
-            </span>
-            <span class="flex items-center gap-1.5 hover:text-amber-800 transition-colors">
-              <span class="material-symbols-outlined text-[18px] text-amber-700">rule</span>
-              Normas ABNT NBR 6118 / 8800
-            </span>
-            <span class="flex items-center gap-1.5 hover:text-amber-800 transition-colors">
-              <span class="material-symbols-outlined text-[18px] text-amber-700">assignment_turned_in</span>
-              Projetos com Emissão de ART
-            </span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================================================
-         SEÇÃO 2: PORTFÓLIO E OBRAS (Fundo Claro 2: Soft Stone #f1f5f9)
-         5 Projetos em Galeria Horizontal Arrastável com Borda Esmaecida
-         ======================================================================== -->
-    <section id="projetos" class="w-full bg-[#f1f5f9] py-16 lg:py-24 overflow-hidden border-b border-slate-200/80">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 subzero-reveal">
-          <div>
-            <span class="text-xs font-bold uppercase tracking-widest text-amber-700 block mb-1.5">Projetos em Destaque</span>
-            <h2 class="font-serif text-2xl sm:text-4xl text-slate-900 tracking-tight">
-              Conheça <span class="text-amber-700 font-normal italic">nossos trabalhos</span>
-            </h2>
-          </div>
-          <span class="text-xs font-medium text-slate-500 uppercase tracking-wider flex items-center gap-1">
-            <span>Arraste para o lado</span>
-            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-          </span>
-        </div>
-      </div>
-
-      <!-- Galeria Horizontal (3 cards inteiros, 4º pela metade, 5º arrastando) -->
-      <div class="relative w-full">
-        <div class="portfolio-gallery-scroll flex gap-6 px-4 sm:px-6 lg:px-8 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-6 cursor-grab active:cursor-grabbing">
-          
-          <!-- Projeto 1 -->
-          <article class="portfolio-gallery-card flex-shrink-0 snap-start bg-white rounded-xl shadow-sm border border-slate-200/80 overflow-hidden group hover:shadow-lg transition-all duration-300">
-            <div class="relative w-full h-64 overflow-hidden bg-slate-100">
-              <img src="./img/{{IMG_SERVICO_1}}" alt="{{NOME_SERVICO_1}}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              <div class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md px-3 py-1 rounded text-[10px] uppercase font-bold tracking-wider text-amber-300">
-                Mirante dos Cristais · Franca SP
-              </div>
-            </div>
-            <div class="p-5 flex flex-col gap-1.5">
-              <span class="text-[11px] font-bold uppercase tracking-widest text-amber-700">Residencial Contemporâneo</span>
-              <h3 class="font-serif font-bold text-lg text-slate-900 leading-snug group-hover:text-amber-800 transition-colors">
-                {{NOME_SERVICO_1}}
-              </h3>
-              <p class="text-xs text-slate-600 line-clamp-2 leading-relaxed mt-1">
-                {{DESCRICAO_SERVICO_1}}
-              </p>
-            </div>
-          </article>
-
-          <!-- Projeto 2 -->
-          <article class="portfolio-gallery-card flex-shrink-0 snap-start bg-white rounded-xl shadow-sm border border-slate-200/80 overflow-hidden group hover:shadow-lg transition-all duration-300">
-            <div class="relative w-full h-64 overflow-hidden bg-slate-100">
-              <img src="./img/{{IMG_SERVICO_2}}" alt="{{NOME_SERVICO_2}}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              <div class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md px-3 py-1 rounded text-[10px] uppercase font-bold tracking-wider text-amber-300">
-                Região de Franca &amp; Ribeirão
-              </div>
-            </div>
-            <div class="p-5 flex flex-col gap-1.5">
-              <span class="text-[11px] font-bold uppercase tracking-widest text-amber-700">Estruturas &amp; Obras</span>
-              <h3 class="font-serif font-bold text-lg text-slate-900 leading-snug group-hover:text-amber-800 transition-colors">
-                {{NOME_SERVICO_2}}
-              </h3>
-              <p class="text-xs text-slate-600 line-clamp-2 leading-relaxed mt-1">
-                {{DESCRICAO_SERVICO_2}}
-              </p>
-            </div>
-          </article>
-
-          <!-- Projeto 3 -->
-          <article class="portfolio-gallery-card flex-shrink-0 snap-start bg-white rounded-xl shadow-sm border border-slate-200/80 overflow-hidden group hover:shadow-lg transition-all duration-300">
-            <div class="relative w-full h-64 overflow-hidden bg-slate-100">
-              <img src="./img/{{IMG_SERVICO_3}}" alt="{{NOME_SERVICO_3}}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              <div class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md px-3 py-1 rounded text-[10px] uppercase font-bold tracking-wider text-amber-300">
-                Alta Mogiana · SP
-              </div>
-            </div>
-            <div class="p-5 flex flex-col gap-1.5">
-              <span class="text-[11px] font-bold uppercase tracking-widest text-amber-700">Concreto &amp; Design</span>
-              <h3 class="font-serif font-bold text-lg text-slate-900 leading-snug group-hover:text-amber-800 transition-colors">
-                {{NOME_SERVICO_3}}
-              </h3>
-              <p class="text-xs text-slate-600 line-clamp-2 leading-relaxed mt-1">
-                {{DESCRICAO_SERVICO_3}}
-              </p>
-            </div>
-          </article>
-
-          <!-- Projeto 4 (visível pela metade) -->
-          <article class="portfolio-gallery-card flex-shrink-0 snap-start bg-white rounded-xl shadow-sm border border-slate-200/80 overflow-hidden group hover:shadow-lg transition-all duration-300">
-            <div class="relative w-full h-64 overflow-hidden bg-slate-100">
-              <img src="./img/project-1.jpg" alt="Projeto Residencial Villa Nobre" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              <div class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md px-3 py-1 rounded text-[10px] uppercase font-bold tracking-wider text-amber-300">
-                Condomínio Fechado · SP
-              </div>
-            </div>
-            <div class="p-5 flex flex-col gap-1.5">
-              <span class="text-[11px] font-bold uppercase tracking-widest text-amber-700">Residencial de Luxo</span>
-              <h3 class="font-serif font-bold text-lg text-slate-900 leading-snug group-hover:text-amber-800 transition-colors">
-                Villa Contemporânea
-              </h3>
-              <p class="text-xs text-slate-600 line-clamp-2 leading-relaxed mt-1">
-                Integração total entre ambientes sociais, iluminação cênica e balanços estruturais arrojados.
-              </p>
-            </div>
-          </article>
-
-          <!-- Projeto 5 (visível ao arrastar) -->
-          <article class="portfolio-gallery-card flex-shrink-0 snap-start bg-white rounded-xl shadow-sm border border-slate-200/80 overflow-hidden group hover:shadow-lg transition-all duration-300">
-            <div class="relative w-full h-64 overflow-hidden bg-slate-100">
-              <img src="./img/project-2.jpg" alt="Pavilhão e Campo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              <div class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md px-3 py-1 rounded text-[10px] uppercase font-bold tracking-wider text-amber-300">
-                Haras &amp; Lazer
-              </div>
-            </div>
-            <div class="p-5 flex flex-col gap-1.5">
-              <span class="text-[11px] font-bold uppercase tracking-widest text-amber-700">Arquitetura de Campo</span>
-              <h3 class="font-serif font-bold text-lg text-slate-900 leading-snug group-hover:text-amber-800 transition-colors">
-                Pavilhão Equestre &amp; Sede
-              </h3>
-              <p class="text-xs text-slate-600 line-clamp-2 leading-relaxed mt-1">
-                Estrutura mista em aço e concreto com grandes vãos livres para amplitude visual e ventilação natural.
-              </p>
-            </div>
-          </article>
-
-        </div>
-
-        <!-- Borda Esmaecida Fade à Direita -->
-        <div class="pointer-events-none absolute top-0 right-0 w-24 sm:w-32 h-full bg-gradient-to-l from-[#f1f5f9] to-transparent"></div>
-      </div>
-    </section>
-
-    <!-- ========================================================================
-         SEÇÃO 3: SOBRE A EMPRESA / O PROFISSIONAL (Fundo Claro 1: Pure White #ffffff)
-         Layout Estruturado Fiel à Imagem 3 Anexada (3 Colunas / Split)
-         ======================================================================== -->
-    <section id="sobre" class="w-full bg-white py-16 lg:py-24 border-b border-slate-200/80">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch subzero-reveal">
-          
-          <!-- Bloco 1 (Esquerda): Foto Vertical do Profissional / Escritório -->
-          <div class="lg:col-span-4 rounded-2xl overflow-hidden shadow-lg border border-slate-200 min-h-[380px] lg:min-h-[460px] bg-slate-100 relative">
-            <img src="./img/{{IMG_SERVICO_1}}" alt="{{NOME_DA_EMPRESA}}" class="w-full h-full object-cover object-top" />
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent flex items-end p-6">
-              <div class="text-white">
-                <span class="text-amber-300 text-xs font-bold uppercase tracking-wider block">Corpo Técnico Titular</span>
-                <span class="font-serif text-lg font-bold">{{NOME_DA_EMPRESA}}</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Bloco 2 (Centro): Card Escuro Navy com Detalhe Dourado (Imagem 3) -->
-          <div class="lg:col-span-4 bg-[#0b1326] text-white p-8 sm:p-9 rounded-2xl flex flex-col justify-between shadow-xl relative overflow-hidden">
-            <div class="relative z-10">
-              <span class="text-xs uppercase tracking-widest text-amber-300 font-bold block mb-3">Trajetória &amp; Conceito</span>
-              <h3 class="font-serif text-2xl font-bold text-white leading-tight mb-4">
-                Arquitetura que une estética e solidez técnica
-              </h3>
-              <p class="text-slate-300 text-sm leading-relaxed mb-6">
-                {{TEXTO_DE_APRESENTACAO_DA_EMPRESA_FOCO_EM_CONFIANCA_E_QUALIDADE}}
-              </p>
-            </div>
-            <div class="relative z-10 pt-4 border-t border-white/10">
-              <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold px-5 py-3 rounded-lg text-xs uppercase tracking-wider transition-all">
-                <span class="material-symbols-outlined text-[18px]">forum</span>
-                <span>Falar com o Especialista</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Bloco 3 (Direita): Card Claro com Divisor Vertical Central (Imagem 3) -->
-          <div class="lg:col-span-4 bg-slate-50 border border-slate-200/80 p-8 sm:p-9 rounded-2xl flex flex-col justify-between shadow-sm relative">
-            
-            <!-- Linha e Círculo Decorativo no Topo/Lateral -->
-            <div class="flex items-center gap-3 mb-4">
-              <span class="w-8 h-8 rounded-full bg-amber-100 border border-amber-300/60 flex items-center justify-center text-amber-800 text-sm font-bold shadow-xs">
-                ✓
-              </span>
-              <span class="text-xs uppercase tracking-widest text-slate-500 font-bold">Compromisso &amp; Rigor</span>
-            </div>
-
-            <div>
-              <h3 class="font-serif text-2xl font-bold text-slate-900 leading-tight mb-3">
-                Projetos desenvolvidos para valorizar seu patrimônio
-              </h3>
-              <div class="w-12 h-1 bg-amber-600 mb-4 rounded-full"></div>
-              <p class="text-slate-600 text-sm leading-relaxed mb-6">
-                Concebemos cada espaço com base em precisão matemática e visão contemporânea. Da compatibilização completa em 3D ao cálculo estrutural econômico, garantimos que sua obra seja concluída sem custos imprevistos ou atrasos.
-              </p>
-            </div>
-
-            <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
-              <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Atendimento Exclusivo</span>
-              <span class="text-xs font-bold text-amber-800 bg-amber-50 px-2.5 py-1 rounded border border-amber-200/60">
-                {{CIDADE_UF}}
-              </span>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================================================
-         SEÇÃO 4: DEPOIMENTOS (Fundo Claro 2: Slate Suave #f8fafc)
-         Carrossel Vertical + Badge Nota 5.0 no Google (Fiel à Imagem 4)
-         ======================================================================== -->
-    <section id="depoimentos" class="w-full bg-slate-50 py-16 lg:py-24 border-b border-slate-200/80">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <!-- Header da Seção com o Badge Estilizado como a Imagem 4 -->
-        <div class="flex flex-col items-center text-center max-w-3xl mx-auto mb-14 subzero-reveal">
-          
-          <!-- Badge Pílula Arredondada com Bolinha Âmbar Brilhante (Imagem 4) -->
-          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-amber-400/40 bg-slate-900 text-white shadow-sm mb-5">
-            <span class="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_8px_#f59e0b] animate-pulse"></span>
-            <span class="text-xs sm:text-sm font-semibold tracking-wide text-amber-200">
-              Nota 5.0 no Google • Avaliações reais de clientes verificados
-            </span>
-          </div>
-
-          <span class="text-xs font-bold uppercase tracking-widest text-amber-700 block mb-1">Depoimentos</span>
-          <h2 class="font-serif text-2xl sm:text-4xl text-slate-900 tracking-tight">
-            O que <span class="text-amber-700 font-normal italic">nossos clientes</span> disseram
-          </h2>
-          <p class="text-slate-600 text-sm mt-2 max-w-lg">
-            A satisfação e tranquilidade de quem contratou nossos projetos e acompanhamento técnico.
-          </p>
-        </div>
-
-        <!-- Avaliações em Grid Vertical (2 colunas no desktop, 1 no mobile) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          
-          <!-- Depoimento 1 -->
-          <div class="bg-white p-6 sm:p-7 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between subzero-reveal">
-            <div>
-              <div class="flex items-center text-amber-500 mb-3 text-sm tracking-widest">
-                ★★★★★
-              </div>
-              <p class="text-slate-700 text-sm leading-relaxed italic mb-4">
-                "{{DEPOIMENTO_DO_CLIENTE_1}}"
-              </p>
-            </div>
-            <div class="flex items-center justify-between pt-3 border-t border-slate-100">
-              <span class="font-bold text-xs text-slate-900">{{NOME_DO_CLIENTE_1}}</span>
-              <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
-                <span class="material-symbols-outlined text-[14px]">verified</span> Google Maps
-              </span>
-            </div>
-          </div>
-
-          <!-- Depoimento 2 -->
-          <div class="bg-white p-6 sm:p-7 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between subzero-reveal stagger-1">
-            <div>
-              <div class="flex items-center text-amber-500 mb-3 text-sm tracking-widest">
-                ★★★★★
-              </div>
-              <p class="text-slate-700 text-sm leading-relaxed italic mb-4">
-                "{{DEPOIMENTO_DO_CLIENTE_2}}"
-              </p>
-            </div>
-            <div class="flex items-center justify-between pt-3 border-t border-slate-100">
-              <span class="font-bold text-xs text-slate-900">{{NOME_DO_CLIENTE_2}}</span>
-              <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
-                <span class="material-symbols-outlined text-[14px]">verified</span> Google Maps
-              </span>
-            </div>
-          </div>
-
-          <!-- Depoimento 3 -->
-          <div class="bg-white p-6 sm:p-7 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between subzero-reveal stagger-2">
-            <div>
-              <div class="flex items-center text-amber-500 mb-3 text-sm tracking-widest">
-                ★★★★★
-              </div>
-              <p class="text-slate-700 text-sm leading-relaxed italic mb-4">
-                "{{DEPOIMENTO_DO_CLIENTE_3}}"
-              </p>
-            </div>
-            <div class="flex items-center justify-between pt-3 border-t border-slate-100">
-              <span class="font-bold text-xs text-slate-900">{{NOME_DO_CLIENTE_3}}</span>
-              <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
-                <span class="material-symbols-outlined text-[14px]">verified</span> Google Maps
-              </span>
-            </div>
-          </div>
-
-          <!-- Depoimento 4 -->
-          <div class="bg-white p-6 sm:p-7 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between subzero-reveal stagger-3">
-            <div>
-              <div class="flex items-center text-amber-500 mb-3 text-sm tracking-widest">
-                ★★★★★
-              </div>
-              <p class="text-slate-700 text-sm leading-relaxed italic mb-4">
-                "{{DEPOIMENTO_DO_CLIENTE_4}}"
-              </p>
-            </div>
-            <div class="flex items-center justify-between pt-3 border-t border-slate-100">
-              <span class="font-bold text-xs text-slate-900">{{NOME_DO_CLIENTE_4}}</span>
-              <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
-                <span class="material-symbols-outlined text-[14px]">verified</span> Google Maps
-              </span>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================================================
-         SEÇÃO 5: CONTATO E LOCALIZAÇÃO (Fundo Claro 1: Pure White #ffffff)
-         Dados de Contato à Esquerda, Mapa à Direita (Compacto no Mobile)
-         ======================================================================== -->
-    <section id="contato" class="w-full bg-white py-16 lg:py-20 border-b border-slate-200/80">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch subzero-reveal">
-          
-          <!-- Coluna Esquerda: Dados de Contato Compactos -->
-          <div class="lg:col-span-5 bg-slate-50 border border-slate-200/80 p-7 sm:p-8 rounded-2xl flex flex-col justify-between shadow-sm">
-            <div>
-              <span class="text-xs font-bold uppercase tracking-widest text-amber-700 block mb-1">Atendimento Direto</span>
-              <h2 class="font-serif text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
-                Contato e Localização
+              <!-- H2 Solicitado -->
+              <h2 class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed subzero-reveal stagger-1">
+                Excelência técnica, criatividade e compromisso em cada etapa do seu projeto.
               </h2>
-              <p class="text-slate-600 text-xs sm:text-sm mb-6 leading-relaxed">
-                Tire suas dúvidas ou solicite um atendimento presencial ou online com nossa equipe técnica.
-              </p>
 
-              <!-- Lista Compacta de Informações -->
-              <div class="flex flex-col gap-4">
-                
-                <!-- Endereço -->
-                <div class="flex items-start gap-3">
-                  <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center shrink-0 mt-0.5">
-                    <span class="material-symbols-outlined text-[18px]">pin_drop</span>
-                  </div>
-                  <div>
-                    <span class="text-[11px] uppercase tracking-wider font-bold text-slate-500 block">Endereço</span>
-                    <span class="text-xs sm:text-sm font-semibold text-slate-900 block leading-snug">{{ENDERECO_COMPLETO_DO_GOOGLE_MAPS}}</span>
-                  </div>
+              <!-- Botões com o Mesmo Tamanho -->
+              <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-md pt-space-sm subzero-reveal stagger-2">
+                <a class="hero-equal-btn inline-flex items-center justify-center gap-space-xs bg-primary text-on-primary px-space-lg py-space-md font-label-lg text-label-lg uppercase tracking-widest hover:bg-secondary transition-all duration-300 shadow-xl" href="{{LINK_WHATSAPP_COM_MENSAGEM}}" rel="noopener noreferrer" target="_blank">
+                  <span class="material-symbols-outlined text-[20px]">forum</span>
+                  <span>Agendar Consulta</span>
+                </a>
+                <a class="hero-equal-btn inline-flex items-center justify-center gap-space-xs bg-surface-container-high/75 backdrop-blur-md text-on-surface px-space-lg py-space-md font-label-lg text-label-lg uppercase tracking-widest hover:bg-surface-bright hover:text-primary transition-all duration-300 border border-outline-variant/40" href="#portfolio-dossier">
+                  <span class="material-symbols-outlined text-[18px]">architecture</span>
+                  <span>Nossos Trabalhos</span>
+                </a>
+              </div>
+
+              <!-- Div abaixo dos botões com dados úteis e impacto -->
+              <div class="mt-space-lg pt-space-md grid grid-cols-1 sm:grid-cols-3 gap-gutter bg-surface-container-low/85 backdrop-blur-xl p-space-md shadow-2xl border border-outline-variant/30 subzero-reveal stagger-3">
+                <div>
+                  <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block">+15 Anos de Atuação</span>
+                  <span class="font-headline-sm text-headline-sm text-on-surface">Experiência Comprovada</span>
+                  <p class="font-body-sm text-body-sm text-outline-variant mt-1">Confiabilidade e precisão em projetos residenciais de alto padrão e corporativos.</p>
                 </div>
-
-                <!-- Telefone / WhatsApp -->
-                <div class="flex items-start gap-3">
-                  <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0 mt-0.5">
-                    <span class="material-symbols-outlined text-[18px]">chat</span>
-                  </div>
-                  <div>
-                    <span class="text-[11px] uppercase tracking-wider font-bold text-slate-500 block">WhatsApp &amp; Telefone</span>
-                    <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-bold text-emerald-700 hover:text-emerald-800 block">
-                      {{TELEFONE_FORMATADO}}
-                    </a>
-                  </div>
+                <div>
+                  <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block">100% Homologado</span>
+                  <span class="font-headline-sm text-headline-sm text-on-surface">Aprovação &amp; Alvarás</span>
+                  <p class="font-body-sm text-body-sm text-outline-variant mt-1">Condução documental ágil de habite-se, laudos e conformidade na prefeitura.</p>
                 </div>
-
-                <!-- Horário -->
-                <div class="flex items-start gap-3">
-                  <div class="w-8 h-8 rounded-lg bg-slate-200 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
-                    <span class="material-symbols-outlined text-[18px]">schedule</span>
-                  </div>
-                  <div>
-                    <span class="text-[11px] uppercase tracking-wider font-bold text-slate-500 block">Horário de Atendimento</span>
-                    <span class="text-xs sm:text-sm font-medium text-slate-700 block">{{HORARIO_COMPLETO}}</span>
-                  </div>
+                <div>
+                  <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block">Economia Inteligente</span>
+                  <span class="font-headline-sm text-headline-sm text-on-surface">Cálculo Otimizado</span>
+                  <p class="font-body-sm text-body-sm text-outline-variant mt-1">Dimensionamento estrutural que reduz compras excessivas e desperdícios de materiais.</p>
                 </div>
+              </div>
 
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================
+           SEÇÃO 1: CREDIBILIDADE & RIGOR (Fundo Intercalado Claro: surface-container-low)
+           3 Cards Informativos + Credenciamento Técnico em 3 Certificações
+           ======================================================================== -->
+      <section class="w-full bg-surface-container-low py-space-xl px-margin-mobile lg:px-margin-desktop border-b border-outline-variant/20">
+        <div class="max-w-7xl mx-auto">
+          
+          <!-- Grid com 3 Cards (Card 4 Removido Conforme Solicitado) -->
+          <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-gutter-desktop mb-space-xl">
+            
+            <!-- Card 1: Mantido intacto -->
+            <div class="flex flex-col justify-between bg-surface-container p-space-lg shadow-md border border-outline-variant/30 subzero-reveal">
+              <div>
+                <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block mb-space-xs">Escritório Central</span>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">{{CIDADE_UF}}</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant pt-space-xs">Interior Paulista &amp; Capitais com assessoria presencial e projetos sob medida.</p>
+              </div>
+              <div class="pt-space-md mt-space-md border-t border-outline-variant/20 flex items-center gap-space-xs text-outline font-label-sm text-label-sm uppercase">
+                <span class="material-symbols-outlined text-[16px] text-primary">location_city</span>
+                <span>Sede Própria &amp; Atendimento Direto</span>
               </div>
             </div>
 
-            <!-- Botão WhatsApp Grande -->
-            <div class="mt-6 pt-5 border-t border-slate-200">
-              <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-4 rounded-xl text-xs sm:text-sm uppercase tracking-wider shadow-sm hover:shadow-md transition-all">
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.159.57 4.185 1.564 5.939l-1.564 5.889 6.088-1.597c1.704.929 3.659 1.469 5.74 1.469 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/>
-                </svg>
-                <span>Falar Agora no WhatsApp</span>
-              </a>
+            <!-- Card 2: Modelagem 3D & BIM -->
+            <div class="flex flex-col justify-between bg-surface-container p-space-lg shadow-md border border-outline-variant/30 subzero-reveal stagger-1">
+              <div>
+                <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block mb-space-xs">Modelagem 3D &amp; BIM</span>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Visão Real da Obra</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant pt-space-xs">Plantas humanizadas e detalhamento volumétrico realista que antecipam cada fase antes de construir.</p>
+              </div>
+              <div class="pt-space-md mt-space-md border-t border-outline-variant/20 flex items-center gap-space-xs text-outline font-label-sm text-label-sm uppercase">
+                <span class="material-symbols-outlined text-[16px] text-primary">view_in_ar</span>
+                <span>Zero Improvisos no Canteiro</span>
+              </div>
+            </div>
+
+            <!-- Card 3: Supervisão Técnica Rigorosa -->
+            <div class="flex flex-col justify-between bg-surface-container p-space-lg shadow-md border border-outline-variant/30 subzero-reveal stagger-2">
+              <div>
+                <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary block mb-space-xs">Supervisão Técnica Rigorosa</span>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Fidelidade ao Projeto</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant pt-space-xs">Acompanhamento presencial e rigor normativo do alicerce ao acabamento, garantindo alto padrão.</p>
+              </div>
+              <div class="pt-space-md mt-space-md border-t border-outline-variant/20 flex items-center gap-space-xs text-outline font-label-sm text-label-sm uppercase">
+                <span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+                <span>Responsabilidade Técnica com ART</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Credenciamento Técnico Reduzido para 3 Certificações -->
+          <div class="w-full bg-surface-container-high/60 p-space-md flex flex-wrap items-center justify-between gap-gutter border border-outline-variant/30 subzero-reveal">
+            <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">Credenciamento &amp; Normas Técnicas</span>
+            <div class="flex flex-wrap items-center gap-space-lg text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">
+              <span class="flex items-center gap-space-xs hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-[18px] text-primary">account_balance</span>
+                CAU / CREA Registrado
+              </span>
+              <span class="flex items-center gap-space-xs hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-[18px] text-primary">apartment</span>
+                Normas ABNT NBR 6118 / 8800
+              </span>
+              <span class="flex items-center gap-space-xs hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-[18px] text-primary">verified_user</span>
+                Projetos Homologados com ART
+              </span>
             </div>
           </div>
 
-          <!-- Coluna Direita: Mapa Google Interativo -->
-          <div class="lg:col-span-7 rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm min-h-[300px] lg:min-h-[420px] bg-slate-100">
-            <iframe 
-              class="w-full h-full border-0 min-h-[300px] lg:min-h-full"
-              src="https://maps.google.com/maps?q={{ENDERECO_URL_ENCODED}}&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-              title="Localização {{NOME_DA_EMPRESA}}" 
-              loading="lazy" 
-              referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+        </div>
+      </section>
+
+      <!-- ========================================================================
+           SEÇÃO 2: PORTFÓLIO E OBRAS (Fundo de Contraste: surface #0b1326)
+           5 Projetos em Galeria Horizontal Arrastável com Borda Esmaecida
+           ======================================================================== -->
+      <section class="w-full bg-surface py-space-xl px-margin-mobile lg:px-margin-desktop border-b border-outline-variant/20 overflow-hidden" id="portfolio-dossier">
+        <div class="max-w-7xl mx-auto mb-space-lg">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md subzero-reveal">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block mb-space-xs">Portfólio</span>
+              <h2 class="font-display-md text-display-md text-on-surface tracking-tight">Projetos em Destaque</h2>
+              <p class="font-body-lg text-body-lg text-on-surface-variant mt-1">Conheça nossos trabalhos</p>
+            </div>
+            <span class="font-label-sm text-label-sm uppercase tracking-widest text-outline flex items-center gap-1">
+              <span>Arraste para o lado</span>
+              <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Galeria Horizontal (3 visíveis, 4º pela metade, 5º arrastando) -->
+        <div class="relative w-full max-w-7xl mx-auto">
+          <div class="portfolio-gallery-scroll flex gap-gutter overflow-x-auto snap-x snap-mandatory scrollbar-none pb-space-md cursor-grab active:cursor-grabbing">
+            
+            <!-- Projeto 1 -->
+            <article class="portfolio-gallery-card group flex flex-col bg-surface-container shadow-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 flex-shrink-0 snap-start border border-outline-variant/30">
+              <div class="relative w-full h-80 overflow-hidden bg-surface-container-highest">
+                <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" src="./img/{{IMG_SERVICO_1}}" alt="{{NOME_SERVICO_1}}"/>
+                <div class="absolute top-space-md left-space-md bg-surface-container-lowest/80 backdrop-blur-md px-space-sm py-space-xs">
+                  <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Mirante dos Cristais, Franca – SP</span>
+                </div>
+              </div>
+              <div class="p-space-lg flex flex-col flex-1 justify-between gap-space-xs">
+                <div>
+                  <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Monografia 01 · Residencial</span>
+                  <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors mt-1">{{NOME_SERVICO_1}}</h3>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 line-clamp-2 leading-relaxed">{{DESCRICAO_SERVICO_1}}</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Projeto 2 -->
+            <article class="portfolio-gallery-card group flex flex-col bg-surface-container shadow-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 flex-shrink-0 snap-start border border-outline-variant/30">
+              <div class="relative w-full h-80 overflow-hidden bg-surface-container-highest">
+                <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" src="./img/{{IMG_SERVICO_2}}" alt="{{NOME_SERVICO_2}}"/>
+                <div class="absolute top-space-md left-space-md bg-surface-container-lowest/80 backdrop-blur-md px-space-sm py-space-xs">
+                  <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Região de Ribeirão Preto &amp; Franca · SP</span>
+                </div>
+              </div>
+              <div class="p-space-lg flex flex-col flex-1 justify-between gap-space-xs">
+                <div>
+                  <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Monografia 02 · Estrutural</span>
+                  <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors mt-1">{{NOME_SERVICO_2}}</h3>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 line-clamp-2 leading-relaxed">{{DESCRICAO_SERVICO_2}}</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Projeto 3 -->
+            <article class="portfolio-gallery-card group flex flex-col bg-surface-container shadow-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 flex-shrink-0 snap-start border border-outline-variant/30">
+              <div class="relative w-full h-80 overflow-hidden bg-surface-container-highest">
+                <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" src="./img/{{IMG_SERVICO_3}}" alt="{{NOME_SERVICO_3}}"/>
+                <div class="absolute top-space-md left-space-md bg-surface-container-lowest/80 backdrop-blur-md px-space-sm py-space-xs">
+                  <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Planalto da Alta Mogiana · SP</span>
+                </div>
+              </div>
+              <div class="p-space-lg flex flex-col flex-1 justify-between gap-space-xs">
+                <div>
+                  <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Monografia 03 · Concreto &amp; Obras</span>
+                  <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors mt-1">{{NOME_SERVICO_3}}</h3>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 line-clamp-2 leading-relaxed">{{DESCRICAO_SERVICO_3}}</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Projeto 4 (visível pela metade) -->
+            <article class="portfolio-gallery-card group flex flex-col bg-surface-container shadow-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 flex-shrink-0 snap-start border border-outline-variant/30">
+              <div class="relative w-full h-80 overflow-hidden bg-surface-container-highest">
+                <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" src="./img/project-1.jpg" alt="Villa Nobre"/>
+                <div class="absolute top-space-md left-space-md bg-surface-container-lowest/80 backdrop-blur-md px-space-sm py-space-xs">
+                  <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Condomínio Fechado · SP</span>
+                </div>
+              </div>
+              <div class="p-space-lg flex flex-col flex-1 justify-between gap-space-xs">
+                <div>
+                  <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Monografia 04 · Residencial</span>
+                  <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors mt-1">Villa Contemporânea</h3>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 line-clamp-2 leading-relaxed">Concepção integrada entre amplos panos de vidro, concreto aparente e iluminação cênica noturna.</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Projeto 5 (visível ao arrastar) -->
+            <article class="portfolio-gallery-card group flex flex-col bg-surface-container shadow-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 flex-shrink-0 snap-start border border-outline-variant/30">
+              <div class="relative w-full h-80 overflow-hidden bg-surface-container-highest">
+                <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" src="./img/project-2.jpg" alt="Pavilhão e Campo"/>
+                <div class="absolute top-space-md left-space-md bg-surface-container-lowest/80 backdrop-blur-md px-space-sm py-space-xs">
+                  <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Haras &amp; Campo · SP</span>
+                </div>
+              </div>
+              <div class="p-space-lg flex flex-col flex-1 justify-between gap-space-xs">
+                <div>
+                  <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Monografia 05 · Lazer &amp; Campo</span>
+                  <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors mt-1">Pavilhão Equestre</h3>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 line-clamp-2 leading-relaxed">Estrutura híbrida com perfis metálicos e grandes vãos livres garantindo amplitude visual absoluta.</p>
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- Borda Esmaecida Fade à Direita -->
+          <div class="pointer-events-none absolute top-0 right-0 w-24 sm:w-36 h-full bg-gradient-to-l from-surface to-transparent"></div>
+        </div>
+      </section>
+
+      <!-- ========================================================================
+           SEÇÃO 3: SOBRE O ESCRITÓRIO / O PROFISSIONAL (Fundo Claro: surface-container-low)
+           UMA ÚNICA SEÇÃO INTEGRADA COM BASE NA IMAGEM 3 (Split Bento)
+           ======================================================================== -->
+      <section class="w-full bg-surface-container-low py-space-xl px-margin-mobile lg:px-margin-desktop border-b border-outline-variant/20" id="sobre">
+        <div class="max-w-7xl mx-auto">
+          
+          <!-- Bloco Único Integrado em 3 Colunas (Imagem 3) -->
+          <div class="w-full bg-surface-container border border-outline-variant/30 shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 items-stretch subzero-reveal">
+            
+            <!-- Coluna 1 (Esquerda): Foto do profissional / arquiteto titular -->
+            <div class="lg:col-span-4 relative min-h-[380px] lg:min-h-[480px] bg-surface-container-highest overflow-hidden">
+              <img src="./img/{{IMG_SERVICO_1}}" alt="{{NOME_DA_EMPRESA}}" class="w-full h-full object-cover object-top" />
+              <div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent opacity-70"></div>
+              <div class="absolute bottom-space-md left-space-md right-space-md">
+                <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block">Responsabilidade Técnica</span>
+                <span class="font-headline-sm text-headline-sm text-on-surface block font-bold">{{NOME_DA_EMPRESA}}</span>
+              </div>
+            </div>
+
+            <!-- Coluna 2 (Centro): Bloco Escuro com Destaque Dourado (Imagem 3) -->
+            <div class="lg:col-span-4 p-space-lg lg:p-space-xl flex flex-col justify-between bg-surface-container border-t lg:border-t-0 lg:border-l border-outline-variant/30">
+              <div>
+                <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block mb-space-xs">Trajetória &amp; Conceito</span>
+                <h3 class="font-headline-md text-headline-md text-on-surface mb-space-md leading-snug">
+                  Arquitetura autoral com rigor estrutural
+                </h3>
+                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                  {{TEXTO_DE_APRESENTACAO_DA_EMPRESA_FOCO_EM_CONFIANCA_E_QUALIDADE}}
+                </p>
+              </div>
+              <div class="pt-space-md mt-space-md border-t border-outline-variant/20">
+                <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-space-xs bg-primary text-on-primary px-space-md py-space-sm font-label-md text-label-md uppercase tracking-widest hover:bg-secondary transition-colors shadow-md">
+                  <span class="material-symbols-outlined text-[18px]">forum</span>
+                  <span>Falar com o Especialista</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Divisor Vertical Central com Círculo (Imagem 3) + Coluna 3 (Direita) -->
+            <div class="lg:col-span-4 p-space-lg lg:p-space-xl flex flex-col justify-between bg-surface-container-high border-t lg:border-t-0 lg:border-l border-outline-variant/30 relative">
+              <!-- Círculo decorativo na divisória -->
+              <div class="hidden lg:flex absolute -left-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-surface-container border border-primary/50 items-center justify-center text-primary z-20 shadow-md">
+                <span class="material-symbols-outlined text-[16px]">architecture</span>
+              </div>
+
+              <div>
+                <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary block mb-space-xs">Compromisso &amp; Rigor</span>
+                <h3 class="font-headline-md text-headline-md text-on-surface mb-space-md leading-snug">
+                  Projetos pensados para valorizar seu investimento
+                </h3>
+                <div class="w-12 h-0.5 bg-primary mb-space-md"></div>
+                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                  Unimos sensibilidade espacial e exatidão estrutural. Cada traço é calculado para otimizar custos, garantir conformidade legal estrita e entregar construções elegantes, seguras e sem surpresas no cronograma da sua obra.
+                </p>
+              </div>
+              <div class="pt-space-md mt-space-md border-t border-outline-variant/20 flex items-center justify-between">
+                <span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Atendimento Técnico</span>
+                <span class="font-label-sm text-label-sm text-primary uppercase font-bold">{{CIDADE_UF}} &amp; Região</span>
+              </div>
+            </div>
+
           </div>
 
         </div>
+      </section>
 
-      </div>
-    </section>
+      <!-- ========================================================================
+           SEÇÃO 4: DEPOIMENTOS (Fundo de Contraste: surface #0b1326)
+           Badge Imagem 4 + Carrossel Vertical com Movimento Suave (Estilo Arcofran)
+           ======================================================================== -->
+      <section class="w-full bg-surface py-space-xl px-margin-mobile lg:px-margin-desktop border-b border-outline-variant/20" id="depoimentos">
+        <div class="max-w-7xl mx-auto">
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
+            
+            <!-- Coluna Esquerda: Header com Badge Estilo Imagem 4 -->
+            <div class="lg:col-span-5 flex flex-col justify-center subzero-reveal">
+              
+              <!-- Badge Pílula Arredondada com Bolinha Âmbar Brilhante (Imagem 4) -->
+              <div class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full border border-secondary/40 bg-surface-container-high/90 backdrop-blur-md mb-space-md w-fit shadow-[0_0_15px_rgba(233,195,73,0.15)]">
+                <span class="w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_8px_#e9c349] animate-pulse shrink-0"></span>
+                <span class="font-label-sm text-label-sm text-on-surface tracking-wide uppercase">
+                  Nota 5.0 no Google • Avaliações reais de clientes
+                </span>
+              </div>
 
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block mb-space-xs">Depoimentos</span>
+              <h2 class="font-display-md text-display-md text-on-surface tracking-tight mb-space-sm">
+                O que nossos <span class="text-primary italic font-normal">clientes</span> disseram
+              </h2>
+              <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-space-lg">
+                A satisfação e a tranquilidade de quem contratou nossos projetos autorais, cálculos estruturais e acompanhamento presencial em {{CIDADE_UF}}.
+              </p>
+
+              <div class="pt-space-md border-t border-outline-variant/20 flex items-center gap-space-md">
+                <div class="text-secondary font-bold text-lg">★★★★★</div>
+                <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Avaliações 100% Verificadas</span>
+              </div>
+            </div>
+
+            <!-- Coluna Direita: Carrossel Vertical com Animação Contínua (Estilo Arcofran) -->
+            <div class="lg:col-span-7 subzero-reveal stagger-1">
+              <div class="testimonial-carousel" aria-label="Avaliações de clientes no Google">
+                <div class="testimonial-track">
+                  
+                  <!-- Card 1 -->
+                  <article class="testimonial-card bg-surface-container p-space-lg border border-outline-variant/40 shadow-xl">
+                    <div class="text-secondary mb-2 text-sm tracking-widest">★★★★★</div>
+                    <p class="font-body-md text-on-surface italic font-display-lg leading-relaxed mb-space-md">"{{DEPOIMENTO_DO_CLIENTE_1}}"</p>
+                    <div class="pt-space-sm border-t border-outline-variant/20 flex items-center justify-between">
+                      <span class="font-label-md text-on-surface uppercase font-bold">{{NOME_DO_CLIENTE_1}}</span>
+                      <span class="font-label-sm text-[10px] text-primary uppercase font-technical">Google Maps · {{CIDADE_UF}}</span>
+                    </div>
+                  </article>
+
+                  <!-- Card 2 -->
+                  <article class="testimonial-card bg-surface-container p-space-lg border border-outline-variant/40 shadow-xl">
+                    <div class="text-secondary mb-2 text-sm tracking-widest">★★★★★</div>
+                    <p class="font-body-md text-on-surface italic font-display-lg leading-relaxed mb-space-md">"{{DEPOIMENTO_DO_CLIENTE_2}}"</p>
+                    <div class="pt-space-sm border-t border-outline-variant/20 flex items-center justify-between">
+                      <span class="font-label-md text-on-surface uppercase font-bold">{{NOME_DO_CLIENTE_2}}</span>
+                      <span class="font-label-sm text-[10px] text-primary uppercase font-technical">Google Maps · {{CIDADE_UF}}</span>
+                    </div>
+                  </article>
+
+                  <!-- Card 3 -->
+                  <article class="testimonial-card bg-surface-container p-space-lg border border-outline-variant/40 shadow-xl">
+                    <div class="text-secondary mb-2 text-sm tracking-widest">★★★★★</div>
+                    <p class="font-body-md text-on-surface italic font-display-lg leading-relaxed mb-space-md">"{{DEPOIMENTO_DO_CLIENTE_3}}"</p>
+                    <div class="pt-space-sm border-t border-outline-variant/20 flex items-center justify-between">
+                      <span class="font-label-md text-on-surface uppercase font-bold">{{NOME_DO_CLIENTE_3}}</span>
+                      <span class="font-label-sm text-[10px] text-primary uppercase font-technical">Google Maps · {{CIDADE_UF}}</span>
+                    </div>
+                  </article>
+
+                  <!-- Card 4 -->
+                  <article class="testimonial-card bg-surface-container p-space-lg border border-outline-variant/40 shadow-xl">
+                    <div class="text-secondary mb-2 text-sm tracking-widest">★★★★★</div>
+                    <p class="font-body-md text-on-surface italic font-display-lg leading-relaxed mb-space-md">"{{DEPOIMENTO_DO_CLIENTE_4}}"</p>
+                    <div class="pt-space-sm border-t border-outline-variant/20 flex items-center justify-between">
+                      <span class="font-label-md text-on-surface uppercase font-bold">{{NOME_DO_CLIENTE_4}}</span>
+                      <span class="font-label-sm text-[10px] text-primary uppercase font-technical">Google Maps · {{CIDADE_UF}}</span>
+                    </div>
+                  </article>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========================================================================
+           SEÇÃO 5: CONTATO E LOCALIZAÇÃO (Fundo Claro: surface-container-low)
+           Compacto no Mobile, Dados à Esquerda, Mapa à Direita
+           ======================================================================== -->
+      <section class="w-full bg-surface-container-low py-space-xl px-margin-mobile lg:px-margin-desktop border-b border-outline-variant/20" id="contato">
+        <div class="max-w-7xl mx-auto">
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-stretch subzero-reveal">
+            
+            <!-- Coluna Esquerda: Dados de Contato Compactos -->
+            <div class="lg:col-span-5 bg-surface-container p-space-lg lg:p-space-xl border border-outline-variant/30 shadow-2xl flex flex-col justify-between">
+              <div>
+                <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block mb-space-xs">Atendimento Direto</span>
+                <h2 class="font-display-md text-display-md text-on-surface tracking-tight mb-space-sm">
+                  Contato e Localização
+                </h2>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-lg leading-relaxed">
+                  Tire dúvidas sobre seu projeto ou agende um atendimento presencial ou online com nossa equipe técnica.
+                </p>
+
+                <div class="flex flex-col gap-space-md">
+                  
+                  <!-- Endereço -->
+                  <div class="flex items-start gap-space-sm">
+                    <div class="w-9 h-9 rounded bg-surface-container-high text-primary flex items-center justify-center shrink-0 mt-0.5 border border-outline-variant/30">
+                      <span class="material-symbols-outlined text-[18px]">pin_drop</span>
+                    </div>
+                    <div>
+                      <span class="font-label-sm text-[10px] uppercase tracking-wider text-outline block">Sede Técnica</span>
+                      <span class="font-body-md text-body-md text-on-surface block font-semibold leading-snug">{{ENDERECO_COMPLETO_DO_GOOGLE_MAPS}}</span>
+                    </div>
+                  </div>
+
+                  <!-- WhatsApp & Telefone -->
+                  <div class="flex items-start gap-space-sm">
+                    <div class="w-9 h-9 rounded bg-surface-container-high text-primary flex items-center justify-center shrink-0 mt-0.5 border border-outline-variant/30">
+                      <span class="material-symbols-outlined text-[18px]">chat</span>
+                    </div>
+                    <div>
+                      <span class="font-label-sm text-[10px] uppercase tracking-wider text-outline block">Telefone &amp; WhatsApp</span>
+                      <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="font-headline-sm text-headline-sm text-primary hover:text-secondary block font-bold transition-colors">
+                        {{TELEFONE_FORMATADO}}
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- Horário -->
+                  <div class="flex items-start gap-space-sm">
+                    <div class="w-9 h-9 rounded bg-surface-container-high text-outline flex items-center justify-center shrink-0 mt-0.5 border border-outline-variant/30">
+                      <span class="material-symbols-outlined text-[18px]">schedule</span>
+                    </div>
+                    <div>
+                      <span class="font-label-sm text-[10px] uppercase tracking-wider text-outline block">Horário de Funcionamento</span>
+                      <span class="font-body-sm text-body-sm text-on-surface-variant block">{{HORARIO_COMPLETO}}</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="pt-space-md mt-space-md border-t border-outline-variant/20">
+                <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-space-xs bg-primary text-on-primary py-space-sm px-space-md font-label-md text-label-md uppercase tracking-widest hover:bg-secondary transition-colors shadow-xl">
+                  <span class="material-symbols-outlined text-[18px]">forum</span>
+                  <span>Iniciar Conversa no WhatsApp</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Coluna Direita: Mapa Google Interativo -->
+            <div class="lg:col-span-7 bg-surface-container border border-outline-variant/30 shadow-2xl overflow-hidden min-h-[300px] lg:min-h-[440px] relative">
+              <iframe 
+                class="w-full h-full border-0 min-h-[300px] lg:min-h-full grayscale invert contrast-125 opacity-75"
+                src="https://maps.google.com/maps?q={{ENDERECO_URL_ENCODED}}&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                title="Localização {{NOME_DA_EMPRESA}}" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+    </div>
   </main>
 
   <!-- ========================================================================
-       FOOTER (Superior Harmonizado + Inferior Oficial com Assinatura)
+       FOOTER (Superior Harmonizado + Inferior Oficial com Assinatura Intacta)
        ======================================================================== -->
-  <footer class="w-full bg-[#0b1326] text-slate-300 pt-16 pb-8 border-t border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <footer class="w-full bg-surface-container-lowest py-space-xl border-t border-outline-variant/20">
+    <div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin-desktop">
       
       <!-- Footer Superior -->
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-space-xl">
         
         <!-- Coluna 1: Marca -->
         <div class="md:col-span-2">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-8 h-8 rounded bg-amber-400 text-slate-950 font-bold font-serif flex items-center justify-center text-sm">
+          <div class="flex items-center gap-space-sm mb-space-sm">
+            <div class="w-8 h-8 border border-primary/50 bg-surface-container flex items-center justify-center text-primary font-bold text-sm font-display-lg">
               {{INICIAL_EMPRESA}}
             </div>
-            <span class="font-bold text-white text-base font-serif tracking-tight">
+            <span class="font-headline-sm text-headline-sm text-on-surface uppercase font-bold tracking-tight">
               {{NOME_DA_EMPRESA}}
             </span>
           </div>
-          <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
-            Projetos arquitetônicos contemporâneos, modelagem 3D imersiva, cálculo estrutural preciso e acompanhamento técnico de obras em {{CIDADE_UF}} e região.
+          <p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm leading-relaxed">
+            Arquitetura contemporânea autoral, modelagem digital imersiva, cálculo estrutural preciso e acompanhamento técnico de obras em {{CIDADE_UF}} e capitais.
           </p>
         </div>
 
         <!-- Coluna 2: Navegação -->
         <div>
-          <h4 class="text-white text-xs uppercase tracking-widest font-bold mb-4">Navegação</h4>
-          <ul class="flex flex-col gap-2 text-xs">
-            <li><a href="#inicio" class="hover:text-amber-300 transition-colors">Início</a></li>
-            <li><a href="#projetos" class="hover:text-amber-300 transition-colors">Projetos em Destaque</a></li>
-            <li><a href="#sobre" class="hover:text-amber-300 transition-colors">Sobre o Escritório</a></li>
-            <li><a href="#depoimentos" class="hover:text-amber-300 transition-colors">Depoimentos de Clientes</a></li>
-            <li><a href="#contato" class="hover:text-amber-300 transition-colors">Contato &amp; Localização</a></li>
+          <h4 class="font-label-md text-on-surface uppercase tracking-wider mb-space-sm font-bold">Navegação</h4>
+          <ul class="flex flex-col gap-space-xs font-body-sm text-outline">
+            <li><a href="#inicio" class="hover:text-primary transition-colors">Início</a></li>
+            <li><a href="#portfolio-dossier" class="hover:text-primary transition-colors">Projetos em Destaque</a></li>
+            <li><a href="#sobre" class="hover:text-primary transition-colors">Sobre o Escritório</a></li>
+            <li><a href="#depoimentos" class="hover:text-primary transition-colors">Depoimentos Verificados</a></li>
+            <li><a href="#contato" class="hover:text-primary transition-colors">Contato &amp; Localização</a></li>
           </ul>
         </div>
 
         <!-- Coluna 3: Atendimento -->
         <div>
-          <h4 class="text-white text-xs uppercase tracking-widest font-bold mb-4">Atendimento</h4>
-          <p class="text-xs text-slate-400 mb-2">{{HORARIO_COMPLETO}}</p>
-          <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs text-emerald-400 hover:text-emerald-300 font-semibold mt-2">
-            <span class="material-symbols-outlined text-[16px]">chat</span>
-            <span>WhatsApp: {{TELEFONE_FORMATADO}}</span>
+          <h4 class="font-label-md text-on-surface uppercase tracking-wider mb-space-sm font-bold">Atendimento</h4>
+          <p class="font-body-sm text-outline mb-space-xs">{{HORARIO_COMPLETO}}</p>
+          <a class="inline-flex items-center gap-space-xs bg-primary-container text-on-primary-container font-label-md text-xs uppercase px-4 py-2 mt-2" href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener">
+            WhatsApp {{TELEFONE_FORMATADO}}
           </a>
         </div>
 
       </div>
 
       <!-- Footer Inferior (Preservado Exatamente Conforme Regra) -->
-      <div class="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-        <div>
-          &copy; {{ANO_ATUAL}} {{NOME_DA_EMPRESA}}. Todos os direitos reservados.
-        </div>
-        <div class="text-slate-400 font-medium">
-          Desenvolvido por Gabriel Azevedo &bull; (16) 99204-8856
-        </div>
+      <div class="pt-space-md border-t border-outline-variant/20 flex flex-col sm:flex-row items-center justify-between text-xs text-outline gap-4 sm:pr-24">
+        <div>&copy; {{ANO_ATUAL}} {{NOME_DA_EMPRESA}}. Todos os direitos reservados.</div>
+        <div class="text-on-surface-variant font-medium">Desenvolvido por Gabriel Azevedo &bull; (16) 99204-8856</div>
       </div>
 
     </div>

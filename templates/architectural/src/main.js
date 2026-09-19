@@ -6,8 +6,9 @@
 document.addEventListener('DOMContentLoaded', () => {
   initSmartHeadroom();
   initGranularScrollAnimations();
+  initVerticalTestimonialsMarquee();
+  initPortfolioDragScroll();
   initMobileMenu();
-  initGalleryDragScroll();
 });
 
 /**
@@ -19,21 +20,22 @@ function initSmartHeadroom() {
   if (!header) return;
 
   let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
-  const scrollThreshold = 8;
+  const scrollThreshold = 10;
 
   window.addEventListener('scroll', () => {
     const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
 
-    // Sombra ao rolar além do topo
-    if (currentScrollY > 30) {
-      header.classList.add('shadow-md');
+    // Background blur & border ao rolar além do topo
+    if (currentScrollY > 40) {
+      header.classList.add('scrolled');
     } else {
-      header.classList.remove('shadow-md');
+      header.classList.remove('scrolled');
     }
 
+    // Lógica de direção de rolagem
     if (Math.abs(currentScrollY - lastScrollY) < scrollThreshold) return;
 
-    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+    if (currentScrollY > lastScrollY && currentScrollY > 120) {
       // Rolando para baixo
       header.classList.add('headroom--unpinned');
       header.classList.remove('headroom--pinned');
@@ -48,11 +50,11 @@ function initSmartHeadroom() {
 }
 
 /**
- * Animações de Scroll Granulares (Subzero Engine)
+ * Animações de Scroll Granulares
  * Disparo por item individual com timing intencional (0.84 * innerHeight)
  */
 function initGranularScrollAnimations() {
-  const revealElements = document.querySelectorAll('.subzero-reveal');
+  const revealElements = document.querySelectorAll('.subzero-reveal, .subzero-reveal-left');
   if (!revealElements.length) return;
 
   const observerOptions = {
@@ -74,57 +76,88 @@ function initGranularScrollAnimations() {
 }
 
 /**
- * Menu Mobile Drawer (Hambúrguer de 2 linhas estilo Arcofran)
+ * Carrossel Vertical Contínuo de Avaliações (Estilo Arcofran)
+ * Duplicação automática para loop vertical sem saltos
  */
-function initMobileMenu() {
-  const toggleBtn = document.getElementById('mobileMenuToggle');
-  const drawer = document.getElementById('mobileNavDrawer');
-  if (!toggleBtn || !drawer) return;
+function initVerticalTestimonialsMarquee() {
+  const track = document.querySelector('.testimonial-track');
+  if (!track) return;
 
-  toggleBtn.addEventListener('click', () => {
-    drawer.classList.toggle('hidden');
-    drawer.classList.toggle('flex');
-  });
-
-  // Fecha menu ao clicar em qualquer link interno
-  drawer.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      drawer.classList.add('hidden');
-      drawer.classList.remove('flex');
-    });
+  // Duplica os cards para permitir rotação contínua perfeita
+  const cards = Array.from(track.children);
+  cards.forEach(card => {
+    const clone = card.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    track.appendChild(clone);
   });
 }
 
 /**
- * Suporte a Arrastar (Drag-to-Scroll) na Galeria Horizontal com Mouse
+ * Suporte a Arrastar (Drag to Scroll) na Galeria Horizontal de Projetos
  */
-function initGalleryDragScroll() {
-  const gallery = document.querySelector('.portfolio-gallery-scroll');
-  if (!gallery) return;
+function initPortfolioDragScroll() {
+  const slider = document.querySelector('.portfolio-gallery-scroll');
+  if (!slider) return;
 
   let isDown = false;
-  let startX;
-  let scrollLeft;
+  let startX = 0;
+  let scrollLeft = 0;
 
-  gallery.addEventListener('mousedown', (e) => {
+  slider.addEventListener('mousedown', (e) => {
     isDown = true;
-    startX = e.pageX - gallery.offsetLeft;
-    scrollLeft = gallery.scrollLeft;
+    slider.classList.add('cursor-grabbing');
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
   });
 
-  gallery.addEventListener('mouseleave', () => {
+  slider.addEventListener('mouseleave', () => {
     isDown = false;
+    slider.classList.remove('cursor-grabbing');
   });
 
-  gallery.addEventListener('mouseup', () => {
+  slider.addEventListener('mouseup', () => {
     isDown = false;
+    slider.classList.remove('cursor-grabbing');
   });
 
-  gallery.addEventListener('mousemove', (e) => {
+  slider.addEventListener('mousemove', (e) => {
     if (!isDown) return;
     e.preventDefault();
-    const x = e.pageX - gallery.offsetLeft;
+    const x = e.pageX - slider.offsetLeft;
     const walk = (x - startX) * 1.5;
-    gallery.scrollLeft = scrollLeft - walk;
+    slider.scrollLeft = scrollLeft - walk;
+  });
+}
+
+/**
+ * Menu Hambúrguer Mobile (Clean, 2 Linhas - Arcofran Inspiration)
+ */
+function initMobileMenu() {
+  const menuBtn = document.getElementById('mobileMenuToggle');
+  const mobileNav = document.getElementById('mobileNavDrawer');
+  if (!menuBtn || !mobileNav) return;
+
+  const toggle = () => {
+    const isClosed = mobileNav.classList.contains('hidden');
+    if (isClosed) {
+      mobileNav.classList.remove('hidden');
+      mobileNav.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    } else {
+      mobileNav.classList.add('hidden');
+      mobileNav.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+  };
+
+  menuBtn.addEventListener('click', toggle);
+
+  // Fecha o menu ao clicar em qualquer link de ancoragem
+  mobileNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNav.classList.add('hidden');
+      mobileNav.classList.remove('flex');
+      document.body.style.overflow = '';
+    });
   });
 }
