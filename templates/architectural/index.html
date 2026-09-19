@@ -1,592 +1,720 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "primary-container": "#c5a880", "primary-fixed-dim": "#e0c298", "surface-container": "#171f33", "surface-tint": "#e0c298", "surface-container-high": "#222a3d", "primary-fixed": "#fedeb2", "on-secondary-fixed-variant": "#574500", "secondary-fixed-dim": "#e9c349", "on-secondary-container": "#342800", "on-tertiary-fixed-variant": "#4b463d", "surface-bright": "#31394d", "on-tertiary-container": "#453f36", "error": "#ffb4ab", "on-background": "#dae2fd", "surface-container-lowest": "#060e20", "tertiary": "#cfc6ba", "inverse-surface": "#dae2fd", "outline-variant": "#4d463c", "background": "#0b1326", "inverse-primary": "#725b38", "on-surface": "#dae2fd", "tertiary-fixed": "#eae1d4", "on-surface-variant": "#d1c5b8", "on-error-container": "#ffdad6", "secondary-container": "#af8d11", "outline": "#998f83", "surface": "#0b1326", "inverse-on-surface": "#283044", "tertiary-fixed-dim": "#cec5b9", "on-secondary-fixed": "#241a00", "on-primary-container": "#513d1d", "on-primary-fixed": "#281800", "error-container": "#93000a", "surface-variant": "#2d3449", "on-tertiary": "#343027", "surface-dim": "#0b1326", "on-error": "#690005", "primary": "#e2c399", "secondary-fixed": "#ffe088", "on-primary-fixed-variant": "#584323", "on-primary": "#402d0f", "tertiary-container": "#b3ab9f", "on-tertiary-fixed": "#1f1b13", "surface-container-highest": "#2d3449", "secondary": "#e9c349", "surface-container-low": "#131b2e", "on-secondary": "#3c2f00" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-lg": "1.75rem", "margin": "2rem", "space-sm": "0.5rem", "margin-desktop": "4rem", "space-xs": "0.25rem", "gutter-desktop": "2.5rem", "space-md": "1rem", "space-xl": "3rem", "margin-mobile": "1.25rem", "gutter-mobile": "1rem", "gutter": "1.5rem" }, "fontFamily": { "display-lg": [ "Noto Serif" ], "label-sm": [ "Space Grotesk" ], "display-md": [ "Noto Serif" ], "display-lg-mobile": [ "Noto Serif" ], "headline-lg": [ "Noto Serif" ], "headline-md": [ "Noto Serif" ], "body-md": [ "Space Grotesk" ], "body-sm": [ "Space Grotesk" ], "label-lg": [ "Space Grotesk" ], "headline-sm": [ "Space Grotesk" ], "headline-lg-mobile": [ "Noto Serif" ], "label-md": [ "Space Grotesk" ], "display-md-mobile": [ "Noto Serif" ], "body-lg": [ "Space Grotesk" ] }, "fontSize": { "display-lg": [ "64px", { "lineHeight": "76px", "letterSpacing": "-0.02em", "fontWeight": "400" } ], "label-sm": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.18em", "fontWeight": "700" } ], "display-md": [ "48px", { "lineHeight": "58px", "letterSpacing": "-0.015em", "fontWeight": "400" } ], "display-lg-mobile": [ "38px", { "lineHeight": "46px", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "headline-lg": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "headline-md": [ "28px", { "lineHeight": "36px", "letterSpacing": "0em", "fontWeight": "400" } ], "body-md": [ "15px", { "lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "400" } ], "body-sm": [ "13px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "400" } ], "label-lg": [ "14px", { "lineHeight": "18px", "letterSpacing": "0.08em", "fontWeight": "500" } ], "headline-sm": [ "20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "headline-lg-mobile": [ "26px", { "lineHeight": "34px", "letterSpacing": "0em", "fontWeight": "400" } ], "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.12em", "fontWeight": "600" } ], "display-md-mobile": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "body-lg": [ "18px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400" } ] } } } };</script>  <link rel="stylesheet" href="./src/style.css" />
-  <script src="./src/main.js" defer></script>
-</head><body class="bg-background font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] smart-header"><div class="h-20 w-full px-margin-mobile lg:px-margin-desktop flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-md">
-  <div class="w-9 h-9 border border-primary/50 bg-surface-container flex items-center justify-center text-primary font-bold text-lg tracking-wider font-mono">
-    {{INICIAL_EMPRESA}}
-  </div>
-  <div class="flex flex-col">
-    <span class="font-headline-sm text-headline-sm tracking-tight text-on-surface uppercase font-bold">{{NOME_DA_EMPRESA}}</span>
-    <span class="font-label-sm text-label-sm text-primary tracking-widest uppercase">ARQUITETURA &amp; ENGENHARIA</span>
-  </div>
-</div><nav class="hidden xl:flex items-center gap-gutter" data-active-classes="bg-primary-container text-on-primary-container font-label-lg text-label-lg px-space-sm py-space-xs rounded"><a aria-current="page" class="transition-colors tracking-widest uppercase bg-primary-container text-on-primary-container font-label-lg text-label-lg px-space-sm py-space-xs rounded" data-path="portfolio" href="#portfolio-dossier">Projetos</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors tracking-widest uppercase" data-path="engineering" href="#metodologia">Engenharia</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors tracking-widest uppercase" data-path="monographs" href="#portfolio-dossier">Monografias</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors tracking-widest uppercase" data-path="studio" href="#atelie">O Ateliê</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors tracking-widest uppercase" data-path="recognition" href="#reconhecimento">Reconhecimento</a></nav><div class="flex items-center gap-space-md"><a class="hidden sm:inline-flex items-center gap-space-xs bg-primary text-on-primary px-space-md py-space-sm font-label-md text-label-md uppercase tracking-widest hover:bg-secondary transition-colors" href="{{LINK_WHATSAPP_COM_MENSAGEM}}" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[18px]">chat</span><span>Atendimento WhatsApp</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-background"><div class="flex flex-col w-full">
-<!-- Top Hero Architectural Showcase Section -->
-<section class="relative w-full -mt-20 overflow-hidden bg-surface-container-lowest">
-<!-- Hero Background Image Canvas -->
-<div class="relative w-full min-h-[92vh] lg:min-h-screen flex items-end">
-<div class="absolute inset-0 z-0">
-<img alt="{{NOME_DA_EMPRESA}} - Arquitetura e Engenharia" class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-1000 ease-out" src="./img/{{IMG_HERO}}"/>
-<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/70 to-surface/40"></div>
-<div class="absolute inset-0 bg-gradient-to-r from-surface-container-lowest/90 via-surface-container-lowest/40 to-transparent"></div>
-</div>
-<!-- Hero Content Scrim & Content Frame -->
-<div class="relative z-10 w-full px-margin-mobile lg:px-margin-desktop pt-32 pb-space-xl">
-<div class="max-w-5xl flex flex-col gap-space-md">
-<!-- Live Telemetry Status Pill -->
-<div class="inline-flex items-center gap-space-sm bg-surface-container-high/80 backdrop-blur-md px-space-md py-space-xs w-fit">
-<span class="relative flex h-2 w-2">
-<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
-<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
-</span>
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Sede: Franca, SP | Projetos Nacionais · Atendimento Exclusivo WhatsApp</span>
-</div>
-<h1 class="font-display-lg text-display-lg-mobile lg:text-display-lg text-on-surface tracking-tight max-w-4xl">
-            Engenharia Estrutural de Vanguarda &amp; <span class="text-primary italic font-headline-lg font-normal">Arquitetura Autoral</span>
-</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
-            {{TEXTO_DE_APRESENTACAO_DA_EMPRESA_FOCO_EM_CONFIANCA_E_QUALIDADE}}
-          </p>
-<!-- CTAs Bar -->
-<div class="flex flex-wrap items-center gap-space-md pt-space-sm">
-<a class="group inline-flex items-center gap-space-sm bg-primary text-on-primary px-space-lg py-space-md font-label-lg text-label-lg uppercase tracking-widest hover:bg-secondary transition-all duration-300 shadow-xl" href="{{LINK_WHATSAPP_COM_MENSAGEM}}" rel="noopener noreferrer" target="_blank">
-<span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110">forum</span>
-<span>Agendar Consulta via WhatsApp</span>
-<span class="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-1">arrow_forward</span>
-</a>
-<a class="inline-flex items-center gap-space-sm bg-surface-container-high/60 backdrop-blur-md text-on-surface px-space-lg py-space-md font-label-lg text-label-lg uppercase tracking-widest hover:bg-surface-bright hover:text-primary transition-all duration-300" href="#portfolio-dossier">
-<span class="material-symbols-outlined text-[18px]">menu_book</span>
-<span>Explorar Obras Selecionadas</span>
-</a>
-</div>
-<!-- Hero Technical Micro-Dossier Spec Sheet -->
-<div class="mt-space-lg pt-space-md grid grid-cols-2 md:grid-cols-4 gap-gutter bg-surface-container-low/75 backdrop-blur-xl p-space-md shadow-2xl">
-<div>
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block">Escritório Central</span>
-<span class="font-headline-sm text-headline-sm text-on-surface">{{CIDADE_UF}}</span>
-<p class="font-body-sm text-body-sm text-outline-variant">Interior Paulista &amp; Capitais</p>
-</div>
-<div>
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block">Vão Livre Máximo</span>
-<span class="font-headline-sm text-headline-sm text-on-surface">19,80 Metros</span>
-<p class="font-body-sm text-body-sm text-outline-variant">Sem Pilares Aparentes</p>
-</div>
-<div>
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block">Área Projetada</span>
-<span class="font-headline-sm text-headline-sm text-on-surface">+120.000 m²</span>
-<p class="font-body-sm text-body-sm text-outline-variant">Residencial &amp; Haras de Luxo</p>
-</div>
-<div>
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block">Tolerância e Rigor</span>
-<span class="font-headline-sm text-headline-sm text-secondary">NBR 6118 / FEA</span>
-<p class="font-body-sm text-body-sm text-outline-variant">Análise Não-Linear Avançada</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Architectural Credibility & Numerical Rigor Section -->
-<section class="w-full bg-surface-container-low py-space-xl px-margin-mobile lg:px-margin-desktop">
-<div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter-desktop mb-space-xl">
-<!-- Metric Item 1 -->
-<div class="flex flex-col gap-space-xs bg-surface-container p-space-lg shadow-md">
-<div class="flex items-baseline gap-space-xs">
-<span class="font-display-md text-display-md text-primary">+180</span>
-</div>
-<span class="font-label-md text-label-md uppercase tracking-widest text-on-surface">Projetos Executados</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant pt-space-xs">Residências em condomínios de alto padrão, fazendas contemporâneas e sedes corporativas de destaque.</p>
-</div>
-<!-- Metric Item 2 -->
-<div class="flex flex-col gap-space-xs bg-surface-container p-space-lg shadow-md">
-<div class="flex items-baseline gap-space-xs">
-<span class="font-display-md text-display-md text-primary">R$ 650M</span>
-</div>
-<span class="font-label-md text-label-md uppercase tracking-widest text-on-surface">Patrimônio Estrutural Calculado</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant pt-space-xs">Volume de obras monumentais calculadas com otimização volumétrica e rigor técnico absoluto.</p>
-</div>
-<!-- Metric Item 3 -->
-<div class="flex flex-col gap-space-xs bg-surface-container p-space-lg shadow-md">
-<div class="flex items-baseline gap-space-xs">
-<span class="font-display-md text-display-md text-secondary">L/500</span>
-</div>
-<span class="font-label-md text-label-md uppercase tracking-widest text-on-surface">Controle de Flecha &amp; Vibração</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant pt-space-xs">Modelagem de deformação lenta e análise dinâmica para grandes balanços livres de vibração perceptível.</p>
-</div>
-<!-- Metric Item 4 -->
-<div class="flex flex-col gap-space-xs bg-surface-container p-space-lg shadow-md">
-<div class="flex items-baseline gap-space-xs">
-<span class="font-display-md text-display-md text-primary">100%</span>
-</div>
-<span class="font-label-md text-label-md uppercase tracking-widest text-on-surface">Integração BIM Nível 3</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant pt-space-xs">Compatibilização milimétrica entre arquitetura, cálculo estrutural, instalações e fundações especiais.</p>
-</div>
-</div>
-<!-- Institutional Chartered Guilds & Accreditations Ribbon -->
-<div class="w-full bg-surface-container-high/60 p-space-md flex flex-wrap items-center justify-between gap-gutter">
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Credenciamento Técnico &amp; Associações</span>
-<div class="flex flex-wrap items-center gap-space-lg text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">
-<span class="flex items-center gap-space-xs hover:text-primary transition-colors">
-<span class="material-symbols-outlined text-[18px] text-primary">verified_user</span> CREA-SP / CONFEA
-        </span>
-<span class="flex items-center gap-space-xs hover:text-primary transition-colors">
-<span class="material-symbols-outlined text-[18px] text-primary">account_balance</span> CAU/SP Registrado
-        </span>
-<span class="flex items-center gap-space-xs hover:text-primary transition-colors">
-<span class="material-symbols-outlined text-[18px] text-primary">architecture</span> ABECE Associado
-        </span>
-<span class="flex items-center gap-space-xs hover:text-primary transition-colors">
-<span class="material-symbols-outlined text-[18px] text-primary">domain</span> AsBEA Brasil
-        </span>
-<span class="flex items-center gap-space-xs hover:text-primary transition-colors">
-<span class="material-symbols-outlined text-[18px] text-primary">apartment</span> Norma NBR 6118 / 8800
-        </span>
-</div>
-</div>
-</section>
-<!-- Selected Monograph & Project Showcase Section -->
-<section class="w-full bg-surface py-space-xl px-margin-mobile lg:px-margin-desktop" id="portfolio-dossier">
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-xl">
-<div class="max-w-2xl">
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block mb-space-xs">Portfólio &amp; Obras Selecionadas</span>
-<h2 class="font-display-md text-display-md text-on-surface tracking-tight">Balanços Arrojados &amp; Superestruturas</h2>
-</div>
-<!-- Filter Controls (Vanilla JS Active) -->
-<div class="flex flex-wrap gap-space-xs bg-surface-container p-space-xs">
-<button class="filter-btn px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider bg-primary text-on-primary transition-colors" data-filter="all" type="button">Todas as Tipologias</button>
-<button class="filter-btn px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors" data-filter="cantilever" type="button">Grandes Balanços</button>
-<button class="filter-btn px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors" data-filter="fazendas" type="button">Fazendas &amp; Haras</button>
-<button class="filter-btn px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors" data-filter="pavilhoes" type="button">Concreto Aparente</button>
-</div>
-</div>
-<!-- Architectural Monograph Cards Grid -->
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter-desktop" id="projects-grid">
-<!-- Project 1: {{NOME_SERVICO_1}} (Franca - SP) -->
-<article class="project-card group flex flex-col bg-surface-container shadow-xl overflow-hidden transition-all duration-300 hover:-translate-y-1" data-category="cantilever">
-<div class="relative w-full h-80 overflow-hidden bg-surface-container-highest">
-<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" data-alt="Residência contemporânea de altíssimo padrão com lajes em balanço, esquadrias do chão ao teto e iluminação cênica noturna" src="./img/{{IMG_SERVICO_1}}" alt="{{NOME_SERVICO_1}}"/>
-<div class="absolute top-space-md left-space-md bg-surface-container-lowest/80 backdrop-blur-md px-space-sm py-space-xs">
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Mirante dos Cristais, Franca – SP</span>
-</div>
-<div class="absolute bottom-space-md right-space-md bg-surface-container-high/90 px-space-sm py-space-xs">
-<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Balanço Livre: 14,50m</span>
-</div>
-</div>
-<div class="p-space-lg flex flex-col flex-1 justify-between gap-space-md">
-<div>
-<div class="flex items-center justify-between mb-space-xs">
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Monografia 01</span>
-<span class="font-label-sm text-label-sm text-outline-variant uppercase">Condomínio Fechado</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">{{NOME_SERVICO_1}}</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">Balanço monumental em concreto protendido e aço corten debruçado sobre a topografia ondulada de Franca, garantindo amplitude visual absoluta.</p>
-</div>
-<div class="bg-surface-container-low p-space-md space-y-space-xs">
-<div class="flex justify-between text-body-sm font-body-sm">
-<span class="text-outline">Sistema Estrutural</span>
-<span class="text-on-surface">Laje Nervurada Pós-Tensionada</span>
-</div>
-<div class="flex justify-between text-body-sm font-body-sm">
-<span class="text-outline">Envoltória</span>
-<span class="text-on-surface">Esquadrias Minimalistas Termoacústicas</span>
-</div>
-<div class="flex justify-between text-body-sm font-body-sm">
-<span class="text-outline">Área Construída</span>
-<span class="text-on-surface">1.280 m² Privativos</span>
-</div>
-</div>
-<a class="inline-flex items-center justify-between text-primary hover:text-secondary font-label-md text-label-md uppercase tracking-widest pt-space-xs transition-colors" href="{{LINK_WHATSAPP_COM_MENSAGEM}}" rel="noopener noreferrer" target="_blank">
-<span>Solicitar Dossiê via WhatsApp</span>
-<span class="material-symbols-outlined text-[18px]">chat</span>
-</a>
-</div>
-</article>
-<!-- Project 2: Villa Quinta do Golfe / Haras Contemporâneo -->
-<article class="project-card group flex flex-col bg-surface-container shadow-xl overflow-hidden transition-all duration-300 hover:-translate-y-1" data-category="fazendas">
-<div class="relative w-full h-80 overflow-hidden bg-surface-container-highest">
-<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" data-alt="Arquitetura contemporânea monumental em condomínio de alto padrão com brises em tons de bronze e integração com a natureza" src="./img/{{IMG_SERVICO_2}}" alt="{{NOME_SERVICO_2}}"/>
-<div class="absolute top-space-md left-space-md bg-surface-container-lowest/80 backdrop-blur-md px-space-sm py-space-xs">
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Região de Ribeirão Preto &amp; Franca · SP</span>
-</div>
-<div class="absolute bottom-space-md right-space-md bg-surface-container-high/90 px-space-sm py-space-xs">
-<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Vão Livre: 19,80m</span>
-</div>
-</div>
-<div class="p-space-lg flex flex-col flex-1 justify-between gap-space-md">
-<div>
-<div class="flex items-center justify-between mb-space-xs">
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Monografia 02</span>
-<span class="font-label-sm text-label-sm text-outline-variant uppercase">Haras &amp; Campo</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">{{NOME_SERVICO_2}}</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">Concepção estrutural híbrida em perfis metálicos pesados e concreto pigmentado, concebida para integrar pavilhões equestres e residência sede sem pilares intermediários.</p>
-</div>
-<div class="bg-surface-container-low p-space-md space-y-space-xs">
-<div class="flex justify-between text-body-sm font-body-sm">
-<span class="text-outline">Estrutura Principal</span>
-<span class="text-on-surface">Vigas Soldadas Aço ASTM A572</span>
-</div>
-<div class="flex justify-between text-body-sm font-body-sm">
-<span class="text-outline">Controle Térmico</span>
-<span class="text-on-surface">Brise-soleil Motorizado em Bronze</span>
-</div>
-<div class="flex justify-between text-body-sm font-body-sm">
-<span class="text-outline">Área da Gleba</span>
-<span class="text-on-surface">42.000 m² Paisagismo e Edificação</span>
-</div>
-</div>
-<a class="inline-flex items-center justify-between text-primary hover:text-secondary font-label-md text-label-md uppercase tracking-widest pt-space-xs transition-colors" href="{{LINK_WHATSAPP_COM_MENSAGEM}}" rel="noopener noreferrer" target="_blank">
-<span>Solicitar Dossiê via WhatsApp</span>
-<span class="material-symbols-outlined text-[18px]">chat</span>
-</a>
-</div>
-</article>
-<!-- Project 3: Pavilhão Ribeirão & Alta Mogiana -->
-<article class="project-card group flex flex-col bg-surface-container shadow-xl overflow-hidden transition-all duration-300 hover:-translate-y-1" data-category="pavilhoes">
-<div class="relative w-full h-80 overflow-hidden bg-surface-container-highest">
-<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" data-alt="Pavilhão monolítico moderno em concreto aparente e vidro com iluminação intimista e integração com água" src="./img/{{IMG_SERVICO_3}}" alt="{{NOME_SERVICO_3}}"/>
-<div class="absolute top-space-md left-space-md bg-surface-container-lowest/80 backdrop-blur-md px-space-sm py-space-xs">
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Planalto da Alta Mogiana · SP</span>
-</div>
-<div class="absolute bottom-space-md right-space-md bg-surface-container-high/90 px-space-sm py-space-xs">
-<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Balanço Frontal: 18,20m</span>
-</div>
-</div>
-<div class="p-space-lg flex flex-col flex-1 justify-between gap-space-md">
-<div>
-<div class="flex items-center justify-between mb-space-xs">
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Monografia 03</span>
-<span class="font-label-sm text-label-sm text-outline-variant uppercase">Concreto Aparente Ripado</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">{{NOME_SERVICO_3}}</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">Expressão brutalista sofisticada com concreto aparente moldado in loco, lâmina d'água integrada e cobertura suspensa que parece flutuar sobre a mata nativa.</p>
-</div>
-<div class="bg-surface-container-low p-space-md space-y-space-xs">
-<div class="flex justify-between text-body-sm font-body-sm">
-<span class="text-outline">Concreto Empregado</span>
-<span class="text-on-surface">C50 Auto-Adensável Pigmentado</span>
-</div>
-<div class="flex justify-between text-body-sm font-body-sm">
-<span class="text-outline">Cordoalhas Engraxadas</span>
-<span class="text-on-surface">Aço CP-190 RB de Alta Resistência</span>
-</div>
-<div class="flex justify-between text-body-sm font-body-sm">
-<span class="text-outline">Deflexão Medida</span>
-<span class="text-on-surface">&lt; 2,8mm sob carga máxima acidental</span>
-</div>
-</div>
-<a class="inline-flex items-center justify-between text-primary hover:text-secondary font-label-md text-label-md uppercase tracking-widest pt-space-xs transition-colors" href="{{LINK_WHATSAPP_COM_MENSAGEM}}" rel="noopener noreferrer" target="_blank">
-<span>Solicitar Dossiê via WhatsApp</span>
-<span class="material-symbols-outlined text-[18px]">chat</span>
-</a>
-</div>
-</article>
-</div>
-</section>
-<!-- Technical Discipline & Engineering Methodology Bento Grid -->
-<section class="w-full bg-surface-container-low py-space-xl px-margin-mobile lg:px-margin-desktop" id="metodologia">
-<div class="max-w-3xl mb-space-xl">
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block mb-space-xs">Metodologia Computacional &amp; Tectônica</span>
-<h2 class="font-display-md text-display-md text-on-surface tracking-tight">A Física do Incomum em Harmonia com a Arte</h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant mt-space-sm">Eliminamos as barreiras entre a sensibilidade plástica da arquitetura autoral e o rigor analítico da engenharia estrutural. Cada traço é um caminho otimizado de tensões e esforços.</p>
-</div>
-<!-- Bento Matrix Layout -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter-desktop">
-<!-- Card 1 -->
-<div class="bg-surface-container p-space-lg shadow-md flex flex-col justify-between group hover:bg-surface-bright transition-colors">
-<div>
-<div class="w-12 h-12 bg-surface-container-high flex items-center justify-center text-primary mb-space-md">
-<span class="material-symbols-outlined text-[28px]">grid_4x4</span>
-</div>
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block mb-space-xs">Disciplina 01</span>
-<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-sm">{{NOME_SERVICO_1}}</h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Modelagem física não-linear avançada, simulando redistribuição de momentos, interação solo-estrutura e efeitos térmicos críticos em grandes áreas envidraçadas.</p>
-</div>
-<div class="pt-space-md mt-space-md flex items-center gap-space-xs text-primary font-label-sm text-label-sm uppercase tracking-widest">
-<span>TQS · Eberick · ANSYS</span>
-</div>
-</div>
-<!-- Card 2 -->
-<div class="bg-surface-container p-space-lg shadow-md flex flex-col justify-between group hover:bg-surface-bright transition-colors">
-<div>
-<div class="w-12 h-12 bg-surface-container-high flex items-center justify-center text-secondary mb-space-md">
-<span class="material-symbols-outlined text-[28px]">vertical_align_bottom</span>
-</div>
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block mb-space-xs">Disciplina 02</span>
-<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-sm">{{NOME_SERVICO_2}}</h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Tecnologia de pós-tensionamento não-aderente e vigas-faixa invertidas, viabilizando balanços de até 20 metros sem vigamento aparente obstruindo a vista.</p>
-</div>
-<div class="pt-space-md mt-space-md flex items-center gap-space-xs text-primary font-label-sm text-label-sm uppercase tracking-widest">
-<span>Grandes Vãos Desimpedidos</span>
-</div>
-</div>
-<!-- Card 3 -->
-<div class="bg-surface-container p-space-lg shadow-md flex flex-col justify-between group hover:bg-surface-bright transition-colors">
-<div>
-<div class="w-12 h-12 bg-surface-container-high flex items-center justify-center text-primary mb-space-md">
-<span class="material-symbols-outlined text-[28px]">waves</span>
-</div>
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block mb-space-xs">Disciplina 03</span>
-<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-sm">{{NOME_SERVICO_3}}</h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Verificação de frequências naturais de vibração sob ação humana e de rajadas de vento, garantindo estabilidade acústica, rigidez e sensação de solidez contínua.</p>
-</div>
-<div class="pt-space-md mt-space-md flex items-center gap-space-xs text-primary font-label-sm text-label-sm uppercase tracking-widest">
-<span>Conformidade NBR 6118</span>
-</div>
-</div>
-<!-- Card 4 -->
-<div class="bg-surface-container p-space-lg shadow-md flex flex-col justify-between group hover:bg-surface-bright transition-colors">
-<div>
-<div class="w-12 h-12 bg-surface-container-high flex items-center justify-center text-secondary mb-space-md">
-<span class="material-symbols-outlined text-[28px]">view_in_ar</span>
-</div>
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block mb-space-xs">Disciplina 04</span>
-<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-sm">{{NOME_SERVICO_4}}</h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Algoritmos generativos para redução de até 30% no consumo de cimento e armaduras de aço, preservando o desempenho estrutural e minimizando a pegada de carbono.</p>
-</div>
-<div class="pt-space-md mt-space-md flex items-center gap-space-xs text-primary font-label-sm text-label-sm uppercase tracking-widest">
-<span>Construção Racionalizada</span>
-</div>
-</div>
-</div>
-</section>
-<!-- Interactive WhatsApp Conversion Suite & Principal Desk Section -->
-<section class="w-full bg-surface-container-lowest py-space-xl px-margin-mobile lg:px-margin-desktop" id="contato">
-<div class="w-full bg-surface-container p-space-lg lg:p-space-xl shadow-2xl relative overflow-hidden">
-<!-- Subtle Decorative Engineering Background Motif -->
-<div class="absolute right-0 top-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop relative z-10">
-<!-- Left Side: Consultation Context -->
-<div class="lg:col-span-6 flex flex-col justify-between gap-space-lg">
-<div>
-<div class="inline-flex items-center gap-space-xs bg-surface-container-high px-space-md py-space-xs mb-space-md">
-<span class="material-symbols-outlined text-[16px] text-primary">lock</span>
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface">Canal Técnico Reservado</span>
-</div>
-<h2 class="font-display-md text-display-md text-on-surface tracking-tight">Fale com os Titulares da {{NOME_DA_EMPRESA}}</h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant mt-space-sm">
-              Atendimento direto sem intermediários comerciais. Converse com os responsáveis em {{CIDADE_UF}} para avaliar anteprojetos, cálculo de viabilidade estrutural ou consultoria especializada.
-            </p>
-</div>
-<!-- Trust Guarantees -->
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md">
-<div class="bg-surface-container-low p-space-sm">
-<span class="material-symbols-outlined text-primary text-[20px] mb-space-xs">verified</span>
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface block">Sob Sigilo (NDA)</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Garantia de confidencialidade e proteção de propriedade autoral.</p>
-</div>
-<div class="bg-surface-container-low p-space-sm">
-<span class="material-symbols-outlined text-secondary text-[20px] mb-space-xs">speed</span>
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface block">Resposta Ágil</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Retorno prioritário diretamente por um engenheiro sênior.</p>
-</div>
-<div class="bg-surface-container-low p-space-sm">
-<span class="material-symbols-outlined text-primary text-[20px] mb-space-xs">public</span>
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface block">Abrangência</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Visitas técnicas em Franca, Ribeirão Preto e todo o território nacional.</p>
-</div>
-</div>
-</div>
-<!-- Right Side: Fast Quick-Select Prompts for WhatsApp Dispatch -->
-<div class="lg:col-span-6 bg-surface-container-low p-space-lg flex flex-col justify-between gap-space-md">
-<div>
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block mb-space-xs">Selecione o Tipo de Atendimento</span>
-<h3 class="font-headline-sm text-headline-sm text-on-surface">Qual é a necessidade do seu projeto?</h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">Clique na opção desejada para iniciar uma conversa estruturada e personalizada pelo WhatsApp.</p>
-</div>
-<div class="flex flex-col gap-space-sm" id="whatsapp-prompts">
-<a class="group flex items-center justify-between p-space-md bg-surface-container hover:bg-surface-bright transition-all duration-200" href="{{LINK_WHATSAPP_COM_MENSAGEM}}" rel="noopener noreferrer" target="_blank">
-<div class="flex items-center gap-space-md">
-<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">foundation</span>
-<div class="text-left">
-<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface block">Novo Projeto Residencial de Alto Padrão</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">Para proprietários, incorporadores e arquitetos parceiros</span>
-</div>
-</div>
-<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">send</span>
-</a>
-<a class="group flex items-center justify-between p-space-md bg-surface-container hover:bg-surface-bright transition-all duration-200" href="{{LINK_WHATSAPP_COM_MENSAGEM}}" rel="noopener noreferrer" target="_blank">
-<div class="flex items-center gap-space-md">
-<span class="material-symbols-outlined text-secondary group-hover:scale-110 transition-transform">fact_check</span>
-<div class="text-left">
-<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface block">Consultoria e Parecer Estrutural de Grandes Vãos</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">Verificação de viabilidade, redução de pilares e cálculo de lajes</span>
-</div>
-</div>
-<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">send</span>
-</a>
-<a class="group flex items-center justify-between p-space-md bg-surface-container hover:bg-surface-bright transition-all duration-200" href="{{LINK_WHATSAPP_COM_MENSAGEM}}" rel="noopener noreferrer" target="_blank">
-<div class="flex items-center gap-space-md">
-<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">location_on</span>
-<div class="text-left">
-<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface block">Visita Técnica em Franca e Região</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">Avaliação in loco de terrenos, condomínios fechados e fazendas</span>
-</div>
-</div>
-<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">send</span>
-</a>
-</div>
-<div class="pt-space-xs flex items-center justify-between font-label-sm text-label-sm text-outline tracking-wider">
-<span>Atendimento Direto: +55 (16) 99742-8820</span>
-<span class="text-primary uppercase">Franca · SP (Horário Comercial &amp; Plantão VIP)</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Editorial Architectural Critical Praise / Endorsements -->
-<section class="w-full bg-surface py-space-xl px-margin-mobile lg:px-margin-desktop" id="reconhecimento">
-  <div class="max-w-7xl mx-auto">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl subzero-reveal">
-      <div>
-        <span class="font-label-sm text-primary tracking-widest uppercase block mb-space-xs">RECONHECIMENTO &amp; DEPOIMENTOS</span>
-        <h2 class="font-headline-lg text-on-surface font-serif-luxury">A Opinião de Quem Confia Nossas Obras</h2>
-      </div>
-      <div class="flex items-center gap-space-xs mt-space-sm md:mt-0 text-on-surface-variant font-technical text-sm">
-        <span class="text-secondary font-bold">{{STARS_RATING}}</span>
-        <span>• {{BADGE_TRUST_TEXT}}</span>
-      </div>
-    </div>
-
-    <div class="marquee-container">
-      <div class="marquee-track">
-        <div class="w-[380px] bg-surface-container-lowest p-space-lg border border-outline-variant/40 flex flex-col justify-between flex-shrink-0">
-          <div>
-            <div class="text-secondary mb-3">★★★★★</div>
-            <p class="font-body-md text-on-surface italic font-serif-luxury mb-space-md">"{{DEPOIMENTO_DO_CLIENTE_1}}"</p>
-          </div>
-          <div class="pt-space-sm border-t border-outline-variant/20">
-            <h4 class="font-label-md text-on-surface uppercase tracking-wider font-bold">{{NOME_DO_CLIENTE_1}}</h4>
-            <span class="text-xs text-outline font-technical">Cliente Google Maps • {{CIDADE_UF}}</span>
-          </div>
-        </div>
-
-        <div class="w-[380px] bg-surface-container-lowest p-space-lg border border-outline-variant/40 flex flex-col justify-between flex-shrink-0">
-          <div>
-            <div class="text-secondary mb-3">★★★★★</div>
-            <p class="font-body-md text-on-surface italic font-serif-luxury mb-space-md">"{{DEPOIMENTO_DO_CLIENTE_2}}"</p>
-          </div>
-          <div class="pt-space-sm border-t border-outline-variant/20">
-            <h4 class="font-label-md text-on-surface uppercase tracking-wider font-bold">{{NOME_DO_CLIENTE_2}}</h4>
-            <span class="text-xs text-outline font-technical">Cliente Google Maps • {{CIDADE_UF}}</span>
-          </div>
-        </div>
-
-        <div class="w-[380px] bg-surface-container-lowest p-space-lg border border-outline-variant/40 flex flex-col justify-between flex-shrink-0">
-          <div>
-            <div class="text-secondary mb-3">★★★★★</div>
-            <p class="font-body-md text-on-surface italic font-serif-luxury mb-space-md">"{{DEPOIMENTO_DO_CLIENTE_3}}"</p>
-          </div>
-          <div class="pt-space-sm border-t border-outline-variant/20">
-            <h4 class="font-label-md text-on-surface uppercase tracking-wider font-bold">{{NOME_DO_CLIENTE_3}}</h4>
-            <span class="text-xs text-outline font-technical">Cliente Google Maps • {{CIDADE_UF}}</span>
-          </div>
-        </div>
-
-        <div class="w-[380px] bg-surface-container-lowest p-space-lg border border-outline-variant/40 flex flex-col justify-between flex-shrink-0">
-          <div>
-            <div class="text-secondary mb-3">★★★★★</div>
-            <p class="font-body-md text-on-surface italic font-serif-luxury mb-space-md">"{{DEPOIMENTO_DO_CLIENTE_4}}"</p>
-          </div>
-          <div class="pt-space-sm border-t border-outline-variant/20">
-            <h4 class="font-label-md text-on-surface uppercase tracking-wider font-bold">{{NOME_DO_CLIENTE_4}}</h4>
-            <span class="text-xs text-outline font-technical">Cliente Google Maps • {{CIDADE_UF}}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Studio Spatial Presence Global Coordinates Map Segment -->
-<section class="w-full bg-surface-container-low py-space-xl px-margin-mobile lg:px-margin-desktop" id="atelie">
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-lg">
-<div>
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block mb-space-xs">Presença Regional &amp; Ateliê Físico</span>
-<h2 class="font-display-md text-display-md text-on-surface tracking-tight">Sede em {{CIDADE_UF}}</h2>
-</div>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-md">Nosso ateliê centraliza os laboratórios de modelagem tridimensional, cálculo estrutural de alta precisão e recepção exclusiva de clientes.</p>
-</div>
-    <div class="w-full h-80 bg-surface-container shadow-2xl relative overflow-hidden" data-location="Franca, SP, Brasil">
-      <iframe 
-        class="w-full h-full border-0 grayscale invert contrast-125 opacity-70"
-        src="https://maps.google.com/maps?q={{ENDERECO_URL_ENCODED}}&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-        title="Localização {{NOME_DA_EMPRESA}}" 
-        loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-      <!-- Dark Overlay with Coordinate Badge -->
-      <div class="absolute inset-0 pointer-events-none flex items-end p-space-lg">
-        <div class="bg-surface-container-high/90 backdrop-blur-md p-space-md max-w-md pointer-events-auto border border-outline-variant/30 shadow-2xl">
-          <div class="flex items-center gap-space-xs text-primary mb-space-xs">
-            <span class="material-symbols-outlined text-[18px]">pin_drop</span>
-            <span class="font-label-sm text-label-sm uppercase tracking-widest">Sede & Ateliê Técnico · {{CIDADE_UF}}</span>
-          </div>
-          <span class="font-headline-sm text-headline-sm text-on-surface block">{{ENDERECO_COMPLETO_DO_GOOGLE_MAPS}}</span>
-          <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">{{CIDADE_UF}} — Estúdio de projetos, maquetaria física, cálculo estrutural e recepção técnica.</p>
-        </div>
-      </div>
-    </div>
-</section>
-</div>
-<!-- Simple Vanilla JS Portfolio Filter Logic -->
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const cards = document.querySelectorAll('.project-card');
-
-    filterButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const filter = btn.getAttribute('data-filter');
-
-        filterButtons.forEach(b => {
-          b.classList.remove('bg-primary', 'text-on-primary');
-          b.classList.add('text-on-surface-variant');
-        });
-        btn.classList.add('bg-primary', 'text-on-primary');
-        btn.classList.remove('text-on-surface-variant');
-
-        cards.forEach(card => {
-          const cat = card.getAttribute('data-category');
-          if (filter === 'all' || cat === filter) {
-            card.style.display = 'flex';
-          } else {
-            card.style.display = 'none';
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{NOME_DA_EMPRESA}} | Arquitetura & Engenharia de Precisão</title>
+  <meta name="description" content="{{DESCRICAO_SEO_150_CARACTERES}}" />
+  <meta name="keywords" content="{{PALAVRAS_CHAVE_SEPARADAS_POR_VIRGULA}}" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#0b1326',
+              slate: '#1e293b',
+              gold: '#c5a880',
+              goldHover: '#b39265',
+              champagne: '#e2c399',
+              greenWa: '#25D366',
+              lightA: '#ffffff',
+              lightB: '#f8fafc',
+              lightC: '#f1f5f9'
+            }
+          },
+          fontFamily: {
+            serif: ['"Noto Serif"', 'serif'],
+            sans: ['"Space Grotesk"', 'sans-serif']
           }
-        });
-      });
-    });
-  });
-</script></main><aside class="fixed bottom-space-lg right-space-lg z-40"><a class="flex items-center gap-space-sm bg-surface-container-high text-primary px-space-md py-space-sm shadow-[0_24px_48px_-12px_rgba(2,6,23,0.85)] hover:bg-surface-bright hover:text-on-surface transition-all duration-300 group" href="{{LINK_WHATSAPP_COM_MENSAGEM}}" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-primary text-[22px]">forum</span><div class="flex flex-col text-left"><span class="font-label-sm text-label-sm tracking-widest uppercase text-on-surface-variant">Canal Exclusivo</span><span class="font-label-md text-label-md uppercase tracking-wider text-on-surface">Consultoria WhatsApp</span></div></a></aside><footer class="w-full bg-surface-container-lowest py-space-xl border-t border-outline-variant/20">
-  <div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin-desktop">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-space-xl">
-      <div>
-        <div class="text-primary font-display-md text-xl font-bold mb-space-xs">{{NOME_DA_EMPRESA}}</div>
-        <p class="font-body-sm text-outline mb-space-md">Engenharia civil, cálculo estrutural de alta precisão e projetos arquitetônicos contemporâneos em {{CIDADE_UF}}.</p>
-        <span class="text-[11px] text-outline font-technical">CREA-SP • NBR 6118 • BIM</span>
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="./src/style.css" />
+  <script src="./src/main.js" defer></script>
+</head>
+<body class="bg-white font-sans text-slate-800 antialiased selection:bg-amber-100 selection:text-amber-900">
+
+  <!-- ========================================================================
+       NAVBAR LIMPA E FUNCIONAL (Inspirada no estilo Arcofran)
+       ======================================================================== -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-all duration-300 smart-header">
+    <div class="max-w-7xl mx-auto h-20 px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+      
+      <!-- Marca: Logo Monograma + Nome & Subtítulo (sem quebra em mobile) -->
+      <a href="#inicio" class="flex items-center gap-3.5 group min-w-0">
+        <div class="w-10 h-10 rounded-lg bg-slate-900 border border-amber-600/30 flex items-center justify-center text-amber-300 font-bold text-lg font-serif shrink-0 shadow-sm transition-transform group-hover:scale-105">
+          {{INICIAL_EMPRESA}}
+        </div>
+        <div class="flex flex-col min-w-0">
+          <span class="font-bold text-slate-900 text-sm sm:text-base tracking-tight truncate group-hover:text-amber-800 transition-colors">
+            {{NOME_DA_EMPRESA}}
+          </span>
+          <span class="text-[10px] tracking-widest text-slate-500 font-semibold uppercase truncate">
+            ARQUITETURA &amp; ENGENHARIA
+          </span>
+        </div>
+      </a>
+
+      <!-- Navegação Desktop -->
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="#projetos" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors uppercase tracking-wider">Projetos</a>
+        <a href="#sobre" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors uppercase tracking-wider">Sobre</a>
+        <a href="#depoimentos" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors uppercase tracking-wider">Depoimentos</a>
+        <a href="#contato" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors uppercase tracking-wider">Contato</a>
+      </nav>
+
+      <!-- CTAs Desktop (Telefone + WhatsApp estilo Arcofran) -->
+      <div class="hidden sm:flex items-center gap-3">
+        <a href="tel:{{TELEFONE_DIGITOS}}" class="hidden xl:inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold tracking-wide transition-colors">
+          <span class="material-symbols-outlined text-[16px] text-slate-600">call</span>
+          <span>{{TELEFONE_FORMATADO}}</span>
+        </a>
+        <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider shadow-sm transition-all hover:shadow-md">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.159.57 4.185 1.564 5.939l-1.564 5.889 6.088-1.597c1.704.929 3.659 1.469 5.74 1.469 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          <span>WhatsApp</span>
+        </a>
       </div>
-      <div>
-        <h4 class="font-label-md text-on-surface uppercase tracking-wider mb-space-sm font-bold">DISCIPLINAS</h4>
-        <ul class="font-body-sm text-outline space-y-2 list-none p-0 m-0">
-          <li>{{NOME_SERVICO_1}}</li>
-          <li>{{NOME_SERVICO_2}}</li>
-          <li>{{NOME_SERVICO_3}}</li>
-          <li>{{NOME_SERVICO_4}}</li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-label-md text-on-surface uppercase tracking-wider mb-space-sm font-bold">LOCALIZAÇÃO</h4>
-        <p class="font-body-sm text-outline mb-2">{{ENDERECO_COMPLETO_DO_GOOGLE_MAPS}}</p>
-        <a class="text-xs text-primary underline" href="{{LINK_DIRECIONAMENTO_ROTA_GOOGLE_MAPS}}" target="_blank" rel="noopener">Como Chegar (Google Maps)</a>
-      </div>
-      <div>
-        <h4 class="font-label-md text-on-surface uppercase tracking-wider mb-space-sm font-bold">CONTATO DIRETO</h4>
-        <p class="font-body-sm text-outline mb-3">Atendimento de Segunda a Sexta das 08h às 18h.</p>
-        <a class="btn-luxury-primary bg-primary-container text-on-primary-container font-label-md text-xs uppercase px-4 py-2 inline-flex" href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener">
-          WhatsApp {{TELEFONE_FORMATADO}}
+
+      <!-- Botão Hambúrguer Mobile (2 linhas limpas - Imagem 2 Arcofran) -->
+      <button id="mobileMenuToggle" type="button" aria-label="Abrir Menu de Navegação" class="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 p-2 rounded-md hover:bg-slate-100 transition-colors">
+        <span class="w-6 h-0.5 bg-slate-800 rounded-full transition-all"></span>
+        <span class="w-6 h-0.5 bg-slate-800 rounded-full transition-all"></span>
+      </button>
+    </div>
+
+    <!-- Gaveta Mobile -->
+    <div id="mobileNavDrawer" class="hidden lg:hidden bg-white border-b border-slate-200 px-6 py-5 flex-col gap-4 shadow-xl">
+      <nav class="flex flex-col gap-3">
+        <a href="#projetos" class="text-sm font-semibold text-slate-700 hover:text-slate-900 py-1.5 border-b border-slate-100">Projetos em Destaque</a>
+        <a href="#sobre" class="text-sm font-semibold text-slate-700 hover:text-slate-900 py-1.5 border-b border-slate-100">Sobre o Escritório</a>
+        <a href="#depoimentos" class="text-sm font-semibold text-slate-700 hover:text-slate-900 py-1.5 border-b border-slate-100">Depoimentos Verificados</a>
+        <a href="#contato" class="text-sm font-semibold text-slate-700 hover:text-slate-900 py-1.5">Contato &amp; Localização</a>
+      </nav>
+      <div class="pt-3 border-t border-slate-100 flex flex-col gap-2.5">
+        <a href="tel:{{TELEFONE_DIGITOS}}" class="inline-flex items-center justify-center gap-2 py-2.5 rounded-lg bg-slate-100 text-slate-800 text-xs font-semibold">
+          <span class="material-symbols-outlined text-[16px]">call</span>
+          <span>{{TELEFONE_FORMATADO}}</span>
+        </a>
+        <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 py-2.5 rounded-lg bg-emerald-600 text-white text-xs font-bold uppercase tracking-wider">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.159.57 4.185 1.564 5.939l-1.564 5.889 6.088-1.597c1.704.929 3.659 1.469 5.74 1.469 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          <span>Falar no WhatsApp</span>
         </a>
       </div>
     </div>
-    <div class="pt-space-md border-t border-outline-variant/20 flex flex-col sm:flex-row items-center justify-between text-xs text-outline gap-4 sm:pr-24">
-      <div>© {{ANO_ATUAL}} {{NOME_DA_EMPRESA}}. Todos os direitos reservados.</div>
-      <div class="text-on-surface-variant font-medium">Desenvolvido por Gabriel Azevedo • (16) 99204-8856</div>
-    </div>
-  </div>
-</footer>
+  </header>
 
-<!-- Floating WhatsApp Action Button -->
-<a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" class="whatsapp-float-btn" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.159.57 4.185 1.564 5.939l-1.564 5.889 6.088-1.597c1.704.929 3.659 1.469 5.74 1.469 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/>
-  </svg>
-</a></body></html>
+  <main class="w-full pt-20">
+
+    <!-- ========================================================================
+         HERO SECTION (Cinematográfico, Alto Impacto)
+         ======================================================================== -->
+    <section id="inicio" class="relative w-full min-h-[88vh] lg:min-h-screen flex items-end overflow-hidden bg-slate-950">
+      
+      <!-- Imagem de Fundo em Alta Resolução -->
+      <div class="absolute inset-0 z-0">
+        <img src="./img/{{IMG_HERO}}" alt="{{NOME_DA_EMPRESA}} - Arquitetura e Engenharia" class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-1000 ease-out" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-slate-950/40"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/50 to-transparent"></div>
+      </div>
+
+      <!-- Conteúdo do Hero -->
+      <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
+        <div class="max-w-4xl flex flex-col gap-5">
+          
+          <!-- H1 Monumental -->
+          <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-[1.15] subzero-reveal">
+            Transformamos ideias em <span class="text-amber-300 font-normal italic">realidade</span>
+          </h1>
+
+          <!-- H2 Subtítulo -->
+          <h2 class="text-slate-200 text-base sm:text-xl lg:text-2xl font-light leading-relaxed max-w-2xl subzero-reveal stagger-1">
+            Excelência técnica, criatividade e compromisso em cada etapa do seu projeto.
+          </h2>
+
+          <!-- Botões de Ação com o Mesmo Tamanho -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4 subzero-reveal stagger-2">
+            <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="hero-action-btn bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold px-8 py-4 rounded-lg uppercase tracking-wider text-xs sm:text-sm text-center shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-[20px]">calendar_month</span>
+              <span>Agendar Consulta</span>
+            </a>
+            <a href="#projetos" class="hero-action-btn bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 font-bold px-8 py-4 rounded-lg uppercase tracking-wider text-xs sm:text-sm text-center transition-all flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-[20px]">architecture</span>
+              <span>Nossos Trabalhos</span>
+            </a>
+          </div>
+
+          <!-- Div com Copy Útil & Dados de Impacto ao Cliente -->
+          <div class="mt-8 pt-6 border-t border-white/15 grid grid-cols-1 sm:grid-cols-3 gap-6 subzero-reveal stagger-3">
+            <div class="flex flex-col">
+              <span class="text-amber-300 font-bold text-xl sm:text-2xl">+15 Anos</span>
+              <span class="text-white text-xs font-semibold uppercase tracking-wider mt-0.5">Atuação Consolidada</span>
+              <p class="text-slate-300 text-xs mt-1 leading-relaxed">Experiência comprovada em residências de alto padrão e projetos comerciais.</p>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-amber-300 font-bold text-xl sm:text-2xl">100% Homologado</span>
+              <span class="text-white text-xs font-semibold uppercase tracking-wider mt-0.5">Aprovação &amp; Alvarás</span>
+              <p class="text-slate-300 text-xs mt-1 leading-relaxed">Condução documental ágil de habite-se, laudos e conformidade na prefeitura.</p>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-amber-300 font-bold text-xl sm:text-2xl">Economia Real</span>
+              <span class="text-white text-xs font-semibold uppercase tracking-wider mt-0.5">Cálculo Preciso</span>
+              <p class="text-slate-300 text-xs mt-1 leading-relaxed">Dimensionamento inteligente que evita compras excessivas de aço e concreto.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         SEÇÃO 1: CREDIBILIDADE & RIGOR (Fundo Claro 1: Slate Suave #f8fafc)
+         ======================================================================== -->
+    <section class="w-full bg-slate-50 py-16 lg:py-20 border-b border-slate-200/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- 3 Cards Informativos com Nova Copy Criativa -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          
+          <!-- Card 1: Mantido intacto -->
+          <div class="bg-white p-7 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between subzero-reveal">
+            <div>
+              <span class="text-xs uppercase tracking-widest text-amber-700 font-bold block mb-2">Escritório Central</span>
+              <h3 class="font-serif text-2xl font-bold text-slate-900 mb-2">{{CIDADE_UF}}</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">Atendimento dedicado para o interior paulista, capitais e empreendimentos sob medida.</p>
+            </div>
+            <div class="pt-4 mt-4 border-t border-slate-100 flex items-center text-xs font-medium text-slate-500">
+              <span class="material-symbols-outlined text-[16px] text-amber-700 mr-1.5">location_city</span>
+              <span>Sede Própria &amp; Atendimento Presencial</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Modelagem 3D & BIM -->
+          <div class="bg-white p-7 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between subzero-reveal stagger-1">
+            <div>
+              <span class="text-xs uppercase tracking-widest text-amber-700 font-bold block mb-2">Modelagem 3D &amp; BIM</span>
+              <h3 class="font-serif text-2xl font-bold text-slate-900 mb-2">Visão Real da Obra</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">Plantas humanizadas e volumetria realista que antecipam cada detalhe antes do canteiro de obras.</p>
+            </div>
+            <div class="pt-4 mt-4 border-t border-slate-100 flex items-center text-xs font-medium text-slate-500">
+              <span class="material-symbols-outlined text-[16px] text-amber-700 mr-1.5">view_in_ar</span>
+              <span>Zero Improvisos no Canteiro</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Supervisão Técnica Rigorosa -->
+          <div class="bg-white p-7 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between subzero-reveal stagger-2">
+            <div>
+              <span class="text-xs uppercase tracking-widest text-amber-700 font-bold block mb-2">Supervisão Técnica Rigorosa</span>
+              <h3 class="font-serif text-2xl font-bold text-slate-900 mb-2">Fidelidade Total</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">Acompanhamento presencial minucioso do alicerce ao acabamento, garantindo alto padrão e pontualidade.</p>
+            </div>
+            <div class="pt-4 mt-4 border-t border-slate-100 flex items-center text-xs font-medium text-slate-500">
+              <span class="material-symbols-outlined text-[16px] text-amber-700 mr-1.5">verified</span>
+              <span>Responsabilidade Técnica Documentada</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Credenciamento Técnico Reduzido para 3 Certificações -->
+        <div class="bg-white rounded-xl border border-slate-200/80 p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm subzero-reveal">
+          <span class="text-xs uppercase tracking-widest font-bold text-slate-700">Credenciamento &amp; Normas Oficiais:</span>
+          <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-xs font-semibold text-slate-600 uppercase tracking-wider">
+            <span class="flex items-center gap-1.5 hover:text-amber-800 transition-colors">
+              <span class="material-symbols-outlined text-[18px] text-amber-700">account_balance</span>
+              CAU / CREA Registrado
+            </span>
+            <span class="flex items-center gap-1.5 hover:text-amber-800 transition-colors">
+              <span class="material-symbols-outlined text-[18px] text-amber-700">rule</span>
+              Normas ABNT NBR 6118 / 8800
+            </span>
+            <span class="flex items-center gap-1.5 hover:text-amber-800 transition-colors">
+              <span class="material-symbols-outlined text-[18px] text-amber-700">assignment_turned_in</span>
+              Projetos com Emissão de ART
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         SEÇÃO 2: PORTFÓLIO E OBRAS (Fundo Claro 2: Soft Stone #f1f5f9)
+         5 Projetos em Galeria Horizontal Arrastável com Borda Esmaecida
+         ======================================================================== -->
+    <section id="projetos" class="w-full bg-[#f1f5f9] py-16 lg:py-24 overflow-hidden border-b border-slate-200/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 subzero-reveal">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-amber-700 block mb-1.5">Projetos em Destaque</span>
+            <h2 class="font-serif text-2xl sm:text-4xl text-slate-900 tracking-tight">
+              Conheça <span class="text-amber-700 font-normal italic">nossos trabalhos</span>
+            </h2>
+          </div>
+          <span class="text-xs font-medium text-slate-500 uppercase tracking-wider flex items-center gap-1">
+            <span>Arraste para o lado</span>
+            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Galeria Horizontal (3 cards inteiros, 4º pela metade, 5º arrastando) -->
+      <div class="relative w-full">
+        <div class="portfolio-gallery-scroll flex gap-6 px-4 sm:px-6 lg:px-8 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-6 cursor-grab active:cursor-grabbing">
+          
+          <!-- Projeto 1 -->
+          <article class="portfolio-gallery-card flex-shrink-0 snap-start bg-white rounded-xl shadow-sm border border-slate-200/80 overflow-hidden group hover:shadow-lg transition-all duration-300">
+            <div class="relative w-full h-64 overflow-hidden bg-slate-100">
+              <img src="./img/{{IMG_SERVICO_1}}" alt="{{NOME_SERVICO_1}}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <div class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md px-3 py-1 rounded text-[10px] uppercase font-bold tracking-wider text-amber-300">
+                Mirante dos Cristais · Franca SP
+              </div>
+            </div>
+            <div class="p-5 flex flex-col gap-1.5">
+              <span class="text-[11px] font-bold uppercase tracking-widest text-amber-700">Residencial Contemporâneo</span>
+              <h3 class="font-serif font-bold text-lg text-slate-900 leading-snug group-hover:text-amber-800 transition-colors">
+                {{NOME_SERVICO_1}}
+              </h3>
+              <p class="text-xs text-slate-600 line-clamp-2 leading-relaxed mt-1">
+                {{DESCRICAO_SERVICO_1}}
+              </p>
+            </div>
+          </article>
+
+          <!-- Projeto 2 -->
+          <article class="portfolio-gallery-card flex-shrink-0 snap-start bg-white rounded-xl shadow-sm border border-slate-200/80 overflow-hidden group hover:shadow-lg transition-all duration-300">
+            <div class="relative w-full h-64 overflow-hidden bg-slate-100">
+              <img src="./img/{{IMG_SERVICO_2}}" alt="{{NOME_SERVICO_2}}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <div class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md px-3 py-1 rounded text-[10px] uppercase font-bold tracking-wider text-amber-300">
+                Região de Franca &amp; Ribeirão
+              </div>
+            </div>
+            <div class="p-5 flex flex-col gap-1.5">
+              <span class="text-[11px] font-bold uppercase tracking-widest text-amber-700">Estruturas &amp; Obras</span>
+              <h3 class="font-serif font-bold text-lg text-slate-900 leading-snug group-hover:text-amber-800 transition-colors">
+                {{NOME_SERVICO_2}}
+              </h3>
+              <p class="text-xs text-slate-600 line-clamp-2 leading-relaxed mt-1">
+                {{DESCRICAO_SERVICO_2}}
+              </p>
+            </div>
+          </article>
+
+          <!-- Projeto 3 -->
+          <article class="portfolio-gallery-card flex-shrink-0 snap-start bg-white rounded-xl shadow-sm border border-slate-200/80 overflow-hidden group hover:shadow-lg transition-all duration-300">
+            <div class="relative w-full h-64 overflow-hidden bg-slate-100">
+              <img src="./img/{{IMG_SERVICO_3}}" alt="{{NOME_SERVICO_3}}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <div class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md px-3 py-1 rounded text-[10px] uppercase font-bold tracking-wider text-amber-300">
+                Alta Mogiana · SP
+              </div>
+            </div>
+            <div class="p-5 flex flex-col gap-1.5">
+              <span class="text-[11px] font-bold uppercase tracking-widest text-amber-700">Concreto &amp; Design</span>
+              <h3 class="font-serif font-bold text-lg text-slate-900 leading-snug group-hover:text-amber-800 transition-colors">
+                {{NOME_SERVICO_3}}
+              </h3>
+              <p class="text-xs text-slate-600 line-clamp-2 leading-relaxed mt-1">
+                {{DESCRICAO_SERVICO_3}}
+              </p>
+            </div>
+          </article>
+
+          <!-- Projeto 4 (visível pela metade) -->
+          <article class="portfolio-gallery-card flex-shrink-0 snap-start bg-white rounded-xl shadow-sm border border-slate-200/80 overflow-hidden group hover:shadow-lg transition-all duration-300">
+            <div class="relative w-full h-64 overflow-hidden bg-slate-100">
+              <img src="./img/project-1.jpg" alt="Projeto Residencial Villa Nobre" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <div class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md px-3 py-1 rounded text-[10px] uppercase font-bold tracking-wider text-amber-300">
+                Condomínio Fechado · SP
+              </div>
+            </div>
+            <div class="p-5 flex flex-col gap-1.5">
+              <span class="text-[11px] font-bold uppercase tracking-widest text-amber-700">Residencial de Luxo</span>
+              <h3 class="font-serif font-bold text-lg text-slate-900 leading-snug group-hover:text-amber-800 transition-colors">
+                Villa Contemporânea
+              </h3>
+              <p class="text-xs text-slate-600 line-clamp-2 leading-relaxed mt-1">
+                Integração total entre ambientes sociais, iluminação cênica e balanços estruturais arrojados.
+              </p>
+            </div>
+          </article>
+
+          <!-- Projeto 5 (visível ao arrastar) -->
+          <article class="portfolio-gallery-card flex-shrink-0 snap-start bg-white rounded-xl shadow-sm border border-slate-200/80 overflow-hidden group hover:shadow-lg transition-all duration-300">
+            <div class="relative w-full h-64 overflow-hidden bg-slate-100">
+              <img src="./img/project-2.jpg" alt="Pavilhão e Campo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <div class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md px-3 py-1 rounded text-[10px] uppercase font-bold tracking-wider text-amber-300">
+                Haras &amp; Lazer
+              </div>
+            </div>
+            <div class="p-5 flex flex-col gap-1.5">
+              <span class="text-[11px] font-bold uppercase tracking-widest text-amber-700">Arquitetura de Campo</span>
+              <h3 class="font-serif font-bold text-lg text-slate-900 leading-snug group-hover:text-amber-800 transition-colors">
+                Pavilhão Equestre &amp; Sede
+              </h3>
+              <p class="text-xs text-slate-600 line-clamp-2 leading-relaxed mt-1">
+                Estrutura mista em aço e concreto com grandes vãos livres para amplitude visual e ventilação natural.
+              </p>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Borda Esmaecida Fade à Direita -->
+        <div class="pointer-events-none absolute top-0 right-0 w-24 sm:w-32 h-full bg-gradient-to-l from-[#f1f5f9] to-transparent"></div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         SEÇÃO 3: SOBRE A EMPRESA / O PROFISSIONAL (Fundo Claro 1: Pure White #ffffff)
+         Layout Estruturado Fiel à Imagem 3 Anexada (3 Colunas / Split)
+         ======================================================================== -->
+    <section id="sobre" class="w-full bg-white py-16 lg:py-24 border-b border-slate-200/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch subzero-reveal">
+          
+          <!-- Bloco 1 (Esquerda): Foto Vertical do Profissional / Escritório -->
+          <div class="lg:col-span-4 rounded-2xl overflow-hidden shadow-lg border border-slate-200 min-h-[380px] lg:min-h-[460px] bg-slate-100 relative">
+            <img src="./img/{{IMG_SERVICO_1}}" alt="{{NOME_DA_EMPRESA}}" class="w-full h-full object-cover object-top" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent flex items-end p-6">
+              <div class="text-white">
+                <span class="text-amber-300 text-xs font-bold uppercase tracking-wider block">Corpo Técnico Titular</span>
+                <span class="font-serif text-lg font-bold">{{NOME_DA_EMPRESA}}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bloco 2 (Centro): Card Escuro Navy com Detalhe Dourado (Imagem 3) -->
+          <div class="lg:col-span-4 bg-[#0b1326] text-white p-8 sm:p-9 rounded-2xl flex flex-col justify-between shadow-xl relative overflow-hidden">
+            <div class="relative z-10">
+              <span class="text-xs uppercase tracking-widest text-amber-300 font-bold block mb-3">Trajetória &amp; Conceito</span>
+              <h3 class="font-serif text-2xl font-bold text-white leading-tight mb-4">
+                Arquitetura que une estética e solidez técnica
+              </h3>
+              <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                {{TEXTO_DE_APRESENTACAO_DA_EMPRESA_FOCO_EM_CONFIANCA_E_QUALIDADE}}
+              </p>
+            </div>
+            <div class="relative z-10 pt-4 border-t border-white/10">
+              <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold px-5 py-3 rounded-lg text-xs uppercase tracking-wider transition-all">
+                <span class="material-symbols-outlined text-[18px]">forum</span>
+                <span>Falar com o Especialista</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Bloco 3 (Direita): Card Claro com Divisor Vertical Central (Imagem 3) -->
+          <div class="lg:col-span-4 bg-slate-50 border border-slate-200/80 p-8 sm:p-9 rounded-2xl flex flex-col justify-between shadow-sm relative">
+            
+            <!-- Linha e Círculo Decorativo no Topo/Lateral -->
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-8 h-8 rounded-full bg-amber-100 border border-amber-300/60 flex items-center justify-center text-amber-800 text-sm font-bold shadow-xs">
+                ✓
+              </span>
+              <span class="text-xs uppercase tracking-widest text-slate-500 font-bold">Compromisso &amp; Rigor</span>
+            </div>
+
+            <div>
+              <h3 class="font-serif text-2xl font-bold text-slate-900 leading-tight mb-3">
+                Projetos desenvolvidos para valorizar seu patrimônio
+              </h3>
+              <div class="w-12 h-1 bg-amber-600 mb-4 rounded-full"></div>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                Concebemos cada espaço com base em precisão matemática e visão contemporânea. Da compatibilização completa em 3D ao cálculo estrutural econômico, garantimos que sua obra seja concluída sem custos imprevistos ou atrasos.
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Atendimento Exclusivo</span>
+              <span class="text-xs font-bold text-amber-800 bg-amber-50 px-2.5 py-1 rounded border border-amber-200/60">
+                {{CIDADE_UF}}
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         SEÇÃO 4: DEPOIMENTOS (Fundo Claro 2: Slate Suave #f8fafc)
+         Carrossel Vertical + Badge Nota 5.0 no Google (Fiel à Imagem 4)
+         ======================================================================== -->
+    <section id="depoimentos" class="w-full bg-slate-50 py-16 lg:py-24 border-b border-slate-200/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header da Seção com o Badge Estilizado como a Imagem 4 -->
+        <div class="flex flex-col items-center text-center max-w-3xl mx-auto mb-14 subzero-reveal">
+          
+          <!-- Badge Pílula Arredondada com Bolinha Âmbar Brilhante (Imagem 4) -->
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-amber-400/40 bg-slate-900 text-white shadow-sm mb-5">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_8px_#f59e0b] animate-pulse"></span>
+            <span class="text-xs sm:text-sm font-semibold tracking-wide text-amber-200">
+              Nota 5.0 no Google • Avaliações reais de clientes verificados
+            </span>
+          </div>
+
+          <span class="text-xs font-bold uppercase tracking-widest text-amber-700 block mb-1">Depoimentos</span>
+          <h2 class="font-serif text-2xl sm:text-4xl text-slate-900 tracking-tight">
+            O que <span class="text-amber-700 font-normal italic">nossos clientes</span> disseram
+          </h2>
+          <p class="text-slate-600 text-sm mt-2 max-w-lg">
+            A satisfação e tranquilidade de quem contratou nossos projetos e acompanhamento técnico.
+          </p>
+        </div>
+
+        <!-- Avaliações em Grid Vertical (2 colunas no desktop, 1 no mobile) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          
+          <!-- Depoimento 1 -->
+          <div class="bg-white p-6 sm:p-7 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between subzero-reveal">
+            <div>
+              <div class="flex items-center text-amber-500 mb-3 text-sm tracking-widest">
+                ★★★★★
+              </div>
+              <p class="text-slate-700 text-sm leading-relaxed italic mb-4">
+                "{{DEPOIMENTO_DO_CLIENTE_1}}"
+              </p>
+            </div>
+            <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+              <span class="font-bold text-xs text-slate-900">{{NOME_DO_CLIENTE_1}}</span>
+              <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
+                <span class="material-symbols-outlined text-[14px]">verified</span> Google Maps
+              </span>
+            </div>
+          </div>
+
+          <!-- Depoimento 2 -->
+          <div class="bg-white p-6 sm:p-7 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between subzero-reveal stagger-1">
+            <div>
+              <div class="flex items-center text-amber-500 mb-3 text-sm tracking-widest">
+                ★★★★★
+              </div>
+              <p class="text-slate-700 text-sm leading-relaxed italic mb-4">
+                "{{DEPOIMENTO_DO_CLIENTE_2}}"
+              </p>
+            </div>
+            <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+              <span class="font-bold text-xs text-slate-900">{{NOME_DO_CLIENTE_2}}</span>
+              <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
+                <span class="material-symbols-outlined text-[14px]">verified</span> Google Maps
+              </span>
+            </div>
+          </div>
+
+          <!-- Depoimento 3 -->
+          <div class="bg-white p-6 sm:p-7 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between subzero-reveal stagger-2">
+            <div>
+              <div class="flex items-center text-amber-500 mb-3 text-sm tracking-widest">
+                ★★★★★
+              </div>
+              <p class="text-slate-700 text-sm leading-relaxed italic mb-4">
+                "{{DEPOIMENTO_DO_CLIENTE_3}}"
+              </p>
+            </div>
+            <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+              <span class="font-bold text-xs text-slate-900">{{NOME_DO_CLIENTE_3}}</span>
+              <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
+                <span class="material-symbols-outlined text-[14px]">verified</span> Google Maps
+              </span>
+            </div>
+          </div>
+
+          <!-- Depoimento 4 -->
+          <div class="bg-white p-6 sm:p-7 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between subzero-reveal stagger-3">
+            <div>
+              <div class="flex items-center text-amber-500 mb-3 text-sm tracking-widest">
+                ★★★★★
+              </div>
+              <p class="text-slate-700 text-sm leading-relaxed italic mb-4">
+                "{{DEPOIMENTO_DO_CLIENTE_4}}"
+              </p>
+            </div>
+            <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+              <span class="font-bold text-xs text-slate-900">{{NOME_DO_CLIENTE_4}}</span>
+              <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
+                <span class="material-symbols-outlined text-[14px]">verified</span> Google Maps
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         SEÇÃO 5: CONTATO E LOCALIZAÇÃO (Fundo Claro 1: Pure White #ffffff)
+         Dados de Contato à Esquerda, Mapa à Direita (Compacto no Mobile)
+         ======================================================================== -->
+    <section id="contato" class="w-full bg-white py-16 lg:py-20 border-b border-slate-200/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch subzero-reveal">
+          
+          <!-- Coluna Esquerda: Dados de Contato Compactos -->
+          <div class="lg:col-span-5 bg-slate-50 border border-slate-200/80 p-7 sm:p-8 rounded-2xl flex flex-col justify-between shadow-sm">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-widest text-amber-700 block mb-1">Atendimento Direto</span>
+              <h2 class="font-serif text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
+                Contato e Localização
+              </h2>
+              <p class="text-slate-600 text-xs sm:text-sm mb-6 leading-relaxed">
+                Tire suas dúvidas ou solicite um atendimento presencial ou online com nossa equipe técnica.
+              </p>
+
+              <!-- Lista Compacta de Informações -->
+              <div class="flex flex-col gap-4">
+                
+                <!-- Endereço -->
+                <div class="flex items-start gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center shrink-0 mt-0.5">
+                    <span class="material-symbols-outlined text-[18px]">pin_drop</span>
+                  </div>
+                  <div>
+                    <span class="text-[11px] uppercase tracking-wider font-bold text-slate-500 block">Endereço</span>
+                    <span class="text-xs sm:text-sm font-semibold text-slate-900 block leading-snug">{{ENDERECO_COMPLETO_DO_GOOGLE_MAPS}}</span>
+                  </div>
+                </div>
+
+                <!-- Telefone / WhatsApp -->
+                <div class="flex items-start gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0 mt-0.5">
+                    <span class="material-symbols-outlined text-[18px]">chat</span>
+                  </div>
+                  <div>
+                    <span class="text-[11px] uppercase tracking-wider font-bold text-slate-500 block">WhatsApp &amp; Telefone</span>
+                    <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-bold text-emerald-700 hover:text-emerald-800 block">
+                      {{TELEFONE_FORMATADO}}
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Horário -->
+                <div class="flex items-start gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-slate-200 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
+                    <span class="material-symbols-outlined text-[18px]">schedule</span>
+                  </div>
+                  <div>
+                    <span class="text-[11px] uppercase tracking-wider font-bold text-slate-500 block">Horário de Atendimento</span>
+                    <span class="text-xs sm:text-sm font-medium text-slate-700 block">{{HORARIO_COMPLETO}}</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Botão WhatsApp Grande -->
+            <div class="mt-6 pt-5 border-t border-slate-200">
+              <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-4 rounded-xl text-xs sm:text-sm uppercase tracking-wider shadow-sm hover:shadow-md transition-all">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.159.57 4.185 1.564 5.939l-1.564 5.889 6.088-1.597c1.704.929 3.659 1.469 5.74 1.469 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                <span>Falar Agora no WhatsApp</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Coluna Direita: Mapa Google Interativo -->
+          <div class="lg:col-span-7 rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm min-h-[300px] lg:min-h-[420px] bg-slate-100">
+            <iframe 
+              class="w-full h-full border-0 min-h-[300px] lg:min-h-full"
+              src="https://maps.google.com/maps?q={{ENDERECO_URL_ENCODED}}&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+              title="Localização {{NOME_DA_EMPRESA}}" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       FOOTER (Superior Harmonizado + Inferior Oficial com Assinatura)
+       ======================================================================== -->
+  <footer class="w-full bg-[#0b1326] text-slate-300 pt-16 pb-8 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Footer Superior -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        
+        <!-- Coluna 1: Marca -->
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 rounded bg-amber-400 text-slate-950 font-bold font-serif flex items-center justify-center text-sm">
+              {{INICIAL_EMPRESA}}
+            </div>
+            <span class="font-bold text-white text-base font-serif tracking-tight">
+              {{NOME_DA_EMPRESA}}
+            </span>
+          </div>
+          <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
+            Projetos arquitetônicos contemporâneos, modelagem 3D imersiva, cálculo estrutural preciso e acompanhamento técnico de obras em {{CIDADE_UF}} e região.
+          </p>
+        </div>
+
+        <!-- Coluna 2: Navegação -->
+        <div>
+          <h4 class="text-white text-xs uppercase tracking-widest font-bold mb-4">Navegação</h4>
+          <ul class="flex flex-col gap-2 text-xs">
+            <li><a href="#inicio" class="hover:text-amber-300 transition-colors">Início</a></li>
+            <li><a href="#projetos" class="hover:text-amber-300 transition-colors">Projetos em Destaque</a></li>
+            <li><a href="#sobre" class="hover:text-amber-300 transition-colors">Sobre o Escritório</a></li>
+            <li><a href="#depoimentos" class="hover:text-amber-300 transition-colors">Depoimentos de Clientes</a></li>
+            <li><a href="#contato" class="hover:text-amber-300 transition-colors">Contato &amp; Localização</a></li>
+          </ul>
+        </div>
+
+        <!-- Coluna 3: Atendimento -->
+        <div>
+          <h4 class="text-white text-xs uppercase tracking-widest font-bold mb-4">Atendimento</h4>
+          <p class="text-xs text-slate-400 mb-2">{{HORARIO_COMPLETO}}</p>
+          <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs text-emerald-400 hover:text-emerald-300 font-semibold mt-2">
+            <span class="material-symbols-outlined text-[16px]">chat</span>
+            <span>WhatsApp: {{TELEFONE_FORMATADO}}</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Footer Inferior (Preservado Exatamente Conforme Regra) -->
+      <div class="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <div>
+          &copy; {{ANO_ATUAL}} {{NOME_DA_EMPRESA}}. Todos os direitos reservados.
+        </div>
+        <div class="text-slate-400 font-medium">
+          Desenvolvido por Gabriel Azevedo &bull; (16) 99204-8856
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Botão Flutuante do WhatsApp -->
+  <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" class="whatsapp-float-btn" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.159.57 4.185 1.564 5.939l-1.564 5.889 6.088-1.597c1.704.929 3.659 1.469 5.74 1.469 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/>
+    </svg>
+  </a>
+
+</body>
+</html>

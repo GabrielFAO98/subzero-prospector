@@ -1,14 +1,13 @@
 /**
- * Atelier Structural — Architectural Archetype Engine
+ * Architectural Archetype Engine
  * Vanilla JavaScript Modular (Subzero Engine Standard)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initSmartHeadroom();
   initGranularScrollAnimations();
-  initMarqueeLoop();
-  initPortfolioFilters();
   initMobileMenu();
+  initGalleryDragScroll();
 });
 
 /**
@@ -20,22 +19,21 @@ function initSmartHeadroom() {
   if (!header) return;
 
   let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
-  const scrollThreshold = 10;
+  const scrollThreshold = 8;
 
   window.addEventListener('scroll', () => {
     const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
 
-    // Background blur & border ao rolar além do topo
-    if (currentScrollY > 40) {
-      header.classList.add('scrolled');
+    // Sombra ao rolar além do topo
+    if (currentScrollY > 30) {
+      header.classList.add('shadow-md');
     } else {
-      header.classList.remove('scrolled');
+      header.classList.remove('shadow-md');
     }
 
-    // Lógica de direção de rolagem
     if (Math.abs(currentScrollY - lastScrollY) < scrollThreshold) return;
 
-    if (currentScrollY > lastScrollY && currentScrollY > 120) {
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
       // Rolando para baixo
       header.classList.add('headroom--unpinned');
       header.classList.remove('headroom--pinned');
@@ -50,11 +48,11 @@ function initSmartHeadroom() {
 }
 
 /**
- * Animações de Scroll Granulares
+ * Animações de Scroll Granulares (Subzero Engine)
  * Disparo por item individual com timing intencional (0.84 * innerHeight)
  */
 function initGranularScrollAnimations() {
-  const revealElements = document.querySelectorAll('.subzero-reveal, .subzero-reveal-left');
+  const revealElements = document.querySelectorAll('.subzero-reveal');
   if (!revealElements.length) return;
 
   const observerOptions = {
@@ -76,93 +74,57 @@ function initGranularScrollAnimations() {
 }
 
 /**
- * Duplicação Automática do Marquee de Avaliações
- * Garante loop contínuo perfeito sem saltos visuais
- */
-function initMarqueeLoop() {
-  const track = document.querySelector('.marquee-track');
-  if (!track) return;
-
-  // Duplica os cards para preenchimento de 100% da largura
-  const cards = Array.from(track.children);
-  cards.forEach(card => {
-    const clone = card.cloneNode(true);
-    clone.setAttribute('aria-hidden', 'true');
-    track.appendChild(clone);
-  });
-}
-
-/**
- * Filtro Interativo do Portfólio de Obras
- */
-function initPortfolioFilters() {
-  const filterBtns = document.querySelectorAll('.filter-pill-btn');
-  const projectCards = document.querySelectorAll('.project-card-item');
-
-  if (!filterBtns.length || !projectCards.length) return;
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => {
-        b.classList.remove('bg-primary-container', 'text-on-primary-container', 'border-primary-container');
-        b.classList.add('bg-transparent', 'text-on-surface-variant', 'border-outline-variant');
-      });
-
-      btn.classList.remove('bg-transparent', 'text-on-surface-variant', 'border-outline-variant');
-      btn.classList.add('bg-primary-container', 'text-on-primary-container', 'border-primary-container');
-
-      const filter = btn.getAttribute('data-filter') || 'all';
-
-      projectCards.forEach(card => {
-        const category = card.getAttribute('data-category') || 'all';
-        if (filter === 'all' || category === filter || category.includes(filter)) {
-          card.style.display = 'flex';
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'scale(1)';
-          }, 50);
-        } else {
-          card.style.opacity = '0';
-          card.style.transform = 'scale(0.96)';
-          setTimeout(() => {
-            card.style.display = 'none';
-          }, 300);
-        }
-      });
-    });
-  });
-}
-
-/**
- * Menu Mobile Drawer
+ * Menu Mobile Drawer (Hambúrguer de 2 linhas estilo Arcofran)
  */
 function initMobileMenu() {
-  const menuBtn = document.getElementById('mobileMenuToggle');
-  const mobileNav = document.getElementById('mobileNavDrawer');
-  const closeBtn = document.getElementById('closeMobileNav');
+  const toggleBtn = document.getElementById('mobileMenuToggle');
+  const drawer = document.getElementById('mobileNavDrawer');
+  if (!toggleBtn || !drawer) return;
 
-  if (!menuBtn || !mobileNav) return;
+  toggleBtn.addEventListener('click', () => {
+    drawer.classList.toggle('hidden');
+    drawer.classList.toggle('flex');
+  });
 
-  const toggle = () => {
-    const isOpen = mobileNav.classList.contains('open');
-    if (isOpen) {
-      mobileNav.classList.remove('open');
-      document.body.style.overflow = '';
-    } else {
-      mobileNav.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-  };
-
-  menuBtn.addEventListener('click', toggle);
-  if (closeBtn) closeBtn.addEventListener('click', toggle);
-
-  // Fecha menu ao clicar em links
-  mobileNav.querySelectorAll('a').forEach(link => {
+  // Fecha menu ao clicar em qualquer link interno
+  drawer.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-      mobileNav.classList.remove('open');
-      document.body.style.overflow = '';
+      drawer.classList.add('hidden');
+      drawer.classList.remove('flex');
     });
   });
 }
 
+/**
+ * Suporte a Arrastar (Drag-to-Scroll) na Galeria Horizontal com Mouse
+ */
+function initGalleryDragScroll() {
+  const gallery = document.querySelector('.portfolio-gallery-scroll');
+  if (!gallery) return;
+
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  gallery.addEventListener('mousedown', (e) => {
+    isDown = true;
+    startX = e.pageX - gallery.offsetLeft;
+    scrollLeft = gallery.scrollLeft;
+  });
+
+  gallery.addEventListener('mouseleave', () => {
+    isDown = false;
+  });
+
+  gallery.addEventListener('mouseup', () => {
+    isDown = false;
+  });
+
+  gallery.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - gallery.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    gallery.scrollLeft = scrollLeft - walk;
+  });
+}
