@@ -191,73 +191,109 @@
     <div class="flex flex-col w-full">
 
       <!-- ========================================================================
-           SEÇÃO HERO (Monumental, Cinematográfico)
+           SEÇÃO HERO (Split Editorial Arquitetural Inspirado na Monografia Stitch)
            ======================================================================== -->
-      <section id="inicio" class="relative w-full -mt-20 overflow-hidden bg-surface-container-lowest">
-        
-        <!-- Canvas de Imagem de Fundo com Scrims de Contraste -->
-        <div class="relative w-full min-h-[90vh] lg:min-h-screen flex items-end">
-          <div class="absolute inset-0 z-0">
-            <img src="./img/hero.jpg" alt="Leandro Freitas | Arquitetura & Engenharia - Arquitetura Contemporânea & Engenharia Estrutural" class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-1000 ease-out" />
-            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/80 to-surface/40"></div>
-            <div class="absolute inset-0 bg-gradient-to-r from-surface-container-lowest/95 via-surface-container-lowest/50 to-transparent"></div>
-          </div>
-
-          <!-- Conteúdo do Hero -->
-          <div class="relative z-10 w-full px-margin-mobile lg:px-margin-desktop pt-32 pb-space-xl">
-            <div class="max-w-5xl flex flex-col gap-space-md">
+      <section id="inicio" class="relative w-full overflow-hidden bg-surface-container-lowest pt-28 sm:pt-32 lg:pt-36 pb-16 lg:pb-24 border-b border-outline-variant/30">
+        <div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin-desktop">
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            
+            <!-- Coluna Esquerda: Narrativa, Métricas e Ação (7 colunas) -->
+            <div class="lg:col-span-7 flex flex-col justify-center">
               
-              <!-- H1 Solicitado (Sem itálico na palavra realidade) -->
-              <h1 class="font-display-lg text-display-lg-mobile lg:text-display-lg text-on-surface tracking-tight max-w-4xl subzero-reveal">
-                Transformamos ideias em <span class="text-primary font-headline-lg font-normal">realidade</span>
-              </h1>
-
-              <!-- H2 Solicitado -->
-              <h2 class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed subzero-reveal stagger-1">
-                Excelência técnica, criatividade e compromisso em cada etapa do seu projeto.
-              </h2>
-
-              <!-- CTA Principal (Compacto e Sofisticado) -->
-              <div class="pt-space-sm subzero-reveal stagger-2">
-                <a class="inline-flex items-center justify-center gap-2 bg-primary text-on-primary px-6 py-3 font-label-md text-xs uppercase tracking-widest hover:bg-secondary transition-all duration-300 shadow-lg font-bold" href="https://wa.me/5516981433404?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Leandro%20Freitas%20%7C%20Arquitetura%20%26%20Engenharia%20e%20gostaria%20de%20conversar%20com%20um%20atendente." rel="noopener noreferrer" target="_blank">
-                  <span class="material-symbols-outlined text-[18px]">forum</span>
-                  <span>Agendar Consulta</span>
-                </a>
+              <!-- Badge / Eyebrow Superior (Estilo Referência) -->
+              <div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container border border-outline-variant/40 shadow-sm w-fit mb-4 subzero-reveal">
+                <span class="px-2 py-0.5 bg-primary/20 border border-primary/40 font-label-sm text-[10px] uppercase tracking-widest text-primary font-bold">
+                  PROJETOS SOB MEDIDA
+                </span>
+                <span class="font-label-sm text-xs uppercase tracking-wider text-on-surface-variant font-medium">
+                  Franca SP &amp; REGIÃO
+                </span>
               </div>
 
-              <!-- Faixa de Destaques (Universal, elegante e adaptável a qualquer perfil de empresa) -->
-              <div class="mt-space-xl pt-space-md border-t border-outline-variant/30 flex flex-wrap items-center gap-y-4 gap-x-8 lg:gap-x-12 subzero-reveal stagger-3">
-                <div class="flex items-center gap-space-sm">
-                  <span class="text-primary font-display-md text-2xl lg:text-3xl font-bold">+10</span>
-                  <div class="flex flex-col">
-                    <span class="font-label-sm text-xs uppercase tracking-wider text-on-surface font-semibold">Anos de Atuação</span>
-                    <span class="font-body-sm text-[11px] text-outline">Experiência Consolidada</span>
-                  </div>
+              <!-- H1 (Monumental, Sem Itálico em Realidade) -->
+              <h1 class="font-display-lg text-3xl sm:text-5xl lg:text-[52px] lg:leading-[1.14] text-on-surface tracking-tight mb-4 subzero-reveal stagger-1">
+                Transformamos ideias em <span class="text-primary font-normal">realidade</span>.
+              </h1>
+
+              <!-- H2 / Texto de Apoio -->
+              <p class="font-body-lg text-base sm:text-lg text-on-surface-variant max-w-xl leading-relaxed mb-6 lg:mb-8 subzero-reveal stagger-2">
+                Excelência técnica, criatividade e compromisso em cada etapa do seu projeto.
+              </p>
+
+              <!-- Box de Métricas e Indicadores (Inspirado no Bloco da Referência) -->
+              <div class="grid grid-cols-3 gap-2 sm:gap-4 p-4 sm:p-5 bg-surface-container/90 border border-outline-variant/40 shadow-lg mb-8 max-w-xl subzero-reveal stagger-3">
+                <div class="flex flex-col border-r border-outline-variant/30 pr-2">
+                  <span class="font-display-md text-2xl sm:text-3xl lg:text-4xl font-bold text-primary leading-none mb-1">+10</span>
+                  <span class="font-label-sm text-[10px] sm:text-xs uppercase tracking-wider text-outline font-semibold">Anos de Atuação</span>
                 </div>
-
-                <div class="hidden sm:block w-px h-8 bg-outline-variant/30"></div>
-
-                <div class="flex items-center gap-space-sm">
-                  <span class="text-primary font-display-md text-2xl lg:text-3xl font-bold">100%</span>
-                  <div class="flex flex-col">
-                    <span class="font-label-sm text-xs uppercase tracking-wider text-on-surface font-semibold">Personalizado</span>
-                    <span class="font-body-sm text-[11px] text-outline">Projetos Sob Medida</span>
-                  </div>
+                <div class="flex flex-col border-r border-outline-variant/30 px-2 sm:px-3">
+                  <span class="font-display-md text-2xl sm:text-3xl lg:text-4xl font-bold text-primary leading-none mb-1">100%</span>
+                  <span class="font-label-sm text-[10px] sm:text-xs uppercase tracking-wider text-outline font-semibold">Personalizado</span>
                 </div>
+                <div class="flex flex-col pl-2 sm:pl-3">
+                  <span class="font-display-md text-2xl sm:text-3xl lg:text-4xl font-bold text-secondary leading-none mb-1">3D</span>
+                  <span class="font-label-sm text-[10px] sm:text-xs uppercase tracking-wider text-outline font-semibold">Visualização Real</span>
+                </div>
+              </div>
 
-                <div class="hidden sm:block w-px h-8 bg-outline-variant/30"></div>
-
-                <div class="flex items-center gap-space-sm">
-                  <span class="text-secondary font-display-md text-2xl lg:text-3xl font-bold">3D</span>
-                  <div class="flex flex-col">
-                    <span class="font-label-sm text-xs uppercase tracking-wider text-on-surface font-semibold">Visualização Real</span>
-                    <span class="font-body-sm text-[11px] text-outline">Segurança nas Decisões</span>
-                  </div>
+              <!-- Botão CTA + Nota de Confiança -->
+              <div class="flex flex-col gap-3 subzero-reveal stagger-4">
+                <div>
+                  <a class="inline-flex items-center justify-center gap-2.5 bg-primary text-on-primary px-7 py-3.5 font-label-md text-xs sm:text-sm uppercase tracking-widest hover:bg-secondary transition-all duration-300 shadow-xl font-bold min-h-[44px]" href="https://wa.me/5516981433404?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Leandro%20Freitas%20%7C%20Arquitetura%20%26%20Engenharia%20e%20gostaria%20de%20conversar%20com%20um%20atendente." rel="noopener noreferrer" target="_blank">
+                    <span class="material-symbols-outlined text-[20px]">forum</span>
+                    <span>Agendar Consulta</span>
+                  </a>
+                </div>
+                <div class="flex items-center gap-2 text-xs text-outline pt-1">
+                  <span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+                  <span>Atendimento exclusivo e projetos sob medida em Franca SP e região</span>
                 </div>
               </div>
 
             </div>
+
+            <!-- Coluna Direita: Card Vitrine Arquitetônica (Inspirado no Card da Imagem) -->
+            <div class="lg:col-span-5 relative subzero-reveal stagger-2">
+              <div class="relative w-full flex flex-col bg-surface-container border border-outline-variant/40 shadow-2xl overflow-hidden group">
+                
+                <!-- Imagem Principal com Tag no Topo -->
+                <div class="relative w-full aspect-[4/5] sm:aspect-[16/11] lg:aspect-[4/5] overflow-hidden bg-surface-container-highest">
+                  <img src="./img/hero-showcase.jpg" alt="Projeto Arquitetônico de Alto Padrão - Leandro Freitas | Arquitetura & Engenharia" class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-1000 ease-out" />
+                  
+                  <!-- Tag Superior da Imagem -->
+                  <div class="absolute top-4 left-4 bg-surface-container-lowest/85 backdrop-blur-md px-3 py-1 border border-outline-variant/30">
+                    <span class="font-label-sm text-[11px] uppercase tracking-widest text-primary font-bold">
+                      PROJETO EM DESTAQUE · ALTO PADRÃO
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Rodapé Técnico Integrado (Estilo Exato da Imagem de Inspiração) -->
+                <div class="p-4 sm:p-5 bg-surface-container-high/95 border-t border-outline-variant/40 flex flex-col gap-2.5">
+                  <div class="flex items-center justify-between text-xs sm:text-sm">
+                    <span class="font-headline-sm uppercase font-bold text-on-surface tracking-wider text-xs sm:text-sm">
+                      CONCEPÇÃO AUTORAL EM 3D
+                    </span>
+                    <span class="font-technical text-primary text-xs font-semibold uppercase tracking-widest">
+                      ÁREA: 480m²
+                    </span>
+                  </div>
+                  
+                  <!-- Linha Divisória Fina -->
+                  <div class="w-full h-px bg-primary/30"></div>
+
+                  <div class="flex items-center justify-between text-[11px] sm:text-xs text-outline">
+                    <span class="truncate">Integração visual, conforto térmico &amp; sustentabilidade</span>
+                    <span class="text-primary font-semibold shrink-0 ml-2">Status: Concluído</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
           </div>
+
         </div>
       </section>
 
