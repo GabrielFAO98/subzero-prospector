@@ -138,8 +138,8 @@
 
       <!-- Links Desktop -->
       <nav class="hidden xl:flex items-center gap-gutter">
-        <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors tracking-widest uppercase" href="#portfolio-dossier">Projetos</a>
         <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors tracking-widest uppercase" href="#sobre">Sobre</a>
+        <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors tracking-widest uppercase" href="#portfolio-dossier">Projetos</a>
         <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors tracking-widest uppercase" href="#depoimentos">Depoimentos</a>
         <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors tracking-widest uppercase" href="#contato">Contato</a>
       </nav>
@@ -169,8 +169,8 @@
     <!-- Gaveta Mobile -->
     <div id="mobileNavDrawer" class="hidden xl:hidden bg-surface-container border-b border-outline-variant/30 px-margin-mobile py-space-md flex-col gap-space-sm shadow-2xl">
       <nav class="flex flex-col gap-space-xs">
-        <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary py-space-xs uppercase tracking-widest border-b border-outline-variant/20" href="#portfolio-dossier">Projetos em Destaque</a>
         <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary py-space-xs uppercase tracking-widest border-b border-outline-variant/20" href="#sobre">Sobre o Escritório</a>
+        <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary py-space-xs uppercase tracking-widest border-b border-outline-variant/20" href="#portfolio-dossier">Projetos em Destaque</a>
         <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary py-space-xs uppercase tracking-widest border-b border-outline-variant/20" href="#depoimentos">Depoimentos Verificados</a>
         <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary py-space-xs uppercase tracking-widest" href="#contato">Contato &amp; Localização</a>
       </nav>
@@ -217,15 +217,11 @@
                 Excelência técnica, criatividade e compromisso em cada etapa do seu projeto.
               </h2>
 
-              <!-- Botões com o Mesmo Tamanho -->
-              <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-md pt-space-sm subzero-reveal stagger-2">
-                <a class="hero-equal-btn inline-flex items-center justify-center gap-space-xs bg-primary text-on-primary px-space-lg py-space-md font-label-lg text-label-lg uppercase tracking-widest hover:bg-secondary transition-all duration-300 shadow-xl" href="{{LINK_WHATSAPP_COM_MENSAGEM}}" rel="noopener noreferrer" target="_blank">
-                  <span class="material-symbols-outlined text-[20px]">forum</span>
+              <!-- CTA Principal (Compacto e Sofisticado) -->
+              <div class="pt-space-sm subzero-reveal stagger-2">
+                <a class="inline-flex items-center justify-center gap-2 bg-primary text-on-primary px-6 py-3 font-label-md text-xs uppercase tracking-widest hover:bg-secondary transition-all duration-300 shadow-lg font-bold" href="{{LINK_WHATSAPP_COM_MENSAGEM}}" rel="noopener noreferrer" target="_blank">
+                  <span class="material-symbols-outlined text-[18px]">forum</span>
                   <span>Agendar Consulta</span>
-                </a>
-                <a class="hero-equal-btn inline-flex items-center justify-center gap-space-xs bg-surface-container-high/75 backdrop-blur-md text-on-surface px-space-lg py-space-md font-label-lg text-label-lg uppercase tracking-widest hover:bg-surface-bright hover:text-primary transition-all duration-300 border border-outline-variant/40" href="#portfolio-dossier">
-                  <span class="material-symbols-outlined text-[18px]">architecture</span>
-                  <span>Nossos Trabalhos</span>
                 </a>
               </div>
 
@@ -367,10 +363,121 @@
       </section>
 
       <!-- ========================================================================
-           SEÇÃO 2: PORTFÓLIO E OBRAS (Fundo de Contraste: surface #0b1326)
+           SEÇÃO 2: SOBRE O ESCRITÓRIO & TRAJETÓRIA (Fundo de Contraste: surface #0f172a)
+           Layout Editorial de Alto Padrão (Inspirado em Estúdios de Arquitetura Globais)
+           ======================================================================== -->
+      <section class="w-full bg-surface py-20 lg:py-28 px-margin-mobile lg:px-margin-desktop border-b border-outline-variant/20" id="sobre">
+        <div class="max-w-7xl mx-auto">
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            
+            <!-- Coluna Esquerda: Composição Visual Editorial (5 colunas) -->
+            <div class="lg:col-span-5 relative subzero-reveal">
+              <!-- Moldura Visual de Destaque -->
+              <div class="relative w-full aspect-[4/5] overflow-hidden bg-surface-container shadow-2xl">
+                <img src="./img/{{IMG_SERVICO_1}}" alt="{{NOME_DA_EMPRESA}}" class="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700 ease-out" />
+                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/25 to-transparent"></div>
+                
+                <!-- Badge de Destaque no Topo -->
+                <div class="absolute top-space-md left-space-md bg-surface-container-lowest/85 backdrop-blur-md px-3 py-1.5 border-l-2 border-primary">
+                  <span class="font-label-sm text-[11px] uppercase tracking-widest text-primary font-semibold">Conceito &amp; Autoria</span>
+                </div>
+
+                <!-- Card de Identificação Flutuante no Rodapé da Imagem -->
+                <div class="absolute bottom-space-md left-space-md right-space-md bg-surface-container-high/90 backdrop-blur-md p-space-md border border-outline-variant/30">
+                  <span class="font-headline-sm text-headline-sm text-on-surface block font-bold">{{NOME_DA_EMPRESA}}</span>
+                  <div class="flex items-center justify-between mt-1 pt-2 border-t border-outline-variant/20 text-xs text-outline">
+                    <span class="font-technical text-primary">Projetos Personalizados</span>
+                    <span>{{CIDADE_UF}} &amp; Região</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Detalhe decorativo geométrico sutil atrás da moldura -->
+              <div class="hidden lg:block absolute -bottom-6 -left-6 w-32 h-32 border border-primary/20 -z-10 pointer-events-none"></div>
+            </div>
+
+            <!-- Coluna Direita: Narrativa, Rigor e Compromissos (7 colunas) -->
+            <div class="lg:col-span-7 flex flex-col justify-center subzero-reveal stagger-1">
+              
+              <!-- Eyebrow -->
+              <div class="inline-flex items-center gap-2 mb-3">
+                <span class="w-6 h-px bg-primary"></span>
+                <span class="font-label-sm text-xs uppercase tracking-widest text-primary font-semibold">Sobre Nós &amp; Trajetória</span>
+              </div>
+
+              <!-- Headline Monumental -->
+              <h2 class="font-display-md text-3xl sm:text-4xl lg:text-[42px] text-on-surface tracking-tight leading-tight mb-6">
+                Projetos pensados para valorizar cada detalhe do seu <span class="text-primary font-normal">espaço</span>
+              </h2>
+
+              <!-- Texto Principal de Apresentação -->
+              <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-8">
+                {{TEXTO_DE_APRESENTACAO_DA_EMPRESA_FOCO_EM_CONFIANCA_E_QUALIDADE}}
+              </p>
+
+              <!-- 3 Pilares Editoriais de Condução (Sem cards, estética pura de revista) -->
+              <div class="flex flex-col gap-5 pt-6 border-t border-outline-variant/20 mb-8">
+                
+                <!-- Pilar 1 -->
+                <div class="flex items-start gap-4">
+                  <span class="font-display-md text-xl text-primary font-bold shrink-0 mt-0.5">01</span>
+                  <div>
+                    <h3 class="font-headline-sm text-base text-on-surface font-bold">Concepção Integrada &amp; Personalizada</h3>
+                    <p class="font-body-sm text-sm text-on-surface-variant mt-1 leading-relaxed">
+                      Cada projeto é desenhado sob medida para o seu estilo de vida ou modelo de negócio, harmonizando estética, funcionalidade e conforto.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Pilar 2 -->
+                <div class="flex items-start gap-4">
+                  <span class="font-display-md text-xl text-primary font-bold shrink-0 mt-0.5">02</span>
+                  <div>
+                    <h3 class="font-headline-sm text-base text-on-surface font-bold">Gestão Inteligente de Custos &amp; Prazos</h3>
+                    <p class="font-body-sm text-sm text-on-surface-variant mt-1 leading-relaxed">
+                      Planejamento detalhado de materiais e soluções inteligentes para evitar gastos imprevistos e garantir previsibilidade em cada etapa.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Pilar 3 -->
+                <div class="flex items-start gap-4">
+                  <span class="font-display-md text-xl text-primary font-bold shrink-0 mt-0.5">03</span>
+                  <div>
+                    <h3 class="font-headline-sm text-base text-on-surface font-bold">Acompanhamento Dedicado</h3>
+                    <p class="font-body-sm text-sm text-on-surface-variant mt-1 leading-relaxed">
+                      Presença constante e alinhamento próximo com os executores, assegurando que cada detalhe saia com acabamento impecável e fidelidade total.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Ação / Chamada -->
+              <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+                <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2.5 bg-primary text-on-primary px-6 py-3.5 font-label-md text-xs uppercase tracking-widest hover:bg-secondary transition-all duration-300 shadow-xl font-semibold">
+                  <span class="material-symbols-outlined text-[18px]">forum</span>
+                  <span>Falar com o Especialista</span>
+                </a>
+                <div class="flex items-center gap-2 text-xs text-outline px-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary shrink-0"></span>
+                  <span>Atendimento presencial em {{CIDADE_UF}} e região</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========================================================================
+           SEÇÃO 3: PORTFÓLIO E PROJETOS EM DESTAQUE (Fundo Claro: surface-container-low)
            5 Projetos em Galeria Horizontal Arrastável com Borda Esmaecida
            ======================================================================== -->
-      <section class="w-full bg-surface py-space-xl px-margin-mobile lg:px-margin-desktop border-b border-outline-variant/20 overflow-hidden" id="portfolio-dossier">
+      <section class="w-full bg-surface-container-low py-space-xl px-margin-mobile lg:px-margin-desktop border-b border-outline-variant/20 overflow-hidden" id="portfolio-dossier">
         <div class="max-w-7xl mx-auto mb-space-lg">
           <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md subzero-reveal">
             <div>
@@ -477,118 +584,7 @@
           </div>
 
           <!-- Borda Esmaecida Fade à Direita -->
-          <div class="pointer-events-none absolute top-0 right-0 w-24 sm:w-36 h-full bg-gradient-to-l from-surface to-transparent"></div>
-        </div>
-      </section>
-
-      <!-- ========================================================================
-           SEÇÃO 3: SOBRE O ESCRITÓRIO & RESPONSABILIDADE TÉCNICA (Fundo Claro: surface-container-low)
-           Layout Editorial de Alto Padrão (Inspirado em Estúdios de Arquitetura Globais)
-           ======================================================================== -->
-      <section class="w-full bg-surface-container-low py-20 lg:py-28 px-margin-mobile lg:px-margin-desktop border-b border-outline-variant/20" id="sobre">
-        <div class="max-w-7xl mx-auto">
-          
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            
-            <!-- Coluna Esquerda: Composição Visual Editorial (5 colunas) -->
-            <div class="lg:col-span-5 relative subzero-reveal">
-              <!-- Moldura Visual de Destaque -->
-              <div class="relative w-full aspect-[4/5] overflow-hidden bg-surface-container shadow-2xl">
-                <img src="./img/{{IMG_SERVICO_1}}" alt="{{NOME_DA_EMPRESA}}" class="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700 ease-out" />
-                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/25 to-transparent"></div>
-                
-                <!-- Badge de Destaque no Topo -->
-                <div class="absolute top-space-md left-space-md bg-surface-container-lowest/85 backdrop-blur-md px-3 py-1.5 border-l-2 border-primary">
-                  <span class="font-label-sm text-[11px] uppercase tracking-widest text-primary font-semibold">Conceito &amp; Autoria</span>
-                </div>
-
-                <!-- Card de Identificação Flutuante no Rodapé da Imagem -->
-                <div class="absolute bottom-space-md left-space-md right-space-md bg-surface-container-high/90 backdrop-blur-md p-space-md border border-outline-variant/30">
-                  <span class="font-headline-sm text-headline-sm text-on-surface block font-bold">{{NOME_DA_EMPRESA}}</span>
-                  <div class="flex items-center justify-between mt-1 pt-2 border-t border-outline-variant/20 text-xs text-outline">
-                    <span class="font-technical text-primary">Projetos Personalizados</span>
-                    <span>{{CIDADE_UF}} &amp; Região</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Detalhe decorativo geométrico sutil atrás da moldura -->
-              <div class="hidden lg:block absolute -bottom-6 -left-6 w-32 h-32 border border-primary/20 -z-10 pointer-events-none"></div>
-            </div>
-
-            <!-- Coluna Direita: Narrativa, Rigor e Compromissos (7 colunas) -->
-            <div class="lg:col-span-7 flex flex-col justify-center subzero-reveal stagger-1">
-              
-              <!-- Eyebrow -->
-              <div class="inline-flex items-center gap-2 mb-3">
-                <span class="w-6 h-px bg-primary"></span>
-                <span class="font-label-sm text-xs uppercase tracking-widest text-primary font-semibold">Sobre Nós &amp; Trajetória</span>
-              </div>
-
-              <!-- Headline Monumental -->
-              <h2 class="font-display-md text-3xl sm:text-4xl lg:text-[42px] text-on-surface tracking-tight leading-tight mb-6">
-                Projetos pensados para valorizar cada detalhe do seu <span class="text-primary font-normal">espaço</span>
-              </h2>
-
-              <!-- Texto Principal de Apresentação -->
-              <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-8">
-                {{TEXTO_DE_APRESENTACAO_DA_EMPRESA_FOCO_EM_CONFIANCA_E_QUALIDADE}}
-              </p>
-
-              <!-- 3 Pilares Editoriais de Condução (Sem cards, estética pura de revista) -->
-              <div class="flex flex-col gap-5 pt-6 border-t border-outline-variant/20 mb-8">
-                
-                <!-- Pilar 1 -->
-                <div class="flex items-start gap-4">
-                  <span class="font-display-md text-xl text-primary font-bold shrink-0 mt-0.5">01</span>
-                  <div>
-                    <h3 class="font-headline-sm text-base text-on-surface font-bold">Concepção Integrada &amp; Personalizada</h3>
-                    <p class="font-body-sm text-sm text-on-surface-variant mt-1 leading-relaxed">
-                      Cada projeto é desenhado sob medida para o seu estilo de vida ou modelo de negócio, harmonizando estética, funcionalidade e conforto.
-                    </p>
-                  </div>
-                </div>
-
-                <!-- Pilar 2 -->
-                <div class="flex items-start gap-4">
-                  <span class="font-display-md text-xl text-primary font-bold shrink-0 mt-0.5">02</span>
-                  <div>
-                    <h3 class="font-headline-sm text-base text-on-surface font-bold">Gestão Inteligente de Custos &amp; Prazos</h3>
-                    <p class="font-body-sm text-sm text-on-surface-variant mt-1 leading-relaxed">
-                      Planejamento detalhado de materiais e soluções inteligentes para evitar gastos imprevistos e garantir previsibilidade em cada etapa.
-                    </p>
-                  </div>
-                </div>
-
-                <!-- Pilar 3 -->
-                <div class="flex items-start gap-4">
-                  <span class="font-display-md text-xl text-primary font-bold shrink-0 mt-0.5">03</span>
-                  <div>
-                    <h3 class="font-headline-sm text-base text-on-surface font-bold">Acompanhamento Dedicado</h3>
-                    <p class="font-body-sm text-sm text-on-surface-variant mt-1 leading-relaxed">
-                      Presença constante e alinhamento próximo com os executores, assegurando que cada detalhe saia com acabamento impecável e fidelidade total.
-                    </p>
-                  </div>
-                </div>
-
-              </div>
-
-              <!-- Ação / Chamada -->
-              <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
-                <a href="{{LINK_WHATSAPP_COM_MENSAGEM}}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2.5 bg-primary text-on-primary px-6 py-3.5 font-label-md text-xs uppercase tracking-widest hover:bg-secondary transition-all duration-300 shadow-xl font-semibold">
-                  <span class="material-symbols-outlined text-[18px]">forum</span>
-                  <span>Falar com o Especialista</span>
-                </a>
-                <div class="flex items-center gap-2 text-xs text-outline px-2">
-                  <span class="w-2 h-2 rounded-full bg-secondary shrink-0"></span>
-                  <span>Atendimento presencial em {{CIDADE_UF}} e região</span>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
+          <div class="pointer-events-none absolute top-0 right-0 w-24 sm:w-36 h-full bg-gradient-to-l from-surface-container-low to-transparent"></div>
         </div>
       </section>
 
@@ -796,8 +792,8 @@
           <h4 class="font-label-md text-on-surface uppercase tracking-wider mb-space-sm font-bold">Navegação</h4>
           <ul class="flex flex-col gap-space-xs font-body-sm text-outline">
             <li><a href="#inicio" class="hover:text-primary transition-colors">Início</a></li>
-            <li><a href="#portfolio-dossier" class="hover:text-primary transition-colors">Projetos em Destaque</a></li>
             <li><a href="#sobre" class="hover:text-primary transition-colors">Sobre o Escritório</a></li>
+            <li><a href="#portfolio-dossier" class="hover:text-primary transition-colors">Projetos em Destaque</a></li>
             <li><a href="#depoimentos" class="hover:text-primary transition-colors">Depoimentos Verificados</a></li>
             <li><a href="#contato" class="hover:text-primary transition-colors">Contato &amp; Localização</a></li>
           </ul>
