@@ -198,7 +198,7 @@
         <!-- Canvas de Imagem de Fundo com Scrims de Contraste -->
         <div class="relative w-full min-h-[90vh] lg:min-h-screen flex items-end">
           <div class="absolute inset-0 z-0">
-            <img src="./img/{{IMG_HERO}}" alt="{{NOME_DA_EMPRESA}} - Arquitetura e Engenharia" class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-1000 ease-out" />
+            <img src="./img/hero.jpg" alt="{{NOME_DA_EMPRESA}} - Arquitetura e Engenharia" class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-1000 ease-out" />
             <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/80 to-surface/40"></div>
             <div class="absolute inset-0 bg-gradient-to-r from-surface-container-lowest/95 via-surface-container-lowest/50 to-transparent"></div>
           </div>
@@ -207,9 +207,9 @@
           <div class="relative z-10 w-full px-margin-mobile lg:px-margin-desktop pt-32 pb-space-xl">
             <div class="max-w-5xl flex flex-col gap-space-md">
               
-              <!-- H1 Solicitado -->
+              <!-- H1 Solicitado (Sem itálico na palavra realidade) -->
               <h1 class="font-display-lg text-display-lg-mobile lg:text-display-lg text-on-surface tracking-tight max-w-4xl subzero-reveal">
-                Transformamos ideias em <span class="text-primary italic font-headline-lg font-normal">realidade</span>
+                Transformamos ideias em <span class="text-primary font-headline-lg font-normal">realidade</span>
               </h1>
 
               <!-- H2 Solicitado -->
@@ -229,22 +229,34 @@
                 </a>
               </div>
 
-              <!-- Div abaixo dos botões com dados úteis e impacto -->
-              <div class="mt-space-lg pt-space-md grid grid-cols-1 sm:grid-cols-3 gap-gutter bg-surface-container-low/85 backdrop-blur-xl p-space-md shadow-2xl border border-outline-variant/30 subzero-reveal stagger-3">
-                <div>
-                  <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block">+15 Anos de Atuação</span>
-                  <span class="font-headline-sm text-headline-sm text-on-surface">Experiência Comprovada</span>
-                  <p class="font-body-sm text-body-sm text-outline-variant mt-1">Confiabilidade e precisão em projetos residenciais de alto padrão e corporativos.</p>
+              <!-- Faixa Técnica Minimalista (Sem excesso de texto, dados úteis e de alto impacto) -->
+              <div class="mt-space-xl pt-space-md border-t border-outline-variant/30 flex flex-wrap items-center gap-y-4 gap-x-8 lg:gap-x-12 subzero-reveal stagger-3">
+                <div class="flex items-center gap-space-sm">
+                  <span class="text-primary font-display-md text-2xl lg:text-3xl font-bold">+15</span>
+                  <div class="flex flex-col">
+                    <span class="font-label-sm text-xs uppercase tracking-wider text-on-surface font-semibold">Anos de Atuação</span>
+                    <span class="font-body-sm text-[11px] text-outline">Projetos de Alto Padrão</span>
+                  </div>
                 </div>
-                <div>
-                  <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block">100% Homologado</span>
-                  <span class="font-headline-sm text-headline-sm text-on-surface">Aprovação &amp; Alvarás</span>
-                  <p class="font-body-sm text-body-sm text-outline-variant mt-1">Condução documental ágil de habite-se, laudos e conformidade na prefeitura.</p>
+
+                <div class="hidden sm:block w-px h-8 bg-outline-variant/30"></div>
+
+                <div class="flex items-center gap-space-sm">
+                  <span class="text-primary font-display-md text-2xl lg:text-3xl font-bold">100%</span>
+                  <div class="flex flex-col">
+                    <span class="font-label-sm text-xs uppercase tracking-wider text-on-surface font-semibold">Homologado</span>
+                    <span class="font-body-sm text-[11px] text-outline">Aprovações &amp; Alvarás</span>
+                  </div>
                 </div>
-                <div>
-                  <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block">Economia Inteligente</span>
-                  <span class="font-headline-sm text-headline-sm text-on-surface">Cálculo Otimizado</span>
-                  <p class="font-body-sm text-body-sm text-outline-variant mt-1">Dimensionamento estrutural que reduz compras excessivas e desperdícios de materiais.</p>
+
+                <div class="hidden sm:block w-px h-8 bg-outline-variant/30"></div>
+
+                <div class="flex items-center gap-space-sm">
+                  <span class="text-secondary font-display-md text-2xl lg:text-3xl font-bold">BIM</span>
+                  <div class="flex flex-col">
+                    <span class="font-label-sm text-xs uppercase tracking-wider text-on-surface font-semibold">Cálculo Preciso</span>
+                    <span class="font-body-sm text-[11px] text-outline">Economia Estrutural</span>
+                  </div>
                 </div>
               </div>
 
@@ -254,70 +266,98 @@
       </section>
 
       <!-- ========================================================================
-           SEÇÃO 1: CREDIBILIDADE & RIGOR (Fundo Intercalado Claro: surface-container-low)
-           3 Cards Informativos + Credenciamento Técnico em 3 Certificações
+           SEÇÃO 1: PILARES TÉCNICOS & ATUAÇÃO (Fundo Intercalado Claro: surface-container-low)
+           Layout Visual Sem Cards: 3 Colunas Editoriais com Fotografia Arquitetônica
            ======================================================================== -->
       <section class="w-full bg-surface-container-low py-space-xl px-margin-mobile lg:px-margin-desktop border-b border-outline-variant/20">
         <div class="max-w-7xl mx-auto">
           
-          <!-- Grid com 3 Cards (Card 4 Removido Conforme Solicitado) -->
+          <!-- Cabeçalho Editorial da Seção -->
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-xl subzero-reveal">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block mb-space-xs">Pilares de Atuação</span>
+              <h2 class="font-display-md text-display-md text-on-surface tracking-tight">
+                Rigor técnico e excelência projetual
+              </h2>
+            </div>
+            <p class="font-body-md text-body-md text-on-surface-variant max-w-md leading-relaxed">
+              Unimos cálculo estrutural avançado, tecnologia BIM e sensibilidade arquitetônica em {{CIDADE_UF}} e região.
+            </p>
+          </div>
+
+          <!-- 3 Colunas Visuais Editoriais (Sem Cards) -->
           <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-gutter-desktop mb-space-xl">
             
-            <!-- Card 1: Mantido intacto -->
-            <div class="flex flex-col justify-between bg-surface-container p-space-lg shadow-md border border-outline-variant/30 subzero-reveal">
-              <div>
-                <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block mb-space-xs">Escritório Central</span>
-                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">{{CIDADE_UF}}</h3>
-                <p class="font-body-sm text-body-sm text-on-surface-variant pt-space-xs">Interior Paulista &amp; Capitais com assessoria presencial e projetos sob medida.</p>
+            <!-- Pilar 1: Sede / Atendimento -->
+            <div class="group flex flex-col subzero-reveal">
+              <div class="relative w-full aspect-[16/10] overflow-hidden bg-surface-container mb-space-md shadow-lg">
+                <img src="./img/project-1.jpg" alt="Escritório Central {{CIDADE_UF}}" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" />
+                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 via-transparent to-transparent"></div>
+                <div class="absolute top-space-sm left-space-sm bg-surface-container-lowest/85 backdrop-blur-md px-3 py-1">
+                  <span class="font-label-sm text-[11px] uppercase tracking-widest text-primary">01 · Presencial</span>
+                </div>
               </div>
-              <div class="pt-space-md mt-space-md border-t border-outline-variant/20 flex items-center gap-space-xs text-outline font-label-sm text-label-sm uppercase">
-                <span class="material-symbols-outlined text-[16px] text-primary">location_city</span>
-                <span>Sede Própria &amp; Atendimento Direto</span>
-              </div>
-            </div>
-
-            <!-- Card 2: Modelagem 3D & BIM -->
-            <div class="flex flex-col justify-between bg-surface-container p-space-lg shadow-md border border-outline-variant/30 subzero-reveal stagger-1">
-              <div>
-                <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block mb-space-xs">Modelagem 3D &amp; BIM</span>
-                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Visão Real da Obra</h3>
-                <p class="font-body-sm text-body-sm text-on-surface-variant pt-space-xs">Plantas humanizadas e detalhamento volumétrico realista que antecipam cada fase antes de construir.</p>
-              </div>
-              <div class="pt-space-md mt-space-md border-t border-outline-variant/20 flex items-center gap-space-xs text-outline font-label-sm text-label-sm uppercase">
-                <span class="material-symbols-outlined text-[16px] text-primary">view_in_ar</span>
-                <span>Zero Improvisos no Canteiro</span>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block mb-1">Escritório Central</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-2 group-hover:text-primary transition-colors">{{CIDADE_UF}} &amp; Região</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Assessoria presencial dedicada e desenvolvimento de projetos sob medida com proximidade e agilidade.</p>
+              <div class="pt-space-sm mt-4 border-t border-outline-variant/20 flex items-center gap-space-xs text-outline font-label-sm text-[11px] uppercase tracking-wider">
+                <span class="material-symbols-outlined text-[15px] text-primary">location_city</span>
+                <span>Sede própria e atendimento direto</span>
               </div>
             </div>
 
-            <!-- Card 3: Supervisão Técnica Rigorosa -->
-            <div class="flex flex-col justify-between bg-surface-container p-space-lg shadow-md border border-outline-variant/30 subzero-reveal stagger-2">
-              <div>
-                <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary block mb-space-xs">Supervisão Técnica Rigorosa</span>
-                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Fidelidade ao Projeto</h3>
-                <p class="font-body-sm text-body-sm text-on-surface-variant pt-space-xs">Acompanhamento presencial e rigor normativo do alicerce ao acabamento, garantindo alto padrão.</p>
+            <!-- Pilar 2: Modelagem 3D & BIM -->
+            <div class="group flex flex-col subzero-reveal stagger-1">
+              <div class="relative w-full aspect-[16/10] overflow-hidden bg-surface-container mb-space-md shadow-lg">
+                <img src="./img/project-2.jpg" alt="Modelagem 3D e Tecnologia BIM" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" />
+                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 via-transparent to-transparent"></div>
+                <div class="absolute top-space-sm left-space-sm bg-surface-container-lowest/85 backdrop-blur-md px-3 py-1">
+                  <span class="font-label-sm text-[11px] uppercase tracking-widest text-primary">02 · Tecnologia</span>
+                </div>
               </div>
-              <div class="pt-space-md mt-space-md border-t border-outline-variant/20 flex items-center gap-space-xs text-outline font-label-sm text-label-sm uppercase">
-                <span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
-                <span>Responsabilidade Técnica com ART</span>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block mb-1">Modelagem 3D &amp; BIM</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-2 group-hover:text-primary transition-colors">Visão Real da Obra</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Plantas humanizadas e detalhamento volumétrico realista que antecipam cada fase e eliminam imprevistos.</p>
+              <div class="pt-space-sm mt-4 border-t border-outline-variant/20 flex items-center gap-space-xs text-outline font-label-sm text-[11px] uppercase tracking-wider">
+                <span class="material-symbols-outlined text-[15px] text-primary">view_in_ar</span>
+                <span>Compatibilização estrutural total</span>
+              </div>
+            </div>
+
+            <!-- Pilar 3: Supervisão Técnica -->
+            <div class="group flex flex-col subzero-reveal stagger-2">
+              <div class="relative w-full aspect-[16/10] overflow-hidden bg-surface-container mb-space-md shadow-lg">
+                <img src="./img/project-3.jpg" alt="Supervisão Técnica e Fidelidade ao Projeto" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" />
+                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 via-transparent to-transparent"></div>
+                <div class="absolute top-space-sm left-space-sm bg-surface-container-lowest/85 backdrop-blur-md px-3 py-1">
+                  <span class="font-label-sm text-[11px] uppercase tracking-widest text-secondary">03 · Execução</span>
+                </div>
+              </div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary block mb-1">Supervisão Técnica Rigorosa</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-2 group-hover:text-primary transition-colors">Fidelidade ao Projeto</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Acompanhamento no canteiro e rigor normativo do alicerce ao acabamento, garantindo alto padrão e conformidade.</p>
+              <div class="pt-space-sm mt-4 border-t border-outline-variant/20 flex items-center gap-space-xs text-outline font-label-sm text-[11px] uppercase tracking-wider">
+                <span class="material-symbols-outlined text-[15px] text-secondary">verified</span>
+                <span>Responsabilidade técnica com ART</span>
               </div>
             </div>
 
           </div>
 
-          <!-- Credenciamento Técnico Reduzido para 3 Certificações -->
-          <div class="w-full bg-surface-container-high/60 p-space-md flex flex-wrap items-center justify-between gap-gutter border border-outline-variant/30 subzero-reveal">
+          <!-- Credenciamento Técnico em Linha Fluida Minimalista -->
+          <div class="w-full pt-space-md border-t border-outline-variant/30 flex flex-wrap items-center justify-between gap-space-md subzero-reveal">
             <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">Credenciamento &amp; Normas Técnicas</span>
-            <div class="flex flex-wrap items-center gap-space-lg text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">
+            <div class="flex flex-wrap items-center gap-space-md sm:gap-space-lg text-on-surface-variant font-label-md text-xs sm:text-label-md uppercase tracking-wider">
               <span class="flex items-center gap-space-xs hover:text-primary transition-colors">
-                <span class="material-symbols-outlined text-[18px] text-primary">account_balance</span>
+                <span class="material-symbols-outlined text-[16px] text-primary">account_balance</span>
                 CAU / CREA Registrado
               </span>
               <span class="flex items-center gap-space-xs hover:text-primary transition-colors">
-                <span class="material-symbols-outlined text-[18px] text-primary">apartment</span>
+                <span class="material-symbols-outlined text-[16px] text-primary">apartment</span>
                 Normas ABNT NBR 6118 / 8800
               </span>
               <span class="flex items-center gap-space-xs hover:text-primary transition-colors">
-                <span class="material-symbols-outlined text-[18px] text-primary">verified_user</span>
+                <span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
                 Projetos Homologados com ART
               </span>
             </div>
