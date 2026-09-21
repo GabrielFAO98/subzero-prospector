@@ -1,22 +1,22 @@
 /* ==========================================================================
-   ATELIER STRUCTURAL — ARCHITECTURAL ARCHETYPE (SUBZERO ENGINE)
+   ARCHITECTURAL ARCHETYPE (SUBZERO ENGINE)
    Design System: Noto Serif + Space Grotesk | Midnight Slate & Champagne Gold
    ========================================================================== */
 
 :root {
-  --surface: #0b1326;
-  --surface-dim: #0b1326;
-  --surface-bright: #31394d;
-  --surface-container-lowest: #060e20;
-  --surface-container-low: #131b2e;
-  --surface-container: #171f33;
-  --surface-container-high: #222a3d;
-  --surface-container-highest: #2d3449;
+  --surface: #0f172a;
+  --surface-dim: #0f172a;
+  --surface-bright: #334155;
+  --surface-container-lowest: #0a0f1d;
+  --surface-container-low: #1e293b;
+  --surface-container: #1e293b;
+  --surface-container-high: #283548;
+  --surface-container-highest: #334155;
   
   --on-surface: #dae2fd;
-  --on-surface-variant: #d1c5b8;
-  --outline: #998f83;
-  --outline-variant: #4d463c;
+  --on-surface-variant: #cbd5e1;
+  --outline: #94a3b8;
+  --outline-variant: #475569;
   
   --primary: #e2c399;
   --primary-container: #c5a880;
@@ -92,10 +92,10 @@ body {
 }
 
 .smart-header.scrolled {
-  background-color: rgba(11, 19, 38, 0.92);
+  background-color: rgba(15, 23, 42, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(226, 195, 153, 0.12);
+  border-bottom: 1px solid rgba(226, 195, 153, 0.15);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 }
 
@@ -135,103 +135,88 @@ body {
 .stagger-4 { transition-delay: 0.42s; }
 
 /* --------------------------------------------------------------------------
-   Carrossel Contínuo Infinito de Avaliações (15s a 25s)
+   Botões do Hero (Mesmo Tamanho)
    -------------------------------------------------------------------------- */
-.marquee-container {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
-}
-
-.marquee-track {
-  display: flex;
-  gap: 1.5rem;
-  width: max-content;
-  animation: marqueeInfinite 24s linear infinite;
-  will-change: transform;
-}
-
-.marquee-track:hover,
-.marquee-track:active {
-  animation-play-state: paused;
-}
-
-@keyframes marqueeInfinite {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+.hero-equal-btn {
+  min-height: 48px;
+  flex: 1 1 0;
+  min-width: 200px;
 }
 
 /* --------------------------------------------------------------------------
-   Cards e Interações de Alto Padrão
+   Galeria Horizontal de Projetos (Scroll-Snap & Borda Esmaecida)
+   3 visíveis, 4º visível pela metade, 5º apenas arrastando
    -------------------------------------------------------------------------- */
-.project-card {
-  transition: transform 0.4s var(--ease-subzero), box-shadow 0.4s var(--ease-subzero), border-color 0.3s ease;
+.portfolio-gallery-scroll {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  user-select: none;
 }
 
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(226, 195, 153, 0.3);
+.portfolio-gallery-card {
+  width: 84vw;
+  max-width: 360px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
 }
 
-.btn-luxury-primary {
-  min-height: 48px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  font-family: var(--font-sans);
-  font-weight: 600;
-  text-decoration: none;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
-  cursor: pointer;
-  border-radius: 4px;
+@media (min-width: 768px) {
+  .portfolio-gallery-card {
+    width: 44vw;
+  }
 }
 
-.btn-luxury-primary:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.08);
-  box-shadow: 0 8px 24px rgba(226, 195, 153, 0.25);
+@media (min-width: 1024px) {
+  .portfolio-gallery-card {
+    /* 3 cards inteiros + 4º card cerca de 35% visível */
+    width: calc((100% - 3rem) / 3.35);
+    max-width: none;
+  }
 }
 
-.btn-luxury-primary:active {
-  transform: translateY(0);
+/* Utilitário para ocultar scrollbar visual mantendo rolagem ativa */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.btn-luxury-secondary {
-  min-height: 48px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  font-family: var(--font-sans);
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.25s ease;
-  cursor: pointer;
-  border-radius: 4px;
+/* --------------------------------------------------------------------------
+   Carrossel Vertical de Avaliações (Estilo Arcofran - 15s)
+   -------------------------------------------------------------------------- */
+.testimonial-carousel {
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+  max-height: 480px;
 }
 
-.btn-luxury-secondary:hover {
-  background-color: rgba(226, 195, 153, 0.08);
-  border-color: var(--primary);
-  color: #ffffff;
+.testimonial-track {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  animation: testimonialScroll 15s linear infinite;
+  will-change: transform;
 }
 
-/* Seletor Interativo de Atendimento WhatsApp */
-.service-option-btn {
-  transition: all 0.3s var(--ease-subzero);
-  cursor: pointer;
+.testimonial-track:hover,
+.testimonial-track:active {
+  animation-play-state: paused;
 }
 
-.service-option-btn:hover {
-  border-color: var(--primary);
-  background-color: rgba(226, 195, 153, 0.06);
-  transform: translateX(4px);
+@keyframes testimonialScroll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
 }
 
-/* Floating WhatsApp Button */
+/* --------------------------------------------------------------------------
+   Floating WhatsApp Button
+   -------------------------------------------------------------------------- */
 .whatsapp-float-btn {
   position: fixed;
   bottom: 24px;
@@ -255,15 +240,14 @@ body {
   box-shadow: 0 12px 28px rgba(37, 211, 102, 0.55);
 }
 
+.whatsapp-float-btn:active {
+  transform: scale(0.96);
+}
+
 /* --------------------------------------------------------------------------
    Mobile First Real (Zero Transbordamento)
    -------------------------------------------------------------------------- */
 @media (max-width: 640px) {
-  .hero-headline {
-    font-size: 2.2rem !important;
-    line-height: 1.2 !important;
-  }
-
   .whatsapp-float-btn {
     bottom: 18px;
     right: 18px;
@@ -271,4 +255,3 @@ body {
     height: 52px;
   }
 }
-

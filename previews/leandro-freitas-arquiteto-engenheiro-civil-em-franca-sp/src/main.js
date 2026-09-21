@@ -1,13 +1,13 @@
 /**
- * Atelier Structural — Architectural Archetype Engine
+ * Architectural Archetype Engine
  * Vanilla JavaScript Modular (Subzero Engine Standard)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initSmartHeadroom();
   initGranularScrollAnimations();
-  initMarqueeLoop();
-  initPortfolioFilters();
+  initVerticalTestimonialsMarquee();
+  initPortfolioDragScroll();
   initMobileMenu();
 });
 
@@ -76,14 +76,14 @@ function initGranularScrollAnimations() {
 }
 
 /**
- * Duplicação Automática do Marquee de Avaliações
- * Garante loop contínuo perfeito sem saltos visuais
+ * Carrossel Vertical Contínuo de Avaliações (Estilo Arcofran)
+ * Duplicação automática para loop vertical sem saltos
  */
-function initMarqueeLoop() {
-  const track = document.querySelector('.marquee-track');
+function initVerticalTestimonialsMarquee() {
+  const track = document.querySelector('.testimonial-track');
   if (!track) return;
 
-  // Duplica os cards para preenchimento de 100% da largura
+  // Duplica os cards para permitir rotação contínua perfeita
   const cards = Array.from(track.children);
   cards.forEach(card => {
     const clone = card.cloneNode(true);
@@ -93,76 +93,71 @@ function initMarqueeLoop() {
 }
 
 /**
- * Filtro Interativo do Portfólio de Obras
+ * Suporte a Arrastar (Drag to Scroll) na Galeria Horizontal de Projetos
  */
-function initPortfolioFilters() {
-  const filterBtns = document.querySelectorAll('.filter-pill-btn');
-  const projectCards = document.querySelectorAll('.project-card-item');
+function initPortfolioDragScroll() {
+  const slider = document.querySelector('.portfolio-gallery-scroll');
+  if (!slider) return;
 
-  if (!filterBtns.length || !projectCards.length) return;
+  let isDown = false;
+  let startX = 0;
+  let scrollLeft = 0;
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => {
-        b.classList.remove('bg-primary-container', 'text-on-primary-container', 'border-primary-container');
-        b.classList.add('bg-transparent', 'text-on-surface-variant', 'border-outline-variant');
-      });
+  slider.addEventListener('mousedown', (e) => {
+    isDown = true;
+    slider.classList.add('cursor-grabbing');
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+  });
 
-      btn.classList.remove('bg-transparent', 'text-on-surface-variant', 'border-outline-variant');
-      btn.classList.add('bg-primary-container', 'text-on-primary-container', 'border-primary-container');
+  slider.addEventListener('mouseleave', () => {
+    isDown = false;
+    slider.classList.remove('cursor-grabbing');
+  });
 
-      const filter = btn.getAttribute('data-filter') || 'all';
+  slider.addEventListener('mouseup', () => {
+    isDown = false;
+    slider.classList.remove('cursor-grabbing');
+  });
 
-      projectCards.forEach(card => {
-        const category = card.getAttribute('data-category') || 'all';
-        if (filter === 'all' || category === filter || category.includes(filter)) {
-          card.style.display = 'flex';
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'scale(1)';
-          }, 50);
-        } else {
-          card.style.opacity = '0';
-          card.style.transform = 'scale(0.96)';
-          setTimeout(() => {
-            card.style.display = 'none';
-          }, 300);
-        }
-      });
-    });
+  slider.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    slider.scrollLeft = scrollLeft - walk;
   });
 }
 
 /**
- * Menu Mobile Drawer
+ * Menu Hambúrguer Mobile (Clean, 2 Linhas - Arcofran Inspiration)
  */
 function initMobileMenu() {
   const menuBtn = document.getElementById('mobileMenuToggle');
   const mobileNav = document.getElementById('mobileNavDrawer');
-  const closeBtn = document.getElementById('closeMobileNav');
-
   if (!menuBtn || !mobileNav) return;
 
   const toggle = () => {
-    const isOpen = mobileNav.classList.contains('open');
-    if (isOpen) {
-      mobileNav.classList.remove('open');
-      document.body.style.overflow = '';
-    } else {
-      mobileNav.classList.add('open');
+    const isClosed = mobileNav.classList.contains('hidden');
+    if (isClosed) {
+      mobileNav.classList.remove('hidden');
+      mobileNav.classList.add('flex');
       document.body.style.overflow = 'hidden';
+    } else {
+      mobileNav.classList.add('hidden');
+      mobileNav.classList.remove('flex');
+      document.body.style.overflow = '';
     }
   };
 
   menuBtn.addEventListener('click', toggle);
-  if (closeBtn) closeBtn.addEventListener('click', toggle);
 
-  // Fecha menu ao clicar em links
+  // Fecha o menu ao clicar em qualquer link de ancoragem
   mobileNav.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-      mobileNav.classList.remove('open');
+      mobileNav.classList.add('hidden');
+      mobileNav.classList.remove('flex');
       document.body.style.overflow = '';
     });
   });
 }
-

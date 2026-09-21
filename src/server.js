@@ -13,6 +13,7 @@ app.use(express.json());
 // Servir frontend do Dashboard e pasta de previews dos sites
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use('/previews', express.static(path.join(__dirname, '..', 'previews')));
+app.use('/templates', express.static(path.join(__dirname, '..', 'templates')));
 
 // Rota: Listar leads com filtros
 app.get('/api/leads', (req, res) => {
