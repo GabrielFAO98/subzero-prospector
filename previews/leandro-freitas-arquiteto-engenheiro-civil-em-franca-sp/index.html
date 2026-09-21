@@ -392,7 +392,7 @@
             <!-- Projeto 1 -->
             <article class="portfolio-gallery-card group flex flex-col bg-surface-container shadow-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 flex-shrink-0 snap-start border border-outline-variant/30">
               <div class="relative w-full h-80 overflow-hidden bg-surface-container-highest">
-                <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" src="./img/project-1.jpg" alt="Projetos Arquitetônicos & 3D"/>
+                <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" src="./img/real-1.jpg" alt="Projetos Arquitetônicos & 3D"/>
                 <div class="absolute top-space-md left-space-md bg-surface-container-lowest/80 backdrop-blur-md px-space-sm py-space-xs">
                   <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Mirante dos Cristais, Franca – SP</span>
                 </div>
@@ -409,7 +409,7 @@
             <!-- Projeto 2 -->
             <article class="portfolio-gallery-card group flex flex-col bg-surface-container shadow-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 flex-shrink-0 snap-start border border-outline-variant/30">
               <div class="relative w-full h-80 overflow-hidden bg-surface-container-highest">
-                <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" src="./img/project-2.jpg" alt="Laudos Técnicos & Vistorias"/>
+                <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" src="./img/real-2.jpg" alt="Laudos Técnicos & Vistorias"/>
                 <div class="absolute top-space-md left-space-md bg-surface-container-lowest/80 backdrop-blur-md px-space-sm py-space-xs">
                   <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Região de Ribeirão Preto &amp; Franca · SP</span>
                 </div>
@@ -482,65 +482,109 @@
       </section>
 
       <!-- ========================================================================
-           SEÇÃO 3: SOBRE O ESCRITÓRIO / O PROFISSIONAL (Fundo Claro: surface-container-low)
-           UMA ÚNICA SEÇÃO INTEGRADA COM BASE NA IMAGEM 3 (Split Bento)
+           SEÇÃO 3: SOBRE O ESCRITÓRIO & RESPONSABILIDADE TÉCNICA (Fundo Claro: surface-container-low)
+           Layout Editorial de Alto Padrão (Inspirado em Estúdios de Arquitetura Globais)
            ======================================================================== -->
-      <section class="w-full bg-surface-container-low py-space-xl px-margin-mobile lg:px-margin-desktop border-b border-outline-variant/20" id="sobre">
+      <section class="w-full bg-surface-container-low py-20 lg:py-28 px-margin-mobile lg:px-margin-desktop border-b border-outline-variant/20" id="sobre">
         <div class="max-w-7xl mx-auto">
           
-          <!-- Bloco Único Integrado em 3 Colunas (Imagem 3) -->
-          <div class="w-full bg-surface-container border border-outline-variant/30 shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 items-stretch subzero-reveal">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
-            <!-- Coluna 1 (Esquerda): Foto do profissional / arquiteto titular -->
-            <div class="lg:col-span-4 relative min-h-[380px] lg:min-h-[480px] bg-surface-container-highest overflow-hidden">
-              <img src="./img/project-1.jpg" alt="Leandro Freitas | Arquitetura & Engenharia" class="w-full h-full object-cover object-top" />
-              <div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent opacity-70"></div>
-              <div class="absolute bottom-space-md left-space-md right-space-md">
-                <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block">Responsabilidade Técnica</span>
-                <span class="font-headline-sm text-headline-sm text-on-surface block font-bold">Leandro Freitas | Arquitetura & Engenharia</span>
+            <!-- Coluna Esquerda: Composição Visual Editorial (5 colunas) -->
+            <div class="lg:col-span-5 relative subzero-reveal">
+              <!-- Moldura Visual de Destaque -->
+              <div class="relative w-full aspect-[4/5] overflow-hidden bg-surface-container shadow-2xl">
+                <img src="./img/real-1.jpg" alt="Leandro Freitas | Arquitetura & Engenharia" class="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700 ease-out" />
+                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/25 to-transparent"></div>
+                
+                <!-- Badge de Credenciamento no Topo -->
+                <div class="absolute top-space-md left-space-md bg-surface-container-lowest/85 backdrop-blur-md px-3 py-1.5 border-l-2 border-primary">
+                  <span class="font-label-sm text-[11px] uppercase tracking-widest text-primary font-semibold">Responsabilidade Técnica</span>
+                </div>
+
+                <!-- Card de Identificação Flutuante no Rodapé da Imagem -->
+                <div class="absolute bottom-space-md left-space-md right-space-md bg-surface-container-high/90 backdrop-blur-md p-space-md border border-outline-variant/30">
+                  <span class="font-headline-sm text-headline-sm text-on-surface block font-bold">Leandro Freitas | Arquitetura & Engenharia</span>
+                  <div class="flex items-center justify-between mt-1 pt-2 border-t border-outline-variant/20 text-xs text-outline">
+                    <span class="font-technical text-primary">CAU / CREA Homologado</span>
+                    <span>Franca SP &amp; Região</span>
+                  </div>
+                </div>
               </div>
+
+              <!-- Detalhe decorativo geométrico sutil atrás da moldura -->
+              <div class="hidden lg:block absolute -bottom-6 -left-6 w-32 h-32 border border-primary/20 -z-10 pointer-events-none"></div>
             </div>
 
-            <!-- Coluna 2 (Centro): Bloco Escuro com Destaque Dourado (Imagem 3) -->
-            <div class="lg:col-span-4 p-space-lg lg:p-space-xl flex flex-col justify-between bg-surface-container border-t lg:border-t-0 lg:border-l border-outline-variant/30">
-              <div>
-                <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block mb-space-xs">Trajetória &amp; Conceito</span>
-                <h3 class="font-headline-md text-headline-md text-on-surface mb-space-md leading-snug">
-                  Arquitetura autoral com rigor estrutural
-                </h3>
-                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                  Escritório integrado de arquitetura e engenharia em Franca SP. Unimos soluções arquitetônicas contemporâneas, cálculo estrutural rigoroso e assessoria completa para transformar ideias em construções seguras, elegantes e sem desperdícios.
-                </p>
+            <!-- Coluna Direita: Narrativa, Rigor e Compromissos (7 colunas) -->
+            <div class="lg:col-span-7 flex flex-col justify-center subzero-reveal stagger-1">
+              
+              <!-- Eyebrow -->
+              <div class="inline-flex items-center gap-2 mb-3">
+                <span class="w-6 h-px bg-primary"></span>
+                <span class="font-label-sm text-xs uppercase tracking-widest text-primary font-semibold">Sobre o Escritório</span>
               </div>
-              <div class="pt-space-md mt-space-md border-t border-outline-variant/20">
-                <a href="https://wa.me/5516981433404?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Leandro%20Freitas%20%7C%20Arquitetura%20%26%20Engenharia%20e%20gostaria%20de%20conversar%20com%20um%20atendente." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-space-xs bg-primary text-on-primary px-space-md py-space-sm font-label-md text-label-md uppercase tracking-widest hover:bg-secondary transition-colors shadow-md">
+
+              <!-- Headline Monumental -->
+              <h2 class="font-display-md text-3xl sm:text-4xl lg:text-[42px] text-on-surface tracking-tight leading-tight mb-6">
+                Arquitetura autoral moldada pelo <span class="text-primary font-normal">rigor estrutural</span>
+              </h2>
+
+              <!-- Texto Principal de Apresentação -->
+              <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-8">
+                Escritório integrado de arquitetura e engenharia em Franca SP. Unimos soluções arquitetônicas contemporâneas, cálculo estrutural rigoroso e assessoria completa para transformar ideias em construções seguras, elegantes e sem desperdícios.
+              </p>
+
+              <!-- 3 Pilares Editoriais de Condução (Sem cards, estética pura de revista) -->
+              <div class="flex flex-col gap-5 pt-6 border-t border-outline-variant/20 mb-8">
+                
+                <!-- Pilar 1 -->
+                <div class="flex items-start gap-4">
+                  <span class="font-display-md text-xl text-primary font-bold shrink-0 mt-0.5">01</span>
+                  <div>
+                    <h3 class="font-headline-sm text-base text-on-surface font-bold">Concepção Integrada &amp; Compatibilização BIM</h3>
+                    <p class="font-body-sm text-sm text-on-surface-variant mt-1 leading-relaxed">
+                      Cada traço arquitetônico nasce alinhado com o cálculo estrutural e as instalações prediais, eliminando retrabalhos e surpresas no canteiro de obras.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Pilar 2 -->
+                <div class="flex items-start gap-4">
+                  <span class="font-display-md text-xl text-primary font-bold shrink-0 mt-0.5">02</span>
+                  <div>
+                    <h3 class="font-headline-sm text-base text-on-surface font-bold">Otimização Orçamentária Inteligente</h3>
+                    <p class="font-body-sm text-sm text-on-surface-variant mt-1 leading-relaxed">
+                      Dimensionamento estrutural rigoroso que evita compras excessivas de aço e concreto, garantindo economia real sem abrir mão do alto padrão.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Pilar 3 -->
+                <div class="flex items-start gap-4">
+                  <span class="font-display-md text-xl text-primary font-bold shrink-0 mt-0.5">03</span>
+                  <div>
+                    <h3 class="font-headline-sm text-base text-on-surface font-bold">Acompanhamento Técnico Presencial</h3>
+                    <p class="font-body-sm text-sm text-on-surface-variant mt-1 leading-relaxed">
+                      Supervisão próxima da fundação ao acabamento com emissão de ART oficial, assegurando fidelidade absoluta ao projeto executivo.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Ação / Chamada -->
+              <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+                <a href="https://wa.me/5516981433404?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Leandro%20Freitas%20%7C%20Arquitetura%20%26%20Engenharia%20e%20gostaria%20de%20conversar%20com%20um%20atendente." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2.5 bg-primary text-on-primary px-6 py-3.5 font-label-md text-xs uppercase tracking-widest hover:bg-secondary transition-all duration-300 shadow-xl font-semibold">
                   <span class="material-symbols-outlined text-[18px]">forum</span>
                   <span>Falar com o Especialista</span>
                 </a>
-              </div>
-            </div>
-
-            <!-- Divisor Vertical Central com Círculo (Imagem 3) + Coluna 3 (Direita) -->
-            <div class="lg:col-span-4 p-space-lg lg:p-space-xl flex flex-col justify-between bg-surface-container-high border-t lg:border-t-0 lg:border-l border-outline-variant/30 relative">
-              <!-- Círculo decorativo na divisória -->
-              <div class="hidden lg:flex absolute -left-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-surface-container border border-primary/50 items-center justify-center text-primary z-20 shadow-md">
-                <span class="material-symbols-outlined text-[16px]">architecture</span>
+                <div class="flex items-center gap-2 text-xs text-outline px-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary shrink-0"></span>
+                  <span>Atendimento presencial em Franca SP e região</span>
+                </div>
               </div>
 
-              <div>
-                <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary block mb-space-xs">Compromisso &amp; Rigor</span>
-                <h3 class="font-headline-md text-headline-md text-on-surface mb-space-md leading-snug">
-                  Projetos pensados para valorizar seu investimento
-                </h3>
-                <div class="w-12 h-0.5 bg-primary mb-space-md"></div>
-                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                  Unimos sensibilidade espacial e exatidão estrutural. Cada traço é calculado para otimizar custos, garantir conformidade legal estrita e entregar construções elegantes, seguras e sem surpresas no cronograma da sua obra.
-                </p>
-              </div>
-              <div class="pt-space-md mt-space-md border-t border-outline-variant/20 flex items-center justify-between">
-                <span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Atendimento Técnico</span>
-                <span class="font-label-sm text-label-sm text-primary uppercase font-bold">Franca SP &amp; Região</span>
-              </div>
             </div>
 
           </div>
