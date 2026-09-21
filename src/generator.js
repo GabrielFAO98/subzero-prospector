@@ -386,7 +386,7 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
         { nome: 'Projetos Solares Residenciais', desc: 'Geração própria para zerar a conta de luz com garantia de 25 anos.' },
         { nome: 'Usinas Comerciais & Galpões', desc: 'Sistemas de alta potência para reduzir despesas fixas da sua empresa.' },
         { nome: 'Limpeza Técnica & Manutenção', desc: 'Inspeção e limpeza especializada para manter a geração no pico máximo.' },
-        { nome: 'Homologação na Concessionária', desc: 'Projeto elétrico com ART e aprovação técnica 100% gerenciada.' }
+        { nome: 'Homologação na Concessionária', desc: 'Projeto elétrico e aprovação técnica 100% gerenciada.' }
       ],
       diferenciais: [
         { titulo: 'Módulos Tier-1 Certificados', desc: 'Painéis e inversores líderes mundiais com 25 anos de garantia.' },
@@ -445,17 +445,17 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
         tituloPrincipal: 'Do Conceito Arquitetônico à Execução Estrutural de Alta Precisão',
         chamadaPrincipal: `Arquitetura Autoral, Estruturas e Obras em ${cidade}`,
         slogan: 'Projetos autorais em 3D, compatibilização técnica e direção de obras.',
-        apresentacao: `Escritório integrado de arquitetura e engenharia em ${cidade}. Unimos soluções arquitetônicas contemporâneas, cálculo estrutural rigoroso e assessoria completa para transformar ideias em construções seguras, elegantes e sem desperdícios.`,
+        apresentacao: `Escritório integrado de arquitetura e projetos em ${cidade}. Unimos soluções contemporâneas, planejamento minucioso e assessoria completa para transformar ideias em espaços elegantes, seguros e valorizados.`,
         servicos: [
           { nome: 'Projetos Arquitetônicos & Design 3D', desc: 'Plantas humanizadas, volumetria detalhada e modelagem realista antes de iniciar a obra.' },
-          { nome: 'Cálculo Estrutural & Fundações', desc: 'Dimensionamento inteligente em concreto armado e aço, unindo segurança máxima e economia de materiais.' },
+          { nome: 'Planejamento Estrutural & Executivo', desc: 'Dimensionamento inteligente que alia segurança técnica, soluções eficientes e economia de materiais.' },
           { nome: 'Direção & Acompanhamento de Obras', desc: 'Supervisão técnica contínua garantindo fidelidade absoluta ao projeto e alto padrão de acabamento.' },
-          { nome: 'Regularização Imobiliária & Habite-se', desc: 'Aprovações municipais, alvarás, desdobros e laudos periciais com celeridade e total conformidade.' }
+          { nome: 'Regularização & Aprovações', desc: 'Aprovações técnicas, documentação completa e suporte com total conformidade e agilidade.' }
         ],
         diferenciais: [
           { titulo: 'Arquitetura + Engenharia Integradas', desc: 'Concepção estética e viabilidade estrutural compatibilizadas sem improvisos ou retrabalhos.' },
           { titulo: 'Economia Inteligente na Execução', desc: 'Detalhamento minucioso que evita compras excessivas de insumos e desperdícios no canteiro.' },
-          { titulo: 'Acompanhamento Técnico com ART', desc: 'Direção presencial com responsabilidade técnica registrada e conformidade total com normas.' }
+          { titulo: 'Acompanhamento Dedicado', desc: 'Supervisão atenta para garantir fidelidade absoluta ao projeto e conformidade com as normas.' }
         ],
         avaliacoes: prepareReviews(lead, [
           { autor: 'Ricardo Silveira', texto: `O projeto 3D da ${nomeEmpresa} superou todas as expectativas. Ver cada detalhe da casa antes de construir nos deu total segurança. Trabalho impecável!` },
@@ -502,12 +502,12 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
         apresentacao: `Engenharia de precisão em ${cidade}, prestando assessoria técnica especializada em cálculos estruturais, regularizações imobiliárias e vistorias cautelares de alta confiabilidade.`,
         servicos: [
           { nome: 'Cálculo Estrutural & Fundações', desc: 'Dimensionamento avançado em concreto armado e estruturas metálicas com segurança estrita.' },
-          { nome: 'Laudos Técnicos & Vistorias Cautelares', desc: 'Perícias de engenharia, vistorias de vizinhança e emissão oficial de ART.' },
+          { nome: 'Laudos Técnicos & Vistorias Cautelares', desc: 'Perícias técnicas, vistorias de vizinhança e documentação com total conformidade.' },
           { nome: 'Supervisão & Gerenciamento de Obras', desc: 'Acompanhamento técnico independente para assegurar a conformidade da construção.' },
           { nome: 'Desdobros, Alvarás e Regularizações', desc: 'Assessoria completa para habite-se e regularização junto aos órgãos municipais.' }
         ],
         diferenciais: [
-          { titulo: 'Rigor Normativo & ART', desc: 'Projetos homologados de acordo com as normas ABNT mais recentes.' },
+          { titulo: 'Rigor Normativo & Qualidade', desc: 'Projetos desenvolvidos rigorosamente de acordo com as melhores normas e padrões.' },
           { titulo: 'Otimização Estrutural de Custos', desc: 'Dimensionamento preciso que reduz consumo de aço e concreto sem abrir mão da segurança.' },
           { titulo: 'Agilidade Documental', desc: 'Laudos e memoriais descritivos prontos com celeridade para aprovação imediata.' }
         ],
@@ -810,8 +810,8 @@ async function generatePrototype(lead, templateHint = null) {
     '{{TITULO_DIFERENCIAIS_LINHA_1}}': 'Por que confiar',
     '{{TITULO_DIFERENCIAIS_LINHA_2}}': 'no nosso trabalho?',
     '{{SUBTEXTO_DE_AUTORIDADE_E_CONFIANCA}}': `Transparência, seriedade e dedicação em cada atendimento prestado em ${cidade}.`,
-    '{{TITULO_DIFERENCIAL_1}}': content.diferenciais[0]?.titulo || 'Rigor Técnico & ART',
-    '{{DESCRICAO_DIFERENCIAL_1}}': content.diferenciais[0]?.desc || 'Responsabilidade técnica registrada e conformidade.',
+    '{{TITULO_DIFERENCIAL_1}}': content.diferenciais[0]?.titulo || 'Excelência & Rigor Técnico',
+    '{{DESCRICAO_DIFERENCIAL_1}}': content.diferenciais[0]?.desc || 'Compromisso com os mais altos padrões de qualidade e conformidade.',
     '{{TITULO_DIFERENCIAL_2}}': content.diferenciais[1]?.titulo || 'Economia Inteligente',
     '{{DESCRICAO_DIFERENCIAL_2}}': content.diferenciais[1]?.desc || 'Planejamento minucioso que evita desperdícios.',
     '{{TITULO_DIFERENCIAL_3}}': content.diferenciais[2]?.titulo || 'Pontualidade Rigorosa',
