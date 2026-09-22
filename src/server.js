@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use('/previews', express.static(path.join(__dirname, '..', 'previews')));
 app.use('/templates', express.static(path.join(__dirname, '..', 'templates')));
+app.use('/ana-marconi', express.static(path.join(__dirname, '..', 'ana-marconi')));
 
 // Rota: Listar leads com filtros
 app.get('/api/leads', (req, res) => {

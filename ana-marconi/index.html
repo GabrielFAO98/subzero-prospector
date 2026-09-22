@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Ana Marconi | Storymaker de Eventos de Luxo</title>
+  <meta name="description" content="Storymaker especializada em eventos celebrativos de alto padrão. Narrativas visuais cinematográficas, ágeis e inesquecíveis.">
+
+  <!-- Google Fonts: Cormorant Garamond, Playfair Display & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+  <!-- Estilos Principais -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       BARRA DE PROGRESSO DE LEITURA & CURSOR CUSTOMIZADO DE LUXO
+       ========================================================================== -->
+  <div class="reading-progress-bar" id="readingProgressBar" aria-hidden="true"></div>
+  <div class="custom-cursor" id="customCursor" aria-hidden="true"></div>
+  <div class="custom-cursor-follower" id="customCursorFollower" aria-hidden="true"></div>
+
+  <!-- ==========================================================================
+       MENU DE NAVEGAÇÃO FLUTUANTE (MINIMALISTA & GLASSMORPHISM)
+       ========================================================================== -->
+  <header class="floating-nav" id="floatingNav" aria-label="Navegação Principal">
+    <div class="floating-nav-container">
+      <a href="#hero" class="floating-nav-logo" aria-label="Voltar ao início">
+        <span class="floating-nav-initial">A</span>
+        <span class="floating-nav-name">Ana Marconi</span>
+      </a>
+      <nav class="floating-nav-links">
+        <a href="#sobre" class="nav-anchor">Sobre</a>
+        <a href="#storytelling" class="nav-anchor">Storymaking</a>
+        <a href="#portfolio" class="nav-anchor">Portfólio</a>
+        <a href="#contato" class="nav-anchor nav-anchor--highlight">Agendar</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       1. HERO SECTION (CAPA CINEMATOGRÁFICA)
+       ========================================================================== -->
+  <header class="hero" id="hero">
+    <!-- Vídeo em Tela Cheia -->
+    <video 
+      id="heroVideo" 
+      class="hero-video" 
+      muted 
+      playsinline 
+      webkit-playsinline 
+      x5-playsinline 
+      disablePictureInPicture 
+      disableRemotePlayback 
+      preload="auto"
+    >
+      <source src="videos/hero-bg.mp4" type="video/mp4">
+      Seu navegador não suporta a tag de vídeo.
+    </video>
+
+    <!-- Overlay escuro suave com vinheta cinematográfica -->
+    <div class="hero-overlay"></div>
+
+    <!-- TELA 1 (ESTILO GIOVANNA VITAL COM MONOGRAMA & LOCKUP EDITORIAL) -->
+    <div class="home-screen">
+      <div class="overlay">
+        <!-- Monograma K -->
+        <div class="monogram" aria-label="Ana Marconi">
+          <span class="k">A</span>
+        </div>
+
+        <!-- Linha horizontal fina de revelação -->
+        <div class="logo-line"></div>
+
+        <!-- Tipografia do Nome Ana Marconi com Espaçamento Editorial -->
+        <div class="text-lockup">
+          <div class="name-row" id="nameRow" aria-label="Ana Marconi">
+            <span>A</span>
+            <span>N</span>
+            <span>A</span>
+            <span class="name-space">&nbsp;</span>
+            <span>M</span>
+            <span>A</span>
+            <span>R</span>
+            <span>C</span>
+            <span>O</span>
+            <span>N</span>
+            <span>I</span>
+          </div>
+
+          <!-- Tagline Alinhada -->
+          <div class="tagline">
+            <span class="tagline-text" id="taglineText">Storymaker • Eventos de Luxo</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botão Glassmorphism Inspirado na Referência -->
+      <div class="button-area">
+        <a href="#sobre" class="start-button" id="startButton" aria-label="Explorar portfólio">
+          <span>Explorar</span>
+          <span class="arrow" aria-hidden="true">↓</span>
+        </a>
+      </div>
+
+      <!-- Indicador de Rolagem Discreto -->
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span class="scroll-label">SCROLL</span>
+        <div class="scroll-track">
+          <div class="scroll-dot"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       2. BIOGRAFIA (SOBRE A ANA MARCONI)
+       ========================================================================== -->
+  <section class="about-section" id="sobre">
+    <div class="container about-container">
+      <!-- Foto Editorial de Ana Marconi (border-radius: 16px) -->
+      <div class="about-media-col gsap-about-item">
+        <div class="about-image-card">
+          <img 
+            src="img/ana-marconi-retrato-editorial.jpg" alt="Ana Marconi • Storymaker de eventos de luxo" 
+            class="about-img"
+            loading="lazy"
+          >
+          <div class="about-badge">
+            <span class="about-badge-initial">A</span>
+            <span class="about-badge-name">Ana Marconi</span>
+            <span class="about-badge-role">• Storymaker</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Textos da Biografia -->
+      <div class="about-text-col gsap-about-item">
+        <span class="section-eyebrow">Biografia</span>
+        <h2 class="about-title">Ana Marconi <span class="about-title-divider">•</span> <span class="about-title-sub">A Essência por Trás das Câmeras</span></h2>
+        <div class="about-divider"></div>
+        <p class="about-description">
+          Sou a <strong>Ana Marconi</strong>, especialista em eternizar momentos com discrição, sensibilidade e alta sofisticação. Capturo a energia real do seu evento de forma cinematográfica, entregando uma narrativa visual ágil, autêntica e inesquecível.
+        </p>
+        <div class="about-quote">
+          <p>“Cada celebração possui um ritmo singular. O meu olhar traduz a elegância que acontece espontaneamente entre os segundos.”</p>
+          <span class="about-quote-author">— Ana Marconi</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       CINEMA BANNER WIDESCREEN / HERO STYLE (ANTES DO PORTFÓLIO)
+       ========================================================================== -->
+  <section class="cinema-banner-section" id="filme-destaque" aria-label="Cinema e Sensibilidade">
+    <!-- Vídeo em Largura Total (Full Width Banner) -->
+    <video 
+      id="cinemaVideo" 
+      class="cinema-banner-video" 
+      autoplay
+      muted 
+      playsinline 
+      webkit-playsinline 
+      x5-playsinline
+      disablePictureInPicture 
+      disableRemotePlayback 
+      preload="auto"
+    >
+      <source src="videos/showcase-bg.mp4" type="video/mp4">
+      Seu navegador não suporta a tag de vídeo.
+    </video>
+
+    <!-- Overlay Escuro Cinematográfico para Contraste com o Texto -->
+    <div class="cinema-banner-overlay"></div>
+
+    <!-- Mensagem Sobreposta ao Vídeo (Cinema & Sensibilidade) -->
+    <div class="cinema-banner-content gsap-cinema-quote">
+      <span class="cinema-banner-eyebrow">Cinema &amp; Sensibilidade</span>
+      <div class="cinema-banner-line" aria-hidden="true"></div>
+      <h2 class="cinema-banner-quote">
+        O tempo passa num sussurro.<br class="banner-quote-br"> Mas a emoção de cada instante merece ecoar para sempre.
+      </h2>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       2.8. O QUE É STORYMAKING (SERVIÇO & EXPERIÊNCIA)
+       ========================================================================== -->
+  <section class="storytelling-section" id="storytelling" aria-label="O que é o Serviço de Storymaking">
+    <div class="container">
+      <div class="storytelling-header gsap-storytelling-header">
+        <span class="section-eyebrow">EXPERIÊNCIA &amp; NARRATIVA</span>
+        <h2 class="storytelling-title">O que é o Storymaking?</h2>
+        <div class="storytelling-divider" aria-hidden="true"></div>
+        <p class="storytelling-lead">
+          Mais do que registrar presenças, o <em>storymaking</em> é a arte de traduzir a atmosfera, as emoções autênticas e os detalhes invisíveis de grandes celebrações e projetos de marca em narrativas visuais de alto padrão, entregues com agilidade e estética editorial.
+        </p>
+      </div>
+
+      <!-- Grid com os 3 Pilares Fundamentais do Serviço -->
+      <div class="storytelling-grid">
+        <!-- Cartão 01 -->
+        <article class="storytelling-card gsap-storytelling-card">
+          <div class="storytelling-card-top">
+            <span class="storytelling-card-number">01</span>
+            <span class="storytelling-card-tag">COBERTURA REAL TIME / 24H</span>
+          </div>
+          <div class="storytelling-card-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <h3 class="storytelling-card-title">Entrega em Tempo Real</h3>
+          <p class="storytelling-card-desc">
+            Enquanto as produções tradicionais levam semanas ou meses, você recebe vídeos lapidados e prontos no mesmo dia ou em até 24 horas, permitindo engajar o público, impulsionar campanhas ou reviver a emoção ainda no calor do momento.
+          </p>
+        </article>
+
+        <!-- Cartão 02 -->
+        <article class="storytelling-card gsap-storytelling-card">
+          <div class="storytelling-card-top">
+            <span class="storytelling-card-number">02</span>
+            <span class="storytelling-card-tag">OLHAR INVISÍVEL</span>
+          </div>
+          <div class="storytelling-card-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+              <circle cx="12" cy="13" r="4"></circle>
+            </svg>
+          </div>
+          <h3 class="storytelling-card-title">Espontaneidade &amp; Discrição</h3>
+          <p class="storytelling-card-desc">
+            Sem poses forçadas, roteiros engessados ou holofotes invasivos. Uma cobertura discreta que capta a energia real, os bastidores e a sofisticação que acontecem organicamente, seja num evento corporativo ou numa celebração íntima.
+          </p>
+        </article>
+
+        <!-- Cartão 03 -->
+        <article class="storytelling-card gsap-storytelling-card">
+          <div class="storytelling-card-top">
+            <span class="storytelling-card-number">03</span>
+            <span class="storytelling-card-tag">NATIVO 9:16</span>
+          </div>
+          <div class="storytelling-card-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+              <line x1="12" y1="18" x2="12.01" y2="18"></line>
+            </svg>
+          </div>
+          <h3 class="storytelling-card-title">Formato Mobile-First</h3>
+          <p class="storytelling-card-desc">
+            Filmes pensados desde o primeiro olhar para o formato vertical (Stories e Reels). Ritmo cinematográfico refinado e alta definição, desenhados para conectar com precisão no ecossistema digital onde o seu público ou os seus convidados realmente vivem as experiências.
+          </p>
+        </article>
+      </div>
+
+      <!-- Frase Editorial de Conexão com o Portfólio -->
+      <div class="storytelling-footer-quote gsap-storytelling-quote">
+        <div class="storytelling-quote-line" aria-hidden="true"></div>
+        <blockquote class="storytelling-quote-text">
+          “A fotografia eterniza a imagem. O storytelling preserva o ritmo, a voz e o pulsar de cada instante.”
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       3. PORTFÓLIO (TRABALHOS SELECIONADOS)
+       ========================================================================== -->
+  <section class="portfolio-section" id="portfolio">
+    <div class="container">
+      <div class="portfolio-header gsap-header">
+        <span class="section-eyebrow">Trabalhos</span>
+        <h2 class="portfolio-title">Portfólio</h2>
+        <p class="portfolio-intro">
+          Uma seleção de memórias capturadas sob a ótica da alta celebração, revelando autenticidade, ritmo e exclusividade.
+        </p>
+      </div>
+
+      <!-- Grid Bento Mosaico Assimétrico (4 Verticais 9:16 e 2 Horizontais 16:9) -->
+      <div class="portfolio-grid">
+        
+        <!-- Item 1: V1 (Vertical 9:16 - Casamento) -->
+        <article class="portfolio-card portfolio-card--vertical portfolio-card--v1 gsap-card">
+          <div class="portfolio-media-container">
+            <video class="portfolio-video" muted loop playsinline preload="none" controlsList="nodownload" oncontextmenu="return false;" poster="img/capa-casamento.jpg">
+              <source src="videos/casamento.mp4" type="video/mp4">
+            </video>
+            <img 
+              src="img/capa-casamento.jpg" 
+              alt="Casamento • Villa Bellagio Toscana" 
+              class="portfolio-img" 
+              loading="lazy"
+            >
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <span class="portfolio-category">WEDDING DAY</span>
+                <h3 class="portfolio-name">Casamento • Bianca e Matheus</h3>
+              </div>
+            </div>
+            <div class="portfolio-play-tag" title="Clique para assistir com áudio">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 2: H1 (Horizontal 16:9 - Batizado) -->
+        <article class="portfolio-card portfolio-card--horizontal portfolio-card--h1 gsap-card">
+          <div class="portfolio-media-container">
+            <video class="portfolio-video" muted loop playsinline preload="none" controlsList="nodownload" oncontextmenu="return false;" poster="img/capa-batizado.jpg">
+              <source src="videos/batizado.mp4" type="video/mp4">
+            </video>
+            <img 
+              src="img/capa-batizado.jpg" 
+              alt="Batizado • Celebração Solene" 
+              class="portfolio-img"
+              loading="lazy"
+            >
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <span class="portfolio-category">Batizado</span>
+                <h3 class="portfolio-name">Celebração Solene • Batizado</h3>
+              </div>
+            </div>
+            <div class="portfolio-play-tag" title="Clique para assistir com áudio">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 3: V2 (Vertical 9:16 - Evento Corporativo) -->
+        <article class="portfolio-card portfolio-card--vertical portfolio-card--v2 gsap-card">
+          <div class="portfolio-media-container">
+            <video class="portfolio-video" muted loop playsinline preload="none" controlsList="nodownload" oncontextmenu="return false;" poster="img/capa-evento-corporativo.jpg">
+              <source src="videos/evento-corporativo.mp4" type="video/mp4">
+            </video>
+            <img 
+              src="img/capa-evento-corporativo.jpg" 
+              alt="Evento Corporativo • Alva" 
+              class="portfolio-img"
+              loading="lazy"
+            >
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <span class="portfolio-category">Evento Corporativo</span>
+                <h3 class="portfolio-name">Alva • Experiência de Marca</h3>
+              </div>
+            </div>
+            <div class="portfolio-play-tag" title="Clique para assistir com áudio">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 4: V3 (Vertical 9:16 - Fashion Week) -->
+        <article class="portfolio-card portfolio-card--vertical portfolio-card--v3 gsap-card">
+          <div class="portfolio-media-container">
+            <video class="portfolio-video" muted loop playsinline preload="none" controlsList="nodownload" oncontextmenu="return false;" poster="img/capa-fashion-week.jpg">
+              <source src="videos/fashion-week.mp4" type="video/mp4">
+            </video>
+            <img 
+              src="img/capa-fashion-week.jpg" 
+              alt="Fashion Week • Amora Bridal" 
+              class="portfolio-img"
+              loading="lazy"
+            >
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <span class="portfolio-category">Fashion Week</span>
+                <h3 class="portfolio-name">Amora Bridal • Runway</h3>
+              </div>
+            </div>
+            <div class="portfolio-play-tag" title="Clique para assistir com áudio">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 5: V4 (Vertical 9:16 - Pré-wedding) -->
+        <article class="portfolio-card portfolio-card--vertical portfolio-card--v4 gsap-card">
+          <div class="portfolio-media-container">
+            <video class="portfolio-video" muted loop playsinline preload="none" controlsList="nodownload" oncontextmenu="return false;" poster="img/capa-pre-wedding.jpg">
+              <source src="videos/pre-wedding.mp4" type="video/mp4">
+            </video>
+            <img 
+              src="img/capa-pre-wedding.jpg" 
+              alt="Pré-Wedding • Ensaio Editorial" 
+              class="portfolio-img"
+              loading="lazy"
+            >
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <span class="portfolio-category">Pré-Wedding</span>
+                <h3 class="portfolio-name">Ensaio Editorial • Pré-Wedding</h3>
+              </div>
+            </div>
+            <div class="portfolio-play-tag" title="Clique para assistir com áudio">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 6: H2 (Horizontal 16:9 - Aniversário Infantil) -->
+        <article class="portfolio-card portfolio-card--horizontal portfolio-card--h2 gsap-card">
+          <div class="portfolio-media-container">
+            <video class="portfolio-video" muted loop playsinline preload="none" controlsList="nodownload" oncontextmenu="return false;" poster="img/capa-aniversario-infantil.jpg">
+              <source src="videos/aniversario.mp4" type="video/mp4">
+            </video>
+            <img 
+              src="img/capa-aniversario-infantil.jpg" 
+              alt="Aniversário Infantil • Celebração Especial" 
+              class="portfolio-img"
+              loading="lazy"
+            >
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <span class="portfolio-category">Aniversário Infantil</span>
+                <h3 class="portfolio-name">Celebração Especial • Aniversário</h3>
+              </div>
+            </div>
+            <div class="portfolio-play-tag" title="Clique para assistir com áudio">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       4. CTA (CALL TO ACTION - WHATSAPP)
+       ========================================================================== -->
+  <section class="cta-section" id="contato">
+    <div class="container cta-container gsap-cta">
+      <div class="cta-content">
+        <span class="section-eyebrow">Agendamento Exclusivo</span>
+        <h2 class="cta-title">Vamos eternizar a sua história?</h2>
+        <p class="cta-subtitle">
+          Datas selecionadas por temporada para garantir atenção integral e dedicação artesanal a cada celebração.
+        </p>
+
+        <!-- Botão Pílula WhatsApp -->
+        <a 
+          href="#" 
+          class="whatsapp-pill-btn js-contact-link" 
+          data-type="wa"
+          data-p="5511990238344"
+          data-msg="Olá, Ana Marconi! Gostaria de consultar disponibilidade para o meu evento."
+          target="_blank" 
+          rel="noopener noreferrer"
+          aria-label="Reserve sua data via WhatsApp"
+        >
+          <!-- Ícone Vetorial WhatsApp -->
+          <svg class="whatsapp-icon" width="22" height="22" viewBox="0 0 448 512" fill="currentColor">
+            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+          </svg>
+          <span class="btn-text">Reserve sua data</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. RODAPÉ MINIMALISTA
+       ========================================================================== -->
+  <footer class="footer-section">
+    <div class="container footer-container">
+      <!-- Nome Ana Marconi Centralizado -->
+      <div class="footer-brand">
+        <a href="#hero" class="footer-logo" aria-label="Ana Marconi - Voltar ao topo">Ana Marconi</a>
+      </div>
+
+      <!-- Links Discretos Sans-Serif -->
+      <nav class="footer-nav" aria-label="Links de Contato e Redes Sociais">
+        <a href="https://www.instagram.com/anamarconi_storymaker/" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram</a>
+        <span class="footer-separator">•</span>
+        <a href="#" class="footer-link js-contact-link" data-type="email" data-user="anamarconi.storymaker" data-domain="gmail.com">E-mail</a>
+        <span class="footer-separator">•</span>
+        <a href="#" class="footer-link js-contact-link" data-type="wa" data-p="5511990238344" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </nav>
+
+      <!-- Copyright Baixa Opacidade -->
+      <div class="footer-copyright">
+        <p>© 2026 Ana Marconi • Todos os direitos reservados. Storymaking para eventos de alto padrão.</p>
+        <p style="font-family: var(--font-sans); font-size: 11px; opacity: 0.7; margin-top: 8px; letter-spacing: 0.5px;">Desenvolvido por Gabriel Azevedo &bull; (16) 99204-8856</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODAL DE VÍDEO CINEMATOGRÁFICO COM ÁUDIO
+       ========================================================================== -->
+  <div id="videoModal" class="video-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Player de Vídeo">
+    <div class="video-modal-backdrop" data-close-modal></div>
+    <div class="video-modal-container">
+      <button class="video-modal-close" data-close-modal aria-label="Fechar vídeo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      
+      <div class="video-modal-header">
+        <span class="video-modal-category" id="modalCategory"></span>
+        <h3 class="video-modal-title" id="modalTitle"></h3>
+      </div>
+
+      <div class="video-modal-media">
+        <video id="modalVideo" playsinline controls controlsList="nodownload noplaybackrate" disablePictureInPicture oncontextmenu="return false;" preload="auto">
+          Seu navegador não suporta a reprodução deste vídeo.
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       SCRIPTS: GSAP, SCROLLTRIGGER & SCROLLTO PLUGIN
+       ========================================================================== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" integrity="sha512-1PKqXBz2ju2JcAerHKL0ldg0PT/1vr3LghYAtc59+9xy8e19QEtaNUyt1gprouyWnpOPqNJjL4gXMRMEpHYyLQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="script.js"></script>
+</body>
+</html>
