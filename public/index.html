@@ -3,188 +3,489 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Subzero Prospector | Dashboard de Prospecção Local</title>
-  
-  <!-- Fontes Inter e Montserrat -->
+  <title>Subzero Prospector | Dashboard de Prospecção Local & CRM</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
   <link rel="alternate icon" href="./favicon.ico" />
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <!-- Topbar -->
-  <header class="topbar">
-    <div class="brand">
-      <div class="brand-badge">❄️</div>
-      <div>
-        <h1>Subzero <span>Prospector</span></h1>
-        <p>Painel de Prospecção & Qualificação • Gabriel Azevedo</p>
-      </div>
-    </div>
-    
-    <div class="user-status">
-      <span class="pulse-dot"></span>
-      <span>Base Local: <strong>Franca / SP</strong></span>
-    </div>
-  </header>
+  <div class="app-layout">
+    <!-- Sidebar Overlay (Mobile) -->
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
-  <main class="container">
-    <!-- Barra de Nova Prospecção -->
-    <section class="card prospect-card">
-      <div class="prospect-header">
-        <h2>🔍 Nova Mineração no Google Maps</h2>
-        <p>Digite o nicho desejado. O sistema filtra automaticamente as empresas com boa reputação que <strong>não têm site</strong>.</p>
-      </div>
-
-      <form id="prospectForm" class="prospect-form">
-        <div class="input-group flex-2">
-          <label for="nicheInput">Nicho / Área de Atuação</label>
-          <input type="text" id="nicheInput" placeholder="Ex: clinica odontologica, energia solar, marcenaria, oficina..." required />
+    <!-- Sidebar de Navegação -->
+    <aside id="appSidebar" class="app-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <div class="brand-badge">❄️</div>
+          <div class="brand-text">
+            <h2>Subzero</h2>
+            <span class="brand-sub">PROSPECTOR</span>
+          </div>
         </div>
-
-        <div class="input-group flex-1">
-          <label for="cityInput">Cidade</label>
-          <input type="text" id="cityInput" value="Franca SP" required />
-        </div>
-
-        <div class="input-group flex-auto">
-          <label>&nbsp;</label>
-          <button type="submit" id="btnProspect" class="btn btn-primary">
-            <span class="btn-text">Buscar Empresas</span>
-            <span class="spinner" style="display: none;"></span>
-          </button>
-        </div>
-      </form>
-
-      <!-- Sugestões Rápidas de Nichos -->
-      <div class="quick-suggestions">
-        <span class="suggestion-label">💡 Sugestões de alta conversão:</span>
-        <button type="button" class="chip-btn" data-niche="clinica odontologica">🦷 Clínica Odontológica</button>
-        <button type="button" class="chip-btn" data-niche="cerca eletrica e seguranca eletronica">⚡ Cerca Elétrica / Segurança</button>
-        <button type="button" class="chip-btn" data-niche="ar condicionado">❄️ Ar Condicionado</button>
-        <button type="button" class="chip-btn" data-niche="energia solar">☀️ Energia Solar</button>
-        <button type="button" class="chip-btn" data-niche="marcenaria">🪚 Marcenaria</button>
-        <button type="button" class="chip-btn" data-niche="estetica automotiva">🚗 Estética Automotiva</button>
+        
       </div>
 
-      <div id="searchNotice" class="search-notice" style="display: none;"></div>
-    </section>
-
-    <!-- Métricas do Funil -->
-    <section class="stats-grid">
-      <div class="stat-card" data-filter="todos">
-        <span class="stat-label">Total Minerado</span>
-        <strong id="statTotal">0</strong>
-        <small>Empresas no histórico</small>
-      </div>
-
-      <div class="stat-card stat-hot active" data-filter="oportunidade_quente">
-        <span class="stat-label">🔥 Oportunidades</span>
-        <strong id="statHot">0</strong>
-        <small>Sem site / Foco comercial</small>
-      </div>
-
-      <div class="stat-card stat-online" data-filter="site_ativo">
-        <span class="stat-label">🌐 Sites Ativos</span>
-        <strong id="statOnline">0</strong>
-        <small>Com site no ar (Redesign)</small>
-      </div>
-
-      <div class="stat-card stat-ready" data-filter="prototipo_pronto">
-        <span class="stat-label">🌐 Protótipos</span>
-        <strong id="statReady">0</strong>
-        <small>Sites gerados prontos</small>
-      </div>
-
-      <div class="stat-card stat-contacted" data-filter="contatado">
-        <span class="stat-label">📞 Contatados</span>
-        <strong id="statContacted">0</strong>
-        <small>Abordagem realizada</small>
-      </div>
-
-      <div class="stat-card stat-discarded" data-filter="descartado">
-        <span class="stat-label">🚫 Descartados</span>
-        <strong id="statDiscarded">0</strong>
-        <small>Já têm site ou sem fone</small>
-      </div>
-    </section>
-
-    <!-- Filtro por Categoria / Segmento de Negócio -->
-    <section class="category-toolbar">
-      <div class="category-header">
-        <span class="category-title">🏢 Segmento de Negócio:</span>
-      </div>
-      <div class="category-chips" id="categoryChips">
-        <button class="cat-chip active" data-cat="todas">
-          <span class="cat-chip-icon">🌐</span>
-          <span class="cat-chip-label">Todos os Segmentos</span>
-          <span class="cat-chip-count" id="catCountAll">0</span>
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">MÓDULOS DE OPERAÇÃO</div>
+        <button id="navLeads" class="nav-item active">
+          <span class="nav-icon">🎯</span>
+          <span class="nav-text">Prospecção & Leads</span>
+          <span id="navBadgeLeads" class="nav-badge">0</span>
         </button>
-      </div>
-    </section>
+        <button id="navAgent" class="nav-item">
+          <span class="nav-icon">⚡</span>
+          <span class="nav-text">Agente em Tempo Real</span>
+          <span id="agentPulseNav" class="nav-pulse-dot"></span>
+        </button>
+        <button id="navCrm" class="nav-item">
+          <span class="nav-icon">💼</span>
+          <span class="nav-text">Funil & CRM</span>
+          <span id="navBadgeCrm" class="nav-badge crm-badge">0</span>
+        </button>
+      </nav>
 
-    <!-- Barra de Controle & Filtros -->
-    <section class="table-toolbar">
-      <div class="toolbar-actions">
-        <input type="text" id="filterSearch" class="search-input" placeholder="Filtrar por nome, telefone ou motivo..." />
-        <div class="view-toggle">
-          <button id="viewTable" class="toggle-btn active" title="Visualização em Tabela">📑 Tabela</button>
-          <button id="viewCards" class="toggle-btn" title="Visualização em Cards">🎴 Cards</button>
+      <div class="sidebar-footer">
+        <div class="sidebar-status-pill">
+          <span id="sidebarPulse" class="pulse-dot active"></span>
+          <span id="sidebarAgentStatusText">Agente em Espera</span>
+        </div>
+        <div class="sidebar-dev-tag">
+          <small>Gabriel Azevedo • Franca/SP</small>
         </div>
       </div>
-    </section>
+    </aside>
 
-    <!-- Lista de Leads (Tabela / Grid) -->
-    <section class="card table-card">
-      <div id="loadingIndicator" class="loading-state" style="display: none;">
-        <div class="loader"></div>
-        <p>Carregando estabelecimentos...</p>
-      </div>
+    <!-- Conteúdo Principal -->
+    <div class="app-main-content">
+      <!-- Topbar Compartilhada -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Abrir Menu">
+            <span></span><span></span><span></span>
+          </button>
+          <div class="topbar-title-wrap topbar-title">
+            <h1 id="topbarPageTitle">🎯 Prospecção de Empresas</h1>
+            <p id="topbarPageSubtitle">Varredura inteligente e qualificação de leads sem site</p>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <div class="user-status">
+            <span id="topbarPulseDot" class="pulse-dot"></span>
+            <span id="topbarLiveText">Base Local: <strong>Franca / SP</strong></span>
+          </div>
+        </div>
+      </header>
 
-      <div id="tableView" class="table-responsive">
-        <table class="leads-table">
-          <thead>
-            <tr>
-              <th>Empresa</th>
-              <th>Avaliação Google</th>
-              <th>Análise & Presença Digital</th>
-              <th>Contatos</th>
-              <th>Status</th>
-              <th style="text-align: right;">Ações</th>
-            </tr>
-          </thead>
-          <tbody id="leadsTableBody">
-            <!-- Renderizado via JavaScript -->
-          </tbody>
-        </table>
-      </div>
+      <!-- VIEWS -->
+      <main class="views-container">
+        <!-- ========================================== -->
+        <!-- VIEW 1: PROSPECÇÃO & LEADS               -->
+        <!-- ========================================== -->
+        <div id="view-leads" class="app-view active">
+          <div class="container">
+            <!-- Barra de Nova Prospecção -->
+            <section class="card prospect-card">
+              <div class="prospect-header">
+                <h2>🔍 Nova Mineração no Google Maps</h2>
+                <p>Digite o nicho desejado. O sistema filtra automaticamente as empresas com boa reputação que <strong>não têm site</strong>.</p>
+              </div>
 
-      <div id="cardsView" class="cards-grid" style="display: none;">
-        <!-- Renderizado via JavaScript -->
-      </div>
+              <form id="prospectForm" class="prospect-form">
+                <div class="input-group flex-2">
+                  <label for="nicheInput">Nicho / Área de Atuação</label>
+                  <input type="text" id="nicheInput" placeholder="Ex: clinica odontologica, energia solar, marcenaria, oficina..." required />
+                </div>
+                <div class="input-group flex-1">
+                  <label for="cityInput">Cidade</label>
+                  <input type="text" id="cityInput" value="Franca SP" required />
+                </div>
+                <div class="input-group flex-auto">
+                  <label>&nbsp;</label>
+                  <button type="submit" id="btnProspect" class="btn btn-primary">
+                    <span class="btn-text">Buscar Empresas</span>
+                    <span class="spinner" style="display: none;"></span>
+                  </button>
+                </div>
+              </form>
 
-      <div id="emptyState" class="empty-state" style="display: none;">
-        <div class="empty-icon">📭</div>
-        <h3>Nenhuma empresa nesta categoria</h3>
-        <p>Faça uma nova busca no topo da página ou troque de aba.</p>
-      </div>
-    </section>
-  </main>
+              <!-- Sugestões Rápidas -->
+              <div class="quick-suggestions">
+                <span class="suggestion-label">💡 Sugestões de alta conversão:</span>
+                <button type="button" class="chip-btn" data-niche="clinica odontologica">🦷 Clínica Odontológica</button>
+                <button type="button" class="chip-btn" data-niche="cerca eletrica e seguranca eletronica">⚡ Cerca Elétrica / Segurança</button>
+                <button type="button" class="chip-btn" data-niche="ar condicionado">❄️ Ar Condicionado</button>
+                <button type="button" class="chip-btn" data-niche="energia solar">☀️ Energia Solar</button>
+                <button type="button" class="chip-btn" data-niche="marcenaria">🪵 Marcenaria</button>
+                <button type="button" class="chip-btn" data-niche="estetica automotiva">🚗 Estética Automotiva</button>
+              </div>
 
-  <!-- Modal de Detalhes, Protótipo e Mensagem -->
+              <div id="searchNotice" class="search-notice" style="display: none;"></div>
+            </section>
+
+            <!-- Métricas do Funil -->
+            <section class="stats-grid">
+              <div class="stat-card" data-filter="todos">
+                <span class="stat-label">Total Minerado</span>
+                <strong id="statTotal">0</strong>
+                <small>Empresas no histórico</small>
+              </div>
+              <div class="stat-card stat-hot active" data-filter="oportunidade_quente">
+                <span class="stat-label">🔥 Oportunidades</span>
+                <strong id="statHot">0</strong>
+                <small>Sem site / Foco comercial</small>
+              </div>
+              <div class="stat-card stat-online" data-filter="site_ativo">
+                <span class="stat-label">🌐 Sites Ativos</span>
+                <strong id="statOnline">0</strong>
+                <small>Com site no ar (Redesign)</small>
+              </div>
+              <div class="stat-card stat-ready" data-filter="prototipo_pronto">
+                <span class="stat-label">✨ Protótipos</span>
+                <strong id="statReady">0</strong>
+                <small>Sites gerados prontos</small>
+              </div>
+              <div class="stat-card stat-contacted" data-filter="contatado">
+                <span class="stat-label">💬 Contatados</span>
+                <strong id="statContacted">0</strong>
+                <small>Abordagem realizada</small>
+              </div>
+              <div class="stat-card stat-discarded" data-filter="descartado">
+                <span class="stat-label">🗑️ Descartados</span>
+                <strong id="statDiscarded">0</strong>
+                <small>Já têm site ou sem fone</small>
+              </div>
+            </section>
+
+            <!-- Filtro por Categoria -->
+            <section class="category-toolbar">
+              <div class="category-header">
+                <span class="category-title">🏷️ Segmento de Negócio:</span>
+              </div>
+              <div class="category-chips" id="categoryChips">
+                <button class="cat-chip active" data-cat="todas">
+                  <span class="cat-chip-icon">🌐</span>
+                  <span class="cat-chip-label">Todos os Segmentos</span>
+                  <span class="cat-chip-count" id="catCountAll">0</span>
+                </button>
+              </div>
+            </section>
+
+            <!-- Barra de Filtros de Tabela/Cards -->
+            <section class="table-toolbar">
+              <div class="toolbar-actions">
+                <input type="text" id="filterSearch" class="search-input" placeholder="Filtrar por nome, telefone ou motivo..." />
+                <div class="view-toggle">
+                  <button id="viewTable" class="toggle-btn active" title="Visualização em Tabela">📋 Tabela</button>
+                  <button id="viewCards" class="toggle-btn" title="Visualização em Cards">🗂️ Cards</button>
+                </div>
+              </div>
+            </section>
+
+            <!-- Tabela & Grid de Leads -->
+            <section class="card table-card">
+              <div id="tableContainer" class="table-responsive">
+                <table class="leads-table data-table">
+                  <thead>
+                    <tr>
+                      <th style="min-width: 230px;">Empresa</th>
+                      <th>Presença Web</th>
+                      <th>Avaliação</th>
+                      <th>Contato & Redes</th>
+                      <th>Status do Lead</th>
+                      <th style="text-align: right; min-width: 140px;">Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody id="leadsTableBody"></tbody>
+                </table>
+              </div>
+              <div id="cardsContainer" class="cards-grid" style="display: none;"></div>
+              <div id="emptyState" class="empty-state" style="display: none;">
+                <div class="empty-icon">❄️</div>
+                <h3>Nenhuma empresa encontrada com este filtro</h3>
+                <p>Execute uma nova pesquisa pelo formulário acima ou selecione outro filtro.</p>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 2: AGENTE EM TEMPO REAL (AGENT OPS)  -->
+        <!-- ========================================== -->
+        <div id="view-agent" class="app-view">
+          <div class="container">
+            <!-- Header do Agente com Radar e Metadados -->
+            <section class="card agent-hero-card">
+              <div class="agent-status-header">
+                <div class="agent-radar-wrapper">
+                  <div id="agentRadarCore" class="agent-radar-core"></div>
+                  <div class="agent-radar-ring ring-1"></div>
+                  <div class="agent-radar-ring ring-2"></div>
+                  <div class="agent-radar-ring ring-3"></div>
+                </div>
+
+                <div class="agent-headline">
+                  <div class="agent-status-badge">
+                    <span id="agentHeaderDot" class="pulse-dot"></span>
+                    <strong id="agentHeaderStatusText">AGENTE PRONTO</strong>
+                  </div>
+                  <h2 id="agentCurrentTaskTitle">Aguardando Instrução de Mineração</h2>
+                  <p id="agentCurrentTaskDetail">O agente monitora e qualifica empresas no Google Maps, extrai contatos no Instagram e constrói protótipos de alta conversão.</p>
+                </div>
+
+                <div class="agent-target-box">
+                  <small>EMPRESA ALVO:</small>
+                  <strong id="agentTargetName">—</strong>
+                  <span id="agentTargetNiche">Nenhuma empresa no momento</span>
+                </div>
+              </div>
+
+              <!-- Stepper Gráfico das Etapas do Agente -->
+              <div class="agent-stepper-container">
+                <div class="stepper-track">
+                  <div id="stepperProgressFill" class="stepper-progress-fill"></div>
+                </div>
+                <div class="stepper-steps">
+                  <div id="stepNode1" class="step-node" data-step="1">
+                    <div class="step-icon-bubble">🗺️</div>
+                    <span class="step-label">Varredura</span>
+                    <span class="step-sub">Google Maps</span>
+                  </div>
+                  <div id="stepNode2" class="step-node" data-step="2">
+                    <div class="step-icon-bubble">🌐</div>
+                    <span class="step-label">Auditoria</span>
+                    <span class="step-sub">Site / Status</span>
+                  </div>
+                  <div id="stepNode3" class="step-node" data-step="3">
+                    <div class="step-icon-bubble">📸</div>
+                    <span class="step-label">Inteligência</span>
+                    <span class="step-sub">Redes & Fotos</span>
+                  </div>
+                  <div id="stepNode4" class="step-node" data-step="4">
+                    <div class="step-icon-bubble">⚡</div>
+                    <span class="step-label">Engenharia</span>
+                    <span class="step-sub">Protótipo Subzero</span>
+                  </div>
+                  <div id="stepNode5" class="step-node" data-step="5">
+                    <div class="step-icon-bubble">💼</div>
+                    <span class="step-label">Comercial</span>
+                    <span class="step-sub">Script & Oferta</span>
+                  </div>
+                </div>
+
+                <div class="agent-progress-wrapper">
+                  <div class="progress-info-row">
+                    <span id="agentProgressStepText">Etapa: Inativo</span>
+                    <strong id="agentProgressPercent">0%</strong>
+                  </div>
+                  <div class="agent-progress-bar">
+                    <div id="agentProgressInner" class="agent-progress-inner"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Grid: Métricas + Disparador Rápido -->
+            <div class="agent-grid-two">
+              <div class="card agent-metrics-card">
+                <h3>MÉTRICAS DA OPERAÇÃO</h3>
+                <div class="agent-metrics-row">
+                  <div class="agent-metric-item">
+                    <strong id="metricInspected" class="metric-val">0</strong>
+                    <span class="metric-lbl">Empresas Auditadas</span>
+                  </div>
+                  <div class="agent-metric-item">
+                    <strong id="metricPrototypes" class="metric-val">0</strong>
+                    <span class="metric-lbl">Protótipos Gerados</span>
+                  </div>
+                  <div class="agent-metric-item">
+                    <strong id="metricTimeElapsed" class="metric-val">0s</strong>
+                    <span class="metric-lbl">Tempo de Execução</span>
+                  </div>
+                  <div class="agent-metric-item">
+                    <strong class="metric-val text-green">100%</strong>
+                    <span class="metric-lbl">Taxa de Conexão</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card agent-action-card">
+                <h3>DISPARO MANUAL DE ANÁLISE</h3>
+                <p>Selecione qualquer lead já minerado na base para forçar o ciclo completo de inteligência, enriquecimento social e geração de protótipo.</p>
+                <div class="agent-trigger-form">
+                  <select id="agentLeadSelect" class="status-select" style="flex: 1;">
+                    <option value="">Selecione um lead da base...</option>
+                  </select>
+                  <button id="btnAgentTrigger" class="btn btn-primary btn-sm">⚡ Executar</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Terminal de Logs ao Vivo -->
+            <section class="card agent-terminal-card">
+              <div class="terminal-header">
+                <div class="terminal-dots">
+                  <span class="t-dot red"></span>
+                  <span class="t-dot yellow"></span>
+                  <span class="t-dot green"></span>
+                </div>
+                <div class="terminal-title">
+                  <span>agent-operations.log [Live SSE Stream]</span>
+                </div>
+                <button id="btnClearLogs" class="btn btn-outline btn-xs">Limpar Log</button>
+              </div>
+              <div id="terminalLogsBody" class="terminal-body">
+                <div class="terminal-line">
+                  <span class="t-time">[00:00:00]</span>
+                  <span class="t-tag prototype">SISTEMA</span>
+                  <span class="t-msg">Conectado ao stream operacional do Agente Subzero.</span>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 3: FUNIL & NEGOCIAÇÃO CRM           -->
+        <!-- ========================================== -->
+        <div id="view-crm" class="app-view">
+          <div class="crm-container">
+            <!-- Barra Superior do CRM com Valores -->
+            <div class="crm-top-bar">
+              <div class="crm-title-area">
+                <h2>💼 Funil de Vendas & Negociação</h2>
+                <p>Acompanhe o status comercial de cada empresa abordada em Franca/SP</p>
+              </div>
+              <div class="crm-metrics-strip">
+                <div class="crm-metric-pill">
+                  <span class="crm-metric-label">Pipeline Total:</span>
+                  <span id="crmTotalValue" class="crm-metric-val">R$ 0</span>
+                </div>
+                <div class="crm-metric-pill">
+                  <span class="crm-metric-label">Em Negociação:</span>
+                  <span id="crmTotalCount" class="crm-metric-val">0 leads</span>
+                </div>
+                <div class="crm-metric-pill">
+                  <span class="crm-metric-label">Fechados:</span>
+                  <span id="crmWonCount" class="crm-metric-val">0</span>
+                </div>
+                <button id="btnOpenAddCrmModal" class="btn btn-primary btn-sm">➕ Adicionar Lead</button>
+              </div>
+            </div>
+
+            <!-- Kanban Board -->
+            <div class="crm-kanban-board">
+              <!-- Coluna 1: Contato Enviado -->
+              <div class="kanban-column col-blue" data-stage="contato_enviado">
+                <div class="kanban-col-header">
+                  <div class="col-title-left">
+                    <span class="col-dot"></span>
+                    <h4>1. Contato Enviado</h4>
+                  </div>
+                  <div class="col-meta">
+                    <span id="count-contato_enviado" class="col-count">0</span>
+                    <span id="val-contato_enviado" class="col-val">R$ 0</span>
+                  </div>
+                </div>
+                <div id="cards-contato_enviado" class="kanban-col-cards"></div>
+              </div>
+
+              <!-- Coluna 2: Em Conversa -->
+              <div class="kanban-column col-yellow" data-stage="em_conversa">
+                <div class="kanban-col-header">
+                  <div class="col-title-left">
+                    <span class="col-dot"></span>
+                    <h4>2. Em Conversa</h4>
+                  </div>
+                  <div class="col-meta">
+                    <span id="count-em_conversa" class="col-count">0</span>
+                    <span id="val-em_conversa" class="col-val">R$ 0</span>
+                  </div>
+                </div>
+                <div id="cards-em_conversa" class="kanban-col-cards"></div>
+              </div>
+
+              <!-- Coluna 3: Protótipo Apresentado -->
+              <div class="kanban-column col-cyan" data-stage="prototipo_apresentado">
+                <div class="kanban-col-header">
+                  <div class="col-title-left">
+                    <span class="col-dot"></span>
+                    <h4>3. Protótipo Enviado</h4>
+                  </div>
+                  <div class="col-meta">
+                    <span id="count-prototipo_apresentado" class="col-count">0</span>
+                    <span id="val-prototipo_apresentado" class="col-val">R$ 0</span>
+                  </div>
+                </div>
+                <div id="cards-prototipo_apresentado" class="kanban-col-cards"></div>
+              </div>
+
+              <!-- Coluna 4: Negociando -->
+              <div class="kanban-column col-purple" data-stage="negociando">
+                <div class="kanban-col-header">
+                  <div class="col-title-left">
+                    <span class="col-dot"></span>
+                    <h4>4. Proposta / Fechamento</h4>
+                  </div>
+                  <div class="col-meta">
+                    <span id="count-negociando" class="col-count">0</span>
+                    <span id="val-negociando" class="col-val">R$ 0</span>
+                  </div>
+                </div>
+                <div id="cards-negociando" class="kanban-col-cards"></div>
+              </div>
+
+              <!-- Coluna 5: Fechado Ganho -->
+              <div class="kanban-column col-green" data-stage="fechado_ganho">
+                <div class="kanban-col-header">
+                  <div class="col-title-left">
+                    <span class="col-dot"></span>
+                    <h4>5. Fechado & Ganho 🎉</h4>
+                  </div>
+                  <div class="col-meta">
+                    <span id="count-fechado_ganho" class="col-count">0</span>
+                    <span id="val-fechado_ganho" class="col-val">R$ 0</span>
+                  </div>
+                </div>
+                <div id="cards-fechado_ganho" class="kanban-col-cards"></div>
+              </div>
+
+              <!-- Coluna 6: Standby / Pausa -->
+              <div class="kanban-column col-gray" data-stage="standby">
+                <div class="kanban-col-header">
+                  <div class="col-title-left">
+                    <span class="col-dot"></span>
+                    <h4>Pausa / Retornar</h4>
+                  </div>
+                  <div class="col-meta">
+                    <span id="count-standby" class="col-count">0</span>
+                    <span id="val-standby" class="col-val">R$ 0</span>
+                  </div>
+                </div>
+                <div id="cards-standby" class="kanban-col-cards"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal de Detalhes do Lead -->
   <div id="leadModal" class="modal-overlay" style="display: none;">
-    <div class="modal-content">
+    <div class="modal-container">
       <header class="modal-header">
         <div>
           <h3 id="modalLeadName">Nome da Empresa</h3>
           <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
-            <span id="modalLeadCategory" class="badge-category" style="display: none;"></span>
+            <span id="modalLeadNiche" class="badge-category"></span>
             <span id="modalLeadBadge" class="badge">Status</span>
           </div>
         </div>
-        <button id="modalClose" class="modal-close-btn">&times;</button>
+        <button id="modalCloseBtn" class="modal-close-btn">&times;</button>
       </header>
 
       <div class="modal-body">
@@ -192,7 +493,7 @@
         <div class="modal-sidebar">
           <div class="sidebar-block">
             <h4>📊 Diagnóstico da Empresa</h4>
-            <p id="modalLeadAnalysis" class="analysis-box">Análise detalhada aqui...</p>
+            <p id="modalAiText" class="analysis-box">Análise detalhada aqui...</p>
           </div>
 
           <div class="sidebar-block">
@@ -246,11 +547,19 @@
             <select id="modalStatusSelect" class="status-select">
               <option value="oportunidade_quente">🔥 Oportunidade Quente</option>
               <option value="site_ativo">🌐 Site Ativo (Redesign)</option>
-              <option value="prototipo_pronto">⚡ Protótipo Pronto</option>
-              <option value="contatado">📞 Contatado</option>
+              <option value="prototipo_pronto">✨ Protótipo Pronto</option>
+              <option value="contatado">💬 Contatado</option>
               <option value="negociando">🤝 Em Negociação</option>
-              <option value="descartado">🏢 Descartado</option>
+              <option value="descartado">🗑️ Descartado</option>
             </select>
+          </div>
+
+          <div class="sidebar-block">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <h4 style="margin: 0;">💼 Pipeline Comercial</h4>
+              <button id="btnModalSendToCrm" class="btn btn-outline btn-xs" type="button">➕ Adicionar ao CRM</button>
+            </div>
+            <p style="font-size: 12px; color: var(--text-muted); margin: 0;">Gerencie propostas e negociação ativa no módulo Kanban CRM.</p>
           </div>
 
           <div class="sidebar-block">
@@ -263,9 +572,9 @@
         <!-- Coluna Direita: Mensagens e Prévia do Protótipo -->
         <div class="modal-main">
           <div class="modal-tabs">
-            <button class="modal-tab-btn active" data-modaltab="whatsapp">📱 Mensagem WhatsApp</button>
-            <button class="modal-tab-btn" data-modaltab="email">📧 E-mail Frio</button>
-            <button class="modal-tab-btn" data-modaltab="prototype">💻 Protótipo do Site</button>
+            <button class="modal-tab-btn active" data-modaltab="whatsapp">💬 Mensagem WhatsApp</button>
+            <button class="modal-tab-btn" data-modaltab="email">✉️ E-mail Frio</button>
+            <button class="modal-tab-btn" data-modaltab="prototype">🚀 Protótipo do Site</button>
           </div>
 
           <!-- Aba 1: WhatsApp -->
@@ -275,7 +584,7 @@
                 <span>Texto Otimizado para Leitura Rápida (10s)</span>
                 <div class="msg-actions">
                   <button id="btnCopyWa" class="btn btn-outline btn-sm">📋 Copiar Mensagem</button>
-                  <a id="btnOpenWaWeb" href="#" target="_blank" class="btn btn-primary btn-sm">🚀 Abrir no WhatsApp Web</a>
+                  <a id="btnOpenWaWeb" href="#" target="_blank" class="btn btn-primary btn-sm">📲 Abrir no WhatsApp Web</a>
                 </div>
               </div>
               <pre id="modalWaText" class="message-pre"></pre>
@@ -306,11 +615,11 @@
                 <div class="prototype-actions">
                   <select id="templateSelector" class="status-select" style="padding: 6px 10px; font-size: 12px; font-weight: 600;">
                     <option value="architectural">🏛️ Architectural (Arquitetura, Engenharia, Interiores)</option>
-                    <option value="industrial">🏭 Industrial & Tech (Clima, Segurança, Solar, B2B)</option>
+                    <option value="industrial">⚙️ Industrial & Tech (Clima, Segurança, Solar, B2B)</option>
                     <option value="clinical">🩺 Clinical & Saúde (Odontologia, Médicos, Estética)</option>
                     <option value="care">🐾 Care & Pet (Veterinárias, Pet Shops, Cuidados)</option>
                   </select>
-                  <button id="btnGenerateProto" class="btn btn-primary btn-sm">⚡ Criar Protótipo</button>
+                  <button id="btnGenerateProto" class="btn btn-primary btn-sm">✨ Criar Protótipo</button>
                   <button id="btnForceEnrichProto" class="btn btn-outline btn-sm" title="Forçar re-mineração profunda no Instagram e Google Maps" style="padding: 6px 8px; font-size: 11px; opacity: 0.85;">🔍 Re-minerar</button>
                   <a id="btnOpenProtoTab" href="#" target="_blank" class="btn btn-outline btn-sm">↗ Abrir em Nova Aba</a>
                 </div>
@@ -325,6 +634,48 @@
     </div>
   </div>
 
+  <!-- Modal Edição / Mover CRM -->
+  <div id="crmEditModal" class="modal-overlay" style="display: none;">
+    <div class="modal-container crm-modal-box">
+      <header class="modal-header">
+        <div>
+          <h3 id="crmModalLeadName">Negociação Comercial</h3>
+          <p id="crmModalLeadNiche" style="color: var(--text-muted); font-size: 13px; margin: 4px 0 0 0;">Franca / SP</p>
+        </div>
+        <button id="crmModalCloseBtn" class="modal-close-btn">&times;</button>
+      </header>
+      <form id="crmEditForm" class="modal-body" style="display: flex; flex-direction: column; gap: 14px; padding: 20px;">
+        <input type="hidden" id="crmEditLeadId" />
+        <div class="form-group-compact">
+          <label style="font-weight: 600; color: var(--text-main);">Estágio no Funil:</label>
+          <select id="crmEditStage" class="status-select" style="width: 100%;">
+            <option value="contato_enviado">1. Contato Enviado (Primeira mensagem)</option>
+            <option value="em_conversa">2. Em Conversa (Interagindo no WhatsApp)</option>
+            <option value="prototipo_apresentado">3. Protótipo Apresentado (Site enviado)</option>
+            <option value="negociando">4. Negociando Proposta / Valores</option>
+            <option value="fechado_ganho">5. Fechado & Ganho 🎉</option>
+            <option value="standby">Pausa / Standby</option>
+          </select>
+        </div>
+        <div class="form-group-compact">
+          <label style="font-weight: 600; color: var(--text-main);">Valor da Proposta (R$):</label>
+          <input type="number" id="crmEditValue" class="input-compact" placeholder="2500" step="50" />
+        </div>
+        <div class="form-group-compact">
+          <label style="font-weight: 600; color: var(--text-main);">Notas da Negociação:</label>
+          <textarea id="crmEditNotes" rows="4" placeholder="Histórico de conversas, condições combinadas..."></textarea>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+          <button type="button" id="btnRemoveFromCrm" class="btn btn-outline btn-sm" style="color: var(--danger); border-color: var(--danger);">Remover do Funil</button>
+          <div style="display: flex; gap: 8px;">
+            <button type="button" onclick="document.getElementById('crmEditModal').style.display='none'" class="btn btn-outline btn-sm">Cancelar</button>
+            <button type="submit" class="btn btn-primary btn-sm">Salvar Negociação</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <footer class="footer">
     <p>Subzero Prospector Engine • Desenvolvido por <strong>Gabriel Azevedo</strong> • (16) 99204-8856</p>
   </footer>
@@ -332,4 +683,3 @@
   <script src="./app.js"></script>
 </body>
 </html>
-

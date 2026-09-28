@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const { exec } = require('child_process');
 const db = require('./db');
+const agentMonitor = require('./agent_monitor');
 const { searchLeadsGoogleMaps, enrichLead } = require('./scraper');
 const { generatePrototype, generateOutreachMessages } = require('./generator');
 
@@ -14,7 +15,6 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use('/previews', express.static(path.join(__dirname, '..', 'previews')));
 app.use('/templates', express.static(path.join(__dirname, '..', 'templates')));
-app.use('/ana-marconi', express.static(path.join(__dirname, '..', 'ana-marconi')));
 
 // Rota: Listar leads com filtros
 app.get('/api/leads', (req, res) => {
@@ -279,6 +279,83 @@ app.patch('/api/leads/:id', (req, res) => {
 app.delete('/api/leads/:id', (req, res) => {
   const ok = db.delete(req.params.id);
   res.json({ success: ok, stats: db.getStats() });
+});
+
+
+// ==========================================
+// ROTAS DE CRM & FUNIL DE NEGOCIAÇÃO KANBAN
+// ==========================================
+
+// Rota: Listar leads no CRM
+app.get('/api/crm', (req, res) => {
+  const allLeads = db.getAll();
+  const crmLeads = allLeads.filter(l => l.inCrm === true);
+  res.json({ success: true, crmLeads, total: crmLeads.length });
+});
+
+// Rota: Atualizar dados de CRM de um lead (stage, valor, notas, etc)
+app.patch('/api/crm/:id', (req, res) => {
+  const { id } = req.params;
+  const updates = req.body || {};
+  const updated = db.update(id, updates);
+  if (!updated) {
+    return res.status(404).json({ success: false, error: 'Lead não encontrado.' });
+  }
+  res.json({ success: true, lead: updated });
+});
+
+// Rota: Adicionar lead existente ao Funil CRM
+app.post('/api/crm/add/:id', (req, res) => {
+  const { id } = req.params;
+  const { stage = 'contato_enviado', valor = 1500 } = req.body || {};
+  const updated = db.update(id, {
+    inCrm: true,
+    crmStage: stage,
+    crmValor: valor,
+    crmUltimoContato: new Date().toISOString()
+  });
+  if (!updated) {
+    return res.status(404).json({ success: false, error: 'Lead não encontrado.' });
+  }
+  res.json({ success: true, lead: updated });
+});
+
+// ==========================================
+// ROTAS DO AGENTE AUTÔNOMO (LIVE OPS & SSE)
+// ==========================================
+
+// Stream SSE para logs e status em tempo real
+app.get('/api/agent/stream', (req, res) => {
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Cache-Control', 'no-cache');
+  res.setHeader('Connection', 'keep-alive');
+  res.flushHeaders?.();
+
+  agentMonitor.addSseClient(res);
+});
+
+// Status atual do agente
+app.get('/api/agent/status', (req, res) => {
+  res.json(agentMonitor.getState());
+});
+
+// Disparo de auditoria autônoma de um lead
+app.post('/api/agent/trigger', async (req, res) => {
+  const { leadId } = req.body || {};
+  if (!leadId) {
+    return res.status(400).json({ success: false, error: 'leadId é obrigatório.' });
+  }
+
+  try {
+    // Executa em background para não bloquear a resposta HTTP
+    agentMonitor.runAutonomousJob(leadId).catch(err => {
+      console.error('Erro na execução assíncrona do agente:', err.message);
+    });
+
+    res.json({ success: true, message: 'Operação autônoma iniciada com sucesso.' });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
 });
 
 if (require.main === module && !process.env.VERCEL) {

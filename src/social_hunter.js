@@ -24,8 +24,6 @@ function isHandleMatchingCompany(companyName, handle, profileTitle = '', niche =
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
   // 1. Detecção rigorosa de nichos industriais conflitantes
-  // Se o handle possui termos explícitos de outros setores (ex: ferragens, imoveis, advocacia, restaurante)
-  // e nem o nome da empresa nem o nicho contêm essa palavra, rejeita sumariamente o perfil!
   const industryKeywords = [
     'ferragens', 'imoveis', 'imobiliaria', 'advocacia', 'advogado', 'veiculos', 'motos',
     'restaurante', 'bar', 'pizzaria', 'hamburgueria', 'roupas', 'calcados', 'otica',
@@ -36,7 +34,7 @@ function isHandleMatchingCompany(companyName, handle, profileTitle = '', niche =
   for (const kw of industryKeywords) {
     if (normHandle.includes(kw)) {
       if (!normCompany.includes(kw) && !normNiche.includes(kw)) {
-        return false; // Rejeita falso positivo por setor industrial incompatível!
+        return false;
       }
     }
   }
@@ -61,61 +59,51 @@ function isHandleMatchingCompany(companyName, handle, profileTitle = '', niche =
     const hasPrimaryInTitle = normTitle.includes(primaryTerm);
 
     if (!hasPrimaryInHandle && !hasPrimaryInTitle) {
-      return false; // Rejeita se o termo principal sequer existe no perfil
+      return false;
     }
 
     return true;
   }
 
-  // 3. Se a empresa for composta apenas de termos comuns (ex: "Clínica Veterinária Franca")
-  // Exige que pelo menos 2 palavras da empresa estejam no handle
+  // 3. Se a empresa for composta apenas de termos comuns
   const matchedWords = companyWords.filter(w => normHandle.includes(w));
   return matchedWords.length >= 2;
 }
 
-async function querySearchEngines(query) {
-  // 1. Tenta DuckDuckGo HTML
+async function querySearchLinks(page, query) {
   try {
-    const url = 'https://html.duckduckgo.com/html/?q=' + encodeURIComponent(query);
-    const res = await fetch(url, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
-        'Accept-Language': 'pt-BR,pt;q=0.9,en-US;q=0.8'
-      }
+    const url = 'https://br.search.yahoo.com/search?p=' + encodeURIComponent(query);
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 20000 });
+    await page.waitForTimeout(1500);
+
+    const results = await page.evaluate(() => {
+      const list = [];
+      document.querySelectorAll('div.compTitle a, li div h3 a').forEach(a => {
+        const href = a.href || '';
+        const title = a.innerText || '';
+        if (href.startsWith('http')) {
+          list.push({ href, title });
+        }
+      });
+      return list;
     });
 
-    if (res.ok) {
-      const html = await res.text();
-      if (!html.includes('challenge') && !html.includes('Anomaly')) {
-        const $ = cheerio.load(html);
-        const results = [];
-        $('.result').each((_, el) => {
-          let href = $(el).find('.result__url, .result__snippet, a.result__snippet').attr('href') || $(el).find('a.result__url').attr('href') || '';
-          if (href.includes('uddg=')) {
-            const m = href.match(/uddg=([^&"']+)/);
-            if (m) {
-              try { href = decodeURIComponent(m[1]); } catch (_) { href = m[1]; }
-            }
-          }
-          const title = $(el).find('.result__title').text().trim();
-          const snippet = $(el).find('.result__snippet').text().trim();
-          results.push({ href, title, snippet });
-        });
-        if (results.length > 0) return results;
-      }
-    }
-  } catch (_) {}
-
-  return [];
+    return results;
+  } catch (err) {
+    return [];
+  }
 }
 
 /**
  * Caça criteriosa de Instagram e Facebook com validação de handle e título
+ * Utiliza Playwright para garantir 100% de entrega sem bloqueios de Anomaly/CAPTCHA
  * @param {string} companyName
  * @param {string} city
+ * @param {string} niche
+ * @param {import('playwright').Page|null} externalPage
  * @returns {Promise<{ instagram: string|null, facebook: string|null }>}
  */
-async function huntSocials(companyName, city = 'Franca SP', niche = '') {
+async function huntSocials(companyName, city = 'Franca SP', niche = '', externalPage = null) {
   let instagram = null;
   let facebook = null;
 
@@ -125,9 +113,21 @@ async function huntSocials(companyName, city = 'Franca SP', niche = '') {
     .replace(/Franca[- /]?SP/gi, '')
     .trim();
 
-  // 1. Busca focada no Instagram
+  let browser = null;
+  let page = externalPage;
+
+  if (!page) {
+    const { chromium } = require('playwright');
+    browser = await chromium.launch({ headless: true });
+    page = await browser.newPage({
+      userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+      locale: 'pt-BR'
+    });
+  }
+
   try {
-    const instaResults = await querySearchEngines(`${cleanName} ${city} instagram site:instagram.com`);
+    // 1. Busca focada no Instagram
+    const instaResults = await querySearchLinks(page, `${cleanName} ${city} instagram`);
     for (const item of instaResults) {
       const link = item.href;
       if (link.includes('instagram.com/')) {
@@ -139,7 +139,6 @@ async function huntSocials(companyName, city = 'Franca SP', niche = '') {
             'developer', 'directory', 'legal', 'help', 'privacy', 'accounts'
           ];
           if (!blacklistedHandles.includes(handle)) {
-            // Valida se o handle tem afinidade real com o nome da empresa e nicho
             if (isHandleMatchingCompany(companyName, handle, item.title, niche)) {
               instagram = `https://www.instagram.com/${handle}/`;
               break;
@@ -147,32 +146,54 @@ async function huntSocials(companyName, city = 'Franca SP', niche = '') {
           }
         }
       }
+      if (!facebook && link.includes('facebook.com/')) {
+        const match = link.match(/facebook\.com\/(?:p\/)?([a-zA-Z0-9._-]+)/i);
+        if (match && !['sharer', 'policies', 'dialog', 'login', 'groups'].includes(match[1].toLowerCase())) {
+          if (isHandleMatchingCompany(companyName, match[1], item.title, niche)) {
+            facebook = link.split('?')[0];
+          }
+        }
+      }
     }
-  } catch (_) {}
 
-  // 2. Busca focada no Facebook
-  try {
-    const fbResults = await querySearchEngines(`${cleanName} ${city} facebook site:facebook.com`);
-    for (const item of fbResults) {
-      const link = item.href;
-      if (link.includes('facebook.com/')) {
-        const match = link.match(/facebook\.com\/([a-zA-Z0-9._-]+)/i);
-        if (match) {
-          const pageId = match[1];
-          const blacklistedPages = [
-            'sharer', 'policies', 'dialog', 'login', 'groups', 'help',
-            'recover', 'pages', 'events', 'marketplace', 'watch'
-          ];
-          if (!blacklistedPages.includes(pageId.toLowerCase())) {
-            if (isHandleMatchingCompany(companyName, pageId, item.title, niche)) {
-              facebook = `https://www.facebook.com/${pageId}/`;
-              break;
+    // 2. Busca focada no Facebook
+    if (!facebook) {
+      const fbResults = await querySearchLinks(page, `${cleanName} ${city} facebook`);
+      for (const item of fbResults) {
+        const link = item.href;
+        if (link.includes('facebook.com/')) {
+          const match = link.match(/facebook\.com\/(?:p\/)?([a-zA-Z0-9._-]+)/i);
+          if (match) {
+            const pageId = match[1];
+            const blacklistedPages = [
+              'sharer', 'policies', 'dialog', 'login', 'groups', 'help',
+              'recover', 'pages', 'events', 'marketplace', 'watch'
+            ];
+            if (!blacklistedPages.includes(pageId.toLowerCase())) {
+              if (isHandleMatchingCompany(companyName, pageId, item.title, niche)) {
+                facebook = link.split('?')[0];
+                break;
+              }
+            }
+          }
+        }
+        if (!instagram && link.includes('instagram.com/')) {
+          const match = link.match(/instagram\.com\/([a-zA-Z0-9._]+)/i);
+          if (match && !['p', 'reel', 'explore', 'stories'].includes(match[1].toLowerCase())) {
+            if (isHandleMatchingCompany(companyName, match[1], item.title, niche)) {
+              instagram = `https://www.instagram.com/${match[1]}/`;
             }
           }
         }
       }
     }
-  } catch (_) {}
+  } catch (err) {
+    console.warn(`[SocialHunter] Erro ao buscar redes de ${companyName}:`, err.message);
+  } finally {
+    if (browser) {
+      await browser.close();
+    }
+  }
 
   return {
     instagram,

@@ -1,11 +1,41 @@
 let allLeads = [];
+let crmLeads = [];
 let activeTab = 'oportunidade_quente';
 let activeCategory = 'todas';
 let allCategories = [];
 let currentView = 'table';
 let currentSelectedLead = null;
+let currentAppView = 'leads'; // 'leads' | 'agent' | 'crm'
+let agentEventSource = null;
 
-// Elementos do DOM
+// ==========================================
+// SELETORES DO DOM
+// ==========================================
+
+// Navegação & Layout
+const appSidebar = document.getElementById('appSidebar');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+
+const navLeads = document.getElementById('navLeads');
+const navAgent = document.getElementById('navAgent');
+const navCrm = document.getElementById('navCrm');
+const navBadgeLeads = document.getElementById('navBadgeLeads');
+const navBadgeCrm = document.getElementById('navBadgeCrm');
+const agentPulseNav = document.getElementById('agentPulseNav');
+
+const viewLeads = document.getElementById('view-leads');
+const viewAgent = document.getElementById('view-agent');
+const viewCrm = document.getElementById('view-crm');
+
+const topbarPageTitle = document.getElementById('topbarPageTitle');
+const topbarPageSubtitle = document.getElementById('topbarPageSubtitle');
+const topbarLiveText = document.getElementById('topbarLiveText');
+const topbarPulseDot = document.getElementById('topbarPulseDot');
+const sidebarPulse = document.getElementById('sidebarPulse');
+const sidebarAgentStatusText = document.getElementById('sidebarAgentStatusText');
+
+// Prospecção & Filtros
 const prospectForm = document.getElementById('prospectForm');
 const nicheInput = document.getElementById('nicheInput');
 const cityInput = document.getElementById('cityInput');
@@ -21,89 +51,39 @@ const statReady = document.getElementById('statReady');
 const statContacted = document.getElementById('statContacted');
 const statDiscarded = document.getElementById('statDiscarded');
 
-const tableView = document.getElementById('tableView');
-const cardsView = document.getElementById('cardsView');
+const tableContainer = document.getElementById('tableContainer');
+const cardsContainer = document.getElementById('cardsContainer');
 const tableBody = document.getElementById('leadsTableBody');
 const emptyState = document.getElementById('emptyState');
-const loadingIndicator = document.getElementById('loadingIndicator');
 
-// Modal Elements
+// Modal de Detalhes do Lead
 const leadModal = document.getElementById('leadModal');
-const modalClose = document.getElementById('modalClose');
+const modalCloseBtn = document.getElementById('modalCloseBtn');
 const modalLeadName = document.getElementById('modalLeadName');
-const modalLeadCategory = document.getElementById('modalLeadCategory');
-const modalLeadBadge = document.getElementById('modalLeadBadge');
-const modalLeadAnalysis = document.getElementById('modalLeadAnalysis');
+const modalLeadNiche = document.getElementById('modalLeadNiche');
+const modalAiText = document.getElementById('modalAiText');
+const modalLeadNameDisplay = document.getElementById('modalLeadNameDisplay');
 const modalLeadMapsLink = document.getElementById('modalLeadMapsLink');
+const modalLeadSite = document.getElementById('modalLeadSite');
 const modalLeadWa = document.getElementById('modalLeadWa');
 const modalLeadPhones = document.getElementById('modalLeadPhones');
-const modalLeadSite = document.getElementById('modalLeadSite');
 const modalLeadInsta = document.getElementById('modalLeadInsta');
 const modalLeadFb = document.getElementById('modalLeadFb');
-const modalStatusSelect = document.getElementById('modalStatusSelect');
-const modalNotes = document.getElementById('modalNotes');
-const btnSaveNotes = document.getElementById('btnSaveNotes');
-const templateSelector = document.getElementById('templateSelector');
 
-// Lead Fields Edit Elements
 const btnToggleEditLead = document.getElementById('btnToggleEditLead');
-const leadViewFields = document.getElementById('leadViewFields');
+const btnCancelEditLead = document.getElementById('btnCancelEditLead');
 const leadEditForm = document.getElementById('leadEditForm');
-const modalLeadNameDisplay = document.getElementById('modalLeadNameDisplay');
+const leadViewFields = document.getElementById('leadViewFields');
 const editLeadName = document.getElementById('editLeadName');
 const editLeadInsta = document.getElementById('editLeadInsta');
 const editLeadFb = document.getElementById('editLeadFb');
 const editLeadWa = document.getElementById('editLeadWa');
 const editLeadSite = document.getElementById('editLeadSite');
-const btnCancelEditLead = document.getElementById('btnCancelEditLead');
 
-// Helper: Formata avaliações no modelo "★ 4,2 (380 comentários)"
-function formatRating(raw) {
-  if (!raw || typeof raw !== 'string') return '<span style="color: var(--text-muted); font-size: 12px;">Sem nota</span>';
-  
-  const scoreMatch = raw.match(/(\d+[,\.]\d+|\d+)/);
-  const countMatch = raw.match(/(?:estrelas?\s*|\(|\b)(\d+)\s*(?:coment[aá]rios|\))/i) || raw.match(/estrelas?\s+(\d+)/i) || raw.match(/\((\d+)\)/);
-  
-  if (!scoreMatch) return `<span style="color: var(--text-muted); font-size: 12px;">${escapeHtml(raw)}</span>`;
-  
-  const score = scoreMatch[1].replace('.', ',');
-  const count = countMatch ? countMatch[1] : null;
-
-  if (count) {
-    return `<span class="rating-badge" title="${score} estrelas (${count} comentários)"><span class="rating-star">★</span> ${score} <span class="rating-count">(${count} comentários)</span></span>`;
-  }
-  
-  return `<span class="rating-badge" title="${score} estrelas"><span class="rating-star">★</span> ${score}</span>`;
-}
-
-function getRecommendedArchetype(lead) {
-  if (!lead) return 'industrial';
-  if (lead.templateEscolhido && ['industrial', 'clinical', 'care', 'architectural'].includes(lead.templateEscolhido)) {
-    return lead.templateEscolhido;
-  }
-  if (lead.archetype && ['industrial', 'clinical', 'care', 'architectural'].includes(lead.archetype)) {
-    return lead.archetype;
-  }
-  const n = (lead.nicho || '').toLowerCase();
-  const nm = (lead.nome || '').toLowerCase();
-
-  // 1. Arquitetura, Engenharia Civil, Interiores e Obras -> architectural
-  if (n.includes('arquitet') || n.includes('engenharia') || n.includes('construc') || n.includes('obras') || n.includes('interiores') || nm.includes('arquit') || nm.includes('engenharia') || nm.includes('construc') || nm.includes('obras')) {
-    return 'architectural';
-  }
-
-  // 2. Odontologia, Médicos, Clínicas e Saúde -> clinical
-  if (n.includes('odonto') || n.includes('dent') || n.includes('medic') || n.includes('clinic') || n.includes('saude') || n.includes('estet') || n.includes('fisio') || nm.includes('odonto') || nm.includes('clinica')) {
-    return 'clinical';
-  }
-
-  // 3. Veterinárias, Pet Shops, Banho & Tosa -> care
-  if (n.includes('pet') || n.includes('vet') || n.includes('cao') || n.includes('cachorro') || n.includes('gato') || n.includes('banho') || n.includes('tosa') || nm.includes('pet') || nm.includes('vet')) {
-    return 'care';
-  }
-
-  return 'industrial';
-}
+const modalStatusSelect = document.getElementById('modalStatusSelect');
+const modalNotes = document.getElementById('modalNotes');
+const btnSaveNotes = document.getElementById('btnSaveNotes');
+const btnModalSendToCrm = document.getElementById('btnModalSendToCrm');
 
 const modalWaText = document.getElementById('modalWaText');
 const btnCopyWa = document.getElementById('btnCopyWa');
@@ -114,255 +94,323 @@ const modalEmailBody = document.getElementById('modalEmailBody');
 const btnCopyEmail = document.getElementById('btnCopyEmail');
 
 const prototypeIframe = document.getElementById('prototypeIframe');
+const templateSelector = document.getElementById('templateSelector');
 const btnGenerateProto = document.getElementById('btnGenerateProto');
 const btnForceEnrichProto = document.getElementById('btnForceEnrichProto');
 const btnOpenProtoTab = document.getElementById('btnOpenProtoTab');
 const prototypeStatusLabel = document.getElementById('prototypeStatusLabel');
 
-// Inicialização
+// Elementos do Agente em Tempo Real
+const agentRadarCore = document.getElementById('agentRadarCore');
+const agentRadarWrapper = document.querySelector('.agent-radar-wrapper');
+const agentHeaderStatusText = document.getElementById('agentHeaderStatusText');
+const agentHeaderDot = document.getElementById('agentHeaderDot');
+const agentCurrentTaskTitle = document.getElementById('agentCurrentTaskTitle');
+const agentCurrentTaskDetail = document.getElementById('agentCurrentTaskDetail');
+const agentTargetName = document.getElementById('agentTargetName');
+const agentTargetNiche = document.getElementById('agentTargetNiche');
+const stepperProgressFill = document.getElementById('stepperProgressFill');
+const agentProgressInner = document.getElementById('agentProgressInner');
+const agentProgressPercent = document.getElementById('agentProgressPercent');
+const agentProgressStepText = document.getElementById('agentProgressStepText');
+const metricInspected = document.getElementById('metricInspected');
+const metricPrototypes = document.getElementById('metricPrototypes');
+const metricTimeElapsed = document.getElementById('metricTimeElapsed');
+const agentLeadSelect = document.getElementById('agentLeadSelect');
+const btnAgentTrigger = document.getElementById('btnAgentTrigger');
+const terminalLogsBody = document.getElementById('terminalLogsBody');
+const btnClearLogs = document.getElementById('btnClearLogs');
+
+// Elementos do CRM
+const crmTotalValue = document.getElementById('crmTotalValue');
+const crmTotalCount = document.getElementById('crmTotalCount');
+const crmWonCount = document.getElementById('crmWonCount');
+const btnOpenAddCrmModal = document.getElementById('btnOpenAddCrmModal');
+const crmEditModal = document.getElementById('crmEditModal');
+const crmModalCloseBtn = document.getElementById('crmModalCloseBtn');
+const crmEditForm = document.getElementById('crmEditForm');
+const crmEditLeadId = document.getElementById('crmEditLeadId');
+const crmModalLeadName = document.getElementById('crmModalLeadName');
+const crmModalLeadNiche = document.getElementById('crmModalLeadNiche');
+const crmEditStage = document.getElementById('crmEditStage');
+const crmEditValue = document.getElementById('crmEditValue');
+const crmEditNotes = document.getElementById('crmEditNotes');
+const btnRemoveFromCrm = document.getElementById('btnRemoveFromCrm');
+
+// ==========================================
+// INICIALIZAÇÃO
+// ==========================================
+
 document.addEventListener('DOMContentLoaded', () => {
-  fetchLeads();
+  setupNavigation();
   setupEventListeners();
+  fetchLeads();
+  fetchCrmLeads();
+  initAgentMonitor();
 });
 
-function setupEventListeners() {
-  // Submissão de prospecção
-  prospectForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const niche = nicheInput.value.trim();
-    const city = cityInput.value.trim() || 'Franca SP';
-    if (!niche) return;
-    await triggerProspecting(niche, city);
+// ==========================================
+// GERENCIAMENTO DE NAVEGAÇÃO & TELAS
+// ==========================================
+
+function setupNavigation() {
+  navLeads?.addEventListener('click', () => switchView('leads'));
+  navAgent?.addEventListener('click', () => switchView('agent'));
+  navCrm?.addEventListener('click', () => switchView('crm'));
+
+  mobileMenuBtn?.addEventListener('click', () => {
+    appSidebar?.classList.add('open');
+    sidebarOverlay?.classList.add('active');
   });
 
-  // Sugestões rápidas de nichos (chips)
-  document.querySelectorAll('.chip-btn').forEach(btn => {
-    btn.addEventListener('click', async () => {
-      const niche = btn.dataset.niche;
-      if (!niche) return;
-      nicheInput.value = niche;
-      const city = cityInput.value.trim() || 'Franca SP';
-      await triggerProspecting(niche, city);
-    });
-  });
+    sidebarOverlay?.addEventListener('click', closeMobileSidebar);
+}
 
-  // Filtro de texto em tempo real
-  filterSearch.addEventListener('input', () => {
+function closeMobileSidebar() {
+  appSidebar?.classList.remove('open');
+  sidebarOverlay?.classList.remove('active');
+}
+
+function switchView(viewName) {
+  currentAppView = viewName;
+  closeMobileSidebar();
+
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.app-view').forEach(el => el.style.display = 'none');
+
+  if (viewName === 'leads') {
+    navLeads?.classList.add('active');
+    if (viewLeads) viewLeads.style.display = 'block';
+    topbarPageTitle.textContent = '🎯 Prospecção & Qualificação de Leads';
+    topbarPageSubtitle.textContent = 'Mineração autônoma no Google Maps e inteligência de redes sociais';
     render();
-  });
-
-  // Cards de métricas clicáveis (Filtro principal)
-  document.querySelectorAll('.stat-card').forEach(card => {
-    card.addEventListener('click', () => {
-      document.querySelectorAll('.stat-card').forEach(c => c.classList.remove('active'));
-      card.classList.add('active');
-      activeTab = card.dataset.filter;
-      render();
-    });
-  });
-
-  // Alternar visualização (Tabela vs Cards)
-  document.getElementById('viewTable').addEventListener('click', () => {
-    currentView = 'table';
-    document.getElementById('viewTable').classList.add('active');
-    document.getElementById('viewCards').classList.remove('active');
-    tableView.style.display = 'block';
-    cardsView.style.display = 'none';
-  });
-
-  document.getElementById('viewCards').addEventListener('click', () => {
-    currentView = 'cards';
-    document.getElementById('viewCards').classList.add('active');
-    document.getElementById('viewTable').classList.remove('active');
-    tableView.style.display = 'none';
-    cardsView.style.display = 'grid';
-  });
-
-  // Fechar Modal
-  modalClose.addEventListener('click', closeModal);
-  leadModal.addEventListener('click', (e) => {
-    if (e.target === leadModal) closeModal();
-  });
-
-  // Alternar Modo de Edição de Dados da Empresa
-  if (btnToggleEditLead) {
-    btnToggleEditLead.addEventListener('click', () => {
-      const isEditing = leadEditForm.style.display !== 'none';
-      if (isEditing) {
-        leadEditForm.style.display = 'none';
-        leadViewFields.style.display = 'block';
-        btnToggleEditLead.textContent = '✏️ Editar';
-      } else {
-        leadEditForm.style.display = 'block';
-        leadViewFields.style.display = 'none';
-        btnToggleEditLead.textContent = '👁️ Ver';
-      }
-    });
-  }
-
-  if (btnCancelEditLead) {
-    btnCancelEditLead.addEventListener('click', () => {
-      leadEditForm.style.display = 'none';
-      leadViewFields.style.display = 'block';
-      btnToggleEditLead.textContent = '✏️ Editar';
-    });
-  }
-
-  if (leadEditForm) {
-    leadEditForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (!currentSelectedLead) return;
-
-      const submitBtn = document.getElementById('btnSaveLeadFields');
-      const origText = submitBtn ? submitBtn.textContent : 'Salvar Alterações';
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Salvando...';
-      }
-
-      const nome = editLeadName ? editLeadName.value.trim() : '';
-      const instagram = editLeadInsta ? editLeadInsta.value.trim() : '';
-      const facebook = editLeadFb ? editLeadFb.value.trim() : '';
-      const whatsapp = editLeadWa ? editLeadWa.value.trim() : '';
-      const siteOriginal = editLeadSite ? editLeadSite.value.trim() : '';
-
-      const targetId = currentSelectedLead.id || currentSelectedLead.slug;
-      const success = await updateLeadOnServer(targetId, {
-        nome,
-        instagram,
-        facebook,
-        whatsapp,
-        siteOriginal
-      });
-
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.textContent = success ? '✅ Salvo!' : origText;
-      }
-
-      if (success) {
-        setTimeout(() => {
-          if (submitBtn) submitBtn.textContent = origText;
-          leadEditForm.style.display = 'none';
-          leadViewFields.style.display = 'block';
-          btnToggleEditLead.textContent = '✏️ Editar';
-          if (currentSelectedLead) {
-            openModal(currentSelectedLead);
-          }
-        }, 350);
-      } else {
-        alert('Não foi possível salvar as alterações no momento.');
-      }
-    });
-  }
-
-  // Abas do Modal
-  document.querySelectorAll('.modal-tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.modal-tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.modal-tab-content').forEach(c => c.classList.remove('active'));
-      btn.classList.add('active');
-      const tabId = 'tabContent' + btn.dataset.modaltab.charAt(0).toUpperCase() + btn.dataset.modaltab.slice(1);
-      const target = document.getElementById(tabId);
-      if (target) target.classList.add('active');
-    });
-  });
-
-  // Copiar WhatsApp
-  btnCopyWa.addEventListener('click', () => {
-    navigator.clipboard.writeText(modalWaText.textContent);
-    showTempBtnText(btnCopyWa, '✅ Copiado!');
-  });
-
-  // Copiar E-mail
-  btnCopyEmail.addEventListener('click', () => {
-    const fullEmail = `Assunto: ${modalEmailSubject.textContent}\n\n${modalEmailBody.textContent}`;
-    navigator.clipboard.writeText(fullEmail);
-    showTempBtnText(btnCopyEmail, '✅ Copiado!');
-  });
-
-  // Salvar Anotações
-  btnSaveNotes.addEventListener('click', async () => {
-    if (!currentSelectedLead) return;
-    const text = modalNotes.value.trim();
-    await updateLeadOnServer(currentSelectedLead.id, { anotacoes: text });
-    showTempBtnText(btnSaveNotes, 'Salvo!');
-  });
-
-  // Alterar Status no Modal
-  modalStatusSelect.addEventListener('change', async () => {
-    if (!currentSelectedLead) return;
-    const newStatus = modalStatusSelect.value;
-    await updateLeadOnServer(currentSelectedLead.id, { status: newStatus });
-  });
-
-  // Gerar Protótipo dentro do Modal
-  btnGenerateProto.addEventListener('click', async () => {
-    if (!currentSelectedLead) return;
-    const selectedTemplate = templateSelector ? templateSelector.value : getRecommendedArchetype(currentSelectedLead);
-    btnGenerateProto.disabled = true;
-    btnGenerateProto.textContent = 'Gerando Protótipo...';
-    await generatePrototypeForLead(currentSelectedLead.id || currentSelectedLead.slug, selectedTemplate);
-    btnGenerateProto.disabled = false;
-  });
-
-  // Forçar Re-mineração Completa (Google Maps + Instagram)
-  if (btnForceEnrichProto) {
-    btnForceEnrichProto.addEventListener('click', async () => {
-      if (!currentSelectedLead) return;
-      const selectedTemplate = templateSelector ? templateSelector.value : getRecommendedArchetype(currentSelectedLead);
-      await generatePrototypeForLead(currentSelectedLead.id || currentSelectedLead.slug, selectedTemplate, true);
-    });
+  } else if (viewName === 'agent') {
+    navAgent?.classList.add('active');
+    if (viewAgent) viewAgent.style.display = 'block';
+    topbarPageTitle.textContent = '⚡ Operação do Agente Autônomo';
+    topbarPageSubtitle.textContent = 'Monitoramento visual em tempo real dos processos e etapas de mineração';
+    refreshAgentLeadDropdown();
+    fetchAgentSnapshot();
+  } else if (viewName === 'crm') {
+    navCrm?.classList.add('active');
+    if (viewCrm) viewCrm.style.display = 'block';
+    topbarPageTitle.textContent = '💼 Funil de Negociação & CRM';
+    topbarPageSubtitle.textContent = 'Gestão do pipeline de vendas, empresas contatadas e fechamento de contratos';
+    fetchCrmLeads();
   }
 }
 
-function showTempBtnText(btn, tempText) {
-  const original = btn.textContent;
-  btn.textContent = tempText;
-  setTimeout(() => { btn.textContent = original; }, 2000);
-}
+// ==========================================
+// MÓDULO 1: PROSPECÇÃO & LEADS
+// ==========================================
 
-// Buscar dados do servidor
 async function fetchLeads() {
-  loadingIndicator.style.display = 'block';
   try {
     const res = await fetch('/api/leads');
     const data = await res.json();
     allLeads = data.leads || [];
     allCategories = data.categories || [];
-    updateStats(data.stats || {});
+    updateStats(data.stats);
     renderCategoryChips();
     render();
+    refreshAgentLeadDropdown();
+    if (navBadgeLeads) navBadgeLeads.textContent = allLeads.length;
   } catch (err) {
     console.error('Erro ao buscar leads:', err);
-  } finally {
-    loadingIndicator.style.display = 'none';
   }
 }
 
-// Renderizar botões de filtro de categoria de negócio
+function render() {
+  let filtered = allLeads;
+
+  if (activeTab === 'todos') {
+    // Todos
+  } else if (activeTab === 'oportunidade_quente') {
+    filtered = filtered.filter(l => l.status === 'oportunidade_quente' || (!l.siteOriginal && l.status !== 'descartado'));
+  } else if (activeTab === 'site_ativo') {
+    filtered = filtered.filter(l => l.status === 'site_ativo');
+  } else if (activeTab === 'prototipo_pronto') {
+    filtered = filtered.filter(l => l.status === 'prototipo_pronto' || l.prototypePath);
+  } else if (activeTab === 'contatado') {
+    filtered = filtered.filter(l => l.status === 'contatado' || l.status === 'negociando' || l.inCrm);
+  } else if (activeTab === 'descartado') {
+    filtered = filtered.filter(l => l.status === 'descartado');
+  }
+
+  if (activeCategory !== 'todas') {
+    filtered = filtered.filter(l => (l.categoria && (l.categoria.slug === activeCategory || l.categoria.id === activeCategory)));
+  }
+
+  const q = filterSearch ? filterSearch.value.trim().toLowerCase() : '';
+  if (q) {
+    filtered = filtered.filter(l => {
+      const n = (l.nome || '').toLowerCase();
+      const ni = (l.nicho || '').toLowerCase();
+      const f = (l.whatsappFormatado || l.whatsappPrincipal || (l.telefones && l.telefones[0]) || '').toLowerCase();
+      const r = (l.motivoDescarte || '').toLowerCase();
+      const s = (l.siteOriginal || '').toLowerCase();
+      return n.includes(q) || ni.includes(q) || f.includes(q) || r.includes(q) || s.includes(q);
+    });
+  }
+
+  if (filtered.length === 0) {
+    if (tableContainer) tableContainer.style.display = 'none';
+    if (cardsContainer) cardsContainer.style.display = 'none';
+    if (emptyState) emptyState.style.display = 'block';
+    return;
+  }
+
+  if (emptyState) emptyState.style.display = 'none';
+
+  if (currentView === 'table') {
+    if (tableContainer) tableContainer.style.display = 'block';
+    if (cardsContainer) cardsContainer.style.display = 'none';
+    renderTable(filtered);
+  } else {
+    if (tableContainer) tableContainer.style.display = 'none';
+    if (cardsContainer) cardsContainer.style.display = 'grid';
+    renderCards(filtered);
+  }
+}
+
+function renderTable(leads) {
+  if (!tableBody) return;
+  tableBody.innerHTML = leads.map(l => {
+    const wa = l.whatsappFormatado || l.whatsappPrincipal || (l.telefones && l.telefones[0]) || 'Sem telefone';
+    const hasWa = !!(l.whatsappPrincipal || l.whatsappFormatado);
+    const badgeClass = getBadgeClass(l.status);
+    const badgeLabel = getBadgeLabel(l.status);
+    const catClass = l.categoria ? l.categoria.badgeClass : 'cat-other';
+    const catNome = l.categoria ? l.categoria.nome : 'Geral';
+    const catIcon = l.categoria ? (l.categoria.icone || '🏷️') : '🏷️';
+    const waUrl = l.whatsappPrincipal ? `https://web.whatsapp.com/send?phone=${l.whatsappPrincipal}` : (hasWa ? `https://web.whatsapp.com/send?phone=${wa.replace(/\D/g, '')}` : '#');
+
+    return `
+      <tr class="lead-row" data-id="${l.id}">
+        <td class="lead-name-cell">
+          <div class="lead-cat-row">
+            <span class="badge-category ${catClass}">${catIcon} ${catNome}</span>
+          </div>
+          <strong>${escapeHtml(l.nome)}</strong>
+          <small>📍 ${escapeHtml(l.cidade || 'Franca SP')}</small>
+        </td>
+        <td>
+          ${renderSiteCell(l)}
+        </td>
+        <td>
+          <div style="font-weight: 700; color: #fff;">★ ${escapeHtml(l.avaliacao || '5.0')}</div>
+          ${l.totalAvaliacoes ? `<small style="display:block; color:var(--text-muted); font-size:11px;">(${l.totalAvaliacoes} avaliações)</small>` : ''}
+        </td>
+        <td>
+          ${hasWa && waUrl !== '#' ? `<a href="${waUrl}" target="_blank" class="contact-link-wa">💬 ${escapeHtml(wa)}</a>` : `<span class="contact-text-phone">📞 ${escapeHtml(wa)}</span>`}
+          <div class="social-chips-row">
+            ${l.instagram ? `<a href="${l.instagram}" target="_blank" class="chip-social chip-insta" title="Instagram">📸 Insta</a>` : ''}
+            ${l.facebook ? `<a href="${l.facebook}" target="_blank" class="chip-social chip-fb" title="Facebook">📘 Face</a>` : ''}
+            ${l.mapsUrl ? `<a href="${l.mapsUrl}" target="_blank" class="maps-link-btn" title="Ver ficha no Google Maps">📍 Maps</a>` : ''}
+          </div>
+        </td>
+        <td>
+          <span class="badge ${badgeClass}">${badgeLabel}</span>
+        </td>
+        <td style="text-align: right;">
+          <div class="actions-cell">
+            ${l.prototypeUrl ? `<a href="${l.prototypeUrl}" target="_blank" class="btn btn-outline btn-xs" title="Ver Protótipo">💻 Site</a>` : ''}
+            <button type="button" class="btn btn-primary btn-xs btn-open-detail" data-id="${l.id}">Ficha Completa ↗</button>
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('');
+
+  attachRowEvents();
+}
+
+function renderCards(leads) {
+  if (!cardsContainer) return;
+  cardsContainer.innerHTML = leads.map(l => {
+    const wa = l.whatsappFormatado || l.whatsappPrincipal || (l.telefones && l.telefones[0]) || 'Sem telefone';
+    const badgeClass = getBadgeClass(l.status);
+    const badgeLabel = getBadgeLabel(l.status);
+    const catClass = l.categoria ? l.categoria.badgeClass : 'cat-gen';
+    const catNome = l.categoria ? l.categoria.nome : 'Outros';
+
+    return `
+      <div class="lead-card" data-id="${l.id}">
+        <div class="lead-card-header">
+          <div>
+            <span class="cat-pill ${catClass}">${catNome}</span>
+            <h3 class="card-company-name">${escapeHtml(l.nome)}</h3>
+            <small class="card-niche-text">${escapeHtml(l.nicho || 'Geral')} • Franca/SP</small>
+          </div>
+          <span class="badge ${badgeClass}">${badgeLabel}</span>
+        </div>
+
+        <div class="lead-card-body">
+          <div class="card-info-row">
+            <span>Presença Web:</span>
+            <strong>${renderSiteStatusLabel(l)}</strong>
+          </div>
+          <div class="card-info-row">
+            <span>Avaliação Google:</span>
+            <strong>${escapeHtml(l.avaliacao || '5.0')}</strong>
+          </div>
+          <div class="card-info-row">
+            <span>Contato Principal:</span>
+            <strong>${escapeHtml(wa)}</strong>
+          </div>
+        </div>
+
+        <div class="lead-card-footer">
+          <button type="button" class="btn btn-primary btn-sm btn-open-detail" style="width: 100%;" data-id="${l.id}">
+            Ver Ficha Completa
+          </button>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  attachRowEvents();
+}
+
+function renderSiteCell(lead) {
+  if (lead.siteStatus === 'online' && lead.siteOriginal) {
+    return `<a href="${lead.siteOriginal}" target="_blank" class="site-link-ok" title="${lead.siteOriginal}">🌐 ${formatDisplayUrl(lead.siteOriginal)} ↗</a>`;
+  } else if (lead.siteStatus === 'apenas_linktree') {
+    return `<span class="badge-site badge-site-social">🌲 Agrupador / Linktree</span>`;
+  } else if (lead.siteStatus === 'inacessivel') {
+    return `<span class="badge-site badge-site-down">⚠️ Site Inacessível</span>`;
+  } else {
+    return `<span class="badge-site badge-site-none">❌ Sem Site Cadastrado</span>`;
+  }
+}
+
+function renderSiteStatusLabel(lead) {
+  if (lead.siteStatus === 'online') return 'Site Ativo (Candidato a Redesign)';
+  if (lead.siteStatus === 'apenas_linktree') return 'Apenas Linktree';
+  if (lead.siteStatus === 'inacessivel') return 'Site Inacessível / Fora do Ar';
+  return 'Nenhum Site Encontrado (Ouro)';
+}
+
+function attachRowEvents() {
+  document.querySelectorAll('.btn-open-detail, .lead-row').forEach(el => {
+    el.addEventListener('click', (e) => {
+      if (e.target.closest('a') || e.target.classList.contains('mini-social-link')) return;
+      const id = el.dataset.id || el.closest('[data-id]')?.dataset.id;
+      if (id) {
+        const lead = allLeads.find(l => (l.id === id || l.slug === id));
+        if (lead) openModal(lead);
+      }
+    });
+  });
+}
+
 function renderCategoryChips() {
   if (!categoryChips) return;
-
-  // Se não vier do backend, calcula a partir de allLeads
-  let categoriesToRender = allCategories;
-  if (!categoriesToRender || categoriesToRender.length === 0) {
-    const map = new Map();
-    allLeads.forEach(l => {
-      const cat = l.categoria || { slug: 'outros', nome: 'Geral', icone: '🏢', badgeClass: 'cat-other' };
-      if (!map.has(cat.slug)) {
-        map.set(cat.slug, {
-          slug: cat.slug,
-          nome: cat.nome,
-          icone: cat.icone,
-          badgeClass: cat.badgeClass || 'cat-other',
-          total: 0
-        });
-      }
-      map.get(cat.slug).total++;
-    });
-    categoriesToRender = Array.from(map.values()).sort((a, b) => b.total - a.total);
-  }
+  const countMap = {};
+  allLeads.forEach(l => {
+    const id = l.categoria ? l.categoria.id : 'outros';
+    countMap[id] = (countMap[id] || 0) + 1;
+  });
 
   let html = `
     <button class="cat-chip ${activeCategory === 'todas' ? 'active' : ''}" data-cat="todas">
@@ -372,505 +420,150 @@ function renderCategoryChips() {
     </button>
   `;
 
-  categoriesToRender.forEach(cat => {
-    const count = allLeads.filter(l => l.categoria && l.categoria.slug === cat.slug).length;
-    html += `
-      <button class="cat-chip ${activeCategory === cat.slug ? 'active' : ''}" data-cat="${cat.slug}">
-        <span class="cat-chip-icon">${cat.icone}</span>
-        <span class="cat-chip-label">${cat.nome}</span>
-        <span class="cat-chip-count">${count}</span>
-      </button>
-    `;
+  allCategories.forEach(cat => {
+    const count = countMap[cat.id] || 0;
+    if (count > 0) {
+      html += `
+        <button class="cat-chip ${activeCategory === cat.id ? 'active' : ''}" data-cat="${cat.id}">
+          <span class="cat-chip-icon">${cat.icone}</span>
+          <span class="cat-chip-label">${cat.nome}</span>
+          <span class="cat-chip-count">${count}</span>
+        </button>
+      `;
+    }
   });
 
   categoryChips.innerHTML = html;
 
-  // Listeners de clique nas categorias
   categoryChips.querySelectorAll('.cat-chip').forEach(btn => {
     btn.addEventListener('click', () => {
-      const selected = btn.dataset.cat;
-      activeCategory = selected;
-      renderCategoryChips();
+      activeCategory = btn.dataset.cat;
+      categoryChips.querySelectorAll('.cat-chip').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
       render();
     });
   });
 }
 
-function updateStats(stats) {
-  statTotal.textContent = stats.total || 0;
-  statHot.textContent = stats.oportunidadesQuentes || 0;
-  if (statOnline) statOnline.textContent = stats.sitesAtivos || 0;
-  statReady.textContent = stats.prototiposProntos || 0;
-  statContacted.textContent = (stats.contatados || 0) + (stats.negociando || 0);
-  statDiscarded.textContent = stats.descartados || 0;
+function calculateStatsFromLeads(leads) {
+  return {
+    total: leads.length,
+    hot: leads.filter(l => l.status === 'oportunidade_quente' || (!l.siteOriginal && l.status !== 'descartado')).length,
+    online: leads.filter(l => l.status === 'site_ativo' || (l.siteOriginal && l.siteStatus === 'online' && l.status !== 'descartado')).length,
+    prototypes: leads.filter(l => l.status === 'prototipo_pronto' || l.prototypePath || l.prototypeUrl).length,
+    contacted: leads.filter(l => l.status === 'contatado' || l.status === 'negociando' || l.inCrm).length,
+    discarded: leads.filter(l => l.status === 'descartado').length
+  };
 }
 
-// Disparar mineração de leads
-async function triggerProspecting(niche, city) {
-  const btnText = btnProspect.querySelector('.btn-text');
-  const spinner = btnProspect.querySelector('.spinner');
-  
-  btnProspect.disabled = true;
-  btnText.textContent = 'Minerando no Google Maps...';
-  spinner.style.display = 'inline-block';
-  searchNotice.className = 'search-notice';
-  searchNotice.style.display = 'block';
-  searchNotice.textContent = `Buscando até 5 estabelecimentos qualificados de "${niche}" em ${city} com Playwright em segundo plano. Aguarde alguns instantes...`;
+function updateStats(backendStats) {
+  const stats = calculateStatsFromLeads(allLeads);
 
-  try {
-    const res = await fetch('/api/prospect', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ niche, city, limit: 5 })
-    });
-
-    const data = await res.json();
-    if (data.success) {
-      allLeads = data.leads || [];
-      updateStats(data.stats || {});
-
-      const totalFound = data.totalFound ?? (data.rawLeads ? data.rawLeads.length : 0);
-      const newLeads = data.newLeads || [];
-      const newCount = data.newCount ?? newLeads.length;
-      const existingCount = data.existingCount ?? (totalFound - newCount);
-      const hotCount = newLeads.filter(l => l.status === 'oportunidade_quente').length;
-
-      if (totalFound === 0) {
-        searchNotice.className = 'search-notice';
-        searchNotice.textContent = `Nenhum estabelecimento retornado pelo Google Maps para "${niche}" em ${city}.`;
-      } else if (newCount === 0) {
-        searchNotice.className = 'search-notice';
-        searchNotice.textContent = `ℹ️ ${totalFound} empresa(s) analisada(s) no Google Maps, mas TODAS as ${existingCount} já constavam na sua base de dados (dados e status foram sincronizados). Não há novos estabelecimentos para este nicho neste lote.`;
-        activeTab = 'todos';
-      } else {
-        const existingInfo = existingCount > 0 ? ` (${existingCount} já constavam no histórico e foram atualizadas)` : '';
-        
-        if (hotCount > 0) {
-          searchNotice.className = 'search-notice success';
-          searchNotice.textContent = `🎉 Concluído! ${totalFound} empresas analisadas: ${newCount} NOVA(S) adicionada(s), sendo ${hotCount} oportunidade(s) quente(s) (sem site próprio)!${existingInfo}. Exibindo em Oportunidades!`;
-          activeTab = 'oportunidade_quente';
-        } else {
-          searchNotice.className = 'search-notice';
-          searchNotice.textContent = `ℹ️ Concluído! ${totalFound} empresas analisadas: ${newCount} NOVA(S) adicionada(s) (com site ativo com SSL)${existingInfo}. Exibindo em Sites Ativos!`;
-          activeTab = 'site_ativo';
-        }
-      }
-
-      document.querySelectorAll('.stat-card').forEach(c => {
-        c.classList.toggle('active', c.dataset.filter === activeTab);
-      });
-      render();
-    } else {
-      searchNotice.className = 'search-notice error';
-      searchNotice.textContent = `Aviso: ${data.error || 'Nenhum lead encontrado'}`;
-    }
-  } catch (err) {
-    searchNotice.className = 'search-notice error';
-    searchNotice.textContent = `Erro ao conectar com o robô de mineração: ${err.message}`;
-  } finally {
-    btnProspect.disabled = false;
-    btnText.textContent = 'Buscar Empresas';
-    spinner.style.display = 'none';
-  }
+  if (statTotal) statTotal.textContent = stats.total;
+  if (statHot) statHot.textContent = stats.hot;
+  if (statOnline) statOnline.textContent = stats.online;
+  if (statReady) statReady.textContent = stats.prototypes;
+  if (statContacted) statContacted.textContent = stats.contacted;
+  if (statDiscarded) statDiscarded.textContent = stats.discarded;
 }
 
-// Renderização Principal
-function render() {
-  const query = filterSearch.value.toLowerCase().trim();
-  let filtered = [...allLeads];
+// ==========================================
+// MODAL DE DETALHES DO LEAD
+// ==========================================
 
-  // Filtro por Aba
-  if (activeTab !== 'todos') {
-    filtered = filtered.filter(l => l.status === activeTab);
-  }
-
-  // Filtro por Categoria de Negócio
-  if (activeCategory !== 'todas') {
-    filtered = filtered.filter(l => l.categoria && l.categoria.slug === activeCategory);
-  }
-
-  // Filtro por Texto
-  if (query) {
-    filtered = filtered.filter(l => 
-      l.nome.toLowerCase().includes(query) ||
-      (l.categoria && l.categoria.nome.toLowerCase().includes(query)) ||
-      (l.whatsappFormatado && l.whatsappFormatado.includes(query)) ||
-      (l.telefones && l.telefones.some(t => t.includes(query))) ||
-      (l.motivoDescarte && l.motivoDescarte.toLowerCase().includes(query)) ||
-      (l.nicho && l.nicho.toLowerCase().includes(query))
-    );
-  }
-
-  // Estado Vazio
-  if (filtered.length === 0) {
-    tableView.style.display = 'none';
-    cardsView.style.display = 'none';
-    emptyState.style.display = 'block';
-    return;
-  }
-
-  emptyState.style.display = 'none';
-  if (currentView === 'table') {
-    tableView.style.display = 'block';
-    cardsView.style.display = 'none';
-  } else {
-    tableView.style.display = 'none';
-    cardsView.style.display = 'grid';
-  }
-
-  // Renderizar Tabela
-  tableBody.innerHTML = filtered.map(lead => renderTableRow(lead)).join('');
-
-  // Renderizar Cards
-  cardsView.innerHTML = filtered.map(lead => renderCard(lead)).join('');
-
-  attachActionEvents();
-}
-
-function renderTableRow(lead) {
-  const isDiscarded = lead.status === 'descartado';
-  const badgeClass = getBadgeClass(lead.status);
-  const badgeLabel = getBadgeLabel(lead.status);
-
-  // Formatação de Contatos
-  const phoneDisplay = lead.whatsappFormatado || (lead.telefones && lead.telefones[0]) || 'Sem telefone';
-  const waLink = lead.whatsappPrincipal ? `https://wa.me/${lead.whatsappPrincipal}` : '#';
-
-  // Diagnóstico de Site e Presença
-  let siteDiagnosticHtml = '';
-  if (lead.siteStatus === 'inacessivel') {
-    siteDiagnosticHtml = `
-      <div>
-        <span class="badge-site badge-site-down">🚨 SITE FORA DO AR ${lead.siteHttpCode ? `(${lead.siteHttpCode})` : ''}</span>
-        <div style="margin-top: 3px;"><a href="${lead.siteOriginal}" target="_blank" class="site-link-broken" title="${escapeHtml(lead.siteOriginal)}">${escapeHtml(formatDisplayUrl(lead.siteOriginal))}</a></div>
-      </div>
-    `;
-  } else if (lead.siteStatus === 'nenhum' || !lead.siteOriginal) {
-    siteDiagnosticHtml = `
-      <div>
-        <span class="badge-site badge-site-none">⚠️ SEM SITE OFICIAL</span>
-      </div>
-    `;
-  } else if (lead.siteStatus === 'apenas_social') {
-    siteDiagnosticHtml = `
-      <div>
-        <span class="badge-site badge-site-social">📱 APENAS REDES</span>
-        <div style="margin-top: 3px;"><a href="${lead.siteOriginal}" target="_blank" class="site-link-social" title="${escapeHtml(lead.siteOriginal)}">${escapeHtml(formatDisplayUrl(lead.siteOriginal))}</a></div>
-      </div>
-    `;
-  } else if (lead.siteStatus === 'online') {
-    siteDiagnosticHtml = `
-      <div>
-        <span class="badge-site badge-site-ok">✅ Site Online</span>
-        <div style="margin-top: 3px;"><a href="${lead.siteOriginal}" target="_blank" class="site-link-ok" title="${escapeHtml(lead.siteOriginal)}">${escapeHtml(formatDisplayUrl(lead.siteOriginal))}</a></div>
-      </div>
-    `;
-  } else {
-    siteDiagnosticHtml = `<span style="color: var(--text-muted); font-size: 12px;">${escapeHtml(lead.motivoDescarte || 'Sem site')}</span>`;
-  }
-
-  // Redes Sociais
-  let socialChips = '';
-  if (lead.instagram || lead.facebook) {
-    socialChips = `
-      <div class="social-chips-row">
-        ${lead.instagram ? `<a href="${lead.instagram}" target="_blank" class="chip-social chip-insta" title="Instagram da empresa">📸 Insta</a>` : ''}
-        ${lead.facebook ? `<a href="${lead.facebook}" target="_blank" class="chip-social chip-fb" title="Facebook da empresa">📘 Face</a>` : ''}
-      </div>
-    `;
-  }
-
-  // Telefones secundários e e-mails
-  let extraPhones = '';
-  if (lead.telefones && lead.telefones.length > 1) {
-    const others = lead.telefones.filter(t => t !== lead.whatsappFormatado && t !== lead.telefones[0]);
-    if (others.length > 0) {
-      extraPhones = `<br/><small style="color: var(--text-muted);">☎️ ${others.join(', ')}</small>`;
-    }
-  }
-
-  let emailDisplay = '';
-  if (lead.emails && lead.emails.length > 0) {
-    emailDisplay = `<br/><small style="color: var(--cyan);">✉️ ${lead.emails[0]}</small>`;
-  }
-
-  const accurateMapsUrl = (lead.mapsUrl && lead.mapsUrl.includes('search/?api=1'))
-    ? lead.mapsUrl
-    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(lead.nome + ' ' + (lead.endereco || lead.cidade || 'Franca SP'))}`;
-
-  return `
-    <tr data-id="${lead.id || lead.slug}">
-      <td class="lead-name-cell">
-        <div class="lead-cat-row">
-          <span class="badge-category ${(lead.categoria && lead.categoria.badgeClass) || 'cat-other'}">
-            ${(lead.categoria && lead.categoria.icone) || '🏢'} ${escapeHtml((lead.categoria && lead.categoria.nome) || lead.nicho || 'Geral')}
-          </span>
-        </div>
-        <strong>${escapeHtml(lead.nome)}</strong>
-        <small>${escapeHtml(lead.nicho)} • ${escapeHtml(lead.cidade)}</small>
-        ${lead.endereco ? `<br/><small style="color: var(--muted); font-size: 0.72rem;">📍 ${escapeHtml(lead.endereco)}</small>` : ''}
-        <div style="margin-top: 4px;"><a href="${accurateMapsUrl}" target="_blank" class="maps-link-btn" title="Abrir ficha oficial no Google Maps">📍 Ver no Google Maps</a></div>
-      </td>
-      <td>
-        ${formatRating(lead.avaliacao)}
-      </td>
-      <td>
-        ${siteDiagnosticHtml}
-        ${socialChips}
-      </td>
-      <td>
-        <div>
-          ${lead.whatsappPrincipal ? `<a href="${waLink}" target="_blank" class="contact-link-wa">📱 ${phoneDisplay}</a>` : `<span class="contact-text-phone">${phoneDisplay}</span>`}
-          ${extraPhones}
-          ${emailDisplay}
-        </div>
-      </td>
-      <td>
-        <span class="badge ${badgeClass}">${badgeLabel}</span>
-      </td>
-      <td style="text-align: right;">
-        <div class="actions-cell">
-          <button class="btn btn-outline btn-sm btn-open-modal" data-id="${lead.id || lead.slug}">
-            👁️ Inspecionar
-          </button>
-          ${lead.status !== 'prototipo_pronto' && !isDiscarded ? `
-            <button class="btn btn-primary btn-sm btn-gen-proto" data-id="${lead.id || lead.slug}">
-              ⚡ Criar Protótipo
-            </button>
-          ` : ''}
-          ${lead.prototypeUrl ? `
-            <a href="${lead.prototypeUrl}" target="_blank" class="btn btn-secondary btn-sm" title="Abrir site em nova aba">
-              ↗ Ver Site
-            </a>
-          ` : ''}
-        </div>
-      </td>
-    </tr>
-  `;
-}
-
-function renderCard(lead) {
-  const badgeClass = getBadgeClass(lead.status);
-  const badgeLabel = getBadgeLabel(lead.status);
-  const phoneDisplay = lead.whatsappFormatado || (lead.telefones && lead.telefones[0]) || 'Sem telefone';
-  const waLink = lead.whatsappPrincipal ? `https://wa.me/${lead.whatsappPrincipal}` : '#';
-
-  // Site Badge
-  let siteBadge = '';
-  if (lead.siteStatus === 'inacessivel') {
-    siteBadge = `<span class="badge-site badge-site-down">🚨 FORA DO AR ${lead.siteHttpCode ? `(${lead.siteHttpCode})` : ''}</span>`;
-  } else if (lead.siteStatus === 'nenhum' || !lead.siteOriginal) {
-    siteBadge = `<span class="badge-site badge-site-none">⚠️ SEM SITE</span>`;
-  } else if (lead.siteStatus === 'apenas_social') {
-    siteBadge = `<span class="badge-site badge-site-social">📱 APENAS REDES</span>`;
-  } else if (lead.siteStatus === 'online') {
-    siteBadge = `<span class="badge-site badge-site-ok">✅ Site Online</span>`;
-  }
-
-  // Social chips
-  let socialChips = '';
-  if (lead.instagram || lead.facebook) {
-    socialChips = `
-      <div class="social-chips-row" style="margin-bottom: 8px;">
-        ${lead.instagram ? `<a href="${lead.instagram}" target="_blank" class="chip-social chip-insta">📸 Insta</a>` : ''}
-        ${lead.facebook ? `<a href="${lead.facebook}" target="_blank" class="chip-social chip-fb">📘 Face</a>` : ''}
-      </div>
-    `;
-  }
-
-  return `
-    <div class="lead-card" data-id="${lead.id || lead.slug}">
-      <div>
-        <div class="lead-card-header">
-          <span class="badge-category ${(lead.categoria && lead.categoria.badgeClass) || 'cat-other'}">
-            ${(lead.categoria && lead.categoria.icone) || '🏢'} ${escapeHtml((lead.categoria && lead.categoria.nome) || lead.nicho || 'Geral')}
-          </span>
-          <span class="badge ${badgeClass}">${badgeLabel}</span>
-        </div>
-        <h3 style="font-size: 16px; margin-bottom: 4px;">${escapeHtml(lead.nome)}</h3>
-        <p style="font-size: 12px; color: var(--cyan); margin-bottom: 8px;">${escapeHtml(lead.nicho)} • ${escapeHtml(lead.cidade)}</p>
-        
-        <div style="margin-bottom: 10px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-          ${siteBadge}
-          ${lead.mapsUrl ? `<a href="${lead.mapsUrl}" target="_blank" class="maps-link-btn">📍 Maps</a>` : ''}
-        </div>
-
-        ${socialChips}
-
-        <div class="lead-card-body">
-          <p><strong>Avaliação:</strong> ${formatRating(lead.avaliacao)}</p>
-          <p><strong>Contato:</strong> ${lead.whatsappPrincipal ? `<a href="${waLink}" target="_blank" class="contact-link-wa">${phoneDisplay}</a>` : phoneDisplay}</p>
-          <p><strong>Diagnóstico:</strong> ${lead.motivoDescarte || lead.analiseIA || 'Em análise'}</p>
-        </div>
-      </div>
-
-      <div style="display: flex; gap: 8px; margin-top: 14px;">
-        <button class="btn btn-outline btn-sm flex-1 btn-open-modal" data-id="${lead.id || lead.slug}">
-          Inspecionar
-        </button>
-        ${lead.status !== 'prototipo_pronto' && lead.status !== 'descartado' ? `
-          <button class="btn btn-primary btn-sm flex-1 btn-gen-proto" data-id="${lead.id || lead.slug}">
-            Criar Protótipo
-          </button>
-        ` : ''}
-        ${lead.prototypeUrl ? `
-          <a href="${lead.prototypeUrl}" target="_blank" class="btn btn-secondary btn-sm flex-1" style="text-align: center;">
-            ↗ Ver Site
-          </a>
-        ` : ''}
-      </div>
-    </div>
-  `;
-}
-
-function attachActionEvents() {
-  document.querySelectorAll('.btn-open-modal').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const leadId = btn.dataset.id;
-      const lead = allLeads.find(l => (l.id === leadId || l.slug === leadId));
-      if (lead) openModal(lead);
-    });
-  });
-
-  document.querySelectorAll('.btn-gen-proto').forEach(btn => {
-    btn.addEventListener('click', async (e) => {
-      e.stopPropagation();
-      const leadId = btn.dataset.id;
-      btn.disabled = true;
-      btn.innerHTML = '⏳ Minerando...';
-      const leadObj = allLeads.find(l => (l.id === leadId || l.slug === leadId));
-      const selectedTemplate = getRecommendedArchetype(leadObj);
-      await generatePrototypeForLead(leadId, selectedTemplate);
-    });
-  });
-}
-
-// Abertura do Modal de Inspeção
 function openModal(lead) {
   currentSelectedLead = lead;
 
-  modalLeadName.textContent = lead.nome;
-  modalLeadBadge.className = `badge ${getBadgeClass(lead.status)}`;
-  modalLeadBadge.textContent = getBadgeLabel(lead.status);
+  if (modalLeadName) modalLeadName.textContent = lead.nome;
+  if (modalLeadNiche) modalLeadNiche.textContent = `${lead.nicho || 'Geral'} • ${lead.cidade || 'Franca SP'}`;
+  if (modalAiText) modalAiText.textContent = lead.analiseIA || 'Diagnóstico automático: Excelente oportunidade local.';
 
-  if (modalLeadCategory && lead.categoria) {
-    modalLeadCategory.className = `badge-category ${lead.categoria.badgeClass || 'cat-other'}`;
-    modalLeadCategory.textContent = `${lead.categoria.icone || '🏢'} ${lead.categoria.nome}`;
-    modalLeadCategory.style.display = 'inline-flex';
-  } else if (modalLeadCategory) {
-    modalLeadCategory.style.display = 'none';
-  }
-
-  // Diagnóstico detalhado
-  let analysisText = '';
-  if (lead.siteStatus === 'inacessivel') {
-    analysisText = `🚨 ATENÇÃO: O site oficial (${lead.siteOriginal}) está FORA DO AR (HTTP ${lead.siteHttpCode || 403}).\n\nEssa é a melhor abordagem de venda: potenciais clientes e ferramentas de IA (ChatGPT, Meta AI) encontram um erro ao pesquisar a empresa. Oportunidade imediata para ativação do site Subzero!\n\n${lead.analiseIA || ''}`;
-  } else if (lead.motivoDescarte) {
-    analysisText = `Motivo: ${lead.motivoDescarte}\n${lead.analiseIA || ''}`;
-  } else {
-    analysisText = lead.analiseIA || 'Empresa qualificada sem presença web oficial.';
-  }
-  modalLeadAnalysis.textContent = analysisText;
-
-  // Sincronização dos campos de visualização e edição
   if (modalLeadNameDisplay) modalLeadNameDisplay.textContent = lead.nome;
+  if (modalLeadMapsLink) {
+    modalLeadMapsLink.href = lead.mapsUrl || `https://www.google.com/maps/search/${encodeURIComponent(lead.nome + ' ' + (lead.cidade || 'Franca SP'))}`;
+  }
+  if (modalLeadSite) modalLeadSite.textContent = lead.siteOriginal || 'Nenhum site cadastrado';
+  if (modalLeadWa) modalLeadWa.textContent = lead.whatsappFormatado || lead.whatsappPrincipal || 'Não informado';
+  if (modalLeadPhones) modalLeadPhones.textContent = (lead.telefones && lead.telefones.join(', ')) || 'Nenhum';
+
+  if (modalLeadInsta) {
+    if (lead.instagram) {
+      modalLeadInsta.textContent = lead.instagram;
+      modalLeadInsta.href = lead.instagram;
+    } else {
+      modalLeadInsta.textContent = 'Não localizado';
+      modalLeadInsta.removeAttribute('href');
+    }
+  }
+
+  if (modalLeadFb) {
+    if (lead.facebook) {
+      modalLeadFb.textContent = lead.facebook;
+      modalLeadFb.href = lead.facebook;
+    } else {
+      modalLeadFb.textContent = 'Não localizado';
+      modalLeadFb.removeAttribute('href');
+    }
+  }
+
+  // Preenche modo de edição
   if (editLeadName) editLeadName.value = lead.nome || '';
   if (editLeadInsta) editLeadInsta.value = lead.instagram || '';
   if (editLeadFb) editLeadFb.value = lead.facebook || '';
-  if (editLeadWa) editLeadWa.value = lead.whatsappFormatado || (lead.whatsappPrincipal ? '+' + lead.whatsappPrincipal : '');
+  if (editLeadWa) editLeadWa.value = lead.whatsappFormatado || lead.whatsappPrincipal || '';
   if (editLeadSite) editLeadSite.value = lead.siteOriginal || '';
 
   if (leadEditForm) leadEditForm.style.display = 'none';
   if (leadViewFields) leadViewFields.style.display = 'block';
-  if (btnToggleEditLead) btnToggleEditLead.textContent = '✏️ Editar';
 
-  // Google Maps Ficha
-  const modalMapsHref = (lead.mapsUrl && lead.mapsUrl.includes('search/?api=1'))
-    ? lead.mapsUrl
-    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(lead.nome + ' ' + (lead.endereco || lead.cidade || 'Franca SP'))}`;
-
-  modalLeadMapsLink.href = modalMapsHref;
-  modalLeadMapsLink.style.display = 'inline-block';
-
-  // Site Original
-  if (lead.siteOriginal) {
-    const statusNote = lead.siteStatus === 'inacessivel' ? ` [🚨 FORA DO AR ${lead.siteHttpCode ? `(${lead.siteHttpCode})` : ''}]` : '';
-    modalLeadSite.innerHTML = `<a href="${lead.siteOriginal}" target="_blank" title="${escapeHtml(lead.siteOriginal)}" style="color: ${lead.siteStatus === 'inacessivel' ? 'var(--red)' : 'var(--cyan)'}; text-decoration: underline; max-width: 300px; display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: middle;">${escapeHtml(formatDisplayUrl(lead.siteOriginal))}</a>${statusNote}`;
-  } else {
-    modalLeadSite.textContent = 'Nenhum site cadastrado';
-  }
-
-  // Contatos
-  modalLeadWa.textContent = lead.whatsappFormatado || (lead.whatsappPrincipal ? '+' + lead.whatsappPrincipal : 'Não informado');
-  modalLeadPhones.textContent = (lead.telefones && lead.telefones.join(', ')) || 'N/A';
-
-  // Instagram
-  if (lead.instagram) {
-    modalLeadInsta.href = lead.instagram;
-    modalLeadInsta.textContent = lead.instagram.replace(/^https?:\/\/(www\.)?instagram\.com\//, '@');
-    modalLeadInsta.style.display = 'inline-block';
-  } else {
-    modalLeadInsta.textContent = 'Não localizado';
-    modalLeadInsta.removeAttribute('href');
-  }
-
-  // Facebook
-  if (lead.facebook) {
-    modalLeadFb.href = lead.facebook;
-    modalLeadFb.textContent = lead.facebook.replace(/^https?:\/\/(www\.)?facebook\.com\//, '');
-    modalLeadFb.style.display = 'inline-block';
-  } else {
-    modalLeadFb.textContent = 'Não localizado';
-    modalLeadFb.removeAttribute('href');
-  }
-
-  // Sincroniza seletor de template com arquétipo recomendado ou salvo
   if (templateSelector) {
     templateSelector.value = getRecommendedArchetype(lead);
   }
 
-  modalStatusSelect.value = lead.status;
-  modalNotes.value = lead.anotacoes || '';
+  if (modalStatusSelect) modalStatusSelect.value = lead.status || 'oportunidade_quente';
+  if (modalNotes) modalNotes.value = lead.anotacoes || '';
 
   // Mensagem WhatsApp
   if (lead.messages && lead.messages.whatsapp) {
     modalWaText.textContent = lead.messages.whatsapp;
-    btnCopyWa.style.display = 'inline-flex';
-    if (lead.whatsappPrincipal) {
+    if (btnCopyWa) btnCopyWa.style.display = 'inline-flex';
+    if (lead.whatsappPrincipal && btnOpenWaWeb) {
       btnOpenWaWeb.href = `https://web.whatsapp.com/send?phone=${lead.whatsappPrincipal}&text=${encodeURIComponent(lead.messages.whatsapp)}`;
       btnOpenWaWeb.style.display = 'inline-flex';
-    } else {
+    } else if (btnOpenWaWeb) {
       btnOpenWaWeb.style.display = 'none';
     }
   } else {
-    modalWaText.textContent = 'Protótipo ainda não construído para esta empresa.\n\nPara gerar o site completo e as mensagens personalizadas para WhatsApp e E-mail, vá até a aba "💻 Protótipo do Site" e clique em "⚡ Criar Protótipo".';
-    btnCopyWa.style.display = 'none';
-    btnOpenWaWeb.style.display = 'none';
+    modalWaText.textContent = 'Protótipo ainda não construído para esta empresa.\n\nPara gerar o site completo e as mensagens de WhatsApp e E-mail, vá até a aba "💻 Protótipo do Site" e clique em "⚡ Criar Protótipo".';
+    if (btnCopyWa) btnCopyWa.style.display = 'none';
+    if (btnOpenWaWeb) btnOpenWaWeb.style.display = 'none';
   }
 
   // Mensagem E-mail
   if (lead.messages && lead.messages.email) {
     modalEmailSubject.textContent = lead.messages.email.assunto;
     modalEmailBody.textContent = lead.messages.email.corpo;
-    btnCopyEmail.style.display = 'inline-flex';
+    if (btnCopyEmail) btnCopyEmail.style.display = 'inline-flex';
   } else {
     modalEmailSubject.textContent = '-';
     modalEmailBody.textContent = 'Crie o protótipo na aba ao lado para liberar a proposta de e-mail pronta.';
-    btnCopyEmail.style.display = 'none';
+    if (btnCopyEmail) btnCopyEmail.style.display = 'none';
   }
 
   // Protótipo
   if (lead.prototypeUrl) {
     prototypeIframe.src = lead.prototypeUrl;
-    btnOpenProtoTab.href = lead.prototypeUrl;
-    btnOpenProtoTab.style.display = 'inline-flex';
-    btnGenerateProto.textContent = '🔄 Regerar Protótipo';
-    prototypeStatusLabel.textContent = `✅ Protótipo no ar (${lead.templateEscolhido || 'Subzero Engine'})`;
+    if (btnOpenProtoTab) {
+      btnOpenProtoTab.href = lead.prototypeUrl;
+      btnOpenProtoTab.style.display = 'inline-flex';
+    }
+    if (btnGenerateProto) btnGenerateProto.textContent = '🔄 Regerar Protótipo';
+    if (prototypeStatusLabel) prototypeStatusLabel.textContent = `✅ Protótipo no ar (${lead.templateEscolhido || 'Subzero Engine'})`;
   } else {
     prototypeIframe.src = 'about:blank';
-    btnOpenProtoTab.style.display = 'none';
-    btnGenerateProto.textContent = '⚡ Criar Protótipo';
-    prototypeStatusLabel.textContent = '⚠️ Protótipo ainda não construído (Aguardando seu clique)';
+    if (btnOpenProtoTab) btnOpenProtoTab.style.display = 'none';
+    if (btnGenerateProto) btnGenerateProto.textContent = '⚡ Criar Protótipo';
+    if (prototypeStatusLabel) prototypeStatusLabel.textContent = '⚠️ Protótipo ainda não construído (Aguardando seu clique)';
   }
 
   leadModal.style.display = 'flex';
@@ -878,11 +571,655 @@ function openModal(lead) {
 
 function closeModal() {
   leadModal.style.display = 'none';
-  prototypeIframe.src = 'about:blank';
+  if (prototypeIframe) prototypeIframe.src = 'about:blank';
   currentSelectedLead = null;
 }
 
-// Atualizar Lead no Servidor
+// ==========================================
+// MÓDULO 2: AGENTE EM TEMPO REAL (LIVE OPS)
+// ==========================================
+
+function initAgentMonitor() {
+  fetchAgentSnapshot();
+
+  if (window.EventSource) {
+    agentEventSource = new EventSource('/api/agent/stream');
+
+    agentEventSource.onmessage = (event) => {
+      try {
+        const payload = JSON.parse(event.data);
+        if (payload.type === 'snapshot' || payload.type === 'update') {
+          applyAgentState(payload.data);
+        } else if (payload.type === 'log') {
+          appendLogLine(payload.data);
+        }
+      } catch (err) {
+        console.warn('Erro ao processar stream do agente:', err);
+      }
+    };
+  }
+
+  btnAgentTrigger?.addEventListener('click', async () => {
+    const selectedId = agentLeadSelect.value;
+    if (!selectedId) {
+      alert('Por favor, selecione um lead no menu suspenso.');
+      return;
+    }
+
+    btnAgentTrigger.disabled = true;
+    btnAgentTrigger.innerHTML = '<span>⏳ Iniciando...</span>';
+
+    try {
+      const res = await fetch('/api/agent/trigger', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ leadId: selectedId })
+      });
+      const data = await res.json();
+      if (!data.success) {
+        alert(data.error || 'Erro ao disparar agente');
+      }
+    } catch (err) {
+      alert(`Falha: ${err.message}`);
+    } finally {
+      btnAgentTrigger.disabled = false;
+      btnAgentTrigger.innerHTML = '<span>Iniciar Auditoria</span>';
+    }
+  });
+
+  btnClearLogs?.addEventListener('click', () => {
+    if (terminalLogsBody) {
+      terminalLogsBody.innerHTML = `
+        <div class="terminal-line system">
+          <span class="t-time">[${new Date().toLocaleTimeString('pt-BR')}]</span>
+          <span class="t-tag">[SISTEMA]</span>
+          <span class="t-msg">Logs limpos manualmente pelo usuário.</span>
+        </div>
+      `;
+    }
+  });
+}
+
+async function fetchAgentSnapshot() {
+  try {
+    const res = await fetch('/api/agent/status');
+    const state = await res.json();
+    applyAgentState(state);
+  } catch (err) {
+    console.warn('Erro ao obter snapshot do agente:', err);
+  }
+}
+
+function applyAgentState(state) {
+  if (!state) return;
+
+  const isRunning = state.status === 'running';
+
+  if (agentRadarWrapper) {
+    if (isRunning) agentRadarWrapper.classList.add('running');
+    else agentRadarWrapper.classList.remove('running');
+  }
+
+  if (agentHeaderStatusText) agentHeaderStatusText.textContent = state.statusLabel || 'Agente Ocioso';
+  if (topbarLiveText) topbarLiveText.textContent = isRunning ? `Agente: Em Operação (${state.progressPercent}%)` : 'Agente: Ocioso';
+  if (sidebarAgentStatusText) sidebarAgentStatusText.textContent = isRunning ? 'Agente Minerando...' : 'Agente Pronto';
+
+  const pulseColor = isRunning ? 'var(--cyan)' : (state.status === 'error' ? 'var(--red)' : 'var(--green)');
+  [topbarPulseDot, sidebarPulse, agentHeaderDot, agentPulseNav].forEach(dot => {
+    if (dot) {
+      dot.style.backgroundColor = pulseColor;
+      dot.style.boxShadow = `0 0 10px ${pulseColor}`;
+    }
+  });
+
+  if (agentCurrentTaskTitle) {
+    agentCurrentTaskTitle.textContent = state.currentJobName || 'Aguardando Nova Operação Autônoma';
+  }
+  if (agentCurrentTaskDetail) {
+    agentCurrentTaskDetail.textContent = state.stepDetail || state.stepLabel || 'Conectado localmente ao motor Subzero Engine.';
+  }
+
+  if (agentTargetName) agentTargetName.textContent = state.currentLeadName || '—';
+  if (agentTargetNiche) agentTargetNiche.textContent = state.currentLeadNiche ? `${state.currentLeadNiche} • Franca SP` : 'Nenhuma empresa em análise';
+
+  const currentStep = state.currentStep || 0;
+  for (let i = 1; i <= 5; i++) {
+    const node = document.getElementById(`stepNode${i}`);
+    if (node) {
+      node.classList.remove('completed', 'active');
+      if (i < currentStep || (state.status === 'completed' && i <= 5)) {
+        node.classList.add('completed');
+      } else if (i === currentStep && isRunning) {
+        node.classList.add('active');
+      }
+    }
+  }
+
+  const stepPercentMap = { 0: 0, 1: 15, 2: 38, 3: 62, 4: 85, 5: 100 };
+  const fillPct = isRunning ? (stepPercentMap[currentStep] || state.progressPercent) : (state.status === 'completed' ? 100 : 0);
+  if (stepperProgressFill) stepperProgressFill.style.width = `${fillPct}%`;
+
+  if (agentProgressInner) agentProgressInner.style.width = `${state.progressPercent || 0}%`;
+  if (agentProgressPercent) agentProgressPercent.textContent = `${state.progressPercent || 0}%`;
+  if (agentProgressStepText) agentProgressStepText.textContent = `Etapa ${currentStep} de 5: ${state.stepLabel || ''}`;
+
+  if (metricInspected) metricInspected.textContent = state.stats?.totalEnriched || allLeads.length;
+  if (metricPrototypes) metricPrototypes.textContent = state.stats?.totalPrototypes || allLeads.filter(l => l.prototypePath).length;
+  if (metricTimeElapsed) metricTimeElapsed.textContent = `${state.elapsedSeconds || 0}s`;
+
+  if (terminalLogsBody && state.logs && terminalLogsBody.children.length <= 1) {
+    state.logs.forEach(appendLogLine);
+  }
+}
+
+function appendLogLine(log) {
+  if (!terminalLogsBody || !log) return;
+  const line = document.createElement('div');
+  line.className = 'terminal-line';
+
+  const typeClass = log.type || 'info';
+  const tagUpper = (log.type || 'INFO').toUpperCase();
+
+  line.innerHTML = `
+    <span class="t-time">[${log.timestamp || new Date().toLocaleTimeString('pt-BR')}]</span>
+    <span class="t-tag ${typeClass}">[${tagUpper}]</span>
+    <span class="t-msg">${escapeHtml(log.message)}</span>
+  `;
+
+  terminalLogsBody.appendChild(line);
+
+  while (terminalLogsBody.children.length > 150) {
+    terminalLogsBody.removeChild(terminalLogsBody.firstChild);
+  }
+
+  terminalLogsBody.scrollTop = terminalLogsBody.scrollHeight;
+}
+
+function refreshAgentLeadDropdown() {
+  if (!agentLeadSelect) return;
+  if (allLeads.length === 0) {
+    agentLeadSelect.innerHTML = '<option value="">Nenhum lead disponível ainda</option>';
+    return;
+  }
+
+  agentLeadSelect.innerHTML = allLeads.map(l => {
+    return `<option value="${l.id}">${escapeHtml(l.nome)} (${escapeHtml(l.nicho || 'Geral')})</option>`;
+  }).join('');
+}
+
+// ==========================================
+// MÓDULO 3: CRM & FUNIL DE NEGOCIAÇÃO KANBAN
+// ==========================================
+
+async function fetchCrmLeads() {
+  try {
+    const res = await fetch('/api/crm');
+    const data = await res.json();
+    crmLeads = data.crmLeads || [];
+    renderCrmBoard(crmLeads);
+    if (navBadgeCrm) navBadgeCrm.textContent = crmLeads.length;
+  } catch (err) {
+    console.error('Erro ao buscar CRM:', err);
+  }
+}
+
+function renderCrmBoard(leads) {
+  const stages = ['contato_enviado', 'em_conversa', 'prototipo_apresentado', 'negociando', 'fechado_ganho', 'standby'];
+  const columns = {};
+  const values = {};
+  const counts = {};
+
+  stages.forEach(s => {
+    columns[s] = document.getElementById(`cards-${s}`);
+    if (columns[s]) columns[s].innerHTML = '';
+    values[s] = 0;
+    counts[s] = 0;
+  });
+
+  let totalVal = 0;
+  let wonCount = 0;
+
+  leads.forEach(lead => {
+    const stage = lead.crmStage || 'contato_enviado';
+    const targetCol = columns[stage] || columns['contato_enviado'];
+    const val = parseFloat(lead.crmValor) || 0;
+
+    values[stage] = (values[stage] || 0) + val;
+    counts[stage] = (counts[stage] || 0) + 1;
+    totalVal += val;
+    if (stage === 'fechado_ganho') wonCount += 1;
+
+    if (targetCol) {
+      targetCol.appendChild(createKanbanCardElement(lead));
+    }
+  });
+
+  stages.forEach(s => {
+    const cntEl = document.getElementById(`count-${s}`);
+    const valEl = document.getElementById(`val-${s}`);
+    if (cntEl) cntEl.textContent = counts[s] || 0;
+    if (valEl) valEl.textContent = `R$ ${(values[s] || 0).toLocaleString('pt-BR')}`;
+  });
+
+  if (crmTotalValue) crmTotalValue.textContent = `R$ ${totalVal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+  if (crmTotalCount) crmTotalCount.textContent = leads.length;
+  if (crmWonCount) crmWonCount.textContent = wonCount;
+}
+
+function createKanbanCardElement(lead) {
+  const card = document.createElement('div');
+  card.className = 'kanban-card';
+  card.dataset.id = lead.id;
+
+  const valFormatted = (parseFloat(lead.crmValor) || 1500).toLocaleString('pt-BR', { minimumFractionDigits: 0 });
+  const wa = lead.whatsappFormatado || lead.whatsappPrincipal;
+  const waLink = lead.whatsappPrincipal ? `https://web.whatsapp.com/send?phone=${lead.whatsappPrincipal}` : '#';
+
+  const relativeDate = formatRelativeDate(lead.crmUltimoContato || lead.updatedAt);
+
+  card.innerHTML = `
+    <div class="kanban-card-head">
+      <div class="kanban-card-title">${escapeHtml(lead.nome)}</div>
+    </div>
+    <span class="kanban-card-niche">${escapeHtml(lead.nicho || 'Geral')} • Franca/SP</span>
+
+    <div class="kanban-card-val-row">
+      <span class="kanban-val-tag">R$ ${valFormatted}</span>
+      <span class="kanban-date-tag">🕒 ${relativeDate}</span>
+    </div>
+
+    ${lead.anotacoes ? `<div class="kanban-card-notes">${escapeHtml(lead.anotacoes)}</div>` : ''}
+
+    <div class="kanban-card-actions">
+      <div class="kanban-btns-left">
+        ${wa ? `<a href="${waLink}" target="_blank" class="btn btn-outline btn-xs" title="Conversar no WhatsApp">💬 WA</a>` : ''}
+        ${lead.prototypeUrl ? `<a href="${lead.prototypeUrl}" target="_blank" class="btn btn-outline btn-xs" title="Ver Protótipo">💻 Site</a>` : ''}
+        <button type="button" class="btn btn-outline btn-xs btn-crm-edit" title="Editar proposta e anotações">✏️</button>
+      </div>
+
+      <div class="kanban-stage-mover">
+        <button type="button" class="btn-move btn-move-prev" title="Voltar estágio">←</button>
+        <button type="button" class="btn-move btn-move-next" title="Avançar estágio">→</button>
+      </div>
+    </div>
+  `;
+
+  card.querySelector('.btn-crm-edit')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    openCrmEditModal(lead);
+  });
+
+  card.querySelector('.btn-move-prev')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    moveCrmLeadStage(lead, -1);
+  });
+
+  card.querySelector('.btn-move-next')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    moveCrmLeadStage(lead, 1);
+  });
+
+  card.addEventListener('click', () => {
+    openModal(lead);
+  });
+
+  return card;
+}
+
+const CRM_STAGES_ORDER = ['contato_enviado', 'em_conversa', 'prototipo_apresentado', 'negociando', 'fechado_ganho', 'standby'];
+
+async function moveCrmLeadStage(lead, direction) {
+  const currentIdx = CRM_STAGES_ORDER.indexOf(lead.crmStage || 'contato_enviado');
+  let newIdx = currentIdx + direction;
+  if (newIdx < 0) newIdx = 0;
+  if (newIdx >= CRM_STAGES_ORDER.length) newIdx = CRM_STAGES_ORDER.length - 1;
+
+  const nextStage = CRM_STAGES_ORDER[newIdx];
+  if (nextStage === lead.crmStage) return;
+
+  try {
+    const res = await fetch(`/api/crm/${lead.id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ crmStage: nextStage, crmUltimoContato: new Date().toISOString() })
+    });
+    const data = await res.json();
+    if (data.success) {
+      lead.crmStage = nextStage;
+      lead.crmUltimoContato = new Date().toISOString();
+      fetchCrmLeads();
+    }
+  } catch (err) {
+    console.error('Erro ao mover lead no CRM:', err);
+  }
+}
+
+function openCrmEditModal(lead) {
+  if (crmEditLeadId) crmEditLeadId.value = lead.id;
+  if (crmModalLeadName) crmModalLeadName.textContent = lead.nome;
+  if (crmModalLeadNiche) crmModalLeadNiche.textContent = `${lead.nicho || 'Geral'} • Franca/SP`;
+  if (crmEditStage) crmEditStage.value = lead.crmStage || 'contato_enviado';
+  if (crmEditValue) crmEditValue.value = lead.crmValor !== undefined ? lead.crmValor : 1500;
+  if (crmEditNotes) crmEditNotes.value = lead.anotacoes || '';
+
+  if (crmEditModal) crmEditModal.style.display = 'flex';
+}
+
+function closeCrmEditModal() {
+  if (crmEditModal) crmEditModal.style.display = 'none';
+}
+
+crmEditForm?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const id = crmEditLeadId.value;
+  if (!id) return;
+
+  const stage = crmEditStage.value;
+  const valor = parseFloat(crmEditValue.value) || 0;
+  const notes = crmEditNotes.value.trim();
+
+  try {
+    const res = await fetch(`/api/crm/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        crmStage: stage,
+        crmValor: valor,
+        crmNotas: notes,
+        crmUltimoContato: new Date().toISOString(),
+        inCrm: true
+      })
+    });
+    const data = await res.json();
+    if (data.success) {
+      closeCrmEditModal();
+      fetchCrmLeads();
+      fetchLeads();
+    }
+  } catch (err) {
+    alert(`Erro ao salvar no CRM: ${err.message}`);
+  }
+});
+
+btnRemoveFromCrm?.addEventListener('click', async () => {
+  const id = crmEditLeadId.value;
+  if (!id || !confirm('Deseja remover esta empresa do Funil de Negociação?')) return;
+
+  try {
+    await fetch(`/api/crm/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ inCrm: false })
+    });
+    closeCrmEditModal();
+    fetchCrmLeads();
+  } catch (err) {
+    alert(`Erro ao remover: ${err.message}`);
+  }
+});
+
+crmModalCloseBtn?.addEventListener('click', closeCrmEditModal);
+crmEditModal?.addEventListener('click', (e) => {
+  if (e.target === crmEditModal) closeCrmEditModal();
+});
+
+btnOpenAddCrmModal?.addEventListener('click', () => {
+  const unassigned = allLeads.filter(l => !l.inCrm);
+  if (unassigned.length === 0) {
+    alert('Todas as empresas mineradas já estão no Funil de Negociação!');
+    return;
+  }
+  openModal(unassigned[0]);
+});
+
+btnModalSendToCrm?.addEventListener('click', async () => {
+  if (!currentSelectedLead) return;
+  try {
+    const res = await fetch(`/api/crm/add/${currentSelectedLead.id}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ stage: 'contato_enviado', valor: 1500 })
+    });
+    const data = await res.json();
+    if (data.success) {
+      btnModalSendToCrm.innerHTML = '<span>✅ Adicionado ao Funil!</span>';
+      setTimeout(() => {
+        btnModalSendToCrm.innerHTML = '<span>💼 Enviar para o Funil CRM</span>';
+      }, 2000);
+      fetchCrmLeads();
+    }
+  } catch (err) {
+    alert(`Erro ao adicionar ao CRM: ${err.message}`);
+  }
+});
+
+// ==========================================
+// CONFIGURAÇÃO GERAL DE EVENTOS
+// ==========================================
+
+function setupEventListeners() {
+  prospectForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const niche = nicheInput.value.trim();
+    const city = cityInput.value.trim() || 'Franca SP';
+    if (!niche) return;
+
+    btnProspect.disabled = true;
+    btnProspect.querySelector('.btn-text').textContent = 'Minerando...';
+    btnProspect.querySelector('.spinner').style.display = 'inline-block';
+    if (searchNotice) searchNotice.style.display = 'none';
+
+    try {
+      const res = await fetch('/api/prospect', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ niche, city, limit: 5 })
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        allLeads = data.leads || allLeads;
+        updateStats(data.stats);
+        renderCategoryChips();
+        render();
+        refreshAgentLeadDropdown();
+        if (searchNotice) {
+          searchNotice.textContent = data.message;
+          searchNotice.style.display = 'block';
+        }
+      } else {
+        alert(data.error || 'Aviso durante a mineração.');
+      }
+    } catch (err) {
+      alert(`Falha na busca: ${err.message}`);
+    } finally {
+      btnProspect.disabled = false;
+      btnProspect.querySelector('.btn-text').textContent = 'Buscar Empresas';
+      btnProspect.querySelector('.spinner').style.display = 'none';
+    }
+  });
+
+  document.querySelectorAll('.chip-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      nicheInput.value = btn.dataset.niche;
+      prospectForm.dispatchEvent(new Event('submit'));
+    });
+  });
+
+  filterSearch?.addEventListener('input', () => {
+    render();
+  });
+
+  document.querySelectorAll('.stat-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.stat-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      activeTab = card.dataset.filter;
+      render();
+    });
+  });
+
+  document.getElementById('viewTable')?.addEventListener('click', () => {
+    currentView = 'table';
+    document.getElementById('viewTable')?.classList.add('active');
+    document.getElementById('viewCards')?.classList.remove('active');
+    render();
+  });
+
+  document.getElementById('viewCards')?.addEventListener('click', () => {
+    currentView = 'cards';
+    document.getElementById('viewCards')?.classList.add('active');
+    document.getElementById('viewTable')?.classList.remove('active');
+    render();
+  });
+
+  modalCloseBtn?.addEventListener('click', closeModal);
+  leadModal?.addEventListener('click', (e) => {
+    if (e.target === leadModal) closeModal();
+  });
+
+  btnToggleEditLead?.addEventListener('click', () => {
+    const isEditing = leadEditForm.style.display !== 'none';
+    if (isEditing) {
+      leadEditForm.style.display = 'none';
+      leadViewFields.style.display = 'block';
+      btnToggleEditLead.textContent = '✏️ Editar';
+    } else {
+      leadEditForm.style.display = 'block';
+      leadViewFields.style.display = 'none';
+      btnToggleEditLead.textContent = '👁️ Visualizar';
+    }
+  });
+
+  btnCancelEditLead?.addEventListener('click', () => {
+    leadEditForm.style.display = 'none';
+    leadViewFields.style.display = 'block';
+    btnToggleEditLead.textContent = '✏️ Editar';
+  });
+
+  leadEditForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!currentSelectedLead) return;
+
+    const updates = {
+      nome: editLeadName.value.trim(),
+      instagram: editLeadInsta.value.trim(),
+      facebook: editLeadFb.value.trim(),
+      whatsapp: editLeadWa.value.trim(),
+      siteOriginal: editLeadSite.value.trim()
+    };
+
+    const ok = await updateLeadOnServer(currentSelectedLead.id, updates);
+    if (ok) {
+      leadEditForm.style.display = 'none';
+      leadViewFields.style.display = 'block';
+      btnToggleEditLead.textContent = '✏️ Editar';
+    }
+  });
+
+  document.querySelectorAll('.modal-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.modal-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.modal-tab-content').forEach(c => c.classList.remove('active'));
+
+      btn.classList.add('active');
+      const tabName = btn.dataset.modaltab;
+      const content = document.getElementById(`tabContent${tabName.charAt(0).toUpperCase() + tabName.slice(1)}`);
+      if (content) content.classList.add('active');
+    });
+  });
+
+  btnCopyWa?.addEventListener('click', () => {
+    navigator.clipboard.writeText(modalWaText.textContent);
+    showTempBtnText(btnCopyWa, '✓ Copiado!');
+  });
+
+  btnCopyEmail?.addEventListener('click', () => {
+    const full = `Assunto: ${modalEmailSubject.textContent}\n\n${modalEmailBody.textContent}`;
+    navigator.clipboard.writeText(full);
+    showTempBtnText(btnCopyEmail, '✓ Copiado!');
+  });
+
+  btnSaveNotes?.addEventListener('click', async () => {
+    if (!currentSelectedLead) return;
+    const text = modalNotes.value.trim();
+    await updateLeadOnServer(currentSelectedLead.id, { anotacoes: text });
+    showTempBtnText(btnSaveNotes, '✓ Salvo!');
+  });
+
+  modalStatusSelect?.addEventListener('change', async () => {
+    if (!currentSelectedLead) return;
+    await updateLeadOnServer(currentSelectedLead.id, { status: modalStatusSelect.value });
+  });
+
+  btnGenerateProto?.addEventListener('click', async () => {
+    if (!currentSelectedLead) return;
+    const selectedTemplate = templateSelector ? templateSelector.value : getRecommendedArchetype(currentSelectedLead);
+    await generatePrototypeForLead(currentSelectedLead.id, selectedTemplate, false);
+  });
+
+  btnForceEnrichProto?.addEventListener('click', async () => {
+    if (!currentSelectedLead) return;
+    const selectedTemplate = templateSelector ? templateSelector.value : getRecommendedArchetype(currentSelectedLead);
+    await generatePrototypeForLead(currentSelectedLead.id, selectedTemplate, true);
+  });
+}
+
+// ==========================================
+// FUNÇÕES AUXILIARES DO GERADOR
+// ==========================================
+
+async function generatePrototypeForLead(id, template = 'subzero', forceEnrich = true) {
+  const leadIdx = allLeads.findIndex(l => (l.id === id || l.slug === id));
+  const leadObj = leadIdx !== -1 ? allLeads[leadIdx] : null;
+
+  if (leadObj) {
+    leadObj.status = 'gerando_prototipo';
+    render();
+  }
+
+  if (btnGenerateProto) {
+    btnGenerateProto.disabled = true;
+    btnGenerateProto.innerHTML = '⏳ Minerando Redes & Construindo...';
+  }
+  if (prototypeStatusLabel) {
+    prototypeStatusLabel.innerHTML = '⏳ <strong>Minerando redes sociais, Google Maps & construindo site sob medida...</strong> Aguarde alguns instantes...';
+  }
+
+  try {
+    const res = await fetch(`/api/leads/${id}/generate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ template, archetype: template, forceEnrich: true })
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      if (leadIdx !== -1) allLeads[leadIdx] = data.lead;
+      if (currentSelectedLead && (currentSelectedLead.id === id || currentSelectedLead.slug === id)) {
+        currentSelectedLead = data.lead;
+        openModal(data.lead);
+      }
+      updateStats(data.stats);
+      render();
+      fetchCrmLeads();
+    } else {
+      alert(`Aviso: ${data.error || 'Erro desconhecido'}`);
+      if (leadObj) {
+        leadObj.status = leadObj.prototypeUrl ? 'prototipo_pronto' : 'oportunidade_quente';
+        render();
+      }
+    }
+  } catch (err) {
+    alert(`Erro ao gerar protótipo: ${err.message}`);
+  } finally {
+    if (btnGenerateProto) {
+      btnGenerateProto.disabled = false;
+      btnGenerateProto.innerHTML = '🔄 Regerar Protótipo';
+    }
+  }
+}
+
 async function updateLeadOnServer(id, updates) {
   try {
     const res = await fetch(`/api/leads/${id}`, {
@@ -892,18 +1229,15 @@ async function updateLeadOnServer(id, updates) {
     });
     const data = await res.json();
     if (data.success && data.lead) {
-      // Atualiza localmente
       const idx = allLeads.findIndex(l => (l.id === id || l.slug === id));
       if (idx !== -1) allLeads[idx] = data.lead;
       if (currentSelectedLead && (currentSelectedLead.id === id || currentSelectedLead.slug === id)) {
         currentSelectedLead = data.lead;
-        modalLeadBadge.className = `badge ${getBadgeClass(data.lead.status)}`;
-        modalLeadBadge.textContent = getBadgeLabel(data.lead.status);
-        if (modalLeadName) modalLeadName.textContent = data.lead.nome;
-        if (modalLeadNameDisplay) modalLeadNameDisplay.textContent = data.lead.nome;
+        openModal(data.lead);
       }
       updateStats(data.stats);
       render();
+      fetchCrmLeads();
       return true;
     }
   } catch (err) {
@@ -912,67 +1246,23 @@ async function updateLeadOnServer(id, updates) {
   return false;
 }
 
-// Gerar protótipo para um lead com feedback visual e mineração real
-async function generatePrototypeForLead(id, template = 'subzero', forceEnrich = null) {
-  const leadIdx = allLeads.findIndex(l => (l.id === id || l.slug === id));
-  const leadObj = leadIdx !== -1 ? allLeads[leadIdx] : null;
+function getRecommendedArchetype(lead) {
+  if (lead?.templateEscolhido) return lead.templateEscolhido;
+  const n = (lead?.nicho || '').toLowerCase();
+  const name = (lead?.nome || '').toLowerCase();
 
-  if (leadObj) {
-    leadObj.status = 'gerando_prototipo';
-    render();
+  if (n.includes('arquitet') || n.includes('engenhar') || n.includes('constru') || name.includes('engenhar') || name.includes('arquiteto') || name.includes('construtora')) {
+    return 'architectural';
   }
-
-  // Se já temos avaliações ou dados minerados, geramos instantaneamente em 1s!
-  const hasMinedData = (leadObj?.depoimentosReais?.length > 0) || (leadObj?.dadosEnriquecidos?.servicosDetectados?.length > 0) || (leadObj?.fotosReais?.length > 0);
-  const shouldForceEnrich = (forceEnrich !== null) ? forceEnrich : !hasMinedData;
-
-  if (btnGenerateProto) {
-    btnGenerateProto.disabled = true;
-    btnGenerateProto.innerHTML = shouldForceEnrich ? '⏳ Minerando Redes & Construindo...' : '⚡ Compilando Protótipo...';
+  if (n.includes('odont') || n.includes('dentist') || n.includes('clinica') || n.includes('estetica') || n.includes('saude') || n.includes('medico')) {
+    return 'clinical';
   }
-  if (prototypeStatusLabel) {
-    prototypeStatusLabel.innerHTML = shouldForceEnrich 
-      ? '⏳ <strong>Minerando redes sociais, Google Maps & construindo site sob medida...</strong> Aguarde alguns segundos...'
-      : '⚡ <strong>Compilando novo protótipo com os dados já minerados...</strong> Pronto em segundos!';
+  if (n.includes('pet') || n.includes('veterin')) {
+    return 'care';
   }
-
-  try {
-    const res = await fetch(`/api/leads/${id}/generate`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ template, archetype: template, forceEnrich: shouldForceEnrich })
-    });
-    const data = await res.json();
-    if (data.success) {
-      if (leadIdx !== -1) allLeads[leadIdx] = data.lead;
-      if (currentSelectedLead && (currentSelectedLead.id === id || currentSelectedLead.slug === id)) {
-        currentSelectedLead = data.lead;
-        openModal(data.lead);
-      }
-      updateStats(data.stats);
-      render();
-    } else {
-      alert(`Aviso ao gerar protótipo: ${data.error || 'Erro desconhecido'}`);
-      if (leadObj) {
-        leadObj.status = leadObj.prototypeUrl ? 'prototipo_pronto' : 'oportunidade_quente';
-        render();
-      }
-    }
-  } catch (err) {
-    alert(`Erro ao gerar protótipo: ${err.message}`);
-    if (leadObj) {
-      leadObj.status = leadObj.prototypeUrl ? 'prototipo_pronto' : 'oportunidade_quente';
-      render();
-    }
-  } finally {
-    if (btnGenerateProto) {
-      btnGenerateProto.disabled = false;
-      btnGenerateProto.innerHTML = '🔄 Regerar Protótipo';
-    }
-  }
+  return 'industrial';
 }
 
-// Utilitários
 function getBadgeClass(status) {
   switch(status) {
     case 'oportunidade_quente': return 'badge-hot';
@@ -1014,5 +1304,27 @@ function formatDisplayUrl(url) {
   } catch (_) {
     return url.length > 28 ? url.slice(0, 25) + '...' : url;
   }
+}
+
+function formatRelativeDate(isoDate) {
+  if (!isoDate) return 'Hoje';
+  try {
+    const d = new Date(isoDate);
+    const now = new Date();
+    const diffMs = now - d;
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    if (diffDays <= 0) return 'Hoje';
+    if (diffDays === 1) return 'Ontem';
+    if (diffDays < 7) return `Há ${diffDays} dias`;
+    return d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+  } catch (_) {
+    return 'Hoje';
+  }
+}
+
+function showTempBtnText(btn, text) {
+  const old = btn.innerHTML;
+  btn.textContent = text;
+  setTimeout(() => { btn.innerHTML = old; }, 1800);
 }
 

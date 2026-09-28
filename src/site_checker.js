@@ -1,12 +1,14 @@
 const cheerio = require('cheerio');
 const { cleanAndNormalizeUrl } = require('./url_cleaner');
+const { isLinkHubUrl, inspectLinkHub } = require('./link_hub_resolver');
 
 /**
  * Verifica a saúde e acessibilidade de um website cadastrado no Google Maps
  * e extrai dados ricos de contato (WhatsApp, Instagram, Facebook, Celulares e E-mails).
  * @param {string} rawUrl
+ * @param {boolean} isRecursive
  */
-async function checkWebsiteHealth(rawUrl) {
+async function checkWebsiteHealth(rawUrl, isRecursive = false) {
   if (!rawUrl) {
     return {
       hasWebsite: false,
@@ -56,7 +58,43 @@ async function checkWebsiteHealth(rawUrl) {
     };
   }
 
-  // 3. Detecção de Redes Sociais no campo de website
+  // 3. Detecção e Desempacotamento de Link Hubs / Linktrees (linktr.ee, /links/, beacons.ai, etc.)
+  if (isLinkHubUrl(norm.cleanedUrl) || ['Linktree', 'Beacons', 'BioSite'].includes(norm.socialPlatform)) {
+    if (!isRecursive) {
+      console.log(`  🔗 [Link Hub] Agrupador de links detectado (${norm.cleanedUrl}). Inspecionando links internos...`);
+      const hub = await inspectLinkHub(norm.cleanedUrl);
+
+      if (hub.realWebsite && hub.realWebsite !== norm.cleanedUrl) {
+        console.log(`    ↳ Site oficial real encontrado dentro do hub: ${hub.realWebsite}`);
+        const realSiteHealth = await checkWebsiteHealth(hub.realWebsite, true);
+        return {
+          ...realSiteHealth,
+          linkHubUrl: norm.cleanedUrl,
+          extractedInstagram: realSiteHealth.extractedInstagram || hub.detectedInstagram,
+          extractedFacebook: realSiteHealth.extractedFacebook || hub.detectedFacebook,
+          extractedWhatsApp: realSiteHealth.extractedWhatsApp || hub.detectedWhatsApp,
+          extractedVideo: realSiteHealth.extractedVideo || hub.detectedVideo
+        };
+      }
+
+      // Se o hub não contém nenhum site oficial real (apenas whatsapp, insta, etc.)
+      return {
+        hasWebsite: false,
+        isLinkHub: true,
+        url: norm.cleanedUrl,
+        status: 'apenas_linktree',
+        reason: 'Utiliza agrupador de links (Linktree / Hub) no lugar de site próprio',
+        extractedInstagram: hub.detectedInstagram,
+        extractedFacebook: hub.detectedFacebook,
+        extractedWhatsApp: hub.detectedWhatsApp,
+        extractedVideo: hub.detectedVideo,
+        extractedPhones: [],
+        extractedEmails: []
+      };
+    }
+  }
+
+  // 4. Detecção de Redes Sociais no campo de website
   if (norm.isSocial) {
     let extractedInstagram = null;
     let extractedFacebook = null;
@@ -82,7 +120,7 @@ async function checkWebsiteHealth(rawUrl) {
     };
   }
 
-  // 4. Teste de acessibilidade HTTP / HTTPS
+  // 5. Teste de acessibilidade HTTP / HTTPS
   const targetUrl = norm.cleanedUrl;
 
   try {
@@ -118,6 +156,24 @@ async function checkWebsiteHealth(rawUrl) {
         try {
           const $ = cheerio.load(html);
           
+          // Se não foi chamado recursivamente e o título indicar que é um linktree/hub de links:
+          const pageTitleCheck = ($('title').text() || '').toLowerCase();
+          if (!isRecursive && (pageTitleCheck.startsWith('links') || pageTitleCheck.includes('linktree'))) {
+            const hubInspection = await inspectLinkHub(targetUrl);
+            if (hubInspection.realWebsite && hubInspection.realWebsite !== targetUrl) {
+              console.log(`    ↳ [Link Hub Auto] Site oficial desempacotado: ${hubInspection.realWebsite}`);
+              const realHealth = await checkWebsiteHealth(hubInspection.realWebsite, true);
+              return {
+                ...realHealth,
+                linkHubUrl: targetUrl,
+                extractedInstagram: realHealth.extractedInstagram || hubInspection.detectedInstagram,
+                extractedFacebook: realHealth.extractedFacebook || hubInspection.detectedFacebook,
+                extractedWhatsApp: realHealth.extractedWhatsApp || hubInspection.detectedWhatsApp,
+                extractedVideo: realHealth.extractedVideo || hubInspection.detectedVideo
+              };
+            }
+          }
+
           $('a[href]').each((_, el) => {
             const href = $(el).attr('href') || '';
             const lowerHref = href.toLowerCase();

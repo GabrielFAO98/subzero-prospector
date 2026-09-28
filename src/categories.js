@@ -37,6 +37,14 @@ const CATEGORIES = [
     keywords: ['ar condicionado', 'refrigeracao', 'climatizacao', 'hvac', 'gelar', 'chiller', 'camara fria']
   },
   {
+    slug: 'engenharia_arquitetura',
+    nome: 'Engenharia & Arquitetura',
+    icone: '📐',
+    cor: '#8b5cf6',
+    badgeClass: 'cat-eng',
+    keywords: ['engenharia', 'engenheiro', 'arquiteto', 'arquitetura', 'construcao', 'construtora', 'obras', 'reforma', 'estrutural', 'laudo', 'edificacao']
+  },
+  {
     slug: 'solar',
     nome: 'Energia Solar',
     icone: '☀️',

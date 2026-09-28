@@ -285,19 +285,28 @@ const updates = [
   }
 ];
 
-const leads = db.getAll();
-let updatedCount = 0;
+function runRenewLeads() {
+  const leads = db.getAll();
+  let updatedCount = 0;
+  
+  updates.forEach(u => {
+    const lead = leads.find(l => l.nome && l.nome.toLowerCase().includes(u.match.toLowerCase()));
+    if (lead) {
+      db.update(lead.id, u.data);
+      updatedCount++;
+      console.log(`✅ Lead atualizado com dados ricos: ${lead.nome}`);
+    } else {
+      console.log(`⚠️ Lead não localizado para match: "${u.match}"`);
+    }
+  });
+  
+  console.log(`\n🎉 Total de leads renovados e enriquecidos: ${updatedCount}`);
+  console.log('Estatísticas atuais do banco:', db.getStats());
+  
+}
 
-updates.forEach(u => {
-  const lead = leads.find(l => l.nome && l.nome.toLowerCase().includes(u.match.toLowerCase()));
-  if (lead) {
-    db.update(lead.id, u.data);
-    updatedCount++;
-    console.log(`✅ Lead atualizado com dados ricos: ${lead.nome}`);
-  } else {
-    console.log(`⚠️ Lead não localizado para match: "${u.match}"`);
-  }
-});
+if (require.main === module) {
+  runRenewLeads();
+}
 
-console.log(`\n🎉 Total de leads renovados e enriquecidos: ${updatedCount}`);
-console.log('Estatísticas atuais do banco:', db.getStats());
+module.exports = { runRenewLeads };

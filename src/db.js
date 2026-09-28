@@ -4,6 +4,7 @@ const path = require('path');
 const DB_FILE = path.join(__dirname, '..', 'leads.db.json');
 const LEGACY_FILE = path.join(__dirname, '..', 'leads.json');
 const { getCategoryForLead } = require('./categories');
+const { cleanCompanyName } = require('./name_cleaner');
 
 function normalizeName(str) {
   if (!str) return '';
@@ -143,7 +144,7 @@ class LeadDatabase {
 
     return this.leads.find(l => {
       if (mapsUrl && l.mapsUrl && l.mapsUrl === mapsUrl) return true;
-      if (normName && normalizeName(l.nome) === normName) return true;
+      if (normName && (normalizeName(l.nome) === normName || (l.nomeBrutoMaps && normalizeName(l.nomeBrutoMaps) === normName))) return true;
       if (l.telefones && l.telefones.length > 0) {
         const existingPhones = l.telefones.map(normalizePhone);
         if (normPhones.some(p => existingPhones.includes(p))) return true;
@@ -153,10 +154,15 @@ class LeadDatabase {
   }
 
   upsert(leadData) {
+    if (!leadData.nomeBrutoMaps) {
+      leadData.nomeBrutoMaps = leadData.nome;
+    }
+    leadData.nome = cleanCompanyName(leadData.nomeBrutoMaps || leadData.nome, leadData.nicho);
+
     if (!leadData.categoria || !leadData.categoria.slug) {
       leadData.categoria = getCategoryForLead(leadData);
     }
-    const existing = this.findExisting(leadData.nome, leadData.telefones, leadData.mapsUrl);
+    const existing = this.findExisting(leadData.nomeBrutoMaps || leadData.nome, leadData.telefones, leadData.mapsUrl);
 
     if (existing) {
       // Atualiza sem perder o histórico de contato ou anotações já feitas
@@ -210,6 +216,7 @@ class LeadDatabase {
   }
 
   getStats() {
+    this.load();
     const stats = {
       total: this.leads.length,
       oportunidadesQuentes: 0,
@@ -218,18 +225,48 @@ class LeadDatabase {
       contatados: 0,
       negociando: 0,
       descartados: 0,
+      // Alias em inglês para compatibilidade direta com frontend e API
+      hot: 0,
+      online: 0,
+      ready: 0,
+      contacted: 0,
+      negotiating: 0,
+      discarded: 0,
       porCategoria: {}
     };
 
     this.leads.forEach(l => {
-      if (l.status === 'oportunidade_quente') stats.oportunidadesQuentes++;
-      else if (l.status === 'site_ativo') stats.sitesAtivos++;
-      else if (l.status === 'prototipo_pronto') stats.prototiposProntos++;
-      else if (l.status === 'contatado') stats.contatados++;
-      else if (l.status === 'negociando') stats.negociando++;
-      else if (l.status === 'descartado') stats.descartados++;
+      const isDiscarded = l.status === 'descartado';
+      const isHot = l.status === 'oportunidade_quente' || (!l.siteOriginal && !isDiscarded);
+      const isOnline = l.status === 'site_ativo' || (Boolean(l.siteOriginal) && l.siteStatus === 'online' && !isDiscarded);
+      const isReady = l.status === 'prototipo_pronto' || Boolean(l.prototypePath);
 
-      const catSlug = (l.categoria && l.categoria.slug) || 'outros';
+      if (isHot) {
+        stats.oportunidadesQuentes++;
+        stats.hot++;
+      }
+      if (isOnline) {
+        stats.sitesAtivos++;
+        stats.online++;
+      }
+      if (isReady) {
+        stats.prototiposProntos++;
+        stats.ready++;
+      }
+      if (l.status === 'contatado') {
+        stats.contatados++;
+        stats.contacted++;
+      }
+      if (l.status === 'negociando') {
+        stats.negociando++;
+        stats.negotiating++;
+      }
+      if (isDiscarded) {
+        stats.descartados++;
+        stats.discarded++;
+      }
+
+      const catSlug = (l.categoria && (l.categoria.slug || l.categoria)) || 'outros';
       stats.porCategoria[catSlug] = (stats.porCategoria[catSlug] || 0) + 1;
     });
 

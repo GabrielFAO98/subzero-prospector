@@ -4,12 +4,13 @@ const path = require('path');
 const TEMPLATES_ROOT = path.join(__dirname, '..', 'templates');
 const PREVIEWS_DIR = path.join(__dirname, '..', 'previews');
 const FALLBACK_TEMPLATE_DIR = path.join(TEMPLATES_ROOT, 'padrao');
+const { cleanCompanyName: cleanNameUtil } = require('./name_cleaner');
 
 /**
  * Mapeia o nicho/empresa para o arquétipo ideal
  */
 function getArchetype(nicho = '', nome = '', templateHint = null) {
-  if (templateHint && ['industrial', 'clinical', 'care', 'architectural'].includes(templateHint)) {
+  if (templateHint && ['industrial', 'clinical', 'care', 'architectural', 'studio-visual'].includes(templateHint)) {
     return templateHint;
   }
 
@@ -35,7 +36,12 @@ function getArchetype(nicho = '', nome = '', templateHint = null) {
     return 'care';
   }
 
-  // 4. Climatização, Segurança, Solar, B2B e outros -> industrial
+  // 4. Imagem, Fotografia, Audiovisual, Vídeo, Estética Visual & Estúdios -> studio-visual
+  if (n.includes('fotograf') || n.includes('studio') || n.includes('estudio') || n.includes('audiovisual') || n.includes('film') || n.includes('video') || n.includes('designer') || nameLower.includes('fotograf') || nameLower.includes('studio') || nameLower.includes('estudio')) {
+    return 'studio-visual';
+  }
+
+  // 5. Climatização, Segurança, Solar, B2B e outros -> industrial
   return 'industrial';
 }
 
@@ -552,93 +558,30 @@ function getNicheContent(nicho = '', nomeEmpresa = '', cidade = 'Franca SP', lea
 
 function applyMinedOverrides(content, lead) {
   if (!content) return content;
-  if (lead && lead.dadosEnriquecidos) {
-    if (Array.isArray(lead.dadosEnriquecidos.servicosDetectados) && lead.dadosEnriquecidos.servicosDetectados.length >= 2) {
-      content.servicos = lead.dadosEnriquecidos.servicosDetectados.slice(0, 4);
-    }
-    if (Array.isArray(lead.dadosEnriquecidos.diferenciais) && lead.dadosEnriquecidos.diferenciais.length >= 2) {
-      content.diferenciais = lead.dadosEnriquecidos.diferenciais.slice(0, 3);
-    }
+  const bi = lead?.inteligenciaComercial || {};
+  const de = lead?.dadosEnriquecidos || {};
+
+  const services = (Array.isArray(bi.servicos) && bi.servicos.length >= 2)
+    ? bi.servicos
+    : (Array.isArray(de.servicosDetectados) && de.servicosDetectados.length >= 2 ? de.servicosDetectados : null);
+
+  if (services) {
+    content.servicos = services.slice(0, 4).map(s => typeof s === 'string' ? { nome: s, desc: 'Atendimento técnico especializado com alto padrão.' } : s);
   }
+
+  const differentials = (Array.isArray(bi.diferenciais) && bi.diferenciais.length >= 2)
+    ? bi.diferenciais
+    : (Array.isArray(de.diferenciais) && de.diferenciais.length >= 2 ? de.diferenciais : null);
+
+  if (differentials) {
+    content.diferenciais = differentials.slice(0, 3).map(d => typeof d === 'string' ? { titulo: d, desc: 'Compromisso com qualidade e rigor técnico.' } : d);
+  }
+
   return content;
 }
 
-function cleanCompanyNameSmart(rawName = '') {
-  let name = (rawName || '').trim();
-
-  // 1. Remove cidade no final (Franca, Franca SP, EM Franca SP, Centro Franca, Franca/SP, etc)
-  name = name.replace(/\s*(?:[-–—|/]\s*)?(?:em\s+)?(?:franca|sp|franca\s*[-/]?\s*sp|centro\s+franca|franca\s+centro)\s*$/i, '');
-  name = name.replace(/\s+(?:em\s+)?franca(?:\s*[-/]?\s*sp)?$/i, '');
-  name = name.replace(/\s+(?:franca\s*\/sp|franca\s*centro|centro\s*franca)$/i, '');
-
-  // 2. Separadores comuns de título no Google Maps
-  for (const sep of [' | ', ' - ', ' – ', ' — ', ' / ', ' • ']) {
-    if (name.includes(sep)) {
-      name = name.split(sep)[0].trim();
-    }
-  }
-
-  // 3. Caso especial: Profissionais liberais com palavras-chave de busca (ex: LEANDRO FREITAS ARQUITETO ENGENHEIRO CIVIL)
-  const profMatch = name.match(/^([A-Za-zÀ-ÖØ-öø-ÿ\s]{4,30}?)\s+(?:arquiteto|arquiteta|engenheiro|engenheira)\b(.*)$/i);
-  if (profMatch) {
-    const personName = profMatch[1].trim();
-    const rest = (profMatch[0]).toLowerCase();
-    const hasArq = rest.includes('arquit');
-    const hasEng = rest.includes('engenh');
-    if (hasArq && hasEng) {
-      name = personName + ' | Arquitetura & Engenharia';
-    } else if (hasArq) {
-      name = personName + ' | Arquitetura';
-    } else if (hasEng) {
-      name = personName + ' | Engenharia Civil';
-    }
-  }
-
-  // 4. Caso especial: Médicos / Dentistas
-  const docMatch = name.match(/^((?:Dra?\.?|Dr\.)\s+[A-Za-zÀ-ÖØ-öø-ÿ\s]{4,30}?)\s+(?:cirurgi[aã]|dentista|m[eé]dic[ao])\b/i);
-  if (docMatch) {
-    name = docMatch[1].trim();
-  }
-
-  // 5. Caudas descritivas e palavras-chave de busca no Google Maps
-  const regexPatterns = [
-    /^(.*?climatiza[çc][aã]o)\s+(?:instala[çc][aã]o|manuten[çc][aã]o|vendas|assist[eê]ncia).*/i,
-    /^(.*?ar[- ]condicionado)\s+(?:instala[çc][aã]o|manuten[çc][aã]o|assist[eê]ncia).*/i,
-    /^(.*?seguran[çc]a\s+eletr[oô]nica)\s+(?:instala[çc][aã]o|monitoramento|c[aâ]meras).*/i,
-    /^(.*?energia\s+solar)\s+(?:instala[çc][aã]o|fotovoltaica|projetos).*/i,
-    /^(.*?\bmonitoramento)\s+(?:e\s+rastreamento|24\s*h(?:oras?|rs?)?).*/i,
-    /^(.*?\brastreamento)\s+(?:e\s+monitoramento|24\s*h(?:oras?|rs?)?).*/i
-  ];
-
-  for (const pattern of regexPatterns) {
-    const match = name.match(pattern);
-    if (match && match[1]) {
-      name = match[1].trim();
-      break;
-    }
-  }
-
-  // Caudas residuais
-  name = name.replace(/\s+24\s*(?:h(?:oras?|rs?)?)$/i, '');
-  name = name.replace(/\s+e\s+rastreamento.*$/i, '');
-  name = name.replace(/\s+(?:ltda|epp|me|s\/a|eireli)\b.*/i, '');
-
-  // 6. Formatação Title Case elegante para nomes com preservação de siglas e hífens
-  const preps = ['de', 'da', 'do', 'das', 'dos', 'e', 'em', 'com', '&', '|'];
-  name = name.split(/\s+/).map((word, i) => {
-    if (word === '|' || word === '&') return word;
-    if (word.length > 1 && word === word.toUpperCase() && !/[0-9]/.test(word) && word.length <= 4) {
-      return word; // Preserva siglas como CFTV, PMOC, ART, 3D
-    }
-    const parts = word.split('-');
-    return parts.map((part, pIdx) => {
-      const lower = part.toLowerCase();
-      if (i > 0 && pIdx === 0 && preps.includes(lower)) return lower;
-      return lower.charAt(0).toUpperCase() + lower.slice(1);
-    }).join('-');
-  }).join(' ');
-
-  return name;
+function cleanCompanyNameSmart(rawName = '', niche = '') {
+  return cleanNameUtil(rawName, niche);
 }
 
 function generateSlug(nome = '') {
@@ -679,7 +622,11 @@ async function downloadRealPhotos(photoUrls, targetImgDir) {
  * @param {string} [templateHint]
  */
 async function generatePrototype(lead, templateHint = null) {
-  if (!lead.slug) {
+  if (!lead.nomeBrutoMaps) {
+    lead.nomeBrutoMaps = lead.nome;
+  }
+  lead.nome = cleanNameUtil(lead.nomeBrutoMaps || lead.nome, lead.nicho);
+  if (!lead.slug || lead.slug.length > 40) {
     lead.slug = generateSlug(lead.nome);
   }
 
@@ -742,8 +689,16 @@ async function generatePrototype(lead, templateHint = null) {
 
   // Download e vinculação de fotos autênticas da empresa (Instagram / Google Maps)
   let realPhotoFiles = [];
-  if (Array.isArray(lead.fotosReais) && lead.fotosReais.length > 0) {
-    realPhotoFiles = await downloadRealPhotos(lead.fotosReais, targetImgDir);
+  const candidatePhotos = (Array.isArray(lead.fotosReais) && lead.fotosReais.length > 0)
+    ? lead.fotosReais
+    : ((Array.isArray(lead.inteligenciaComercial?.fotosReais) && lead.inteligenciaComercial.fotosReais.length > 0)
+      ? lead.inteligenciaComercial.fotosReais
+      : ((Array.isArray(lead.dadosEnriquecidos?.fotosReais) && lead.dadosEnriquecidos.fotosReais.length > 0)
+        ? lead.dadosEnriquecidos.fotosReais
+        : []));
+
+  if (candidatePhotos.length > 0) {
+    realPhotoFiles = await downloadRealPhotos(candidatePhotos, targetImgDir);
     if (realPhotoFiles.length > 0) {
       console.log(`📸 [Generator] ${realPhotoFiles.length} fotos reais vinculadas à vitrine do protótipo!`);
     }
@@ -759,6 +714,9 @@ async function generatePrototype(lead, templateHint = null) {
   const img3 = realPhotoFiles[2] || content.imagensServicos[2] || defaultImgs[2];
   const img4 = realPhotoFiles[3] || content.imagensServicos[3] || defaultImgs[3];
 
+  // Apresentação institucional de alto padrão
+  const apresentacaoFinal = content.apresentacao;
+
   // 3. Substituir tags de placeholder
   const replacements = {
     '{{NOME_DA_EMPRESA}}': cleanCompanyName,
@@ -773,7 +731,7 @@ async function generatePrototype(lead, templateHint = null) {
     '{{SUBTITULO_LOCALIZACAO_EM_CAPS}}': `${cidade.toUpperCase()} • ATENDIMENTO ESPECIALIZADO`,
     '{{CHAMADA_PRINCIPAL}}': content.chamadaPrincipal,
     '{{SLOGAN_OU_PROMESSA}}': content.slogan,
-    '{{TEXTO_DE_APRESENTACAO_DA_EMPRESA_FOCO_EM_CONFIANCA_E_QUALIDADE}}': content.apresentacao,
+    '{{TEXTO_DE_APRESENTACAO_DA_EMPRESA_FOCO_EM_CONFIANCA_E_QUALIDADE}}': apresentacaoFinal,
     '{{LINK_WHATSAPP_COM_MENSAGEM}}': waLink,
     '{{TELEFONE_FORMATADO}}': lead.whatsappFormatado || '(16) 99200-0000',
     '{{TELEFONE_DIGITOS}}': (lead.whatsappPrincipal || '5516992000000').replace(/\D/g, ''),
@@ -921,6 +879,31 @@ async function generatePrototype(lead, templateHint = null) {
   const faviconSvg = generateFaviconSvg(lead, cleanCompanyName, archetype);
   fs.writeFileSync(path.join(targetDir, 'favicon.svg'), faviconSvg, 'utf-8');
 
+  // 4.2 Injeção da Paleta da Marca extraída das artes do feed de postagens
+  const bi = lead.inteligenciaComercial || {};
+  const palette = bi.paletaCores || lead.dadosEnriquecidos?.paletaCores || null;
+
+  if (palette && palette.primaryBrand) {
+    const primary = palette.primaryBrand;
+    const accent = palette.accentBrand || palette.primaryBrand;
+    const customStyle = `
+  <!-- Identidade Visual Autêntica Extraída das Artes do Feed -->
+  <style id="bespoke-brand-palette">
+    :root {
+      --blue-primary: ${primary} !important;
+      --blue-hover: ${primary}ee !important;
+      --cyan-accent: ${accent} !important;
+      --primary-color: ${primary} !important;
+      --accent-color: ${accent} !important;
+      --obsidian-border: ${accent}26 !important;
+      --shadow-glow: 0 0 25px ${accent}33 !important;
+    }
+  </style>`;
+    if (html.includes('</head>')) {
+      html = html.replace('</head>', `${customStyle}\n</head>`);
+    }
+  }
+
   fs.writeFileSync(path.join(targetDir, 'index.html'), html, 'utf-8');
   console.log(`✅ Protótipo (${archetype}) gerado em: ${targetDir}`);
 
@@ -941,6 +924,9 @@ async function generatePrototype(lead, templateHint = null) {
     const db = require('./db');
     if (lead.id && db.getById(lead.id)) {
       db.update(lead.id, {
+        nome: lead.nome,
+        slug: lead.slug,
+        nomeBrutoMaps: lead.nomeBrutoMaps,
         prototypePath: lead.prototypePath,
         prototypeUrl: lead.prototypeUrl,
         status: 'prototipo_pronto',
@@ -1025,8 +1011,12 @@ function generateOutreachMessages(lead, domain) {
   let gapReason = 'não possui site oficial cadastrado no Google';
   if (lead.siteStatus === 'inacessivel') {
     gapReason = `está com o site (${lead.siteOriginal}) fora do ar`;
+  } else if (lead.siteStatus === 'apenas_linktree') {
+    gapReason = 'utiliza apenas um agrupador de links em vez de um site oficial próprio de alta conversão';
   } else if (lead.siteStatus === 'apenas_social') {
     gapReason = 'utiliza apenas rede social no Google em vez de um site próprio de conversão';
+  } else if (lead.siteStatus === 'online') {
+    gapReason = 'possui um site que ainda não é otimizado para o padrão mobile-first e buscas inteligentes';
   }
 
   const whatsappMsg = `Olá! Tudo bem?
