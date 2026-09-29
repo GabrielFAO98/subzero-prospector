@@ -385,7 +385,7 @@
   {
     "id": "lead_1790563326891_801ueh",
     "createdAt": "2026-09-28T02:42:06.891Z",
-    "updatedAt": "2026-09-28T02:42:06.891Z",
+    "updatedAt": "2026-09-28T02:57:56.951Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "royal-face-clinica-de-estetica",
@@ -398,7 +398,7 @@
     "siteHttpCode": 200,
     "siteHealthReason": "Site oficial ativo e respondendo normalmente (HTTP 200)",
     "linkHubUrl": null,
-    "avaliacao": "★ 4,7 (73 comentários)",
+    "avaliacao": "★ 4.7 (73 comentários)",
     "endereco": "R. Frederico Ozanan, 746 - Jardim Consolacao, Franca - SP, 14400-150",
     "categoriaMaps": "Centro de saúde e beleza",
     "mapsUrl": "https://www.google.com/maps/place/Royal+Face+Cl%C3%ADnica+de+Est%C3%A9tica+-+Franca/data=!4m7!3m6!1s0x94b0a7a1317c2f95:0xa468c124b70e523c!8m2!3d-20.5469204!4d-47.4043062!16s%2Fg%2F11qfq2cq_c!19sChIJlS98MaGnsJQRPFIOtyTBaKQ?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkyMy4wIJJjKgBIAVAD&rclk=1",
@@ -407,13 +407,13 @@
       "(16) 4827-5668"
     ],
     "emails": [],
-    "instagram": null,
+    "instagram": "https://www.instagram.com/royalface.franca/",
     "facebook": null,
     "whatsappPrincipal": "5516991297344",
     "whatsappFormatado": "(16) 99129-7344",
-    "status": "site_ativo",
+    "status": "prototipo_pronto",
     "motivoDescarte": null,
-    "analiseIA": "🌐 Site Ativo Detectado: Site institucional ativo. Empresa já possui presença web (https://mechameaqui.com.br/v2/royal-face-franca-sp). Candidata a redesign, melhoria de SEO local ou otimização de velocidade com template Subzero.",
+    "analiseIA": "🌐 Site Ativo Detectado: Empresa possui presença web (https://mechameaqui.com.br/v2/royal-face-franca-sp). Candidata a redesign e alta conversão mobile com template Subzero.",
     "categoria": {
       "slug": "odonto_saude",
       "nome": "Saúde & Odontologia",
@@ -437,8 +437,8 @@
       "whatsappFormatado": "(16) 99129-7344",
       "website": "https://mechameaqui.com.br/v2/royal-face-franca-sp",
       "linkHubUrl": null,
-      "websiteFromBio": null,
-      "bioInstagram": null,
+      "websiteFromBio": "https://clinicaroyalface.com/unidades/franca-sp",
+      "bioInstagram": "royalface.franca\n8,363 followers\n5,709 following\nRoyal Face Franca | Estética Avançada\n✨ Estética facial e corporal\n🤍 Protocolos exclusivos e alta tecnologia\nFranca/SP\nAgende sua avaliação\nclinicaroyalface.com/unidades/franca-sp and 1 more\nQUEM SOMOS\nTECNOLOGIA 9D\nROYAL LIPS\nROYAL LIFT\nHOMENS",
       "linkNaBio": null,
       "servicosDetectados": [],
       "diferenciais": [],
@@ -466,7 +466,45 @@
       },
       "totalPostsAnalisados": 0
     },
-    "_isNew": true
+    "_isNew": true,
+    "depoimentosReais": [
+      {
+        "author": "Ataíde Jr Marcelino",
+        "rating": "5 estrelas",
+        "text": "Clínica extraordinária! Profissionalismo, competência e atendimento humanizado em um ambiente elegante e acolhedor. O que mais me impressionou foi a honestidade da equipe: não oferecem procedimentos desnecessários, mas apenas aquilo que realmente trará benefícios ao cliente. Além disso, o custo-benefício é sensacional diante da qualidade do atendimento e dos excelentes resultados obtidos. Sem dúvida, a melhor experiência que já tive. Recomendo de olhos fechados!"
+      },
+      {
+        "author": "Theo F V Nobasco",
+        "rating": "5 estrelas",
+        "text": "Atendimento sensacional, além do conforto que você sente na clinica. Os funcionários são muito gentis e dedicados, tal como fazem um ótimo trabalho."
+      },
+      {
+        "author": "Reginaldo Santos",
+        "rating": "5 estrelas",
+        "text": "Sou cliente Royal Face há muitos anos, adoro a equipe, além de ser composta  por excelentes profissionais, estes  são também, pessoas maravilhosas. Os procedimentos que fiz e faço tem ótimos  resultados e mantém minha alto estima lá em cimo. Não vivo mais sem os cuidados da Royal Face."
+      },
+      {
+        "author": "Lara Martins",
+        "rating": "5 estrelas",
+        "text": "Excelente atendimento do início ao fim! A equipe da Royal Face é muito atenciosa, profissional e transmite bastante confiança... O ambiente é agradável, organizado e os procedimentos são realizados com muito cuidado."
+      },
+      {
+        "author": "Cidinha Nobasco",
+        "rating": "5 estrelas",
+        "text": "Lugar aconchegante\n\nAtendimento personalizado e humanizado\n\nProcedimentos com responsabilidade e preço justo.$$\n\nProfissionais formados e capacitados."
+      }
+    ],
+    "prototypePath": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\royal-face-clinica-de-estetica\\index.html",
+    "prototypeUrl": "/previews/royal-face-clinica-de-estetica/index.html",
+    "messages": {
+      "whatsapp": "Olá! Tudo bem?\n\nSou o Gabriel, atuo com tecnologia aqui em Franca.\n\nVi que a *Royal Face Clínica de Estética* tem uma excelente reputação, mas hoje quem pesquisa por *estetica* no Google ou nas buscas por inteligência artificial (ChatGPT e a IA do WhatsApp) encontra esse gargalo: possui um site que ainda não é otimizado para o padrão mobile-first e buscas inteligentes — e essas ferramentas acabam indicando concorrentes da cidade.\n\nPara mostrar na prática como resolver isso, montei uma prévia pronta do site oficial de vocês para celular, destacando as principais especialidades e os depoimentos dos seus clientes:\n👉 */previews/royal-face-clinica-de-estetica/index.html*\n\nPode repassar para o responsável dar uma olhada? Consigo colocar no ar para vocês essa semana.\nGabriel Azevedo • (16) 99204-8856",
+      "email": {
+        "assunto": "Royal Face Clínica de Estética em Franca — clientes sendo perdidos nas buscas por Inteligência Artificial",
+        "corpo": "Prezada equipe da Royal Face Clínica de Estética,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por estetica em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Royal Face Clínica de Estética, já funcional e adaptada para smartphones:\n👉 /previews/royal-face-clinica-de-estetica/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
+      }
+    },
+    "archetype": "architectural",
+    "templateEscolhido": "architectural"
   },
   {
     "id": "lead_1790563307126_p9miaq",
@@ -658,7 +696,7 @@
   {
     "id": "lead_1790476129493_v0b3s6",
     "createdAt": "2026-09-27T02:28:49.493Z",
-    "updatedAt": "2026-09-28T02:40:19.026Z",
+    "updatedAt": "2026-09-29T12:45:38.778Z",
     "anotacoes": "",
     "historicoContatos": [],
     "slug": "mirra-estetica",
@@ -713,7 +751,7 @@
       "whatsappFormatado": "(16) 91518-4072",
       "website": "https://mirracosmeticos.com",
       "websiteFromBio": "https://mirracosmeticos.com/links/",
-      "bioInstagram": "mirracosmeticosoficial\n530K followers\n2,143 following\nMirra Cosméticos Oficial\nMais de duas décadas realçando sua beleza!\n✨Cuidado profissional e home care\n🔎 Presente nos melhores salões de beleza\n... \nmore\nmirracosmeticos.com/links",
+      "bioInstagram": "mirracosmeticosoficial\n530K followers\n2,142 following\nMirra Cosméticos Oficial\nMais de duas décadas realçando sua beleza!\n✨Cuidado profissional e home care\n🔎 Presente nos melhores salões de beleza\n... \nmore\nmirracosmeticos.com/links",
       "linkNaBio": null,
       "servicosDetectados": [
         {
@@ -738,27 +776,12 @@
       "paletaCores": {
         "dominant": [
           {
-            "hex": "#706050",
-            "weight": 428,
-            "isNeutral": false
-          },
-          {
             "hex": "#c0b090",
-            "weight": 376,
+            "weight": 380,
             "isNeutral": false
           },
           {
-            "hex": "#402010",
-            "weight": 304,
-            "isNeutral": false
-          },
-          {
-            "hex": "#503020",
-            "weight": 260,
-            "isNeutral": false
-          },
-          {
-            "hex": "#302010",
+            "hex": "#706040",
             "weight": 256,
             "isNeutral": false
           },
@@ -766,15 +789,31 @@
             "hex": "#d0b080",
             "weight": 248,
             "isNeutral": false
+          },
+          {
+            "hex": "#705030",
+            "weight": 236,
+            "isNeutral": false
+          },
+          {
+            "hex": "#302010",
+            "weight": 220,
+            "isNeutral": false
+          },
+          {
+            "hex": "#403020",
+            "weight": 216,
+            "isNeutral": false
           }
         ],
-        "primaryBrand": "#706050",
-        "accentBrand": "#c0b090",
+        "primaryBrand": "#c0b090",
+        "accentBrand": "#706040",
         "backgroundTone": "dark"
       },
       "fotosReais": [],
-      "avatarOuLogo": "https://scontent.cdninstagram.com/v/t51.82787-19/572747563_18539478598009928_2674283376926478622_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=108&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy45NjguQzMifQ%3D%3D&_nc_ohc=pnFv2t055dwQ7kNvwGwrdFl&_nc_oc=Adpzc83ExJvtpKwAmPT3CQ0zLRf0GnsCGq4CoziF_SJAKBcCZ3e-Zpik_l-oA3ubAWpnqi44KY_3nhGAy3hspJlo&_nc_zt=24&_nc_ht=scontent.cdninstagram.com&_nc_gid=76CcTxyWD-4yTh6_R6VQIg&_nc_ss=78689&oh=00_AQOgTzOPDLvW0wr_2ruHaVLwubpkn6MkJTZNezRd0k7gng&oe=6ABF9CB3",
-      "tomDeVoz": "Profissional e Especializado"
+      "avatarOuLogo": "https://scontent.cdninstagram.com/v/t51.82787-19/572747563_18539478598009928_2674283376926478622_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=108&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy45NjguQzMifQ%3D%3D&_nc_ohc=pnFv2t055dwQ7kNvwGet7jV&_nc_oc=AdoOJ62r2cQstIBmC6AXWsAbAaQMBXUEj8CThLzh8V6CbKAOTunPjv5fRi1626SFinMqk9wtTexnw8wz8azVDQWr&_nc_zt=24&_nc_ht=scontent.cdninstagram.com&_nc_gid=fHqXaiGu7s5vGcA67A86AQ&_nc_ss=78689&oh=00_AQOCxRgFMAK1FVrc9oI3d1ffWUdlOnLIzau4TC-EXxwA_w&oe=6AC196F3",
+      "tomDeVoz": "Profissional e Especializado",
+      "videoInstitucional": null
     },
     "depoimentosReais": [
       {
@@ -837,8 +876,8 @@
         "corpo": "Prezada equipe da Mirra Estetica,\n\nO motivo do meu contato é direto: a forma como os clientes procuram por estetica e beleza em Franca mudou.\n\nHoje, a maioria das pessoas pesquisa pelo celular ou pergunta para ferramentas de inteligência artificial (como o ChatGPT e a IA do WhatsApp) quem é a empresa recomendada na cidade. O grande ponto é que essas ferramentas priorizam empresas com presença estruturada e site oficial próprio.\n\nComo sou desenvolvedor aqui em Franca, tomei a iniciativa de montar a estrutura do site oficial da Mirra Estetica, já funcional e adaptada para smartphones:\n👉 /previews/mirra-estetica/index.html\n\nQual é o melhor horário para conversarmos 5 minutos sobre a ativação desse canal para a sua empresa?\n\nAtenciosamente,\nGabriel Azevedo\n(16) 99204-8856 • Franca - SP"
       }
     },
-    "archetype": "clinical",
-    "templateEscolhido": "clinical",
+    "archetype": "industrial",
+    "templateEscolhido": "industrial",
     "nomeBrutoMaps": "MIRRA ESTETICA LIMPEZA PELE PEELING MASSAGEM CRIOFREQUÊNCIA FLACIDEZ GORDURA LOCALIZADA ENZIMAS CELULITE ESTÉTICA FRANCA SP",
     "linkHubUrl": "https://mirracosmeticos.com/links/",
     "targetDir": "C:\\Users\\Gabriel\\dev\\prospector\\previews\\mirra-estetica",
@@ -848,31 +887,16 @@
       "servicos": [],
       "diferenciais": [],
       "tomDeVoz": "Profissional e Especializado",
-      "avatarOuLogo": "https://scontent.cdninstagram.com/v/t51.82787-19/572747563_18539478598009928_2674283376926478622_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=108&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy45NjguQzMifQ%3D%3D&_nc_ohc=pnFv2t055dwQ7kNvwGwrdFl&_nc_oc=Adpzc83ExJvtpKwAmPT3CQ0zLRf0GnsCGq4CoziF_SJAKBcCZ3e-Zpik_l-oA3ubAWpnqi44KY_3nhGAy3hspJlo&_nc_zt=24&_nc_ht=scontent.cdninstagram.com&_nc_gid=76CcTxyWD-4yTh6_R6VQIg&_nc_ss=78689&oh=00_AQOgTzOPDLvW0wr_2ruHaVLwubpkn6MkJTZNezRd0k7gng&oe=6ABF9CB3",
+      "avatarOuLogo": "https://scontent.cdninstagram.com/v/t51.82787-19/572747563_18539478598009928_2674283376926478622_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=108&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy45NjguQzMifQ%3D%3D&_nc_ohc=pnFv2t055dwQ7kNvwGet7jV&_nc_oc=AdoOJ62r2cQstIBmC6AXWsAbAaQMBXUEj8CThLzh8V6CbKAOTunPjv5fRi1626SFinMqk9wtTexnw8wz8azVDQWr&_nc_zt=24&_nc_ht=scontent.cdninstagram.com&_nc_gid=fHqXaiGu7s5vGcA67A86AQ&_nc_ss=78689&oh=00_AQOCxRgFMAK1FVrc9oI3d1ffWUdlOnLIzau4TC-EXxwA_w&oe=6AC196F3",
       "paletaCores": {
         "dominant": [
           {
-            "hex": "#706050",
-            "weight": 428,
-            "isNeutral": false
-          },
-          {
             "hex": "#c0b090",
-            "weight": 376,
+            "weight": 380,
             "isNeutral": false
           },
           {
-            "hex": "#402010",
-            "weight": 304,
-            "isNeutral": false
-          },
-          {
-            "hex": "#503020",
-            "weight": 260,
-            "isNeutral": false
-          },
-          {
-            "hex": "#302010",
+            "hex": "#706040",
             "weight": 256,
             "isNeutral": false
           },
@@ -880,10 +904,25 @@
             "hex": "#d0b080",
             "weight": 248,
             "isNeutral": false
+          },
+          {
+            "hex": "#705030",
+            "weight": 236,
+            "isNeutral": false
+          },
+          {
+            "hex": "#302010",
+            "weight": 220,
+            "isNeutral": false
+          },
+          {
+            "hex": "#403020",
+            "weight": 216,
+            "isNeutral": false
           }
         ],
-        "primaryBrand": "#706050",
-        "accentBrand": "#c0b090",
+        "primaryBrand": "#c0b090",
+        "accentBrand": "#706040",
         "backgroundTone": "dark"
       },
       "totalPostsAnalisados": 11
@@ -892,7 +931,7 @@
   {
     "id": "lead_1789766207165_ypquxk",
     "createdAt": "2026-09-18T21:16:47.165Z",
-    "updatedAt": "2026-09-27T15:09:26.427Z",
+    "updatedAt": "2026-09-29T12:29:40.489Z",
     "anotacoes": "",
     "historicoContatos": [
       {
@@ -1161,6 +1200,6 @@
     "inCrm": true,
     "crmStage": "prototipo_apresentado",
     "crmValor": 2500,
-    "crmUltimoContato": "2026-09-27T15:09:26.423Z"
+    "crmUltimoContato": "2026-09-29T12:29:40.487Z"
   }
 ]

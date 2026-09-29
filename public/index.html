@@ -46,6 +46,47 @@
           <span class="nav-text">Funil & CRM</span>
           <span id="navBadgeCrm" class="nav-badge crm-badge">0</span>
         </button>
+      
+        <!-- Widget do Agente Trabalhando em Tempo Real -->
+        <div class="sidebar-agent-widget" id="sidebarAgentWidget" title="Clique para abrir o monitor do agente">
+          <div class="saw-header">
+            <div class="saw-title-group">
+              <span class="saw-radar-dot" id="sawRadarDot"></span>
+              <span class="saw-label">AGENTE LIVE</span>
+            </div>
+            <span class="saw-badge" id="sawStatusBadge">PRONTO</span>
+          </div>
+
+          <div class="saw-body">
+            <div class="saw-job-name" id="sawJobName">Motor Autônomo Pronto</div>
+            <div class="saw-job-detail" id="sawJobDetail">Pronto para minerar no Maps</div>
+
+            <div class="saw-progress-track">
+              <div class="saw-progress-bar" id="sawProgressBar" style="width: 0%;"></div>
+            </div>
+
+            <!-- Mini Terminal do Agente -->
+            <div class="saw-terminal" id="sawTerminal">
+              <div class="saw-terminal-line system">
+                <span class="saw-t-time">[LIVE]</span> <span class="saw-t-msg">Agente ativo em Franca/SP</span>
+              </div>
+            </div>
+
+            <div class="saw-footer-metrics">
+              <div class="saw-metric-item">
+                <span class="saw-m-label">Leads:</span>
+                <strong class="saw-m-val" id="sawMetricLeads">0</strong>
+              </div>
+              <div class="saw-metric-item">
+                <span class="saw-m-label">Sites:</span>
+                <strong class="saw-m-val" id="sawMetricSites">0</strong>
+              </div>
+              <button type="button" class="saw-open-btn" id="btnSawOpenAgent" title="Abrir painel completo do agente">
+                Monitor ↗
+              </button>
+            </div>
+          </div>
+        </div>
       </nav>
 
       <div class="sidebar-footer">

@@ -54,6 +54,7 @@ body {
 }
 
 .brand-badge {
+  flex-shrink: 0;
   font-size: 28px;
   background: var(--navy);
   width: 46px;
@@ -1106,6 +1107,8 @@ input[type="text"]:focus, select:focus, textarea:focus {
   position: sticky;
   top: 0;
   height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
   z-index: 120;
   transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.3, 1);
 }
@@ -1113,12 +1116,19 @@ input[type="text"]:focus, select:focus, textarea:focus {
 .sidebar-header {
   height: 70px;
   min-height: 70px;
+  max-height: 70px;
+  flex-shrink: 0;
   box-sizing: border-box;
   padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--surface-border);
+  position: sticky;
+  top: 0;
+  background: rgba(7, 19, 48, 0.98);
+  backdrop-filter: blur(12px);
+  z-index: 10;
 }
 
 .sidebar-close-btn {
@@ -1137,6 +1147,7 @@ input[type="text"]:focus, select:focus, textarea:focus {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-shrink: 0;
 }
 
 .brand-text h2 {
@@ -2227,3 +2238,226 @@ input[type="text"]:focus, select:focus, textarea:focus {
   transform: translateY(-2px);
 }
 
+
+
+/* ==========================================================================
+   Sidebar Agent Widget (Mini Live Monitor no Espaço Vazio)
+   ========================================================================== */
+.sidebar-agent-widget {
+  margin-top: auto;
+  background: linear-gradient(180deg, rgba(14, 32, 75, 0.75), rgba(7, 19, 48, 0.85));
+  border: 1px solid rgba(30, 228, 255, 0.2);
+  border-radius: 12px;
+  padding: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.sidebar-agent-widget:hover {
+  border-color: rgba(30, 228, 255, 0.4);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45), 0 0 14px rgba(30, 228, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.sidebar-agent-widget.running {
+  border-color: var(--cyan);
+  box-shadow: 0 0 20px rgba(30, 228, 255, 0.25);
+}
+
+.sidebar-agent-widget.running::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  animation: saw-scan 2.4s infinite linear;
+}
+
+@keyframes saw-scan {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.saw-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.saw-title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.saw-radar-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  transition: all 0.3s ease;
+}
+
+.sidebar-agent-widget.running .saw-radar-dot {
+  background: var(--cyan);
+  box-shadow: 0 0 12px var(--cyan);
+  animation: saw-pulse 1.2s infinite ease-in-out;
+}
+
+@keyframes saw-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+.saw-label {
+  font-family: var(--font-title);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  color: var(--text-main);
+}
+
+.saw-badge {
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: rgba(37, 211, 102, 0.12);
+  color: var(--green);
+  border: 1px solid rgba(37, 211, 102, 0.3);
+  letter-spacing: 0.4px;
+}
+
+.saw-badge.running {
+  background: rgba(30, 228, 255, 0.15);
+  color: var(--cyan);
+  border-color: rgba(30, 228, 255, 0.4);
+}
+
+.saw-badge.error {
+  background: rgba(255, 71, 87, 0.15);
+  color: var(--red);
+  border-color: rgba(255, 71, 87, 0.4);
+}
+
+.saw-body {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.saw-job-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.saw-job-detail {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.saw-progress-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.saw-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--cyan-dark), var(--cyan));
+  border-radius: 99px;
+  transition: width 0.35s ease;
+  box-shadow: 0 0 8px rgba(30, 228, 255, 0.6);
+}
+
+.saw-terminal {
+  background: rgba(3, 7, 18, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 6px 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  line-height: 1.35;
+  color: var(--cyan);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-height: 38px;
+  max-height: 48px;
+  overflow: hidden;
+}
+
+.saw-terminal-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.saw-terminal-line .saw-t-time {
+  color: var(--text-muted);
+  font-size: 9px;
+  margin-right: 4px;
+}
+
+.saw-terminal-line.success { color: var(--green); }
+.saw-terminal-line.error { color: var(--red); }
+.saw-terminal-line.system { color: var(--cyan); }
+
+.saw-footer-metrics {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 11px;
+}
+
+.saw-metric-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-muted);
+}
+
+.saw-metric-item strong {
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.saw-open-btn {
+  background: rgba(30, 228, 255, 0.08);
+  border: 1px solid rgba(30, 228, 255, 0.25);
+  color: var(--cyan);
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 6px;
+  padding: 3px 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.saw-open-btn:hover {
+  background: var(--cyan);
+  color: var(--navy-dark);
+  box-shadow: 0 0 10px rgba(30, 228, 255, 0.4);
+}

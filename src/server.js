@@ -91,16 +91,31 @@ app.post('/api/leads/:id/generate', async (req, res) => {
   if (!lead) return res.status(404).json({ error: 'Lead não encontrado.' });
 
   try {
-    const { template = 'industrial', archetype, forceEnrich = true } = req.body || {};
+    const { template = 'industrial', archetype, forceEnrich = false } = req.body || {};
     const chosenArchetype = archetype || template;
 
     // Marca status transitório
     db.update(lead.id, { status: 'gerando_prototipo' });
 
+    // Verifica se a empresa já possui dados salvos para evitar nova mineração demorada
+    const hasStoredData = Boolean(
+      (lead.depoimentosReais && lead.depoimentosReais.length > 0) ||
+      (lead.dadosEnriquecidos && Object.keys(lead.dadosEnriquecidos).length > 0) ||
+      (lead.fotosReais && lead.fotosReais.length > 0) ||
+      lead.prototypePath
+    );
+
+    const isForce = forceEnrich === true || forceEnrich === 'true';
+    const shouldMineMaps = isForce || (!hasStoredData && (!lead.depoimentosReais || lead.depoimentosReais.length === 0));
+
+    if (!isForce && hasStoredData) {
+      console.log(`\n⚡ [Regerar Rápido] Recompilando protótipo para: "${lead.nome}" (${chosenArchetype}) usando dados já salvos no banco...`);
+    }
+
     // 1. Mineração Profunda de Avaliações e Dados Reais no Google Maps (Playwright)
     const mapsUrl = lead.mapsUrl || `https://www.google.com/maps/search/${encodeURIComponent(lead.nome + ' ' + (lead.cidade || 'Franca SP'))}`;
 
-    if (!lead.depoimentosReais || lead.depoimentosReais.length === 0 || forceEnrich) {
+    if (shouldMineMaps) {
       console.log(`\n🔍 [Deep Mining] Minerando dados autênticos do Google Maps para: "${lead.nome}"...`);
       try {
         const { extractMapsDeep } = require('./deep_extractor');
@@ -135,7 +150,8 @@ app.post('/api/leads/:id/generate', async (req, res) => {
 
     // 1.5 Mineração Profunda de Redes Sociais / Instagram (Bio, Destaques, Postagens & Legendas estilo Arcofran)
     const instaUrl = lead.instagram || (lead.siteOriginal && lead.siteOriginal.includes('instagram.com') ? lead.siteOriginal : null);
-    if (instaUrl && (!lead.dadosEnriquecidos?.servicosDetectados?.length || forceEnrich)) {
+    const shouldMineInsta = isForce || (!hasStoredData && !lead.dadosEnriquecidos?.servicosDetectados?.length);
+    if (instaUrl && shouldMineInsta) {
       console.log(`\n📸 [Instagram Deep] Minerando bio, legendas e postagens de: "${instaUrl}"...`);
       try {
         const handleMatch = instaUrl.match(/instagram\.com\/([a-zA-Z0-9._]+)/i);

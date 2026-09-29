@@ -147,6 +147,18 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchLeads();
   fetchCrmLeads();
   initAgentMonitor();
+
+  const btnSawOpenAgent = document.getElementById('btnSawOpenAgent');
+  btnSawOpenAgent?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    switchView('agent');
+  });
+
+  const sidebarAgentWidget = document.getElementById('sidebarAgentWidget');
+  sidebarAgentWidget?.addEventListener('click', () => {
+    switchView('agent');
+  });
+
 });
 
 // ==========================================
@@ -174,6 +186,12 @@ function closeMobileSidebar() {
 function switchView(viewName) {
   currentAppView = viewName;
   closeMobileSidebar();
+
+  // Garante que o scroll da janela e da barra lateral sempre retornem ao topo
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  if (appSidebar) appSidebar.scrollTop = 0;
+  const sidebarNav = document.querySelector('.sidebar-nav');
+  if (sidebarNav) sidebarNav.scrollTop = 0;
 
   document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.app-view').forEach(el => el.style.display = 'none');
@@ -273,6 +291,13 @@ function render() {
   }
 }
 
+function formatRatingDisplay(avaliacao) {
+  if (!avaliacao) return '★ 5.0';
+  const clean = String(avaliacao).trim();
+  const withoutStars = clean.replace(/^[★⭐\s]+/, '');
+  return `★ ${escapeHtml(withoutStars)}`;
+}
+
 function renderTable(leads) {
   if (!tableBody) return;
   tableBody.innerHTML = leads.map(l => {
@@ -298,7 +323,7 @@ function renderTable(leads) {
           ${renderSiteCell(l)}
         </td>
         <td>
-          <div style="font-weight: 700; color: #fff;">★ ${escapeHtml(l.avaliacao || '5.0')}</div>
+          <div style="font-weight: 700; color: #fff;">${formatRatingDisplay(l.avaliacao)}</div>
           ${l.totalAvaliacoes ? `<small style="display:block; color:var(--text-muted); font-size:11px;">(${l.totalAvaliacoes} avaliações)</small>` : ''}
         </td>
         <td>
@@ -352,7 +377,7 @@ function renderCards(leads) {
           </div>
           <div class="card-info-row">
             <span>Avaliação Google:</span>
-            <strong>${escapeHtml(l.avaliacao || '5.0')}</strong>
+            <strong>${formatRatingDisplay(l.avaliacao)}</strong>
           </div>
           <div class="card-info-row">
             <span>Contato Principal:</span>
@@ -655,6 +680,54 @@ function applyAgentState(state) {
 
   const isRunning = state.status === 'running';
 
+  
+  // Atualiza Widget da Barra Lateral em tempo real
+  const sawWidget = document.getElementById('sidebarAgentWidget');
+  const sawBadge = document.getElementById('sawStatusBadge');
+  const sawJobName = document.getElementById('sawJobName');
+  const sawJobDetail = document.getElementById('sawJobDetail');
+  const sawProgressBar = document.getElementById('sawProgressBar');
+  const sawMetricLeads = document.getElementById('sawMetricLeads');
+  const sawMetricSites = document.getElementById('sawMetricSites');
+
+  if (sawWidget) {
+    if (isRunning) sawWidget.classList.add('running');
+    else sawWidget.classList.remove('running');
+  }
+
+  if (sawBadge) {
+    if (isRunning) {
+      sawBadge.textContent = 'OPERANDO';
+      sawBadge.className = 'saw-badge running';
+    } else if (state.status === 'error') {
+      sawBadge.textContent = 'ERRO';
+      sawBadge.className = 'saw-badge error';
+    } else {
+      sawBadge.textContent = 'PRONTO';
+      sawBadge.className = 'saw-badge';
+    }
+  }
+
+  if (sawJobName) {
+    sawJobName.textContent = state.currentJobName || (isRunning ? 'Operação em Andamento' : 'Motor Autônomo Pronto');
+  }
+
+  if (sawJobDetail) {
+    sawJobDetail.textContent = state.stepDetail || state.stepLabel || (isRunning ? 'Processando dados...' : 'Pronto para minerar no Maps');
+  }
+
+  if (sawProgressBar) {
+    sawProgressBar.style.width = `${state.progressPercent || (isRunning ? 25 : 0)}%`;
+  }
+
+  if (sawMetricLeads) {
+    sawMetricLeads.textContent = allLeads.length || 0;
+  }
+
+  if (sawMetricSites) {
+    sawMetricSites.textContent = allLeads.filter(l => l.prototypePath).length || 0;
+  }
+
   if (agentRadarWrapper) {
     if (isRunning) agentRadarWrapper.classList.add('running');
     else agentRadarWrapper.classList.remove('running');
@@ -727,6 +800,19 @@ function appendLogLine(log) {
   `;
 
   terminalLogsBody.appendChild(line);
+
+  const sawTerminal = document.getElementById('sawTerminal');
+  if (sawTerminal && log && log.message) {
+    const miniRow = document.createElement('div');
+    miniRow.className = `saw-terminal-line ${log.type || 'system'}`;
+    const timeStr = log.timestamp ? log.timestamp.split(':').slice(0, 2).join(':') : new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    miniRow.innerHTML = `<span class="saw-t-time">[${timeStr}]</span> <span class="saw-t-msg">${escapeHtml(log.message)}</span>`;
+    sawTerminal.appendChild(miniRow);
+    while (sawTerminal.children.length > 2) {
+      sawTerminal.removeChild(sawTerminal.firstChild);
+    }
+  }
+
 
   while (terminalLogsBody.children.length > 150) {
     terminalLogsBody.removeChild(terminalLogsBody.firstChild);
@@ -1169,7 +1255,7 @@ function setupEventListeners() {
 // FUNÇÕES AUXILIARES DO GERADOR
 // ==========================================
 
-async function generatePrototypeForLead(id, template = 'subzero', forceEnrich = true) {
+async function generatePrototypeForLead(id, template = 'subzero', forceEnrich = false) {
   const leadIdx = allLeads.findIndex(l => (l.id === id || l.slug === id));
   const leadObj = leadIdx !== -1 ? allLeads[leadIdx] : null;
 
@@ -1180,17 +1266,19 @@ async function generatePrototypeForLead(id, template = 'subzero', forceEnrich = 
 
   if (btnGenerateProto) {
     btnGenerateProto.disabled = true;
-    btnGenerateProto.innerHTML = '⏳ Minerando Redes & Construindo...';
+    btnGenerateProto.innerHTML = forceEnrich ? '⏳ Minerando Redes & Construindo...' : '⏳ Recompilando Layout...';
   }
   if (prototypeStatusLabel) {
-    prototypeStatusLabel.innerHTML = '⏳ <strong>Minerando redes sociais, Google Maps & construindo site sob medida...</strong> Aguarde alguns instantes...';
+    prototypeStatusLabel.innerHTML = forceEnrich
+      ? '⏳ <strong>Minerando redes sociais, Google Maps & construindo site sob medida...</strong> Aguarde alguns instantes...'
+      : '⏳ <strong>Recompilando protótipo com os dados salvos da empresa...</strong> Quase pronto...';
   }
 
   try {
     const res = await fetch(`/api/leads/${id}/generate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ template, archetype: template, forceEnrich: true })
+      body: JSON.stringify({ template, archetype: template, forceEnrich: Boolean(forceEnrich) })
     });
     const data = await res.json();
 
