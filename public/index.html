@@ -605,8 +605,10 @@
 
           <div class="sidebar-block">
             <h4>📝 Minhas Anotações</h4>
-            <textarea id="modalNotes" placeholder="Ex: Conversei com a recepcionista às 10h, retornar amanhã..."></textarea>
-            <button id="btnSaveNotes" class="btn btn-secondary btn-sm">Salvar Anotações</button>
+            <div class="sidebar-notes-group">
+              <textarea id="modalNotes" placeholder="Ex: Conversei com a recepcionista às 10h, retornar amanhã..."></textarea>
+              <button id="btnSaveNotes" class="btn btn-secondary btn-sm" type="button">💾 Salvar Anotações</button>
+            </div>
           </div>
         </div>
 
@@ -648,12 +650,12 @@
 
           <!-- Aba 3: Protótipo ao Vivo -->
           <div id="tabContentPrototype" class="modal-tab-content">
-            <div class="prototype-view-container">
-              <div class="prototype-bar">
+            <div class="message-box prototype-view-container">
+              <div class="message-header prototype-bar">
                 <div>
-                  <span id="prototypeStatusLabel">Protótipo Subzero</span>
+                  <span id="prototypeStatusLabel" class="prototype-status-title">Protótipo Subzero</span>
                 </div>
-                <div class="prototype-actions">
+                <div class="msg-actions prototype-actions">
                   <select id="templateSelector" class="status-select" style="padding: 6px 10px; font-size: 12px; font-weight: 600;">
                     <option value="architectural">🏛️ Architectural (Arquitetura, Engenharia, Interiores)</option>
                     <option value="industrial">⚙️ Industrial & Tech (Clima, Segurança, Solar, B2B)</option>
