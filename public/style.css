@@ -2581,3 +2581,11 @@ input[type="text"]:focus, select:focus, textarea:focus {
   border: none;
   flex: 1;
 }
+
+.chip-btn.active-chip {
+  background: var(--cyan) !important;
+  color: var(--navy-dark) !important;
+  border-color: var(--cyan) !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 12px rgba(30, 228, 255, 0.4) !important;
+}

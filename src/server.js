@@ -34,7 +34,16 @@ app.get('/api/categories', (req, res) => {
 });
 
 // Rota: Disparar mineração de leads em tempo real
+let isProspectingActive = false;
+
 app.post('/api/prospect', async (req, res) => {
+  if (isProspectingActive) {
+    return res.status(429).json({
+      success: false,
+      error: '⚠️ Uma mineração já está sendo executada no momento. Aguarde alguns instantes para não sobrecarregar os motores de busca.'
+    });
+  }
+  isProspectingActive = true;
   const { niche, city = 'Franca SP', limit = 5 } = req.body;
   if (!niche) {
     return res.status(400).json({ error: 'Nicho é obrigatório.' });
@@ -69,6 +78,8 @@ app.post('/api/prospect', async (req, res) => {
       });
     }
     res.status(500).json({ error: err.message });
+  } finally {
+    isProspectingActive = false;
   }
 });
 

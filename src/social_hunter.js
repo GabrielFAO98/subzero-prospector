@@ -103,6 +103,58 @@ async function querySearchLinks(page, query) {
  * @param {import('playwright').Page|null} externalPage
  * @returns {Promise<{ instagram: string|null, facebook: string|null }>}
  */
+
+/**
+ * Fallback ultra-rápido via DuckDuckGo HTML (sem Playwright, imune a bloqueios de redirect)
+ */
+async function fetchDuckDuckGoSocials(companyName, city = 'Franca SP') {
+  try {
+    const clean = companyName.replace(/Assistência Técnica/gi, '').replace(/Franca[- /]?SP/gi, '').trim();
+    const query = `${clean} ${city} instagram`;
+    const res = await fetch('https://html.duckduckgo.com/html/?q=' + encodeURIComponent(query), {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'pt-BR,pt;q=0.9,en-US;q=0.8'
+      },
+      signal: AbortSignal.timeout(8000)
+    });
+    if (!res.ok) return { instagram: null, facebook: null };
+    const html = await res.text();
+    
+    let instagram = null;
+    let facebook = null;
+
+    const instaMatches = html.match(/instagram\.com\/([a-zA-Z0-9._-]+)/gi) || [];
+    for (const m of instaMatches) {
+      const parts = m.split('/');
+      const handle = (parts[1] || '').toLowerCase().replace(/[^a-z0-9._]/g, '');
+      if (handle && !['p', 'reel', 'explore', 'stories', 'tags', 'about', 'developer', 'directory'].includes(handle)) {
+        if (isHandleMatchingCompany(companyName, handle, '', '')) {
+          instagram = `https://www.instagram.com/${handle}/`;
+          break;
+        }
+      }
+    }
+
+    const fbMatches = html.match(/facebook\.com\/(?:p\/)?([a-zA-Z0-9._-]+)/gi) || [];
+    for (const m of fbMatches) {
+      const parts = m.split('/');
+      const handle = (parts[parts.length - 1] || '').toLowerCase();
+      if (handle && !['sharer', 'policies', 'dialog', 'login', 'groups', 'help'].includes(handle)) {
+        if (isHandleMatchingCompany(companyName, handle, '', '')) {
+          facebook = `https://www.facebook.com/${handle}/`;
+          break;
+        }
+      }
+    }
+
+    return { instagram, facebook };
+  } catch (err) {
+    return { instagram: null, facebook: null };
+  }
+}
+
 async function huntSocials(companyName, city = 'Franca SP', niche = '', externalPage = null) {
   let instagram = null;
   let facebook = null;
@@ -195,10 +247,16 @@ async function huntSocials(companyName, city = 'Franca SP', niche = '', external
     }
   }
 
-  return {
-    instagram,
-    facebook
-  };
+  if (!instagram || !facebook) {
+      const ddg = await fetchDuckDuckGoSocials(companyName, city);
+      if (!instagram && ddg.instagram) instagram = ddg.instagram;
+      if (!facebook && ddg.facebook) facebook = ddg.facebook;
+    }
+
+    return {
+      instagram,
+      facebook
+    };
 }
 
 module.exports = {

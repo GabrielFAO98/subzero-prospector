@@ -1122,13 +1122,19 @@ function setupEventListeners() {
       btnProspect.disabled = false;
       btnProspect.querySelector('.btn-text').textContent = 'Buscar Empresas';
       btnProspect.querySelector('.spinner').style.display = 'none';
+      isCurrentlyProspecting = false;
     }
   });
 
   document.querySelectorAll('.chip-btn').forEach(btn => {
     btn.addEventListener('click', () => {
+      // Apenas preenche o campo de nicho e foca sem disparar a busca de imediato
       nicheInput.value = btn.dataset.niche;
-      prospectForm.dispatchEvent(new Event('submit'));
+      nicheInput.focus();
+
+      // Realce visual do chip selecionado
+      document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active-chip'));
+      btn.classList.add('active-chip');
     });
   });
 
