@@ -491,8 +491,18 @@ input[type="text"]:focus, select:focus, textarea:focus {
   vertical-align: middle;
 }
 
-.leads-table tr:hover td {
-  background: rgba(30, 228, 255, 0.03);
+.leads-table tbody tr, .lead-row {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.leads-table tbody tr:hover td, .leads-table tr.lead-row:hover td {
+  background: rgba(30, 228, 255, 0.05);
+}
+
+.leads-table tr.lead-row:hover .lead-name-cell strong {
+  color: var(--cyan);
+  transition: color 0.15s ease;
 }
 
 .lead-name-cell strong {
@@ -766,6 +776,19 @@ input[type="text"]:focus, select:focus, textarea:focus {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lead-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--cyan);
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.5), 0 0 15px rgba(30, 228, 255, 0.12);
+}
+
+.lead-card:hover .card-company-name {
+  color: var(--cyan);
+  transition: color 0.15s ease;
 }
 
 .lead-card-header {

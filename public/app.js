@@ -417,9 +417,9 @@ function renderSiteStatusLabel(lead) {
 }
 
 function attachRowEvents() {
-  document.querySelectorAll('.btn-open-detail, .lead-row').forEach(el => {
+  document.querySelectorAll('.btn-open-detail, .lead-row, .lead-card').forEach(el => {
     el.addEventListener('click', (e) => {
-      if (e.target.closest('a') || e.target.classList.contains('mini-social-link')) return;
+      if (e.target.closest('a') || (e.target.closest('button') && !e.target.closest('.btn-open-detail')) || e.target.classList.contains('mini-social-link')) return;
       const id = el.dataset.id || el.closest('[data-id]')?.dataset.id;
       if (id) {
         const lead = allLeads.find(l => (l.id === id || l.slug === id));
